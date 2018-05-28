@@ -17,7 +17,7 @@ gulp.task('sass', function(done) {
     .pipe(cleanCss({
       keepSpecialComments: 0
     }))
-    .pipe(rename({ extname: '.min.css' }))
+    .pipe(rename('style.min.css'))
     .pipe(gulp.dest('./www/css/'))
     .on('end', done);
 });

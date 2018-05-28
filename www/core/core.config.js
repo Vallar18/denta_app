@@ -7,7 +7,7 @@
 
     function mainConfig($stateProvider, $urlRouterProvider, $mdGestureProvider, $ionicConfigProvider) {
 
-        $urlRouterProvider.otherwise('/login');
+        $urlRouterProvider.otherwise('/view-1');
         $mdGestureProvider.skipClickHijack();
         $ionicConfigProvider.tabs.position('bottom'); // other values: top
 
@@ -22,6 +22,12 @@
                 url: '/login',
                 templateUrl: 'templates/login/login.html',
                 controller: 'LoginController',
+                controllerAs: 'vm'
+            })
+            .state('view-1', {
+                url: '/view-1',
+                templateUrl: 'templates/view-1/view-1.html',
+                controller: 'ViewOneController',
                 controllerAs: 'vm'
             })
             .state('tabs', {
