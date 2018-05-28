@@ -1,0 +1,150 @@
+@font-face {
+  font-family: "SourceSansProRegular";
+  src: url("../fonts/SourceSansProRegular/SourceSansProRegular.eot");
+  src: url("../fonts/SourceSansProRegular/SourceSansProRegular.eot?#iefix")format("embedded-opentype"),
+  url("../fonts/SourceSansProRegular/SourceSansProRegular.woff") format("woff"),
+  url("../fonts/SourceSansProRegular/SourceSansProRegular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "SourceSansProLight";
+  src: url("../fonts/SourceSansProLight/SourceSansProLight.eot");
+  src: url("../fonts/SourceSansProLight/SourceSansProLight.eot?#iefix")format("embedded-opentype"),
+  url("../fonts/SourceSansProLight/SourceSansProLight.woff") format("woff"),
+  url("../fonts/SourceSansProLight/SourceSansProLight.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+body {
+  font: 14px/1.5 'SourceSansProRegular', sans-serif;
+  background: white;
+  button{
+    font-family: 'SourceSansProRegular', sans-serif;;
+  }
+  .md-button,
+  .button-link{
+    text-transform: none;
+  }
+  .logo-box{
+    margin: 30px 0;
+    text-align: center;
+    padding: 20px 0;
+    img{
+      width: 200px;
+    }
+  }
+  .content {
+    padding: 0 40px 40px;
+    .content-logo-image {
+      display: block;
+      right: 0;
+      margin: 0 0 0 auto;
+      font-size: 20px;
+      max-width: 100px;
+    }
+    h4 {
+      margin-top: 30px;
+    }
+    .button-have {
+      margin: 20px auto;
+      display: block;
+    }
+  }
+
+  .slider {
+    height: 300px;
+    .icon-list{
+      margin-top: 35px;
+      margin-bottom: 49px;
+      img{
+        width: 50px;
+      }
+    }
+    .text{
+      font-size: 18px;
+    }
+  }
+  .slider-slide {
+    color: #000;
+    background-color: #fff;
+    text-align: center;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+  }
+
+  #logo {
+    margin: 30px 0;
+  }
+
+  #list {
+    width: 170px;
+    margin: 30px auto;
+    font-size: 20px;
+  }
+  #list ol {
+    margin-top: 30px;
+  }
+  #list ol li {
+    text-align: left;
+    list-style: decimal;
+    margin: 10px 0;
+  }
+
+  .button.ng-hide {
+    display: none;
+  }
+  .md-button.md-primary.md-raised:not([disabled]).md-focused{
+    background-color: #2196f3;
+  }
+  .main-content-home{
+    padding: 0 10px;
+  }
+}
+
+.navigate-bar .md-button{
+  //position: absolute;
+  //align-items: stretch;
+  min-width: 0;
+  width: 25%;
+}
+.homepage{
+  md-select{
+    text-align: right;
+    font-size: 14px;
+    color: #141414;
+    .md-select-icon{
+      display: none;
+    }
+    .md-select-value.md-select-placeholder{
+      color: #141414;
+    }
+  }
+  .select-lng{
+    width: 60px;
+    margin: 0 0 0 auto;
+    img{
+      width: 23px;
+      float: left;
+      margin-left: 7px;
+    }
+    .md-text{
+      span{
+        line-height: 1.5;
+      }
+    }
+  }
+}
+.lng-item{
+  img{
+    width: 25px;
+    float: left;
+    margin-right: 10px;
+  }
+  span{
+    line-height: 1.5;
+  }
+}
+
+
