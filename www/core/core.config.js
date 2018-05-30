@@ -42,6 +42,12 @@
                 controller: 'AddCodeController',
                 controllerAs: 'vm'
             })
+            .state('select-role', {
+                url: '/select-role',
+                templateUrl: 'templates/select-role/select-role.html',
+                controller: 'SelectRoleController',
+                controllerAs: 'vm'
+            })
             .state('tabs', {
                 cache: false,
                 reload: true,

@@ -9868,23 +9868,33 @@ a.button {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+  padding-top: 2%; }
+  .block-content p {
+    padding-top: 12px;
+    font-size: 16px; }
+  .block-content button {
+    width: 35%;
+    height: 48px;
+    background-color: #d30041;
+    color: white;
+    margin-top: 15px; }
+  .block-content input {
+    border: 1px solid #94a4c08c;
+    padding: 22px 50px;
+    text-align: center;
+    font-size: 12.5px; }
 
 .input-block {
   display: flex;
-  padding-top: 2%;
   justify-content: center;
   width: 100%; }
   .input-block input[type=text] {
-    border: 1px solid #94a4c0;
-    padding: 22px 0px 22px 27px;
+    padding: 22px;
     width: 22%;
-    font-size: 12px;
     border-right: none; }
   .input-block input[type="number"] {
-    font-size: 12px;
-    border: 1px solid #94a4c0;
-    padding: 22px 7px 22px 14px; }
+    padding: 22px 12px; }
 
 #view {
   padding: 0;
@@ -9963,3 +9973,7 @@ a.button {
     -webkit-transform: translate(0, 80%);
     -o-transform: translate(0, 80%);
     -moz-transform: translate(0, 80%); }
+
+#add-code a {
+  color: red;
+  text-decoration: underline; }

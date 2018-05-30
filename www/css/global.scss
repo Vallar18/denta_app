@@ -70,26 +70,38 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top:2%;
+  p {
+    padding-top: 12px;
+    font-size: 16px;
+  }
+  button {
+    width: 35%;
+    height: 48px;
+    background-color: #d30041;
+    color: white;
+    margin-top: 15px;
+  }
+  input {
+    border: 1px solid #94a4c08c;
+    padding: 22px 50px;
+    text-align: center;
+    font-size: 12.5px;
+  }
 }
 
 // input
 .input-block{
   display: flex;
-  padding-top: 2%;
   justify-content: center;
   width: 100%;
   input[type=text] {
-    border: 1px solid #94a4c0;
-    padding: 22px 0px 22px 27px;
+    padding: 22px;
     width: 22%;
-    font-size: 12px;
     border-right: none;
   }
   input[type="number"] {
-    font-size: 12px;
-    border: 1px solid #94a4c0;
-    padding: 22px 7px 22px 14px;
+    padding: 22px 12px;
   }
-
 }
 
