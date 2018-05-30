@@ -9,8 +9,11 @@
     -o-transition: all 1.5s ease-in-out; /** Opera **/
   }
   .title-block{
-    top: 12%;
-    left: 7.5%
+    top: 13%;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .title-block p{
     color: #76869f;
@@ -60,7 +63,7 @@
     top: 0;
   }
   img {
-    width: 48%;
+    width: 40%;
     -webkit-user-drag: none;
   }
   .obj {

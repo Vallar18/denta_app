@@ -9909,8 +9909,11 @@ a.button {
     -o-transition: all 1.5s ease-in-out;
     /** Opera **/ }
   #view .title-block {
-    top: 12%;
-    left: 7.5%; }
+    top: 13%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
   #view .title-block p {
     color: #76869f;
     font-size: 18px;
@@ -9952,7 +9955,7 @@ a.button {
     position: absolute;
     top: 0; }
   #view img {
-    width: 48%;
+    width: 40%;
     -webkit-user-drag: none; }
   #view .obj {
     width: 147%;
