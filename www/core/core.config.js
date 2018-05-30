@@ -30,6 +30,18 @@
                 controller: 'ViewController',
                 controllerAs: 'vm'
             })
+            .state('add-phone', {
+                url: '/add-phone',
+                templateUrl: 'templates/add-phone/add-phone.html',
+                controller: 'AddPhoneController',
+                controllerAs: 'vm'
+            })
+            .state('add-code', {
+                url: '/add-code',
+                templateUrl: 'templates/add-code/add-code.html',
+                controller: 'AddCodeController',
+                controllerAs: 'vm'
+            })
             .state('tabs', {
                 cache: false,
                 reload: true,

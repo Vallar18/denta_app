@@ -1,0 +1,20 @@
+<ion-view id="add-phone">
+    <div class="item-block-top">
+        <div class="item-block-top-background-image"></div>
+        <div class="item-block-top-logo">
+            <img src="../../img/vector-smart-object.png">
+            <p>get me in</p>
+        </div>
+    </div>
+    <div class="item-block-content">
+        <div class="form-item-block-content"></div>
+            <div class="block-content">
+                <div class="input-block">
+                    <input type="text" placeholder="+380">
+                    <input type="number" placeholder="Enter your phone number">
+                </div>
+                <p>{{vm.item.val1}}</p>
+                <button ng-click="vm.send()"> send</button>
+            </div>
+    </div>
+</ion-view>

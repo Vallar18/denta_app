@@ -35,7 +35,7 @@
                     backEmpty.classList.add('background-content');
                 }, 2300);
             } else if(vm.item.show === 1){
-                $state.go('login');
+                $state.go('add-phone');
             }
         }
     }

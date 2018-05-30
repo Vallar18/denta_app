@@ -9815,10 +9815,81 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
-#view-1 {
+.item-block-top {
+  height: 100%;
+  width: 100%;
+  background: #2c304b; }
+
+.item-block-top-background-image {
+  height: 100%;
+  background: url(../img/item-top-sky-images.png) no-repeat;
+  background-size: 100% 43.5%;
+  position: relative;
+  opacity: 0.45; }
+
+.item-block-top-logo {
+  position: absolute;
+  top: 13%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.item-block-top-logo p {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 42.67px;
+  letter-spacing: -0.1px;
+  word-spacing: 1px;
+  padding-top: 20px; }
+
+.item-block-top-logo img {
+  width: 40%;
+  -webkit-user-drag: none; }
+
+.item-block-content {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 40%; }
+
+.form-item-block-content {
+  width: 160%;
+  height: 70%;
+  background: #fff;
+  position: absolute;
+  bottom: 34.8%;
+  left: -30%;
+  border-top-left-radius: 54%;
+  border-top-right-radius: 54%; }
+
+.block-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.input-block {
+  display: flex;
+  padding-top: 2%;
+  justify-content: center;
+  width: 100%; }
+  .input-block input[type=text] {
+    border: 1px solid #94a4c0;
+    padding: 22px 0px 22px 27px;
+    width: 22%;
+    font-size: 12px;
+    border-right: none; }
+  .input-block input[type="number"] {
+    font-size: 12px;
+    border: 1px solid #94a4c0;
+    padding: 22px 7px 22px 14px; }
+
+#view {
   padding: 0;
   border: none; }
-  #view-1 .object {
+  #view .object {
     position: absolute;
     transition: all 1.5s ease-in-out;
     -webkit-transition: all 1.5s ease-in-out;
@@ -9827,31 +9898,30 @@ a.button {
     /** Firefox **/
     -o-transition: all 1.5s ease-in-out;
     /** Opera **/ }
-  #view-1 .title-block {
+  #view .title-block {
     top: 12%;
     left: 7.5%; }
-  #view-1 .title-block p {
+  #view .title-block p {
     color: #76869f;
     font-size: 18px;
     font-weight: 300;
     line-height: 42.67px;
     letter-spacing: 0.9px;
-    word-spacing: 4px;
-    transition: all 1.5s ease-in-out; }
-  #view-1 .background-empty {
+    word-spacing: 4px; }
+  #view .background-empty {
     height: 84%;
     width: 100%;
     top: 41.25%; }
-  #view-1 .background-content {
+  #view .background-content {
     height: 101.2%;
     top: 29.25%; }
-  #view-1 .background-image {
+  #view .background-image {
     height: 100%;
     background: url(../../img/5714520-sky-images.png) no-repeat;
     background-size: 100% 70%;
     position: relative;
     opacity: 0.5; }
-  #view-1 .background-content:after {
+  #view .background-content:after {
     content: '';
     position: absolute;
     width: 0;
@@ -9861,7 +9931,7 @@ a.button {
     border-right: 15px solid transparent;
     top: 0;
     left: 45%; }
-  #view-1 .text {
+  #view .text {
     text-align: justify;
     padding: 60px 20px;
     color: #dadada;
@@ -9871,10 +9941,10 @@ a.button {
     letter-spacing: -1px;
     position: absolute;
     top: 0; }
-  #view-1 img {
+  #view img {
     width: 48%;
     -webkit-user-drag: none; }
-  #view-1 .obj {
+  #view .obj {
     width: 147%;
     height: 70%;
     background: #2c304b;
@@ -9883,15 +9953,13 @@ a.button {
     left: -24%;
     border-top-left-radius: 54%;
     border-top-right-radius: 54%; }
-
-#view-1 .mov-up {
-  transform: translate(0, -29%);
-  -webkit-transform: translate(0, -29%);
-  -o-transform: translate(0, -29%);
-  -moz-transform: translate(0, -29%); }
-
-#view-1 .mov-down {
-  transform: translate(0, 80%);
-  -webkit-transform: translate(0, 80%);
-  -o-transform: translate(0, 80%);
-  -moz-transform: translate(0, 80%); }
+  #view .mov-up {
+    transform: translate(0, -29%);
+    -webkit-transform: translate(0, -29%);
+    -o-transform: translate(0, -29%);
+    -moz-transform: translate(0, -29%); }
+  #view .mov-down {
+    transform: translate(0, 80%);
+    -webkit-transform: translate(0, 80%);
+    -o-transform: translate(0, 80%);
+    -moz-transform: translate(0, 80%); }

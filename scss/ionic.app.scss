@@ -20,7 +20,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "../www/lib/ionic/scss/ionic";
+@import "../www/css/global";
 @import "../www/templates/login/login";
 @import "../www/templates/view/view";
+@import "../www/templates/add-phone/add-phone";
+@import "../www/templates/add-code/add-code";
 
 

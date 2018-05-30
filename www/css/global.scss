@@ -1,0 +1,95 @@
+
+
+
+
+.item-block-top{
+  height:100%;
+  width: 100%;
+  background: #2c304b;
+}
+.item-block-top-background-image{
+  height: 100%;
+  background: url(../img/item-top-sky-images.png) no-repeat;
+  background-size: 100% 43.5%;
+  position: relative;
+  opacity: 0.45;
+}
+.item-block-top-logo {
+  position: absolute;
+  top: 13%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.item-block-top-logo p{
+  color: #fff;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 42.67px;
+  letter-spacing: -0.1px;
+  word-spacing: 1px;
+  padding-top: 20px;
+}
+.item-block-top-logo img {
+  width: 40%;
+  -webkit-user-drag: none;
+}
+
+
+.item-block-content {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 40%;
+}
+.form-item-block-content {
+  width: 160%;
+  height: 70%;
+  background: #fff;
+  position: absolute;
+  bottom: 34.8%;
+  left: -30%;
+  border-top-left-radius: 54%;
+  border-top-right-radius: 54%;
+}
+//.item-block-content:after {
+//  content: '';
+//  position: absolute;
+//
+//  width: 0;
+//  height: 0;
+//  border-top:15px solid white;
+//  border-left:15px solid transparent;
+//  border-right:15px solid transparent;
+//  top: 0;
+//  left: 46%
+//}
+.block-content{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+// input
+.input-block{
+  display: flex;
+  padding-top: 2%;
+  justify-content: center;
+  width: 100%;
+  input[type=text] {
+    border: 1px solid #94a4c0;
+    padding: 22px 0px 22px 27px;
+    width: 22%;
+    font-size: 12px;
+    border-right: none;
+  }
+  input[type="number"] {
+    font-size: 12px;
+    border: 1px solid #94a4c0;
+    padding: 22px 7px 22px 14px;
+  }
+
+}
+

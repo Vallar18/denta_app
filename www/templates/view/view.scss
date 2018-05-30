@@ -1,4 +1,4 @@
-#view-1{
+#view{
    padding:0;
    border: none;
   .object {
@@ -19,7 +19,6 @@
     line-height: 42.67px;
     letter-spacing: 0.9px;
     word-spacing: 4px;
-    transition: all 1.5s ease-in-out;
   }
   .background-empty {
     height: 84%;
@@ -74,16 +73,17 @@
     border-top-left-radius: 54%;
     border-top-right-radius: 54%;
   }
-}
-#view-1 .mov-up {
-  transform: translate(0, -29%);
-  -webkit-transform: translate(0, -29%);
-  -o-transform: translate(0,-29%);
-  -moz-transform: translate(0,-29%);
-}
-#view-1 .mov-down {
-  transform: translate(0, 80%);
-  -webkit-transform: translate(0,80%);
-  -o-transform: translate(0, 80%);
-  -moz-transform: translate(0, 80%);
+  //animation
+  .mov-up {
+    transform: translate(0, -29%);
+    -webkit-transform: translate(0, -29%);
+    -o-transform: translate(0,-29%);
+    -moz-transform: translate(0,-29%);
+  }
+  .mov-down {
+    transform: translate(0, 80%);
+    -webkit-transform: translate(0,80%);
+    -o-transform: translate(0, 80%);
+    -moz-transform: translate(0, 80%);
+  }
 }
