@@ -1,5 +1,5 @@
 {
-  "name": "myApp",
+  "name": "DentApp",
   "version": "0.0.1",
   "description": "An Ionic project",
   "devDependencies": {
@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "angular-material": "^1.1.9",
-    "cordova-android": "^7.0.0",
+    "cordova-android": "7.0.0",
+    "cordova-android-support-gradle-release": "^1.4.3",
     "cordova-plugin-console": "^1.1.0",
     "cordova-plugin-crosswalk-webview": "^2.4.0",
     "cordova-plugin-device": "^1.1.7",
@@ -35,7 +36,10 @@
       },
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-ionic-keyboard": {}
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-android-support-gradle-release": {
+        "ANDROID_SUPPORT_VERSION": "27.+"
+      }
     },
     "platforms": []
   }

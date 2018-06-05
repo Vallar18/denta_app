@@ -18,6 +18,14 @@
         //     controller: 'HomepageController',
         //     controllerAs: 'vm'
         // })
+
+            .state('geolocation', {
+                url: '/geo',
+                templateUrl: 'templates/geolocation/geo.html',
+                controller: 'GeoCtrl',
+                controllerAs: 'vm'
+            })
+
             .state('login', {
                 url: '/login',
                 templateUrl: 'templates/login/login.html',
