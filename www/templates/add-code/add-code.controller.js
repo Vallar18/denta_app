@@ -23,7 +23,7 @@
             $state.go('select-role')
         }
         function sendCode() {
-            console.log('send code')
+            $state.go('add-phone')
         }
     }
 
