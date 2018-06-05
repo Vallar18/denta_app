@@ -1,15 +1,13 @@
 .background-image{
   height: 100%;
-  background: url(../img/5714520-sky-images.png) no-repeat;
+  background: url(../../content/img/5714520-sky-images.png) no-repeat;
   background-size: 100% 70%;
   position: relative;
   opacity: 0.5;
 }
-
 .scroll{
   height: 100%;
 }
-
 .item-block-top{
   height: 40%;
   width: 100%;
@@ -19,7 +17,7 @@
   content: '';
   width: 100%;
   height: 100%;
-  background: url(../img/item-top-sky-images.png) no-repeat;
+  background: url(../../content/img/item-top-sky-images.png) no-repeat;
   background-size: 100%;
   position: absolute;
   opacity: .35;
@@ -47,9 +45,6 @@
   width: 40%;
   -webkit-user-drag: none;
 }
-
-
-
 .item-block-content {
   position: absolute;
   height: 60%;
@@ -58,21 +53,12 @@
 }
 .item-block-content:after {
   content: '';
-  background: url(../img/border.svg) no-repeat;
+  background: url(../../content/img/border.svg) no-repeat;
   width: 100%;
   height: 20%;
   position: absolute;
   top: 0;
 }
-//.form-item-block-content {
-//  width: 160%;
-//  height: 100%;
-//  background: url(../img/border.svg);
-//  position: absolute;
-//  left: -30%;
-//  border-top-left-radius: 54%;
-//  border-top-right-radius: 54%;
-//}
 .block-content{
   position: relative;
   display: flex;
@@ -123,20 +109,6 @@
      background-color: transparent;
    }
 }
-
 .text-center{
   text-align: center;
 }
-
-
-
-//.form-item-block-content {
-//  width: 180%;
-//  height: 70%;
-//  background: #fff;
-//  position: absolute;
-//  bottom: 35%;
-//  left: -40%;
-//  border-top-left-radius: 340px;
-//  border-top-right-radius: 340px;
-//}
