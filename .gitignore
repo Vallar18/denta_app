@@ -13,9 +13,6 @@ log.txt
 npm-debug.log*
 
 .idea/
-node_modules/
-/plugins
-/www/lib/
 .sourcemaps/
 .sass-cache/
 .tmp/
