@@ -11,6 +11,7 @@
         var vm = this;
         vm.shangeScreen = shangeScreen;
 
+
         var titleBlock = document.querySelector('.title-block');
         var backEmpty = document.querySelector('.background-empty');
         vm.item = {

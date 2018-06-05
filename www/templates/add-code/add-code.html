@@ -1,17 +1,19 @@
 <ion-view id="add-code">
-    <div class="item-block-top">
-        <div class="item-block-top-background-image"></div>
-        <div class="item-block-top-logo">
-            <img src="../../img/vector-smart-object.png">
-            <p>{{vm.item.val3}}</p>
+    <ion-content>
+        <div class="item-block-top">
+            <div class="item-block-top-logo">
+                <img src="img/vector-smart-object.png">
+                <p>{{vm.item.val3}}</p>
+            </div>
         </div>
-    </div>
-    <div class="item-block-content">
-        <div class="form-item-block-content"></div>
-        <div class="block-content">
-            <input type="text" placeholder="Enter the code">
-            <p>{{vm.item.val1}} <a ng-click="vm.sendCode()">{{vm.item.val2}}</a></p>
-            <button ng-click="vm.send()">{{vm.item.valBtn}}</button>
+        <div class="item-block-content">
+            <div class="block-content">
+                <label class="item item-input">
+                    <input class="text-center" type="number" placeholder="Enter the code">
+                </label>
+                <p>{{vm.item.val1}} <a ng-click="vm.sendCode()">{{vm.item.val2}}</a></p>
+                <button class="send-button" ng-click="vm.send()">{{vm.item.valBtn}}</button>
+            </div>
         </div>
-    </div>
+    </ion-content>
 </ion-view>
