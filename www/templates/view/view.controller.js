@@ -11,6 +11,7 @@
         var vm = this;
         vm.shangeScreen = shangeScreen;
 
+        $state.go('geolocation');
 
         var titleBlock = document.querySelector('.title-block');
         var backEmpty = document.querySelector('.background-empty');

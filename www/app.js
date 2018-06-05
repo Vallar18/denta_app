@@ -11,12 +11,14 @@
                 'app.factory',
                 'app.directives',
             ])
-
         .run(runBlock);
+    runBlock.$inject = ['$ionicPlatform'];
 
-    runBlock.$inject = [];
-
-    function runBlock() {
-
+    function runBlock($ionicPlatform) {
+        $ionicPlatform.ready(function() {
+            if(window.StatusBar) {
+                StatusBar.styleDefault();
+            }
+        });
     }
 })();
