@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('app.services', [
-        'service.GeoSvc',
+        'service.geoSvc',
         'service.networkMonitorSvc'
     ]);
 })();

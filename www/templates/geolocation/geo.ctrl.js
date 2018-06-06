@@ -3,9 +3,9 @@
 
     angular.module('app').controller('GeoCtrl', GeoCtrl);
 
-    GeoCtrl.$inject = ['$state', 'GeoSvc', '$cordovaGeolocation'];
+    GeoCtrl.$inject = ['$state', 'geoSvc', '$cordovaGeolocation'];
 
-    function GeoCtrl($state, GeoSvc, $cordovaGeolocation) {
+    function GeoCtrl($state, geoSvc, $cordovaGeolocation) {
         var vm = this;
 
         var options = {timeout: 10000, enableHighAccuracy: true};

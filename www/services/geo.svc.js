@@ -1,12 +1,12 @@
 ;(function () {
     'use strict';
 
-    angular.module('service.GeoSvc', []).factory('GeoSvc', GeoSvc);
+    angular.module('service.geoSvc', []).factory('geoSvc', geoSvc);
 
-    GeoSvc.$inject = ['$cordovaGeolocation', '$ionicLoading',
+    geoSvc.$inject = ['$cordovaGeolocation', '$ionicLoading',
         '$rootScope', '$cordovaNetwork', 'networkMonitorSvc'];
 
-    function GeoSvc($cordovaGeolocation, $ionicLoading,
+    function geoSvc($cordovaGeolocation, $ionicLoading,
                     $rootScope, $cordovaNetwork, networkMonitorSvc) {
         var vm = this;
         var markerCache = [];
