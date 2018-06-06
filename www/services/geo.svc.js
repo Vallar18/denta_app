@@ -4,10 +4,10 @@
     angular.module('service.GeoSvc', []).factory('GeoSvc', GeoSvc);
 
     GeoSvc.$inject = ['$cordovaGeolocation', '$ionicLoading',
-        '$rootScope', '$cordovaNetwork', 'Markers', 'ConnectivityMonitor'];
+        '$rootScope', '$cordovaNetwork', 'networkMonitorSvc'];
 
     function GeoSvc($cordovaGeolocation, $ionicLoading,
-                    $rootScope, $cordovaNetwork, Markers, ConnectivityMonitor) {
+                    $rootScope, $cordovaNetwork, networkMonitorSvc) {
         var vm = this;
         var markerCache = [];
         var apiKey = false;
@@ -21,7 +21,7 @@
                         position.coords.longitude);
                     var mapOptions = {
                         center: latLng,
-                        zoom: 15,
+                        zoom: 10,
                         mapTypeId: google.maps.MapTypeId.ROADMAP
                     };
                     map = new google.maps.Map(document.getElementById("map"),
@@ -44,7 +44,6 @@
                 }, function (error) {
                     console.log("Could not get location");
                 });
-
         }
 
         function enableMap() {
@@ -72,17 +71,16 @@
             //Note the callback function in the URL is the one we created above
             if (apiKey) {
                 script.src = 'http://maps.google.com/maps/api/js?key=' + apiKey
-                    + '&sensor=true&callback=mapInit';
+                    + 'key=AIzaSyD6o8M_KOerds2uacnudjI62elbLTMyBaY&libraries=drawing,geometry,places&callback=mapInit';
             }
             else {
-                script.src = 'http://maps.google.com/maps/api/js?sensor=true&callback=mapInit';
+                script.src = 'https://maps.google.com/maps/api/js?libraries=drawing,geometry,places&callback=mapInit';
             }
             document.body.appendChild(script);
-
         }
 
         function checkLoaded() {
-            if (typeof google == "undefined" || typeof google.maps == "undefined") {
+            if (angular.isUndefined(google) || angular.isUndefined(google.maps)) {
                 loadGoogleMaps();
             } else {
                 enableMap();
@@ -116,32 +114,32 @@
                 "boundingRadius": boundingRadius
             };
 
-            var markers = Markers.getMarkers(params).then(function (markers) {
-                console.log("Markers: ", markers);
-                var records = markers.data.result;
-                for (var i = 0; i < records.length; i++) {
-                    var record = records[i];
-                    // Check if the marker has already been added
-                    if (!markerExists(record.lat, record.lng)) {
-                        var markerPos = new google.maps.LatLng(record.lng, record.lat);
-                        // add the marker
-                        var marker = new google.maps.Marker({
-                            map: map,
-                            animation: google.maps.Animation.DROP,
-                            position: markerPos
-                        });
-                        // Add the marker to the markerCache so we know not to add it again later
-                        var markerData = {
-                            lat: record.lat,
-                            lng: record.lng,
-                            marker: marker
-                        };
-                        markerCache.push(markerData);
-                        var infoWindowContent = "<h4>" + record.name + "</h4>";
-                        addInfoWindow(marker, infoWindowContent, record);
-                    }
+            // var markers = Markers.getMarkers(params).then(function (markers) {
+            console.log("Markers: ", []);
+            var records = markers.data.result;
+            for (var i = 0; i < records.length; i++) {
+                var record = records[i];
+                // Check if the marker has already been added
+                if (!markerExists(record.lat, record.lng)) {
+                    var markerPos = new google.maps.LatLng(record.lng, record.lat);
+                    // add the marker
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        animation: google.maps.Animation.DROP,
+                        position: markerPos
+                    });
+                    // Add the marker to the markerCache so we know not to add it again later
+                    var markerData = {
+                        lat: record.lat,
+                        lng: record.lng,
+                        marker: marker
+                    };
+                    markerCache.push(markerData);
+                    var infoWindowContent = "<h4>" + record.name + "</h4>";
+                    addInfoWindow(marker, infoWindowContent, record);
                 }
-            });
+            }
+            // });
         }
 
         function markerExists(lat, lng) {
@@ -178,7 +176,6 @@
             var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
             var d = R * c;
             return d;
-
         }
 
         function toRad(x) {
@@ -226,12 +223,12 @@
                 if (typeof google == "undefined" || typeof google.maps == "undefined") {
                     console.warn("Google Maps SDK needs to be loaded");
                     disableMap();
-                    if (ConnectivityMonitor.isOnline()) {
+                    if (networkMonitorSvc.isOnline()) {
                         loadGoogleMaps();
                     }
                 }
                 else {
-                    if (ConnectivityMonitor.isOnline()) {
+                    if (networkMonitorSvc.isOnline()) {
                         initMap();
                         enableMap();
                     } else {
