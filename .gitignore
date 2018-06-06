@@ -20,6 +20,7 @@ npm-debug.log*
 coverage/
 dist/
 www/lib/
+www/content/css/
 node_modules/
 tmp/
 temp/
