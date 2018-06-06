@@ -73,6 +73,35 @@
                 controller: 'HomepageController',
                 controllerAs: 'vm'
             })
+
+            .state('about', {
+                url: '/about',
+                templateUrl: 'templates/about/about.html',
+                controller: 'AboutCtrl',
+                controllerAs: 'vm'
+            })
+
+            .state('privacy', {
+                url: '/privacy',
+                templateUrl: 'templates/privacy/privacy.html',
+                controller: 'PrivacyCtrl',
+                controllerAs: 'vm'
+            })
+
+            .state('terms', {
+                url: '/terms',
+                templateUrl: 'templates/terms/terms.html',
+                controller: 'TermsCtrl',
+                controllerAs: 'vm'
+            })
+
+            .state('share', {
+                url: '/share',
+                templateUrl: 'templates/share/share.html',
+                controller: 'ShareCtrl',
+                controllerAs: 'vm'
+            })
+
         //
     }
 })();

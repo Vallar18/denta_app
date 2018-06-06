@@ -3,6 +3,8 @@
 
     angular.module('app.services', [
         'service.geoSvc',
-        'service.networkMonitorSvc'
+        'service.networkMonitorSvc',
+        'service.authSvc',
+        'service.userSvc',
     ]);
 })();
