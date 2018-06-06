@@ -154,7 +154,7 @@
         }
 
         function getBoundingRadius(center, bounds) {
-            return getDistanceBetweenPoints(center, bounds.northeast, 'miles');
+            return getDistanceBetweenPoints(center, bounds.northeast, 'km');
         }
 
         function getDistanceBetweenPoints(pos1, pos2, units) {
@@ -189,7 +189,6 @@
             google.maps.event.addListener(marker, 'click', function () {
                 infoWindow.open(map, marker);
             });
-
         }
 
         function addConnectivityListeners() {
@@ -217,10 +216,10 @@
 
         return {
             init: function (key) {
-                if (typeof key != "undefined") {
+                if (angular.isDefined(key)) {
                     apiKey = key;
                 }
-                if (typeof google == "undefined" || typeof google.maps == "undefined") {
+                if (angular.isUndefined(google) || angular.isUndefined(google.maps)) {
                     console.warn("Google Maps SDK needs to be loaded");
                     disableMap();
                     if (networkMonitorSvc.isOnline()) {
