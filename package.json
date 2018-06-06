@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "angular-material": "^1.1.9",
-    "cordova-android": "6.3.0",
+    "cordova-android": "^7.0.0",
     "cordova-plugin-console": "^1.1.0",
     "cordova-plugin-device": "^1.1.7",
     "cordova-plugin-geolocation": "^4.0.1",
@@ -33,8 +33,6 @@
       "cordova-plugin-geolocation": {},
       "cordova-plugin-network-information": {}
     },
-    "platforms": [
-      "android"
-    ]
+    "platforms": []
   }
 }

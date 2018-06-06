@@ -1,26 +1,29 @@
 <ion-view id="add-phone">
     <ion-content>
         <div class="item-block-top">
+            <div class="img-wrap">
+                <p>{{vm.item.val3}}</p>
+                <img src="content/img/border.svg">
+            </div>
             <div class="item-block-top-background-image"></div>
             <div class="item-block-top-logo">
                 <img src="content/img/vector-smart-object.png">
-                <p>{{vm.item.val3}}</p>
             </div>
         </div>
         <div class="item-block-content">
             <div class="form-item-block-content"></div>
-                <div class="block-content">
-                    <div class="input-block">
-                        <button class="button select-button" ng-click="vm.selectNumberCode()">
-                            +380
-                        </button>
-                        <label class="item item-input">
-                            <input type="number" placeholder="Enter your phone number">
-                        </label>
-                    </div>
-                    <p>{{vm.item.val1}}</p>
-                    <button class="send-button" ng-click="vm.send()">{{vm.item.valBtn}}</button>
+            <div class="block-content">
+                <div class="input-block">
+                    <button class="button select-button" ng-click="vm.selectNumberCode()">
+                        +380
+                    </button>
+                    <label class="item item-input">
+                        <input type="number" placeholder="Enter your phone number">
+                    </label>
                 </div>
+                <p>{{vm.item.val1}}</p>
+                <button class="send-button" ng-click="vm.send()">{{vm.item.valBtn}}</button>
+            </div>
         </div>
     </ion-content>
 </ion-view>
