@@ -1,5 +1,8 @@
 ;(function () {
     'use strict';
 
-    angular.module('app.services', []);
+    angular.module('app.services', [
+        'service.GeoSvc',
+        'service.networkMonitorSvc'
+    ]);
 })();

@@ -3,6 +3,7 @@
 
     angular.module('app.core', [
         'ui.router',
+        'ngCordova',
         'ionic',
         'ngAnimate',
         'ui.mask',

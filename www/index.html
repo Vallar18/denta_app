@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <!--<meta name="google-signin-client_id"-->
           <!--content="163306299931-3ksa03g4dpm8kjq93nua1p5vkddesi9c.apps.googleusercontent.com">-->
@@ -18,6 +19,11 @@
 <body ng-app="app">
 <!--<md-progress-linear ng-show="true" md-mode="indeterminate"></md-progress-linear>-->
 <ion-nav-view></ion-nav-view>
+
+<!--cordova.js load automate after build app -->
+<script src="cordova.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6o8M_KOerds2uacnudjI62elbLTMyBaY&libraries=drawing,geometry,places&sensor=true"></script>
 <script src="lib/ionic/js/ionic.bundle.js"></script>
 <script src="app.js"></script>
 <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
@@ -28,8 +34,7 @@
 <script src="lib/angular-ui-mask/src/mask.js"></script>
 <script src="lib/ngstorage/ngStorage.min.js"></script>
 <script src="lib/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
-
-<script src="cordova.js"></script>
+<script src="lib/ngCordova/dist/ng-cordova.js"></script>
 
 <script src="app.js"></script>
 <script src="core/core.module.js"></script>
@@ -43,6 +48,14 @@
 <script src="core/blocks/services/services.module.js"></script>
 <script src="core/blocks/factory/factory.module.js"></script>
 
+<!--Services-->
+<script src="services/geo.svc.js"></script>
+<script src="services/networkMonitor.svc.js"></script>
+
+<!--Factory-->
+
+<!--Directives-->
+
 <!--Controllers-->
 
 <script src="templates/homepage/homepage.controller.js"></script>
@@ -52,15 +65,6 @@
 <script src="templates/add-phone/add-phone.controller.js"></script>
 <script src="templates/add-code/add-code.controller.js"></script>
 <script src="templates/select-role/select-role.controller.js"></script>
-
-
 <script src="templates/geolocation/geo.ctrl.js"></script>
-
-<!--Services-->
-
-<!--Factory-->
-
-<!--Directives-->
-
 </body>
 </html>

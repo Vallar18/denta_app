@@ -10020,3 +10020,11 @@ a.button {
 #add-code a {
   color: red;
   text-decoration: underline; }
+
+.geo-view .scroll {
+  height: 100%;
+  width: 100%; }
+
+.geo-view #map {
+  width: 100%;
+  height: 100%; }
