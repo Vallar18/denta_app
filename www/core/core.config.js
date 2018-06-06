@@ -7,7 +7,7 @@
 
     function mainConfig($stateProvider, $urlRouterProvider, $mdGestureProvider, $ionicConfigProvider) {
 
-        $urlRouterProvider.otherwise('/view');
+        $urlRouterProvider.otherwise('/add-phone');
         $mdGestureProvider.skipClickHijack();
         $ionicConfigProvider.tabs.position('bottom'); // other values: top
 
