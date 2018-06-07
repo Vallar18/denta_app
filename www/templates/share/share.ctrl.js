@@ -3,11 +3,11 @@
 
     angular
         .module('app')
-        .controller('AboutCtrl', AboutCtrl);
+        .controller('ShareCtrl', ShareCtrl);
 
-    AboutCtrl.$inject = [];
+    ShareCtrl.$inject = [];
 
-    function AboutCtrl() {
+    function ShareCtrl() {
         const vm = this;
     }
 

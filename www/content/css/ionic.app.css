@@ -9919,6 +9919,16 @@ a.button {
 .text-center {
   text-align: center; }
 
+.tabs-custom .tab-item {
+  font-size: 2em; }
+
+.tabs-custom .tab-item-active {
+  background-color: #D20340; }
+
+.tabs-custom > .tabs.tab-nav {
+  border-top: solid 2px;
+  background: #FEFEFE; }
+
 #view {
   padding: 0;
   border: none; }

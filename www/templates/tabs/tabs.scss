@@ -1,0 +1,13 @@
+.tabs-custom {
+  .tab-item {
+    font-size: 2em;
+  }
+  .tab-item-active {
+    background-color: $first-color;
+  }
+  &>.tabs.tab-nav {
+    border-top:solid 2px;
+    background: $background-color;
+  }
+
+}

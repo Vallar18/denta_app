@@ -5,10 +5,12 @@
         .module('app')
         .controller('AboutCtrl', AboutCtrl);
 
-    AboutCtrl.$inject = [];
+    AboutCtrl.$inject = ['$ionicPopup', '$scope','$ionicHistory'];
 
-    function AboutCtrl() {
+    function AboutCtrl($ionicPopup, $scope, $ionicHistory) {
         const vm = this;
+        vm.back = function () {
+            $ionicHistory.goBack();
+        };
     }
-
 })();

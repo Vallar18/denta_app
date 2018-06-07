@@ -22,7 +22,9 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "../www/lib/ionic/scss/ionic";
 @import "../www/styles/variables";
 @import "../www/styles/global";
+//Templates
 @import "../www/templates/login/login";
+@import "../www/templates/tabs/tabs";
 @import "../www/templates/view/view";
 @import "../www/templates/add-phone/add-phone";
 @import "../www/templates/add-code/add-code";
@@ -31,5 +33,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "../www/templates/privacy/privacy";
 @import "../www/templates/terms/terms";
 @import "../www/templates/share/share";
-
+@import "../www/templates/help/help";
+@import "../www/templates/profile/profile";
+//Components
+@import "../www/components/select-subscription/select-subscription";
 

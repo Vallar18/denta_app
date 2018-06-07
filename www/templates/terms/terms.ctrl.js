@@ -3,11 +3,11 @@
 
     angular
         .module('app')
-        .controller('PrivacyCtrl', PrivacyCtrl);
+        .controller('TermsCtrl', TermsCtrl);
 
-    PrivacyCtrl.$inject = [];
+    TermsCtrl.$inject = [];
 
-    function PrivacyCtrl() {
+    function TermsCtrl() {
         const vm = this;
     }
 
