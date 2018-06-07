@@ -3,15 +3,15 @@
 
     angular
         .module('app')
-        .controller('SelectRoleController', SelectRoleController);
+        .controller('SelectRoleCtrl', SelectRoleCtrl);
 
-    SelectRoleController.$inject = ['$state'];
+    SelectRoleCtrl.$inject = ['$state'];
 
-    function SelectRoleController($state) {
+    function SelectRoleCtrl($state) {
         const vm = this;
         vm.select = select;
 
-        vm.item = {
+        vm.content = {
             val3: 'get me in',
             valBtn: 'Send',
             role1: 'I\'m a dentist',

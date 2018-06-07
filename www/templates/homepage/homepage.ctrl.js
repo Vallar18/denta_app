@@ -3,11 +3,11 @@
 
     angular
         .module('app')
-        .controller('HomepageController', HomepageController);
+        .controller('HomepageCtrl', HomepageCtrl);
 
-    HomepageController.$inject = [];
+    HomepageCtrl.$inject = [];
 
-    function HomepageController() {
+    function HomepageCtrl() {
 
         var vm = this;
 

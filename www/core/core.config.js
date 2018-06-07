@@ -19,7 +19,7 @@
         });
         $translateProvider.preferredLanguage('en');
         //----------------------------------
-        $urlRouterProvider.otherwise('/view');
+        $urlRouterProvider.otherwise('/add-phone');
         $mdGestureProvider.skipClickHijack();
         $ionicConfigProvider.tabs.position('bottom'); // other values: top
 
@@ -41,31 +41,31 @@
             .state('login', {
                 url: '/login',
                 templateUrl: 'templates/login/login.html',
-                controller: 'LoginController',
+                controller: 'LoginCtrl',
                 controllerAs: 'vm'
             })
             .state('view', {
                 url: '/view',
                 templateUrl: 'templates/view/view.html',
-                controller: 'ViewController',
+                controller: 'ViewCtrl',
                 controllerAs: 'vm'
             })
             .state('add-phone', {
                 url: '/add-phone',
                 templateUrl: 'templates/add-phone/add-phone.html',
-                controller: 'AddPhoneController',
+                controller: 'AddPhoneCtrl',
                 controllerAs: 'vm'
             })
             .state('add-code', {
                 url: '/add-code',
                 templateUrl: 'templates/add-code/add-code.html',
-                controller: 'AddCodeController',
+                controller: 'AddCodeCtrl',
                 controllerAs: 'vm'
             })
             .state('select-role', {
                 url: '/select-role',
                 templateUrl: 'templates/select-role/select-role.html',
-                controller: 'SelectRoleController',
+                controller: 'SelectRoleCtrl',
                 controllerAs: 'vm'
             })
             .state('tabs', {
@@ -83,7 +83,7 @@
                 views: {
                     'history-tab': {
                         templateUrl: 'templates/homepage/homepage.html',
-                        controller: 'HomepageController',
+                        controller: 'HomepageCtrl',
                         controllerAs: 'vm'
                     }
                 }

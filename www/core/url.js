@@ -10,7 +10,7 @@
 
     function url() {
 
-        var baseUrl = 'https://ico.grassbusinesslabs.tk/api/web/v1/';
+        var baseUrl = 'http://denta.grassbusinesslabs.tk/api/';
 
         return {
 

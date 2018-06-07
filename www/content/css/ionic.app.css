@@ -9828,7 +9828,27 @@ a.button {
 .item-block-top {
   height: 40%;
   width: 100%;
-  background: #2c304b; }
+  background: #2c304b;
+  position: relative; }
+  .item-block-top .img-wrap {
+    position: absolute;
+    bottom: -2px;
+    z-index: 9;
+    display: block;
+    width: 102%;
+    transform: translateX(-50%);
+    left: 50%; }
+    .item-block-top .img-wrap img {
+      display: block;
+      width: 102%; }
+    .item-block-top .img-wrap p {
+      text-align: center;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 42.67px;
+      letter-spacing: -0.1px;
+      word-spacing: 1px; }
 
 .item-block-top:after {
   content: '';
@@ -9842,22 +9862,23 @@ a.button {
 
 .item-block-top-logo {
   position: absolute;
-  top: 100px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 1; }
+  z-index: 1;
+  top: 26%;
+  transform: translateY(-50%); }
 
-.item-block-top-logo p {
+/*.item-block-top-logo p{
   color: #fff;
   font-size: 18px;
   font-weight: 300;
   line-height: 42.67px;
   letter-spacing: -0.1px;
   word-spacing: 1px;
-  padding-top: 20px; }
-
+  padding-top: 20px;
+}*/
 .item-block-top-logo img {
   width: 40%;
   -webkit-user-drag: none; }
@@ -9868,20 +9889,21 @@ a.button {
   width: 100%;
   top: 33%; }
 
-.item-block-content:after {
+/*.item-block-content:after {
   content: '';
   background: url(../../content/img/border.svg) no-repeat;
   width: 100%;
   height: 20%;
   position: absolute;
-  top: 0; }
-
+  top: 0;
+}*/
 .block-content {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 9%; }
+  padding-top: 9%;
+  z-index: 9; }
   .block-content p {
     padding-top: 12px;
     font-size: 16px; }
@@ -9890,7 +9912,8 @@ a.button {
     height: 48px;
     background-color: #d30041;
     color: white;
-    margin-top: 15px; }
+    margin-top: 15px;
+    border: none; }
   .block-content .item-input {
     width: 250px; }
 
@@ -10019,8 +10042,8 @@ a.button {
     -o-transform: translate(0, 80%);
     -moz-transform: translate(0, 80%); }
 
-#add-code a {
-  color: red;
+.add-code a {
+  color: #D20340;
   text-decoration: underline; }
 
 .geo-view .scroll {

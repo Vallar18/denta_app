@@ -12,13 +12,27 @@
                 'app.directives',
             ])
         .run(runBlock);
-    runBlock.$inject = ['$ionicPlatform'];
+    runBlock.$inject = ['$ionicPlatform', '$localStorage', '$state'];
 
-    function runBlock($ionicPlatform) {
+    function runBlock($ionicPlatform, $localStorage, $state) {
         $ionicPlatform.ready(function() {
+
+            window.addEventListener('keyboardDidShow', (event) => {
+                // Describe your logic which will be run each time when keyboard is about to be shown.
+                console.log(event.keyboardHeight);
+            });
+
+            // let showView = true;
+
             if(window.StatusBar) {
                 StatusBar.styleDefault();
             }
+            // if(angular.isDefined($localStorage.valView)){
+            //     showView = $localStorage.valView;
+            // }
+            // if(showView === true){
+            //     $state.go('view');
+            // }
         });
     }
 })();
