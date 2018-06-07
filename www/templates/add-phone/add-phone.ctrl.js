@@ -3,15 +3,14 @@
 
     angular
         .module('app')
-        .controller('AddPhoneController', AddPhoneController);
+        .controller('addPhoneCtrl', addPhoneCtrl);
 
-    AddPhoneController.$inject = ['$state'];
+    addPhoneCtrl.$inject = ['$state'];
 
-    function AddPhoneController($state) {
+    function addPhoneCtrl($state) {
         const vm = this;
         vm.send = send;
         vm.selectNumberCode = selectNumberCode;
-
         vm.item = {
             val1: 'You will receive sms with code',
             val3: 'get me in',

@@ -3,15 +3,16 @@
 
     angular
         .module('app')
-        .controller('AddCodeController', AddCodeController);
+        .controller('addCodeCtrl', addCodeCtrl);
 
-    AddCodeController.$inject = ['$state'];
+    addCodeCtrl.$inject = ['$state', '$localStorage'];
 
-    function AddCodeController($state) {
+    function addCodeCtrl($state, $localStorage) {
         const vm = this;
         vm.send = send;
         vm.sendCode = sendCode;
 
+$localStorage.valView = false;
         vm.item = {
             val1: 'Didn\'t recived code',
             val2: 'click here',

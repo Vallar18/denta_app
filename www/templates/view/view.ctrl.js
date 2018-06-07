@@ -3,17 +3,16 @@
 
     angular
         .module('app')
-        .controller('ViewController', ViewController);
+        .controller('viewCtrl', viewCtrl);
 
-    ViewController.$inject = ['$state', '$timeout'];
+    viewCtrl.$inject = ['$state', '$timeout'];
 
-    function ViewController($state, $timeout) {
-        var vm = this;
+    function viewCtrl($state, $timeout) {
+        let vm = this;
         vm.shangeScreen = shangeScreen;
 
-
-        var titleBlock = document.querySelector('.title-block');
-        var backEmpty = document.querySelector('.background-empty');
+        let titleBlock = document.querySelector('.title-block');
+        let backEmpty = document.querySelector('.background-empty');
         vm.item = {
             title: 'Emergency all over the world ',
             show: 0,

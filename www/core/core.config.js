@@ -29,31 +29,31 @@
             .state('login', {
                 url: '/login',
                 templateUrl: 'templates/login/login.html',
-                controller: 'LoginController',
+                controller: 'loginCtrl',
                 controllerAs: 'vm'
             })
             .state('view', {
                 url: '/view',
                 templateUrl: 'templates/view/view.html',
-                controller: 'ViewController',
+                controller: 'viewCtrl',
                 controllerAs: 'vm'
             })
             .state('add-phone', {
                 url: '/add-phone',
                 templateUrl: 'templates/add-phone/add-phone.html',
-                controller: 'AddPhoneController',
+                controller: 'addPhoneCtrl',
                 controllerAs: 'vm'
             })
             .state('add-code', {
                 url: '/add-code',
                 templateUrl: 'templates/add-code/add-code.html',
-                controller: 'AddCodeController',
+                controller: 'addCodeCtrl',
                 controllerAs: 'vm'
             })
             .state('select-role', {
                 url: '/select-role',
                 templateUrl: 'templates/select-role/select-role.html',
-                controller: 'SelectRoleController',
+                controller: 'selectRoleCtrl',
                 controllerAs: 'vm'
             })
             .state('tabs', {
