@@ -19,7 +19,7 @@
         });
         $translateProvider.preferredLanguage('en');
         //----------------------------------
-        $urlRouterProvider.otherwise('/view');
+        $urlRouterProvider.otherwise('/add-phone');
         $mdGestureProvider.skipClickHijack();
         $ionicConfigProvider.tabs.position('bottom'); // other values: top
 
