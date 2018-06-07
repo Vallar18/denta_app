@@ -13,6 +13,9 @@
       vertical-align: middle;
     }
   }
+  .tab-item:last-child {
+      max-width:10%;
+  }
   .tab-item-active {
     background-color: $first-color;
     height: calc(100% + 4px);
