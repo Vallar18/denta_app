@@ -10027,8 +10027,8 @@ a.button {
     -o-transform: translate(0, 80%);
     -moz-transform: translate(0, 80%); }
 
-#add-code a {
-  color: blue;
+.add-code a {
+  color: #D20340;
   text-decoration: underline; }
 
 .geo-view .scroll {
