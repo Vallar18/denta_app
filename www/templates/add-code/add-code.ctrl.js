@@ -3,11 +3,11 @@
 
     angular
         .module('app')
-        .controller('addCodeCtrl', addCodeCtrl);
+        .controller('AddCodeCtrl', AddCodeCtrl);
 
-    addCodeCtrl.$inject = ['$state', '$localStorage'];
+    AddCodeCtrl.$inject = ['$state', '$localStorage'];
 
-    function addCodeCtrl($state, $localStorage) {
+    function AddCodeCtrl($state, $localStorage) {
         const vm = this;
         vm.send = send;
         vm.sendCode = sendCode;

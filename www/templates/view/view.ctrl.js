@@ -3,16 +3,13 @@
 
     angular
         .module('app')
-        .controller('ViewController', ViewController);
+        .controller('ViewCtrl', ViewCtrl);
 
-    ViewController.$inject = ['$state', '$timeout'];
+    ViewCtrl.$inject = ['$state', '$timeout'];
 
-    function ViewController($state, $timeout) {
+    function ViewCtrl($state, $timeout) {
         var vm = this;
         vm.shangeScreen = shangeScreen;
-
-        $state.go('geolocation');
-
         var titleBlock = document.querySelector('.title-block');
         var backEmpty = document.querySelector('.background-empty');
         vm.item = {

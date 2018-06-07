@@ -3,11 +3,11 @@
 
     angular
         .module('app')
-        .controller('selectRoleCtrl', selectRoleCtrl);
+        .controller('SelectRoleCtrl', SelectRoleCtrl);
 
-    selectRoleCtrl.$inject = ['$state'];
+    SelectRoleCtrl.$inject = ['$state'];
 
-    function selectRoleCtrl($state) {
+    function SelectRoleCtrl($state) {
         const vm = this;
         vm.select = select;
 

@@ -3,11 +3,11 @@
 
     angular
         .module('app')
-        .controller('addPhoneCtrl', addPhoneCtrl);
+        .controller('AddPhoneCtrl', AddPhoneCtrl);
 
-    addPhoneCtrl.$inject = ['$state'];
+    AddPhoneCtrl.$inject = ['$state'];
 
-    function addPhoneCtrl($state) {
+    function AddPhoneCtrl($state) {
         const vm = this;
         vm.send = send;
         vm.selectNumberCode = selectNumberCode;
