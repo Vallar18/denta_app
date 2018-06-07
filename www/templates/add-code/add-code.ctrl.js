@@ -13,7 +13,7 @@
         vm.goAddPhone = goAddPhone;
 
         vm.code = '';
-        vm.item = {
+        vm.content = {
             val1: 'Didn\'t recived code',
             val2: 'click here',
             val3: 'get me in',

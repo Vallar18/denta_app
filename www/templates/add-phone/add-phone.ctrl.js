@@ -12,7 +12,7 @@
         vm.send = send;
         vm.selectNumberCode = selectNumberCode;
         vm.phone = '';
-        vm.item = {
+        vm.content = {
             val1: 'You will receive sms with code',
             val3: 'get me in',
             val4: '+380',

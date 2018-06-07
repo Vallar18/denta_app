@@ -11,7 +11,7 @@
         const vm = this;
         vm.select = select;
 
-        vm.item = {
+        vm.content = {
             val3: 'get me in',
             valBtn: 'Send',
             role1: 'I\'m a dentist',
