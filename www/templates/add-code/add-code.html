@@ -9,9 +9,9 @@
         <div class="item-block-content">
             <div class="block-content">
                 <label class="item item-input">
-                    <input class="text-center" type="number" placeholder="Enter the code">
+                    <input class="text-center" type="number" placeholder="Enter the code" ng-model="vm.code">
                 </label>
-                <p>{{vm.item.val1}} <a ng-click="vm.sendCode()">{{vm.item.val2}}</a></p>
+                <p>{{vm.item.val1}} <a ng-click="vm.goAddPhone()">{{vm.item.val2}}</a></p>
                 <button class="send-button" ng-click="vm.send()">{{vm.item.valBtn}}</button>
             </div>
         </div>

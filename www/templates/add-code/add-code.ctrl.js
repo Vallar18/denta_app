@@ -5,14 +5,14 @@
         .module('app')
         .controller('AddCodeCtrl', AddCodeCtrl);
 
-    AddCodeCtrl.$inject = ['$state', '$localStorage'];
+    AddCodeCtrl.$inject = ['$state', 'regSvc'];
 
-    function AddCodeCtrl($state, $localStorage) {
+    function AddCodeCtrl($state, regSvc) {
         const vm = this;
         vm.send = send;
-        vm.sendCode = sendCode;
+        vm.goAddPhone = goAddPhone;
 
-$localStorage.valView = false;
+        vm.code = '';
         vm.item = {
             val1: 'Didn\'t recived code',
             val2: 'click here',
@@ -21,10 +21,28 @@ $localStorage.valView = false;
         }
 
         function send() {
-            $state.go('select-role')
+            validCode();
+            if(validCode()){
+                regSvc.sendCode(vm.code);
+                $state.go('select-role');
+                vm.code = '';
+            }
         }
-        function sendCode() {
+        
+        function validCode() {
+            if(vm.code !== ''){
+                let codeLength = vm.code.toString().length;
+                if(codeLength === 4){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        
+        function goAddPhone() {
             $state.go('add-phone')
+            vm.code = '';
         }
     }
 
