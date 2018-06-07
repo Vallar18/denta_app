@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddPhoneCtrl', AddPhoneCtrl);
 
-    AddPhoneCtrl.$inject = ['$state', '$localStorage', 'regSvc'];
+    AddPhoneCtrl.$inject = ['$state', '$localStorage', 'regSvc', 'toastr'];
 
-    function AddPhoneCtrl($state, $localStorage, regSvc) {
+    function AddPhoneCtrl($state, $localStorage, regSvc, toastr) {
         const vm = this;
         vm.send = send;
         vm.selectNumberCode = selectNumberCode;
@@ -24,22 +24,26 @@
         }
 
         function send() {
-            validPhone();
             if(validPhone()){
                 let phone = vm.item.val4 + vm.phone;
                 regSvc.sendPhone(phone);
                 $state.go('add-code');
                 $localStorage.valView = false;
                 vm.phone = '';
+            } else {
+                toastr.error('The number should be ...')
             }
         }
         function validPhone() {
-            let phoneLength = vm.phone.toString().length;
-            if(phoneLength > 5){
-                return true;
-            } else {
-                return false;
+            if(vm.phone !== ''){
+                let phoneLength = vm.phone.toString().length;
+                if(phoneLength > 5){
+                    return true;
+                } else {
+                    return false;
+                }
             }
+
         }
     }
 

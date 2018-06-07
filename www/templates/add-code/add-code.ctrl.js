@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddCodeCtrl', AddCodeCtrl);
 
-    AddCodeCtrl.$inject = ['$state', 'regSvc'];
+    AddCodeCtrl.$inject = ['$state', 'regSvc', 'toastr'];
 
-    function AddCodeCtrl($state, regSvc) {
+    function AddCodeCtrl($state, regSvc, toastr) {
         const vm = this;
         vm.send = send;
         vm.goAddPhone = goAddPhone;
@@ -21,11 +21,12 @@
         }
 
         function send() {
-            validCode();
             if(validCode()){
                 regSvc.sendCode(vm.code);
                 $state.go('select-role');
                 vm.code = '';
+            } else {
+                toastr.error('The code should consist of 4 digits')
             }
         }
         
