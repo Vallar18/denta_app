@@ -1,13 +1,30 @@
 .tabs-custom {
   .tab-item {
-    font-size: 2em;
+    span.tab-title {
+      font-size: 1.2rem !important;
+      line-height: 2.6rem !important;
+      vertical-align: middle;
+    }
+    a {
+      color: $text-gray-color;
+    }
+    i {
+      line-height: 3rem;
+      vertical-align: middle;
+    }
   }
   .tab-item-active {
     background-color: $first-color;
+    height: calc(100% + 4px);
+    margin-top: -2px;
   }
-  &>.tabs.tab-nav {
-    border-top:solid 2px;
+  a.tab-item-active {
+    color: $text-white-color;
+  }
+  .tabs.tab-nav {
+    border-top:solid 2px $tab-border !important;
     background: $background-color;
+    padding:0 !important;
   }
 
 }

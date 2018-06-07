@@ -4,7 +4,7 @@ var cleanCss = require('gulp-clean-css');
 var rename = require('gulp-rename');
 
 var paths = {
-    sass: ['./scss/**/*.scss'],
+    sass: ['./scss/**/*.scss','./www/**/*.scss'],
     css: './www/content/css'
 };
 

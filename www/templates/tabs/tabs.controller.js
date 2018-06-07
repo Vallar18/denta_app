@@ -10,8 +10,8 @@
     function TabsController($state, $localStorage, $ionicHistory) {
 
         var vm = this;
-        vm.goto = function(state){
-            $state.go(state);
+        vm.openSideMenu = function(){
+            window.alert('test');
         }
         // vm.openEventsList = openEventsList;
         // vm.openShops = openShops;

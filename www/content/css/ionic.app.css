@@ -9919,15 +9919,30 @@ a.button {
 .text-center {
   text-align: center; }
 
-.tabs-custom .tab-item {
-  font-size: 2em; }
+.tabs-custom .tab-item span.tab-title {
+  font-size: 1.2rem !important;
+  line-height: 2.6rem !important;
+  vertical-align: middle; }
+
+.tabs-custom .tab-item a {
+  color: #8895AC; }
+
+.tabs-custom .tab-item i {
+  line-height: 3rem;
+  vertical-align: middle; }
 
 .tabs-custom .tab-item-active {
-  background-color: #D20340; }
+  background-color: #D20340;
+  height: calc(100% + 4px);
+  margin-top: -2px; }
 
-.tabs-custom > .tabs.tab-nav {
-  border-top: solid 2px;
-  background: #FEFEFE; }
+.tabs-custom a.tab-item-active {
+  color: #fff; }
+
+.tabs-custom .tabs.tab-nav {
+  border-top: solid 2px #C1CDE1 !important;
+  background: #FEFEFE;
+  padding: 0 !important; }
 
 #view {
   padding: 0;
