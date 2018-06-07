@@ -25,7 +25,7 @@
 
         function send() {
             if(validPhone()){
-                let phone = vm.item.val4 + vm.phone;
+                let phone = vm.content.val4 + vm.phone;
                 regSvc.sendPhone(phone);
                 $state.go('add-code');
                 $localStorage.valView = false;
