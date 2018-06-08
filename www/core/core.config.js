@@ -80,33 +80,24 @@
 
             .state('tabs.history', {
                 url: '/history',
-                views: {
-                    'history-tab': {
-                        templateUrl: 'templates/homepage/homepage.html',
-                        controller: 'HomepageCtrl',
-                        controllerAs: 'vm'
-                    }
-                }
+                templateUrl: 'templates/homepage/homepage.html',
+                controller: 'HomepageCtrl',
+                controllerAs: 'vm'
+
             })
             .state('tabs.help', {
                 url: '/help',
-                views: {
-                    'help-tab': {
-                        templateUrl: 'templates/help/help.html',
-                        controller: 'HelpCtrl',
-                        controllerAs: 'vm'
-                    }
-                }
+                templateUrl: 'templates/help/help.html',
+                controller: 'HelpCtrl',
+                controllerAs: 'vm'
+
             })
             .state('tabs.profile', {
                 url: '/profile',
-                views: {
-                    'profile-tab': {
-                        templateUrl: 'templates/profile/profile.html',
-                        controller: 'ProfileCtrl',
-                        controllerAs: 'vm'
-                    }
-                }
+                templateUrl: 'templates/profile/profile.html',
+                controller: 'ProfileCtrl',
+                controllerAs: 'vm'
+
             })
             .state('about', {
                 url: '/about',

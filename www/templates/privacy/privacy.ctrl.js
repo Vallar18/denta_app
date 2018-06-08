@@ -9,6 +9,9 @@
 
     function PrivacyCtrl() {
         const vm = this;
+        vm.back = function () {
+            $ionicHistory.goBack();
+        };
     }
 
 })();

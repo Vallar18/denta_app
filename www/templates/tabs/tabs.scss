@@ -1,8 +1,9 @@
 .tabs-custom {
   .tab-item {
+    border: none !important;
     span.tab-title {
-      font-size: 1.2rem !important;
-      line-height: 2.6rem !important;
+      font-size: 1rem !important;
+      line-height: 3rem !important;
       vertical-align: middle;
     }
     a {
@@ -13,21 +14,26 @@
       vertical-align: middle;
     }
   }
-  .tab-item:last-child {
-      max-width:10%;
-  }
   .tab-item-active {
     background-color: $first-color;
-    height: calc(100% + 4px);
-    margin-top: -2px;
+    border-color: $first-color !important;
   }
-  a.tab-item-active {
+  a.tab-item-active .tab-title {
     color: $text-white-color;
   }
   .tabs.tab-nav {
-    border-top:solid 2px $tab-border !important;
+    border-top: solid 2px $tab-border !important;
     background: $background-color;
-    padding:0 !important;
+    padding: 0 !important;
   }
+}
 
+.tabs-custom--menu {
+  .tab-item:last-child {
+    max-width: 15%;
+    background-color: $second-color-light;
+    i.ion-more {
+      color: $text-white-color;
+    }
+  }
 }

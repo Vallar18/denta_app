@@ -1,3 +1,13 @@
 .privacy-view {
+  background-color: $second-color-light;
 
+  &__main {
+    margin-top: 20vh;
+    background-color: $background-color;
+  }
+  &__content {
+    background-color: $background-color;
+    font-size: 0.9rem;
+    padding: 0 5% 5% 5%;
+  }
 }

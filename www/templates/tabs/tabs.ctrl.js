@@ -10,9 +10,15 @@
     function TabsController($state, $localStorage, $ionicHistory) {
 
         var vm = this;
-        vm.openSideMenu = function(){
-            window.alert('test');
+        vm.openSideMenu = openSideMenu;
+        vm.tabsModel = {
+            isShowMenu: true
+        };
+
+        function openSideMenu(){
+
         }
+
         // vm.openEventsList = openEventsList;
         // vm.openShops = openShops;
         // vm.openAddProduct = openAddProduct;
