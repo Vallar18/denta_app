@@ -1,0 +1,24 @@
+<ion-view class="reg-step1">
+    <ion-content>
+        <div class="item-block-top">
+            <div class="img-wrap">
+                <p>Let us know you</p>
+                <img src="content/img/border.svg">
+            </div>
+        </div>
+        <div class="item-block-content">
+            <div class="block-content">
+                <label class="item item-input">
+                    <input class="text-center" type="text" placeholder="First name" ng-model="vm.user.name" minlength="3" maxlength="20">
+                </label>
+                <label class="item item-input">
+                    <input class="text-center" type="text" placeholder="last name" ng-model="vm.user.lastName">
+                </label>
+                <label class="item item-input">
+                    <input class="text-center" type="email" placeholder="Email" ng-model="vm.user.email">
+                </label>
+                <button class="send-button" ng-click="vm.send()">Send</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

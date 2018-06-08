@@ -13,7 +13,13 @@
         var baseUrl = 'http://denta.grassbusinesslabs.tk/api/';
 
         return {
-
+            code: {
+                send: baseUrl + 'code/send',
+                verify: baseUrl + 'code/verify'
+            },
+            register: {
+                user: baseUrl + 'register/user'
+            }
         };
     }
 })();
