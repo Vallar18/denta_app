@@ -9,6 +9,7 @@
         var model = {};
         model.sendPhone = sendPhone;
         model.sendCode = sendCode;
+        model.sendRole = sendRole;
         return model;
 
         function sendPhone (phone) {
@@ -19,6 +20,9 @@
             console.log('code:', code);
             return true;
         }
-
+        function sendRole(role) {
+            console.log('user role:', role);
+            return true;
+        }
     }
 })();
