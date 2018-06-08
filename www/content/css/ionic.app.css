@@ -10001,7 +10001,7 @@ a.button {
 
 .tabs-custom .tabs.tab-nav {
   border-top: solid 2px #C1CDE1 !important;
-  background: #FEFEFE;
+  background: #FFF;
   padding: 0 !important; }
 
 .tabs-custom--menu .tab-item:last-child {
@@ -10101,9 +10101,9 @@ a.button {
   background-color: #B1C0DA; }
   .about-view__main {
     margin-top: 20vh;
-    background-color: #FEFEFE; }
+    background-color: #FFF; }
   .about-view__content {
-    background-color: #FEFEFE;
+    background-color: #FFF;
     font-size: 0.9rem;
     padding: 0 5% 5% 5%; }
 
@@ -10111,9 +10111,9 @@ a.button {
   background-color: #B1C0DA; }
   .privacy-view__main {
     margin-top: 20vh;
-    background-color: #FEFEFE; }
+    background-color: #FFF; }
   .privacy-view__content {
-    background-color: #FEFEFE;
+    background-color: #FFF;
     font-size: 0.9rem;
     padding: 0 5% 5% 5%; }
 
@@ -10121,8 +10121,8 @@ a.button {
   background-color: #B1C0DA; }
   .terms-view__main {
     margin-top: 20vh;
-    background-color: #FEFEFE; }
+    background-color: #FFF; }
   .terms-view__content {
-    background-color: #FEFEFE;
+    background-color: #FFF;
     font-size: 0.9rem;
     padding: 0 5% 5% 5%; }
