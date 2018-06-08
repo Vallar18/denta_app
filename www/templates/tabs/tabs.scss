@@ -1,13 +1,53 @@
 .tabs-custom {
   .tab-item {
-    font-size: 2em;
+    border: none !important;
+    span.tab-title {
+      font-size: 1rem !important;
+      line-height: 3rem !important;
+      vertical-align: middle;
+    }
+    a {
+      color: $text-gray-color !important;
+    }
+    i {
+      line-height: 3rem;
+      vertical-align: middle;
+    }
+    &.activated {
+      color: $text-gray-color !important;
+    }
   }
   .tab-item-active {
+    position: relative;
     background-color: $first-color;
+    border-color: $first-color !important;
+    display:inline-block;
+    &:after {
+      position: absolute;
+      content: '';
+      display: block;
+      height:5px;
+      background: $first-color ;
+      top:-3px;
+      width:100%;
+    }
   }
-  &>.tabs.tab-nav {
-    border-top:solid 2px;
+  a.tab-item-active .tab-title {
+    color: $text-white-color;
+  }
+  .tabs.tab-nav {
+    border-top: solid 2px $tab-border !important;
     background: $background-color;
+    padding: 0 !important;
   }
+}
 
+.tabs-custom--menu {
+  .tab-item:last-child {
+    max-width: 15%;
+    background-color: $second-color-light;
+    i.ion-more {
+      color: $text-white-color;
+    }
+  }
 }
