@@ -5,9 +5,9 @@
         .module('app')
         .controller('TermsCtrl', TermsCtrl);
 
-    TermsCtrl.$inject = [];
+    TermsCtrl.$inject = ['$ionicHistory'];
 
-    function TermsCtrl() {
+    function TermsCtrl($ionicHistory) {
         const vm = this;
         vm.back = function () {
             $ionicHistory.goBack();
