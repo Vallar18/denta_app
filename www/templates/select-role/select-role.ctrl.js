@@ -27,6 +27,7 @@
             } else {
                 vm.user.role = 'patient'
             }
+            $state.go('registration')
             regSvc.sendRole(vm.user.role);
         }
     }

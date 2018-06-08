@@ -22,7 +22,7 @@
 
         function send() {
             if(validCode()){
-                regSvc.sendCode(vm.code);
+                regSvc.sendVerify(vm.code);
                 $state.go('select-role');
                 vm.code = '';
             } else {

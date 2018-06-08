@@ -68,6 +68,12 @@
                 controller: 'SelectRoleCtrl',
                 controllerAs: 'vm'
             })
+            .state('registration', {
+                url: '/registration',
+                templateUrl: 'templates/reg/reg.html',
+                controller: 'RegCtrl',
+                controllerAs: 'vm'
+            })
             .state('tabs', {
                 cache: false,
                 reload: true,
