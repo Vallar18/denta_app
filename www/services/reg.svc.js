@@ -10,6 +10,7 @@
         model.sendPhone = sendPhone;
         model.sendCode = sendCode;
         model.sendRole = sendRole;
+        model.sendUserInfo = sendUserInfo;
         return model;
 
         function sendPhone (phone) {
@@ -23,6 +24,10 @@
         function sendRole(role) {
             console.log('user role:', role);
             return true;
+        }
+        function sendUserInfo(userData) {
+            console.log(userData)
+            return;
         }
     }
 })();
