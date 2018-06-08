@@ -23,7 +23,7 @@
 <!--cordova.js load automate after build app -->
 <script src="cordova.js"></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6o8M_KOerds2uacnudjI62elbLTMyBaY&libraries=drawing,geometry,places&sensor=true"></script>
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6o8M_KOerds2uacnudjI62elbLTMyBaY&libraries=drawing,geometry,places&sensor=true"></script>-->
 <script src="lib/ionic/js/ionic.bundle.js"></script>
 <script src="app.js"></script>
 <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
@@ -34,6 +34,7 @@
 <script src="lib/angular-ui-mask/src/mask.js"></script>
 <script src="lib/ngstorage/ngStorage.min.js"></script>
 <script src="lib/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+<script src="lib/angular-translate/angular-translate.min.js"></script>
 <script src="lib/ngCordova/dist/ng-cordova.js"></script>
 
 <script src="app.js"></script>
@@ -50,7 +51,10 @@
 
 <!--Services-->
 <script src="services/geo.svc.js"></script>
-<script src="services/networkMonitor.svc.js"></script>
+<script src="services/network-monitor.svc.js"></script>
+<script src="services/auth.svc.js"></script>
+<script src="services/user.svc.js"></script>
+<script src="services/reg.svc.js"></script>
 
 <!--Factory-->
 
@@ -58,13 +62,20 @@
 
 <!--Controllers-->
 
-<script src="templates/homepage/homepage.controller.js"></script>
-<script src="templates/login/login.controller.js"></script>
-<script src="templates/tabs/tabs.controller.js"></script>
-<script src="templates/view/view.controller.js"></script>
-<script src="templates/add-phone/add-phone.controller.js"></script>
-<script src="templates/add-code/add-code.controller.js"></script>
-<script src="templates/select-role/select-role.controller.js"></script>
+<script src="templates/homepage/homepage.ctrl.js"></script>
+<script src="templates/login/login.ctrl.js"></script>
+<script src="templates/tabs/tabs.ctrl.js"></script>
+<script src="templates/view/view.ctrl.js"></script>
+<script src="templates/add-phone/add-phone.ctrl.js"></script>
+<script src="templates/add-code/add-code.ctrl.js"></script>
+<script src="templates/select-role/select-role.ctrl.js"></script>
 <script src="templates/geolocation/geo.ctrl.js"></script>
+<script src="templates/about/about.ctrl.js"></script>
+<script src="templates/privacy/privacy.ctrl.js"></script>
+<script src="templates/terms/terms.ctrl.js"></script>
+<script src="templates/share/share.ctrl.js"></script>
+<script src="templates/help/help.ctrl.js"></script>
+<script src="templates/profile/profile.ctrl.js"></script>
+
 </body>
 </html>

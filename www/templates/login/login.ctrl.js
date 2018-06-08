@@ -3,11 +3,11 @@
 
     angular
         .module('app')
-        .controller('LoginController', LoginController);
+        .controller('LoginCtrl', LoginCtrl);
 
-    LoginController.$inject = ['$state'];
+    LoginCtrl.$inject = ['$state'];
 
-    function LoginController($state) {
+    function LoginCtrl($state) {
         var vm = this;
 
         vm.sendLogin = sendLogin;

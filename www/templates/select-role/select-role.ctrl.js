@@ -3,28 +3,31 @@
 
     angular
         .module('app')
-        .controller('SelectRoleController', SelectRoleController);
+        .controller('SelectRoleCtrl', SelectRoleCtrl);
 
-    SelectRoleController.$inject = ['$state'];
+    SelectRoleCtrl.$inject = ['$state', 'regSvc'];
 
-    function SelectRoleController($state) {
+    function SelectRoleCtrl($state, regSvc) {
         const vm = this;
         vm.select = select;
 
-        vm.item = {
+        vm.content = {
             val3: 'get me in',
             valBtn: 'Send',
             role1: 'I\'m a dentist',
             role2: 'I\'m a patient'
-        }
+        };
+        vm.user = {
+            role: undefined
+        };
 
         function select(type) {
             if (type === 0){
-                console.log('dentist')
+                vm.user.role = 'dentist';
             } else {
-
-                console.log('patient')
+                vm.user.role = 'patient'
             }
+            regSvc.sendRole(vm.user.role);
         }
     }
 

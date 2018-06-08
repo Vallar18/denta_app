@@ -2,7 +2,10 @@
     'use strict';
 
     angular.module('app.services', [
-        'service.GeoSvc',
-        'service.networkMonitorSvc'
+        'service.geoSvc',
+        'service.networkMonitorSvc',
+        'service.authSvc',
+        'service.userSvc',
+        'service.regSvc'
     ]);
 })();
