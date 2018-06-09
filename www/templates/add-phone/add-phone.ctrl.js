@@ -15,7 +15,7 @@
         vm.content = {
             val1: 'You will receive sms with code',
             val3: 'get me in',
-            val4: '+380',
+            val4: '380',
             valBtn: 'Send'
         }
 
@@ -25,13 +25,16 @@
 
         function send() {
             if(validPhone()){
-                let phone = vm.content.val4 + vm.phone;
-                regSvc.sendPhone(phone);
+                let phones = vm.content.val4 + vm.phone;
+                let send = {
+                    phone: phones
+                }
+                regSvc.sendPhone(send);
                 $state.go('add-code');
                 $localStorage.valView = false;
                 vm.phone = '';
             } else {
-                toastr.error('The number should be ...')
+                toastr.error('The number should be')
             }
         }
         function validPhone() {
@@ -43,7 +46,6 @@
                     return false;
                 }
             }
-
         }
     }
 
