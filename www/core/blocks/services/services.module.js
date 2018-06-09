@@ -6,6 +6,7 @@
         'service.networkMonitorSvc',
         'service.authSvc',
         'service.userSvc',
-        'service.regSvc'
+        'service.regSvc',
+        'service.messagesSvc'
     ]);
 })();

@@ -43,8 +43,9 @@
         }
 
         function selectingItem(item){
-            console.log(item);
             toggleMenu();
+            $state.go(item.view);
+            vm.menuModel.model = null;
         }
     }
 })();
