@@ -10,51 +10,41 @@
     function TabsController($state, $localStorage, $ionicHistory) {
 
         var vm = this;
-        vm.openSideMenu = openSideMenu;
+        vm.toggleMenu = toggleMenu;
+        vm.selectingItem = selectingItem;
+        vm.menuModel = {
+            isShow: false,
+            items: [],
+            model: undefined
+        };
         vm.tabsModel = {
             isShowMenu: true
         };
 
-        function openSideMenu(){
-
+        init();
+        function init(){
+            vm.menuModel.items = [{
+                id:1,
+                name: 'Terms Of Use',
+                view: 'terms'
+            },{
+                id:2,
+                name: 'Privacy Police',
+                view: 'privacy'
+            },{
+                id:3,
+                name: 'About',
+                view: 'about'
+                }];
         }
 
-        // vm.openEventsList = openEventsList;
-        // vm.openShops = openShops;
-        // vm.openAddProduct = openAddProduct;
-        // vm.openNotifications = openNotifications;
-        // vm.openUserProfile = openUserProfile;
-        //
-        // function openEventsList() {
-        //     if ($state.current.url === '/events_list') {
-        //         $state.reload();
-        //     } else {
-        //         $state.go('tabs.events_list');
-        //     }
-        // }
-        //
-        // function openShops() {
-        //     if ($state.current.url === '/shops/:page') {
-        //         $state.reload();
-        //     } else {
-        //         $state.go('tabs.shops');
-        //     }
-        // }
-        //
-        // function openAddProduct() {
-        //     $state.go('tabs.add_product');
-        // }
-        //
-        // function openNotifications() {
-        //     $state.go('tabs.notifications');
-        // }
-        //
-        // function openUserProfile() {
-        //     if ($state.current.url === '/user_profile') {
-        //         $state.go('tabs.user_profile', {aliens_id: $localStorage.user.id});
-        //     } else {
-        //         $state.go('tabs.user_profile');
-        //     }
-        // }
+        function toggleMenu(){
+            vm.menuModel.isShow = !vm.menuModel.isShow;
+        }
+
+        function selectingItem(item){
+            console.log(item);
+            toggleMenu();
+        }
     }
 })();

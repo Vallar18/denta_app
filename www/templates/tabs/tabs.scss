@@ -1,5 +1,6 @@
 .tabs-custom {
   .tab-item {
+    opacity: 1;
     border: none !important;
     span.tab-title {
       font-size: 1rem !important;
@@ -18,6 +19,7 @@
     }
   }
   .tab-item-active {
+    margin-top: 0 !important;
     position: relative;
     background-color: $first-color;
     border-color: $first-color !important;
@@ -42,7 +44,7 @@
   }
 }
 
-.tabs-custom--menu {
+.tabs-custom__menu {
   .tab-item:last-child {
     max-width: 15%;
     background-color: $second-color-light;
@@ -51,3 +53,9 @@
     }
   }
 }
+.tabs-custom__menu--open {
+  .tab-item:last-child {
+    background-color: $second-color !important;
+  }
+}
+

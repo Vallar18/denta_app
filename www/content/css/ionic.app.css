@@ -9981,6 +9981,7 @@ a.button {
     width: 2rem; }
 
 .tabs-custom .tab-item {
+  opacity: 1;
   border: none !important; }
   .tabs-custom .tab-item span.tab-title {
     font-size: 1rem !important;
@@ -9995,6 +9996,7 @@ a.button {
     color: #8895AC !important; }
 
 .tabs-custom .tab-item-active {
+  margin-top: 0 !important;
   position: relative;
   background-color: #D20340;
   border-color: #D20340 !important;
@@ -10016,11 +10018,14 @@ a.button {
   background: #FFF;
   padding: 0 !important; }
 
-.tabs-custom--menu .tab-item:last-child {
+.tabs-custom__menu .tab-item:last-child {
   max-width: 15%;
   background-color: #B1C0DA; }
-  .tabs-custom--menu .tab-item:last-child i.ion-more {
+  .tabs-custom__menu .tab-item:last-child i.ion-more {
     color: #fff; }
+
+.tabs-custom__menu--open .tab-item:last-child {
+  background-color: #7988A2 !important; }
 
 #view {
   padding: 0;
@@ -10138,3 +10143,22 @@ a.button {
     background-color: #FFF;
     font-size: 0.9rem;
     padding: 0 5% 5% 5%; }
+
+.menu-custom {
+  position: absolute;
+  width: 55%;
+  bottom: 48px;
+  right: 0;
+  z-index: 3;
+  background: #B1C0DA;
+  border: 1px solid #7D8BA5; }
+  .menu-custom ul li {
+    text-align: center;
+    font-size: 16px;
+    font-weight: normal;
+    color: #fff;
+    padding: 8px 5px;
+    border-bottom: 1px solid #C2CDE1; }
+    .menu-custom ul li.menu-custom--active {
+      background: #fff;
+      color: #7D8BA5; }
