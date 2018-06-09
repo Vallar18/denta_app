@@ -111,25 +111,34 @@
                 controller: 'AboutCtrl',
                 controllerAs: 'vm'
             })
-
             .state('privacy', {
                 url: '/privacy',
                 templateUrl: 'templates/privacy/privacy.html',
                 controller: 'PrivacyCtrl',
                 controllerAs: 'vm'
             })
-
             .state('terms', {
                 url: '/terms',
                 templateUrl: 'templates/terms/terms.html',
                 controller: 'TermsCtrl',
                 controllerAs: 'vm'
             })
-
             .state('share', {
                 url: '/share',
                 templateUrl: 'templates/share/share.html',
                 controller: 'ShareCtrl',
+                controllerAs: 'vm'
+            })
+            .state('my-treatments', {
+                url: '/my-treatments',
+                templateUrl: 'templates/my-treatments/my-treatments.html',
+                controller: 'MyTreatmentsCtrl',
+                controllerAs: 'vm'
+            })
+            .state('need-dentist', {
+                url: '/need-dentist',
+                templateUrl: 'templates/need-dentist/need-dentist.html',
+                controller: 'NeedDentistCtrl',
                 controllerAs: 'vm'
             })
 

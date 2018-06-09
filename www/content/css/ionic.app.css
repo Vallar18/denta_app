@@ -9973,6 +9973,7 @@ a.button {
       display: block; }
 
 .back-btn {
+  background: #FFF;
   border: 2px solid #B1C0DA;
   border-radius: 50%; }
   .back-btn i {
@@ -10144,9 +10145,19 @@ a.button {
     font-size: 0.9rem;
     padding: 0 5% 5% 5%; }
 
+.my-treatments-view {
+  background-color: #B1C0DA; }
+  .my-treatments-view__main {
+    margin-top: 20vh;
+    background-color: #FFF; }
+  .my-treatments-view__content {
+    background-color: #FFF;
+    font-size: 0.9rem;
+    padding: 0 5% 5% 5%; }
+
 .menu-custom {
   position: absolute;
-  width: 40%;
+  width: 45%;
   bottom: 48px;
   right: 0;
   z-index: 3;
@@ -10162,3 +10173,6 @@ a.button {
     .menu-custom ul li.menu-custom--active {
       background: #fff;
       color: #7D8BA5; }
+
+.star-rating-directive {
+  display: inline-block; }
