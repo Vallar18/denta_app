@@ -11,8 +11,8 @@
             scope: {
                 srCount: "@",
                 srModel: "=",
-                srSize: "=",
-                srColor: "=",
+                srSize: "@",
+                srColor: "@",
                 srEnable: "=",
             },
             controller: 'StarRatingCtrl',

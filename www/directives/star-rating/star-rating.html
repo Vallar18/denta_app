@@ -1,6 +1,9 @@
 <div class="star-rating-directive">
-    <ion-icon ng-repeat="item in getCount(srCount) track by $index"
-            name="star-outline">
-        {{$index}}
-    </ion-icon>
+    <i class="icon"
+       ng-click="srEnable && vm.setValue(item.val)"
+       ng-style="{'color': srColor,
+                   'font-size': srSize ? srSize:''}"
+       ng-class="{'ion-ios-star': item.type === 1,
+                    'ion-ios-star-outline': item.type === 0}"
+       ng-repeat="item in vm.getRatingStar(srCount,srModel) track by $index"></i>
 </div>
