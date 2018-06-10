@@ -19,9 +19,10 @@
         function send() {
             if(validation()){
                 regSvc.sendPhone(vm.user);
-                // $state.go('add-code');
+
+                $state.go('add-clinic');
                 vm.user = {
-                    name: ''
+                    name: '',
                     lastName: '',
                     email: ''
                 }
@@ -29,7 +30,7 @@
         }
         function validation() {
         if(vm.user.email === undefined){
-            toastr.error('Please enter the correct email');,
+            toastr.error('Please enter the correct email');
             return false
         }
          if (vm.user.name === '' || vm.user.Lastname === 0){
