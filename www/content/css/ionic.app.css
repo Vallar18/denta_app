@@ -9840,7 +9840,8 @@ a.button {
     left: 50%; }
     .item-block-top .img-wrap img {
       display: block;
-      width: 102%; }
+      width: 102%;
+      margin-left: -2%; }
     .item-block-top .img-wrap p {
       text-align: center;
       color: #fff;
@@ -9974,10 +9975,25 @@ a.button {
 
 .back-btn {
   background: #FFF;
-  border: 2px solid #B1C0DA;
+  border: 1px solid #B1C0DA;
+  -webkit-box-shadow: 0px 2px 0px 1px #B1C0DA;
+  -moz-box-shadow: 0px 2px 0px 1px #B1C0DA;
+  box-shadow: 0px 2px 0px 1px #B1C0DA;
   border-radius: 50%; }
   .back-btn i {
-    color: #B1C0DA;
+    color: #7389A4;
+    font-size: 2rem;
+    width: 2rem; }
+
+.share-btn {
+  background: #FFF;
+  border: 1px solid #B1C0DA;
+  -webkit-box-shadow: 0px 2px 0px 1px #B1C0DA;
+  -moz-box-shadow: 0px 2px 0px 1px #B1C0DA;
+  box-shadow: 0px 2px 0px 1px #B1C0DA;
+  border-radius: 50%; }
+  .share-btn i {
+    color: #7389A4;
     font-size: 2rem;
     width: 2rem; }
 
@@ -10144,6 +10160,20 @@ a.button {
     background-color: #FFF;
     font-size: 0.9rem;
     padding: 0 5% 5% 5%; }
+
+.share-view__subtitle {
+  text-transform: uppercase;
+  font-size: 16px;
+  color: #8695AF; }
+
+.share-view__share-text {
+  padding-top: 15vh;
+  color: #A6B0C3;
+  padding-bottom: 5%; }
+
+.share-view__finish-btn {
+  position: fixed;
+  bottom: 5vh; }
 
 .my-treatments-view {
   background-color: #B1C0DA; }

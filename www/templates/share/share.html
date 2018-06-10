@@ -1,6 +1,24 @@
-<ion-view>
+<ion-view class="share-view">
     <ion-content>
-        Share pages
-        <button ng-click="vm.share()">Share</button>
+        <div class="item-block-top">
+            <div class="img-wrap">
+                <p>Thank you</p>
+                <img src="content/img/border.svg">
+            </div>
+            <div class="item-block-top-background-image"></div>
+            <div class="item-block-top-logo">
+                <img src="content/img/vector-smart-object.png">
+            </div>
+        </div>
+        <div class="item-block-content">
+            <div class="block-content">
+                <div class="share-view__subtitle">You are now ready to use!</div>
+                <div class="share-view__share-text">Feel free to share us with your friends and family</div>
+                <button class="button share-btn" ng-click="vm.share()">
+                    <i class="icon ion-android-share-alt"></i>
+                </button>
+                <button class="send-button share-view__finish-btn" ng-click="vm.finish()">Finish</button>
+            </div>
+        </div>
     </ion-content>
 </ion-view>
