@@ -19,12 +19,12 @@
 
         vm.ratingArr = getRatingStar($scope.srCount,$scope.srModel);
 
-        $scope.$watch($scope.srCount,function(newV,oldV){
+        $scope.$watch('srCount',function(newV,oldV){
             if(newV !== oldV){
                 vm.ratingArr = getRatingStar(newV,$scope.srModel);
             }
         });
-        $scope.$watch($scope.srModel,function(newV,oldV){
+        $scope.$watch('srModel',function(newV,oldV){
             if(newV !== oldV){
                 vm.ratingArr = getRatingStar($scope.srCount,newV);
             }
