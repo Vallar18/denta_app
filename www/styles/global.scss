@@ -136,8 +136,8 @@
     background-color: transparent;
   }
   .button.activated, .button:active{
-     background-color: transparent;
-   }
+    background-color: transparent;
+  }
 }
 .text-center{
   text-align: center;
@@ -175,6 +175,37 @@
       height: 100%;
       display:block;
     }
+  }
+}
+
+.gray-btn {
+  position: relative;
+  border: 1px solid $role-btn-border;
+  background: none;
+  width: 70%;
+  height: 7vh;
+  border-radius: 40px;
+  margin-bottom: 7%;
+  box-shadow: 0 0.3vh 0 0 $role-btn-border;
+  color: $role-btn-text;
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    background-position: center;
+    background-size: auto 73%;
+    background-repeat: no-repeat;
+    top: 39%;
+    left: 0;
+    transform: translateY(-34%);
+    width: 20%;
+    height: 84%;
+  }
+  &.dentist-btn:before {
+    background-image: url(../img/dentist-icon.png);
+  }
+  &.patient-btn:before {
+    background-image: url(../img/patient-icon.png);
   }
 }
 

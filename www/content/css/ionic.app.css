@@ -9972,6 +9972,33 @@ a.button {
       height: 100%;
       display: block; }
 
+.gray-btn {
+  position: relative;
+  border: 1px solid #B2C1DB;
+  background: none;
+  width: 70%;
+  height: 7vh;
+  border-radius: 40px;
+  margin-bottom: 7%;
+  box-shadow: 0 0.3vh 0 0 #B2C1DB;
+  color: #8695AF; }
+  .gray-btn:before {
+    content: '';
+    display: block;
+    position: absolute;
+    background-position: center;
+    background-size: auto 73%;
+    background-repeat: no-repeat;
+    top: 39%;
+    left: 0;
+    transform: translateY(-34%);
+    width: 20%;
+    height: 84%; }
+  .gray-btn.dentist-btn:before {
+    background-image: url(../img/dentist-icon.png); }
+  .gray-btn.patient-btn:before {
+    background-image: url(../img/patient-icon.png); }
+
 .back-btn {
   border: 2px solid #B1C0DA;
   border-radius: 50%; }
@@ -10125,6 +10152,16 @@ a.button {
     margin-top: 20vh;
     background-color: #FFF; }
   .privacy-view__content {
+    background-color: #FFF;
+    font-size: 0.9rem;
+    padding: 0 5% 5% 5%; }
+
+.terms-view {
+  background-color: #B1C0DA; }
+  .terms-view__main {
+    margin-top: 20vh;
+    background-color: #FFF; }
+  .terms-view__content {
     background-color: #FFF;
     font-size: 0.9rem;
     padding: 0 5% 5% 5%; }
