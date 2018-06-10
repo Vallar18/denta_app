@@ -9,8 +9,6 @@
 
     function StarRatingCtrl($scope) {
         const DEFAULT_COUNT = 5;
-        const EMPTY = 0;
-        const FULL = 1;
         let vm = this;
         let prev = {
             counts: DEFAULT_COUNT,
@@ -18,32 +16,47 @@
             selectVal: 0
         };
         let arr = [];
-        vm.getRatingStar = function (counts,value){
-            if(prev.counts === +counts && prev.value === +value){
+
+        vm.ratingArr = getRatingStar($scope.srCount,$scope.srModel);
+
+        $scope.$watch($scope.srCount,function(newV,oldV){
+            if(newV !== oldV){
+                vm.ratingArr = getRatingStar(newV,$scope.srModel);
+            }
+        });
+        $scope.$watch($scope.srModel,function(newV,oldV){
+            if(newV !== oldV){
+                vm.ratingArr = getRatingStar($scope.srCount,newV);
+            }
+        });
+
+        function getRatingStar(counts, value) {
+            let count = +counts || DEFAULT_COUNT;
+            let values = !value || +value<0 ? 0 : +value;
+            if (prev.counts === count && prev.value === values && arr.length) {
                 return arr;
             }
-            prev.counts = +counts;
-            prev.value = +value;
-            var count = +counts || DEFAULT_COUNT;
+            prev.counts = count;
+            prev.value = values;
             arr = [];
-            var type = EMPTY;
-            for(var i=0;i < count;i++){
-                if(i+1 <= (+value)){
-                    type = FULL;
-                }  else {
-                    type = EMPTY;
+            let type = 'ion-ios-star';
+            for (var i = 0; i < count; i++) {
+                if (i + 1 <= (+value)) {
+                    type = 'ion-ios-star';
+                } else {
+                    type = 'ion-ios-star-outline';
                 }
                 arr.push({
-                    id: i+1,
+                    id: i + 1,
                     type: type,
-                    val: i+1
+                    val: i + 1
                 });
             }
             return arr;
         };
 
-        vm.setValue = function(val){
-            if(prev.selectVal === 1 && val === 1){
+        vm.setValue = function (val) {
+            if (prev.selectVal === 1 && val === 1) {
                 val = 0;
             }
             prev.selectVal = val;
