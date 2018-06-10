@@ -13,7 +13,8 @@
                 srModel: "=", //model save selected star value or set star value
                 srSize: "@", //size of star, css format ( 24px, 2rem etc.)
                 srColor: "@", //color in css format ( #fff, black, rgba(230,0,34) )
-                srEnable: "=", //if  true - click on star change model, if false - only view star
+                srEnable: "=", //if  true - click on star change model, if false - only view star,
+                srSelect: "&" //call function with one parameter - selected star value
             },
             controller: 'StarRatingCtrl',
             controllerAs: 'vm',

@@ -61,6 +61,9 @@
             }
             prev.selectVal = val;
             $scope.srModel = val;
+            if(angular.isDefined($scope.srSelect) && typeof $scope.srSelect === 'function'){
+                $scope.srSelect(val);
+            }
         }
     }
 

@@ -5,9 +5,9 @@
         .module('app')
         .controller('TabsController', TabsController);
 
-    TabsController.$inject = ['$state', '$localStorage', '$ionicHistory'];
+    TabsController.$inject = ['$state', '$localStorage', '$ionicHistory','$cordovaSocialSharing','$ionicPlatform'];
 
-    function TabsController($state, $localStorage, $ionicHistory) {
+    function TabsController($state, $localStorage, $ionicHistory,$cordovaSocialSharing,$ionicPlatform) {
 
         var vm = this;
         vm.toggleMenu = toggleMenu;
@@ -27,7 +27,7 @@
             vm.menuModel.items = getMenuItems();
         }
 
-        function getMenuItems(){
+        function getMenuItems() {
             return [{
                 id: 5,
                 name: 'Terms Of Use',
@@ -68,7 +68,30 @@
             if (item.view) {
                 $state.go(item.view);
             }
+            if (item.act) {
+                switch (item.act) {
+                    case 'share':
+                        share();
+                        break;
+                    case 'logout':
+                        console.log('logout');
+                        break;
+                }
+            }
             vm.menuModel.model = null;
+        }
+
+        function share() {
+            $ionicPlatform.ready(function () {
+                var message = 'Test messages';
+                $cordovaSocialSharing
+                    .share(message, null, null, null) // Share via native share sheet
+                    .then(function (result) {
+                        // Success!
+                    }, function (err) {
+                        // An error occured. Show a message to the user
+                    });
+            });
         }
     }
 })();
