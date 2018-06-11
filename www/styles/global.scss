@@ -44,6 +44,46 @@ body {
   background: #2c304b;
   position: relative;
 
+  .steps-wrap {
+    height: 35%;
+    position: relative;
+    z-index: 9;
+    .steps-item {
+      width: 20%;
+      text-align: center;
+      position: relative;
+      color: $text-white-color;
+      opacity: 0.3;
+      &:before {
+        content: "";
+        width: 40%;
+        height: 1px;
+        display: block;
+        background: $text-white-color;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        z-index: 9;
+        transform: translateY(-50%);
+      }
+      &:after {
+        content: "";
+        width: 40%;
+        height: 1px;
+        display: block;
+        background: $text-white-color;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        z-index: 9;
+        transform: translateY(-50%);
+      }
+      &.active-step {
+        opacity: 1;
+      }
+    }
+  }
+
   .img-wrap {
     position: absolute;
     bottom: -2px;
@@ -139,6 +179,13 @@ body {
   .item-input{
     margin-bottom: 12px;
     width: 70%;
+    border: 1px solid $input-border;
+    input {
+      color: $input-text;
+      &::-webkit-input-placeholder {
+        color: $input-text;
+      }
+    }
   }
 }
 
