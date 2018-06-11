@@ -5,9 +5,9 @@
         .module('app')
         .controller('RegCtrl', RegCtrl);
 
-    RegCtrl.$inject = ['$state', 'regSvc', 'toastr', '$localStorage'];
+    RegCtrl.$inject = ['$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc'];
 
-    function RegCtrl($state, regSvc, toastr, $localStorage) {
+    function RegCtrl($state, regSvc, toastr, $localStorage, messagesSvc) {
         const vm = this;
         vm.send = send;
         vm.showContentDentist = undefined;
@@ -46,11 +46,11 @@
         }
         function validation() {
             if(vm.user.email === undefined){
-                toastr.error('Please enter the correct email');
+                toastr.error(messagesSvc.error.invalidEmail);
                 return false
             }
              if (vm.user.name === '' || vm.user.Lastname === 0){
-                 toastr.error('Please fill in all fields');
+                 toastr.error(messagesSvc.error.emptyField);
                  return false;
              } else {
                  return true;

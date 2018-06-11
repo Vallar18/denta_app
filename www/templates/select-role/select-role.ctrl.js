@@ -28,7 +28,7 @@
                 vm.user.role = 'patient'
             }
             $localStorage.user = vm.user;
-            $state.go('registration')
+            $state.go('registration');
             regSvc.sendRole(vm.user.role);
         }
     }
