@@ -54,7 +54,7 @@
             $ionicLoading.show({
                 template: 'Loading...',
             });
-            return $http(config).then( requestSuccess(response), requestError(response));
+            return $http(config).then( requestSuccess, requestError);
         };
 
         function requestSuccess(response) {
