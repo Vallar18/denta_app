@@ -9859,7 +9859,8 @@ body {
     left: 50%; }
     .item-block-top .img-wrap img {
       display: block;
-      width: 102%; }
+      width: 102%;
+      margin-left: -2%; }
     .item-block-top .img-wrap p {
       font-family: "alexxis_demoregular", sans-serif;
       text-align: center;
@@ -9925,7 +9926,6 @@ body {
   padding-top: 9%;
   z-index: 9; }
   .block-content p {
-    padding-top: 12px;
     font-size: 16px; }
   .block-content .send-button {
     width: 35%;
@@ -9935,25 +9935,26 @@ body {
     margin-top: 15px;
     border: none; }
   .block-content .item-input {
-    width: 250px; }
+    margin-bottom: 12px;
+    width: 70%; }
 
 .input-block {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%; }
+  margin-bottom: 12px;
+  width: 70%; }
+  .input-block .item-input {
+    margin-bottom: -1px; }
   .input-block input {
     padding: 0;
     font-size: 12.5px; }
   .input-block .select-button {
-    width: 70px;
+    width: 30%;
     border-color: #ddd;
     border-radius: 0;
     color: #959393c4;
     font-size: 12.5px; }
-  .input-block .item-input {
-    padding: 5px 0 6px 12px;
-    width: 170px; }
   .input-block .button:hover {
     background-color: transparent; }
   .input-block .button.activated, .input-block .button:active {
@@ -10021,14 +10022,31 @@ body {
     background-image: url(../img/patient-icon.png); }
 
 .back-btn {
-  border: 2px solid #B1C0DA;
+  background: #FFF;
+  border: 1px solid #B1C0DA;
+  -webkit-box-shadow: 0px 2px 0px 1px #B1C0DA;
+  -moz-box-shadow: 0px 2px 0px 1px #B1C0DA;
+  box-shadow: 0px 2px 0px 1px #B1C0DA;
   border-radius: 50%; }
   .back-btn i {
-    color: #B1C0DA;
+    color: #7389A4;
+    font-size: 2rem;
+    width: 2rem; }
+
+.share-btn {
+  background: #FFF;
+  border: 1px solid #B1C0DA;
+  -webkit-box-shadow: 0px 2px 0px 1px #B1C0DA;
+  -moz-box-shadow: 0px 2px 0px 1px #B1C0DA;
+  box-shadow: 0px 2px 0px 1px #B1C0DA;
+  border-radius: 50%; }
+  .share-btn i {
+    color: #7389A4;
     font-size: 2rem;
     width: 2rem; }
 
 .tabs-custom .tab-item {
+  opacity: 1;
   border: none !important; }
   .tabs-custom .tab-item span.tab-title {
     font-size: 1rem !important;
@@ -10043,6 +10061,7 @@ body {
     color: #8895AC !important; }
 
 .tabs-custom .tab-item-active {
+  margin-top: 0 !important;
   position: relative;
   background-color: #D20340;
   border-color: #D20340 !important;
@@ -10064,11 +10083,14 @@ body {
   background: #FFF;
   padding: 0 !important; }
 
-.tabs-custom--menu .tab-item:last-child {
+.tabs-custom__menu .tab-item:last-child {
   max-width: 15%;
   background-color: #B1C0DA; }
-  .tabs-custom--menu .tab-item:last-child i.ion-more {
+  .tabs-custom__menu .tab-item:last-child i.ion-more {
     color: #fff; }
+
+.tabs-custom__menu--open .tab-item:last-child {
+  background-color: #7988A2 !important; }
 
 #view {
   padding: 0;
@@ -10149,6 +10171,20 @@ body {
   color: #D20340;
   text-decoration: underline; }
 
+.add-code .item-input {
+  width: 70%; }
+
+.reg-step1 .input-block {
+  margin-bottom: 12px;
+  width: 80%; }
+  .reg-step1 .input-block .item-input {
+    padding: 5px 0 6px 12px;
+    margin-bottom: -1px; }
+
+.reg-step1 .item-input {
+  width: 80%;
+  margin-bottom: 12px; }
+
 .geo-view .scroll {
   height: 100%;
   width: 100%; }
@@ -10186,3 +10222,49 @@ body {
     background-color: #FFF;
     font-size: 0.9rem;
     padding: 0 5% 5% 5%; }
+
+.share-view__subtitle {
+  text-transform: uppercase;
+  font-size: 16px;
+  color: #8695AF; }
+
+.share-view__share-text {
+  padding-top: 15vh;
+  color: #A6B0C3;
+  padding-bottom: 5%; }
+
+.share-view__finish-btn {
+  position: fixed;
+  bottom: 5vh; }
+
+.my-treatments-view {
+  background-color: #B1C0DA; }
+  .my-treatments-view__main {
+    margin-top: 20vh;
+    background-color: #FFF; }
+  .my-treatments-view__content {
+    background-color: #FFF;
+    font-size: 0.9rem;
+    padding: 0 5% 5% 5%; }
+
+.menu-custom {
+  position: absolute;
+  width: 45%;
+  bottom: 48px;
+  right: 0;
+  z-index: 3;
+  background: #B1C0DA;
+  border: 1px solid #7D8BA5; }
+  .menu-custom ul li {
+    text-align: center;
+    font-size: 16px;
+    font-weight: normal;
+    color: #fff;
+    padding: 8px 5px;
+    border-bottom: 1px solid #C2CDE1; }
+    .menu-custom ul li.menu-custom--active {
+      background: #fff;
+      color: #7D8BA5; }
+
+.star-rating-directive {
+  display: inline-block; }
