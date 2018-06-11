@@ -18,6 +18,12 @@
 
                     })
                 });
+            };
+
+            vm.getCameraPic  = function(){
+                $ionicPlatform.ready(function () {
+
+                });
             }
         }
     }
