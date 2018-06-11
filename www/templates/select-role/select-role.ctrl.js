@@ -5,9 +5,9 @@
         .module('app')
         .controller('SelectRoleCtrl', SelectRoleCtrl);
 
-    SelectRoleCtrl.$inject = ['$state', 'regSvc'];
+    SelectRoleCtrl.$inject = ['$state', 'regSvc', '$localStorage'];
 
-    function SelectRoleCtrl($state, regSvc) {
+    function SelectRoleCtrl($state, regSvc, $localStorage) {
         const vm = this;
         vm.select = select;
 
@@ -27,6 +27,7 @@
             } else {
                 vm.user.role = 'patient'
             }
+            $localStorage.user = vm.user;
             $state.go('registration')
             regSvc.sendRole(vm.user.role);
         }
