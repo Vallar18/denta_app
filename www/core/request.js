@@ -62,6 +62,7 @@
             let defer = $q.defer();
             // console.clear();
             console.info('response', url, response);
+            $ionicLoading.hide();
             if (response.data.error) {
                 toastr.error(response.data.error);
                 defer.reject(response.data.error);
@@ -69,7 +70,6 @@
             else {
                 defer.resolve(response.data);
             }
-            $ionicLoading.hide();
             return defer.promise;
         }
         function requestError(response) {
@@ -78,20 +78,16 @@
 
             if (response.status === 200) {
                 toastr.error('Server Error: ' + response.data);
-                defer.reject(response.data);
             }
             else if (response.status === -1) {
                 toastr.error('Server unavailable');
-                defer.reject(response.data);
             }
             else if (response.status === 500) {
                 toastr.error(response.data.message);
                 // toastr.error('Server Error: ' + response.status + ' ' + response.data.message);
-                defer.reject(response.data);
             }
             else if (response.status === 403) {
                 toastr.error('Access denied.');
-                defer.reject(response.data);
             }
             else {
                 if (response.status === 401) {
@@ -99,7 +95,6 @@
                 }
                 // toastr.error('Server Error: ' + response.status + ' ' + response.data.message);
                 toastr.error(response.data.message);
-                defer.reject(response.data);
             }
             $ionicLoading.hide();
             defer.reject(response.data);
