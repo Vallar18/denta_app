@@ -1,6 +1,7 @@
 <ion-view class="reg-step1">
     <ion-content>
         <div class="item-block-top">
+            <div class="coun" ng-if="vm.showContentDentist"
             <div layout="row" layout-align="space-around end" class="steps-wrap">
                 <div class="steps-item active-step">1</div>
                 <div class="steps-item">2</div>
@@ -12,7 +13,7 @@
             </div>
         </div>
         <div class="item-block-content">
-            <div class="block-content">
+            <form class="block-content">
                 <label class="item item-input">
                     <input class="text-center" type="text" placeholder="First name" ng-model="vm.user.name" minlength="3" maxlength="20">
                 </label>
@@ -23,7 +24,7 @@
                     <input class="text-center" type="email" placeholder="Email" ng-model="vm.user.email">
                 </label>
                 <button class="send-button" ng-click="vm.send()">Next</button>
-            </div>
+            </form>
         </div>
     </ion-content>
 </ion-view>
