@@ -1,5 +1,17 @@
 <ion-view>
         <ion-content>
                 <h2>help hhh</h2>
+                <star-rating    sr-count="5"
+                                sr-model="4"
+                                sr-size=""
+                                sr-color="black"
+                                sr-enable="false"></star-rating>
+                <star-rating    sr-count="5"
+                                ng-init="model = 4"
+                                sr-model="model"
+                                sr-size="48px"
+                                sr-color="#FEC515"
+                                sr-enable="true"></star-rating>
+                Model:{{model}}
         </ion-content>
 </ion-view>

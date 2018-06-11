@@ -55,6 +55,7 @@ body {
 
     img {
       display: block; width: 102%;
+      margin-left: -2%;
     }
 
     p {
@@ -125,7 +126,6 @@ body {
   padding-top: 9%;
   z-index: 9;
   p {
-    padding-top: 12px;
     font-size: 16px;
   }
   .send-button {
@@ -137,7 +137,8 @@ body {
     border: none;
   }
   .item-input{
-    width:250px;
+    margin-bottom: 12px;
+    width: 70%;
   }
 }
 
@@ -146,21 +147,22 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  margin-bottom: 12px;
+  width: 70%;
+  .item-input{
+    margin-bottom: -1px;
+  }
+
   input {
     padding:0;
     font-size:12.5px;
   }
   .select-button{
-    width: 70px;
+    width: 30%;
     border-color: #ddd;
     border-radius: 0;
     color: #959393c4;
     font-size: 12.5px;
-  }
-  .item-input{
-    padding: 5px 0 6px 12px;
-    width: 170px;
   }
   .button:hover{
     background-color: transparent;
@@ -241,10 +243,28 @@ body {
 }
 
 .back-btn {
-  border: 2px solid $second-color-light;
+  background: $background-color;
+  border: 1px solid $second-color-light;
+  -webkit-box-shadow: 0px 2px 0px 1px $second-color-light;
+  -moz-box-shadow: 0px 2px 0px 1px $second-color-light;
+  box-shadow: 0px 2px 0px 1px $second-color-light;
   border-radius: 50%;
   i {
-    color: $second-color-light;
+    color: $second-color-dark3;
+    font-size:2rem;
+    width:2rem;
+  }
+}
+
+.share-btn {
+  background: $background-color;
+  border: 1px solid $second-color-light;
+  -webkit-box-shadow: 0px 2px 0px 1px $second-color-light;
+  -moz-box-shadow: 0px 2px 0px 1px $second-color-light;
+  box-shadow: 0px 2px 0px 1px $second-color-light;
+  border-radius: 50%;
+  i {
+    color: $second-color-dark3;
     font-size:2rem;
     width:2rem;
   }

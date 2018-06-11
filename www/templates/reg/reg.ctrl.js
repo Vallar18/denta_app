@@ -19,7 +19,8 @@
         function send() {
             if(validation()){
                 regSvc.sendPhone(vm.user);
-                // $state.go('add-code');
+
+                $state.go('add-clinic');
                 vm.user = {
                     name: '',
                     lastName: '',

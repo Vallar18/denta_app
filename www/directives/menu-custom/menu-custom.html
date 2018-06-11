@@ -1,0 +1,9 @@
+<div class="menu-custom">
+    <ul>
+        <li ng-repeat="item in items | orderBy:'id' track by $index"
+            ng-class="{'menu-custom--active': item === model}"
+            ng-click="selectItem(item)">
+            {{item.name}}
+        </li>
+    </ul>
+</div>

@@ -74,6 +74,18 @@
                 controller: 'RegCtrl',
                 controllerAs: 'vm'
             })
+            .state('add-clinic', {
+                url: '/add-clinic',
+                templateUrl: 'templates/add-clinic/add-clinic.html',
+                controller: 'AddClinicCtrl',
+                controllerAs: 'vm'
+            })
+            .state('add-specialities', {
+                url: '/add-specialities',
+                templateUrl: 'templates/add-specialities/add-specialities.html',
+                controller: 'AddSpecialitiesCtrl',
+                controllerAs: 'vm'
+            })
             .state('tabs', {
                 cache: false,
                 reload: true,
@@ -111,25 +123,34 @@
                 controller: 'AboutCtrl',
                 controllerAs: 'vm'
             })
-
             .state('privacy', {
                 url: '/privacy',
                 templateUrl: 'templates/privacy/privacy.html',
                 controller: 'PrivacyCtrl',
                 controllerAs: 'vm'
             })
-
             .state('terms', {
                 url: '/terms',
                 templateUrl: 'templates/terms/terms.html',
                 controller: 'TermsCtrl',
                 controllerAs: 'vm'
             })
-
             .state('share', {
                 url: '/share',
                 templateUrl: 'templates/share/share.html',
                 controller: 'ShareCtrl',
+                controllerAs: 'vm'
+            })
+            .state('my-treatments', {
+                url: '/my-treatments',
+                templateUrl: 'templates/my-treatments/my-treatments.html',
+                controller: 'MyTreatmentsCtrl',
+                controllerAs: 'vm'
+            })
+            .state('need-dentist', {
+                url: '/need-dentist',
+                templateUrl: 'templates/need-dentist/need-dentist.html',
+                controller: 'NeedDentistCtrl',
                 controllerAs: 'vm'
             })
 
