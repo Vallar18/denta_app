@@ -16,7 +16,7 @@
 
     function runBlock($ionicPlatform, $localStorage, $state) {
         $ionicPlatform.ready(function() {
-            $state.go('share');
+            $state.go('tabs.help');
             window.addEventListener('keyboardDidShow', (event) => {
                 // Describe your logic which will be run each time when keyboard is about to be shown.
                 console.log(event.keyboardHeight);

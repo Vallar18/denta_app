@@ -21,21 +21,24 @@
 
         $scope.$watch('srCount',function(newV,oldV){
             if(newV !== oldV){
+                $scope.$evalAsync(function () {
                 vm.ratingArr = getRatingStar(newV,$scope.srModel);
-            }
-        });
+            });
+        }});
         $scope.$watch('srModel',function(newV,oldV){
             if(newV !== oldV){
-                vm.ratingArr = getRatingStar($scope.srCount,newV);
+                $scope.$evalAsync(function () {
+                    vm.ratingArr = getRatingStar($scope.srCount,newV);
+                });
             }
         });
 
         function getRatingStar(counts, value) {
             let count = +counts || DEFAULT_COUNT;
             let values = !value || +value<0 ? 0 : +value;
-            if (prev.counts === count && prev.value === values && arr.length) {
-                return arr;
-            }
+            // if (prev.counts === count && prev.value === values && arr.length) {
+            //     return arr;
+            // }
             prev.counts = count;
             prev.value = values;
             arr = [];

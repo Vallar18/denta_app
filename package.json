@@ -12,6 +12,7 @@
     "angular-material": "^1.1.9",
     "cordova-android": "7.0.0",
     "cordova-plugin-console": "^1.1.0",
+    "cordova-plugin-contacts": "^3.0.1",
     "cordova-plugin-device": "^1.1.7",
     "cordova-plugin-geolocation": "^4.0.1",
     "cordova-plugin-ionic-keyboard": "^2.1.2",
@@ -33,7 +34,8 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-geolocation": {},
-      "cordova-plugin-network-information": {}
+      "cordova-plugin-network-information": {},
+      "cordova-plugin-contacts": {}
     },
     "platforms": []
   }
