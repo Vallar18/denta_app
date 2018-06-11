@@ -1,3 +1,32 @@
+@font-face {
+  font-family: "alexxis_demoregular";
+  src: url('../../content/fonts/alexxis_demo-webfont.eot');
+  src: url('../../content/fonts/alexxis_demo-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../../content/fonts/alexxis_demo-webfont.woff2') format('woff2'),
+  url('../../content/fonts/alexxis_demo-webfont.woff') format('woff'),
+  url('../../content/fonts/alexxis_demo-webfont.ttf') format('truetype'),
+  url('../../content/fonts/alexxis_demo-webfont.svg#alexxis_demoregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family:'Microsoft JhengHei';
+  src: url('../../content/fonts/Microsoft JhengHei.eot');
+  src: url('../../content/fonts/Microsoft JhengHei.eot?#iefix') format('embedded-opentype'),
+  url('../../content/fonts/Microsoft JhengHei.woff2') format('woff2'),
+  url('../../content/fonts/Microsoft JhengHei.woff') format('woff'),
+  url('../../content/fonts/Microsoft JhengHei.svg#Microsoft JhengHei') format('svg');
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-2074;
+}
+
+
+body {
+  font-family:'Microsoft JhengHei', sans-serif;
+}
 
 .background-image{
   height: 100%;
@@ -30,6 +59,7 @@
     }
 
     p {
+      font-family: "alexxis_demoregular", sans-serif;
       text-align: center;
       color: #fff;
       font-size: 18px;
@@ -138,8 +168,8 @@
     background-color: transparent;
   }
   .button.activated, .button:active{
-     background-color: transparent;
-   }
+    background-color: transparent;
+  }
 }
 .text-center{
   text-align: center;
@@ -177,6 +207,38 @@
       height: 100%;
       display:block;
     }
+  }
+}
+
+.gray-btn {
+  font-family:'Microsoft JhengHei', sans-serif;
+  position: relative;
+  border: 1px solid $role-btn-border;
+  background: none;
+  width: 70%;
+  height: 7vh;
+  border-radius: 40px;
+  margin-bottom: 7%;
+  box-shadow: 0 0.3vh 0 0 $role-btn-border;
+  color: $role-btn-text;
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    background-position: center;
+    background-size: auto 73%;
+    background-repeat: no-repeat;
+    top: 39%;
+    left: 0;
+    transform: translateY(-34%);
+    width: 20%;
+    height: 84%;
+  }
+  &.dentist-btn:before {
+    background-image: url(../img/dentist-icon.png);
+  }
+  &.patient-btn:before {
+    background-image: url(../img/patient-icon.png);
   }
 }
 

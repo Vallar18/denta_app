@@ -24,7 +24,7 @@
         }
 
         function send() {
-            if(validPhone()){
+            // if(validPhone()){
                 let phones = vm.content.val4 + vm.phone;
                 let send = {
                     phone: phones
@@ -33,20 +33,20 @@
                 $state.go('add-code');
                 $localStorage.valView = false;
                 vm.phone = '';
-            } else {
-                toastr.error('The number should be')
-            }
+            // } else {
+            //     toastr.error('The number should be')
+            // }
         }
-        function validPhone() {
-            if(vm.phone !== ''){
-                let phoneLength = vm.phone.toString().length;
-                if(phoneLength > 5){
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }
+        // function validPhone() {
+        //     if(vm.phone !== ''){
+        //         let phoneLength = vm.phone.toString().length;
+        //         if(phoneLength > 5){
+        //             return true;
+        //         } else {
+        //             return false;
+        //         }
+        //     }
+        // }
     }
 
 })();
