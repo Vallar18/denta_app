@@ -18,7 +18,7 @@
             val2: 'click here',
             val3: 'get me in',
             valBtn: 'Send'
-        }
+        };
 
         function send() {
             if(validCode()){
@@ -27,7 +27,7 @@
                     code: "" + vm.code
                 };
                 regSvc.sendVerify(vm.verify).then(function (data) {
-                    if(data.success === true) {
+                    if(data.success) {
                         toastr.success(data.message, '', {
                             onHidden: function () {
                                 $state.go('select-role');

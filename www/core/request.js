@@ -14,8 +14,9 @@
                 method: method,
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json; charset=UTF-8'
-                }
+                    'Content-Type': 'application/json; charset=UTF-8',
+                },
+                withCredentials: true
             };
             if (method === 'POST' && data.responseType) {
                 config.responseType = data.responseType;
@@ -61,7 +62,7 @@
             $rootScope.loading = false;
             let defer = $q.defer();
             // console.clear();
-            console.info('response', url, response);
+            // console.info('response', url, response);
             $ionicLoading.hide();
             if (response.data.error) {
                 toastr.error(response.data.error);
@@ -125,7 +126,7 @@
                     $rootScope.loading = false;
                     let defer = $q.defer();
 
-                    console.info('response', url, response);
+                    // console.info('response', url, response);
                     if (response.data.error) {
                         toastr.error(response.data.error);
                         defer.reject(response.data.error);
@@ -135,7 +136,7 @@
                 },
                 function (response) {
                     let defer = $q.defer();
-                    console.info('error', url, response);
+                    // console.info('error', url, response);
 
                     if (response.status === 200) {
                         toastr.error('Server Error: ' + response.data);
