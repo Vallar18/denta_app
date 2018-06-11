@@ -21,25 +21,25 @@
         }
 
         function send() {
-            if(validCode()){
+            // if(validCode()){
                 regSvc.sendVerify(vm.code);
                 $state.go('select-role');
                 vm.code = '';
-            } else {
-                toastr.error('The code should consist of 4 digits')
-            }
+            // } else {
+            //     toastr.error('The code should consist of 4 digits')
+            // }
         }
         
-        function validCode() {
-            if(vm.code !== ''){
-                let codeLength = vm.code.toString().length;
-                if(codeLength === 4){
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }
+        // function validCode() {
+        //     if(vm.code !== ''){
+        //         let codeLength = vm.code.toString().length;
+        //         if(codeLength === 4){
+        //             return true;
+        //         } else {
+        //             return false;
+        //         }
+        //     }
+        // }
         
         function goAddPhone() {
             $state.go('add-phone')

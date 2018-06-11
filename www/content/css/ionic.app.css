@@ -9815,6 +9815,25 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+@font-face {
+  font-family: "alexxis_demoregular";
+  src: url("../../content/fonts/alexxis_demo-webfont.eot");
+  src: url("../../content/fonts/alexxis_demo-webfont.eot?#iefix") format("embedded-opentype"), url("../../content/fonts/alexxis_demo-webfont.woff2") format("woff2"), url("../../content/fonts/alexxis_demo-webfont.woff") format("woff"), url("../../content/fonts/alexxis_demo-webfont.ttf") format("truetype"), url("../../content/fonts/alexxis_demo-webfont.svg#alexxis_demoregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Microsoft JhengHei';
+  src: url("../../content/fonts/Microsoft JhengHei.eot");
+  src: url("../../content/fonts/Microsoft JhengHei.eot?#iefix") format("embedded-opentype"), url("../../content/fonts/Microsoft JhengHei.woff2") format("woff2"), url("../../content/fonts/Microsoft JhengHei.woff") format("woff"), url("../../content/fonts/Microsoft JhengHei.svg#Microsoft JhengHei") format("svg");
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-2074; }
+
+body {
+  font-family: 'Microsoft JhengHei', sans-serif; }
+
 .background-image {
   height: 100%;
   background: url(../../content/img/5714520-sky-images.png) no-repeat;
@@ -9842,6 +9861,7 @@ a.button {
       display: block;
       width: 102%; }
     .item-block-top .img-wrap p {
+      font-family: "alexxis_demoregular", sans-serif;
       text-align: center;
       color: #fff;
       font-size: 18px;
@@ -9973,6 +9993,7 @@ a.button {
       display: block; }
 
 .gray-btn {
+  font-family: 'Microsoft JhengHei', sans-serif;
   position: relative;
   border: 1px solid #B2C1DB;
   background: none;
