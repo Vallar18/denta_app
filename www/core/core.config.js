@@ -74,6 +74,18 @@
                 controller: 'RegCtrl',
                 controllerAs: 'vm'
             })
+            .state('add-clinic', {
+                url: '/add-clinic',
+                templateUrl: 'templates/add-clinic/add-clinic.html',
+                controller: 'AddClinicCtrl',
+                controllerAs: 'vm'
+            })
+            .state('add-specialities', {
+                url: '/add-specialities',
+                templateUrl: 'templates/add-specialities/add-specialities.html',
+                controller: 'AddSpecialitiesCtrl',
+                controllerAs: 'vm'
+            })
             .state('tabs', {
                 cache: false,
                 reload: true,

@@ -5,13 +5,13 @@
         .module('app')
         .controller('AddCodeCtrl', AddCodeCtrl);
 
-    AddCodeCtrl.$inject = ['$state', 'regSvc', 'toastr'];
+    AddCodeCtrl.$inject = ['$state', 'regSvc', 'toastr', 'messagesSvc', '$localStorage'];
 
-    function AddCodeCtrl($state, regSvc, toastr) {
+    function AddCodeCtrl($state, regSvc, toastr, messagesSvc, $localStorage) {
         const vm = this;
         vm.send = send;
         vm.goAddPhone = goAddPhone;
-
+        vm.phone = $localStorage.phone;
         vm.code = '';
         vm.content = {
             val1: 'Didn\'t recived code',
@@ -22,14 +22,26 @@
 
         function send() {
             if(validCode()){
-                regSvc.sendVerify(vm.code);
-                $state.go('select-role');
-                vm.code = '';
+                vm.verify ={
+                    phone: vm.phone,
+                    code: "" + vm.code
+                };
+                regSvc.sendVerify(vm.verify).then(function (data) {
+                    if(data.success === true) {
+                        toastr.success(data.message, '', {
+                            onHidden: function () {
+                                $state.go('select-role');
+                            }
+                        });
+                        $localStorage.code = code;
+                        vm.code = '';
+                    }
+                });
             } else {
-                toastr.error('The code should consist of 4 digits')
+                toastr.error(messagesSvc.error.invalidCode)
             }
         }
-        
+
         function validCode() {
             if(vm.code !== ''){
                 let codeLength = vm.code.toString().length;
