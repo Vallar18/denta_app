@@ -11,7 +11,8 @@
         'ngStorage',
         'ngAria',
         'ngMaterial',
-        'pascalprecht.translate'
+        'pascalprecht.translate',
+        'ngFileUpload'
     ]);
 
 

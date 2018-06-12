@@ -27,7 +27,6 @@
             }
             $localStorage.role = vm.role;
             $state.go('registration');
-            regSvc.sendRole(vm.role);
         }
     }
 

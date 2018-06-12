@@ -9,6 +9,16 @@
 
     function AddDentistPhoneCtrl($state, $localStorage, regSvc, toastr, messagesSvc) {
         const vm = this;
+        vm.send = send;
+        vm.skipAddPhoneDentist = skipAddPhoneDentist;
+
+        function send() {
+            $state.go('share')
+        }
+
+        function skipAddPhoneDentist() {
+            $state.go('share')
+        }
 
     }
 

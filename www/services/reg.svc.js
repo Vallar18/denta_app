@@ -9,7 +9,7 @@
         var model = {};
         model.sendPhone = sendPhone;
         model.sendVerify = sendVerify;
-        model.sendRole = sendRole;
+        model.sendUser = sendUser;
         model.sendUserInfo = sendUserInfo;
         return model;
 
@@ -21,9 +21,9 @@
             console.log('verify', verify);
             return http.post(url.code.verify, verify)
         }
-        function sendRole(role) {
-            console.log('user role:', role);
-            return true;
+        function sendUser(user) {
+            console.log('user:', user);
+            return http.post(url.register.user, user)
         }
         function sendUserInfo(userData) {
             console.log(userData)
