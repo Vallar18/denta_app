@@ -7,6 +7,7 @@
         'service.authSvc',
         'service.userSvc',
         'service.regSvc',
-        'service.messagesSvc'
+        'service.messagesSvc',
+        'service.fileSvc'
     ]);
 })();

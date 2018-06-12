@@ -61,8 +61,6 @@
         function requestSuccess(response) {
             $rootScope.loading = false;
             let defer = $q.defer();
-            // console.clear();
-            // console.info('response', url, response);
             $ionicLoading.hide();
             if (response.data.error) {
                 toastr.error(response.data.error);
@@ -74,7 +72,6 @@
             return defer.promise;
         }
         function requestError(response) {
-            console.info('error', url, response);
             let defer = $q.defer();
             if (response.status === 200) {
                 toastr.error('Server Error: ' + response.data);

@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <!--<meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">-->
-    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src	'self' 'unsafe-inline' *; img-src 'self' data: *">
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src * blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src 'self' 'unsafe-inline' *; img-src * 'self' data: https: blob:; object-src 'self' blob:;media-src 'self' blob:">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <!--<meta name="google-signin-client_id"-->
           <!--content="163306299931-3ksa03g4dpm8kjq93nua1p5vkddesi9c.apps.googleusercontent.com">-->
@@ -14,6 +15,7 @@
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link rel="stylesheet" href="lib/angular-toastr/dist/angular-toastr.min.css">
     <link rel="stylesheet" href="lib/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="lib/ng-img-crop/compile/minified/ng-img-crop.css">
     <link href="content/css/style.min.css" rel="stylesheet">
 
 </head>
@@ -36,6 +38,7 @@
 <script src="lib/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
 <script src="lib/angular-translate/angular-translate.min.js"></script>
 <script src="lib/ng-file-upload/ng-file-upload.min.js"></script>
+<script src="lib/ng-img-crop/compile/minified/ng-img-crop.js"></script>
 <script src="lib/ngCordova/dist/ng-cordova.js"></script>
 
 <script src="app.js"></script>
@@ -57,6 +60,7 @@
 <script src="services/user.svc.js"></script>
 <script src="services/reg.svc.js"></script>
 <script src="services/messages.svc.js"></script>
+<script src="services/file.svc.js"></script>
 
 <!--Factory-->
 

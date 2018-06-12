@@ -15,7 +15,8 @@
     "angular-messages": "1.5.3",
     "angular-animate": "1.5.3",
     "angular-ui-mask": "^1.8.7",
-    "angular-translate": "^2.18.1"
+    "angular-translate": "^2.18.1",
+    "ng-img-crop": "ngImgCrop#^0.3.2"
   },
   "resolutions": {
     "angular": "^1.4.8"

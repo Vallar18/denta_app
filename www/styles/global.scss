@@ -273,7 +273,6 @@ body {
 .modal {
   display: block;
   position: absolute;
-  top: 50% !important;
   left: 20px !important;
   right: 20px !important;
   bottom: 20% !important;
@@ -282,7 +281,6 @@ body {
   min-height: initial !important;
   overflow: hidden;
   background-color: #fff;
-  transform: translate(0,-50%);
 }
 .modal-backdrop.active {
   background-color: rgba(0, 0, 0, 0.5) !important;
