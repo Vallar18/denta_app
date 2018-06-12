@@ -30,7 +30,8 @@
                     phone: phone
                 };
                 regSvc.sendPhone(send).then(function (data) {
-                    if(data.success === true) {
+                    if(data.success) {
+                        console.log(data.data)
                         toastr.success(data.message, '', {
                             onHidden: function () {
                                 $state.go('add-code');

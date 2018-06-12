@@ -33,8 +33,19 @@
                                 $state.go('select-role');
                             }
                         });
-                        $localStorage.code = code;
+                        $localStorage.code = vm.verify.code;
+                        $localStorage.key = data.authKey;
                         vm.code = '';
+                    } else {
+                        if(data.message){
+                            toastr.error(data.message)
+                        }
+                    }
+                }, function (err) {
+                    if(err.phone && angular.isArray(err.phone)){
+                        toastr.error(err.phone.reduce(function (acc, current) {
+                            return acc + '\n' + current;
+                        }, ''))
                     }
                 });
             } else {
@@ -43,16 +54,16 @@
         }
 
         function validCode() {
-            if(vm.code !== ''){
+            if (vm.code !== '') {
                 let codeLength = vm.code.toString().length;
-                if(codeLength === 4){
+                if (codeLength === 4) {
                     return true;
                 } else {
                     return false;
                 }
             }
         }
-        
+
         function goAddPhone() {
             $state.go('add-phone')
             vm.code = '';

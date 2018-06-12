@@ -11,19 +11,23 @@
         const vm = this;
         vm.send = send;
         vm.showContentDentist = undefined;
-        vm.user = $localStorage.user;
+        vm.role = $localStorage.role;
+        vm.phone = $localStorage.phone;
+        vm.key = $localStorage.key;
+        console.log(vm.key)
         vm.user = {
-            role: vm.user.role,
             name: '',
-            lastName: '',
-            email: undefined
-        }
+            lastname: '',
+            email: undefined,
+            phone: vm.phone,
+            key: vm.key
+        };
 
         init()
 
         function init() {
-            if(vm.user && vm.user.role){
-                if(vm.user.role === 'dentist'){
+            if(vm.role && vm.role){
+                if(vm.role === 'dentist'){
                     vm.showContentDentist = true;
                 } else{
                     vm.showContentDentist = false;
@@ -34,12 +38,31 @@
 
         function send() {
             if(validation()){
-                regSvc.sendPhone(vm.user);
-                $state.go('add-clinic');
+                regSvc.sendUser(vm.user).then(function (data) {
+                    if(data.success) {
+                        toastr.success(data.message, '', {
+                            onHidden: function () {
+                                if(vm.showContentDentist){
+                                    $state.go('add-clinic');
+                                } else {
+                                    $state.go('add-dentist-phone')
+                                }
+                            }
+                        });
+                        vm.code = '';
+                    } else {
+                        toastr.error(data.message)
+                    }
+                }, function (err) {
+                    if(err.phone && angular.isArray(err.phone)){
+                        toastr.error(err.phone.reduce(function (acc, current) {
+                            return acc + '\n' + current;
+                        }, ''))
+                    }
+                });
                 vm.user = {
-                    role: vm.user.role,
                     name: '',
-                    lastName: '',
+                    lastname: '',
                     email: ''
                 }
             }

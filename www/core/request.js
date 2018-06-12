@@ -63,7 +63,7 @@
             let defer = $q.defer();
             $ionicLoading.hide();
             if (response.data.error) {
-                toastr.error(response.data.error);
+                // toastr.error(response.data.error);
                 defer.reject(response.data.error);
             }
             else {
@@ -72,6 +72,7 @@
             return defer.promise;
         }
         function requestError(response) {
+            // console.info('error', url, response);
             let defer = $q.defer();
             if (response.status === 200) {
                 toastr.error('Server Error: ' + response.data);

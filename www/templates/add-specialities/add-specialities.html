@@ -1,24 +1,22 @@
 <ion-view class="add-specialities">
     <ion-content>
         <div class="item-block-top">
+            <div layout="row" layout-align="space-around end" class="steps-wrap">
+                <div class="steps-item"><span>1</span></div>
+                <div class="steps-item"><span>2</span></div>
+                <div class="steps-item active-step"><span>3</span></div>
+            </div>
             <div class="img-wrap">
                 <p>Let us know you</p>
-                <img src="content/img/border.svg">
+                <div class="img-outer">
+                    <img src="content/img/border.svg">
+                </div>
             </div>
         </div>
         <div class="item-block-content">
             <div class="block-content">
-                <div class="input-block">
-                    <button class="button select-button" ng-click="vm.selectNumberCode()">
-                        380
-                    </button>
-                    <label class="item item-input">
-                        <input type="number" placeholder="Clinic phone number" ng-model="vm.phone">
-                    </label>
-                </div>
-                <label class="item item-input">
-                    <input class="text-center" type="text" placeholder="Clinic name" ng-model="vm.user.lastName">
-                </label>
+                <button class="gray-btn">Edit spesialties</button>
+                <textarea name="" id="specialities-textarea"></textarea>
                 <button class="send-button" ng-click="vm.next()">Done</button>
             </div>
         </div>
