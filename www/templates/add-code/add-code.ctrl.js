@@ -33,10 +33,18 @@
                                 $state.go('select-role');
                             }
                         });
-                        $localStorage.code = code;
+                        $localStorage.code = vm.verify.code;
+                        $localStorage.key = data.authKey;
                         vm.code = '';
                     } else {
-                        toastr.error(data.message)
+                        if(data.message){
+                            toastr.error(data.message)
+                        }
+                    }
+                }, function (err) {
+                    if(err.phone){
+                       error =  err.phone.toString();
+                        toastr.error(error)
                     }
                 });
             } else {

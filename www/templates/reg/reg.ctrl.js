@@ -13,13 +13,15 @@
         vm.showContentDentist = undefined;
         vm.role = $localStorage.role;
         vm.phone = $localStorage.phone;
+        vm.key = $localStorage.key;
+        console.log(vm.key)
         vm.user = {
             name: '',
-            lastName: '',
+            last_name: '',
             email: undefined,
             phone: vm.phone,
-            key: ''
-        }
+            key: vm.key
+        };
 
         init()
 
@@ -36,17 +38,27 @@
 
         function send() {
             if(validation()){
-                // regSvc.sendPhone(vm.user).then(function (res) {
-                //
-                // });
-                if(vm.showContentDentist){
-                    $state.go('add-clinic');
-                } else {
-                    $state.go('add-dentist-phone')
-                }
+                regSvc.sendUser(vm.user).then(function (data) {
+                    if(data.success) {
+                        toastr.success(data.message, '', {
+                            onHidden: function () {
+                                if(vm.showContentDentist){
+                                    $state.go('add-clinic');
+                                } else {
+                                    $state.go('add-dentist-phone')
+                                }
+                            }
+                        });
+                        $localStorage.code = vm.verify.code;
+                        $localStorage.key = data.authKey;
+                        vm.code = '';
+                    } else {
+                        toastr.error(data.message)
+                    }
+                });
                 vm.user = {
                     name: '',
-                    lastName: '',
+                    last_name: '',
                     email: ''
                 }
             }

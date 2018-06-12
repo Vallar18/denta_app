@@ -65,7 +65,7 @@
             // console.info('response', url, response);
             $ionicLoading.hide();
             if (response.data.error) {
-                toastr.error(response.data.error);
+                // toastr.error(response.data.error);
                 defer.reject(response.data.error);
             }
             else {
