@@ -10262,10 +10262,14 @@ body {
     font-size: 0.9rem;
     padding: 0 5% 5% 5%; }
 
+.create-avatar .popup {
+  height: 75%;
+  width: 95%; }
+
 .create-avatar__crop {
   overflow: hidden;
-  width: 500px;
-  height: 350px; }
+  width: 100%;
+  height: 60vh; }
 
 .menu-custom {
   position: absolute;

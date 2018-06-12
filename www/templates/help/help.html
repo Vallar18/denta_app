@@ -1,35 +1,47 @@
 <ion-view>
-        <ion-content  ng-init="model = 4">
-                <h2>help hhh</h2>
-                <!--<star-rating    sr-count="5"-->
-                                <!--sr-model="4"-->
-                                <!--sr-size=""-->
-                                <!--sr-color="black"-->
-                                <!--sr-enable="false"></star-rating>-->
-                <star-rating    sr-count="5"
-                                sr-model="model"
-                                sr-size="48px"
-                                sr-color="#FEC515"
-                                sr-enable="true"></star-rating>
-                Model:{{model}}
+    <ion-content ng-init="model = 4">
+        <h2>help hhh</h2>
+        <!--<star-rating    sr-count="5"-->
+        <!--sr-model="4"-->
+        <!--sr-size=""-->
+        <!--sr-color="black"-->
+        <!--sr-enable="false"></star-rating>-->
+        <star-rating sr-count="5"
+                     sr-model="model"
+                     sr-size="48px"
+                     sr-color="#FEC515"
+                     sr-enable="true"></star-rating>
+        Model:{{model}}
 
-               <button ng-click="vm.pickContactUsingNativeUI()">
-                       Test get contact
-               </button>
-            <div>
+        <button ng-click="vm.pickContactUsingNativeUI()">
+            Test get contact
+        </button>
+        <div>
                 <pre>
                     {{vm.phoneNumbers | json}}
                 </pre>
-            </div>
+        </div>
 
-            <button ng-click="vm.vm.getPic()">
-                Get photo
-            </button>
+        <button ng-click="vm.vm.getPic()">
+            Get photo
+        </button>
 
-            <input type="file">
+        <input type="file">
 
-            <button ng-click="vm.selectAvatar()">Test select avatar</button>
+        <button ng-click="vm.selectAvatar()">Test select avatar</button>
 
-        </ion-content>
+        <a href="tel:+380664421273">Phone</a>
+
+        <div style="position:relative;">
+            <textarea rows="4" ng-init="textModel = { text :'', maxLength: 250 }"
+                      ng-model="textModel.text"
+                      maxlength="{{textModel.maxLength+1}}"
+                      style="width:100%; border:1px solid black; display:block;"></textarea>
+            <span style="position:absolute;bottom:1%;right:1%; color: #ddd;">
+                {{(textModel.text.length ? textModel.text.length: 0)+'/'+textModel.maxLength }}
+            </span>
+        </div>
+
+    </ion-content>
 </ion-view>
 

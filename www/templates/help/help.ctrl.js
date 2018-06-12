@@ -88,10 +88,10 @@
                     templateUrl: 'components/create-avatar/create-avatar.html',
                     title: 'Select avatar crop',
                     subTitle: '',
+                    cssClass: 'create-avatar',
                     scope: $scope,
                     buttons: [
-                        {
-                            text: 'Cancel',
+                        {   text: 'Cancel',
                             type: 'button-default',
                             onTap: function (e) {
                                 changeAvatar.close();
