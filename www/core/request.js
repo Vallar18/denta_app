@@ -74,7 +74,7 @@
             return defer.promise;
         }
         function requestError(response) {
-            console.info('error', url, response);
+            // console.info('error', url, response);
             let defer = $q.defer();
             if (response.status === 200) {
                 toastr.error('Server Error: ' + response.data);

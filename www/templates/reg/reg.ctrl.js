@@ -17,7 +17,7 @@
         console.log(vm.key)
         vm.user = {
             name: '',
-            last_name: '',
+            lastname: '',
             email: undefined,
             phone: vm.phone,
             key: vm.key
@@ -49,8 +49,6 @@
                                 }
                             }
                         });
-                        $localStorage.code = vm.verify.code;
-                        $localStorage.key = data.authKey;
                         vm.code = '';
                     } else {
                         toastr.error(data.message)
@@ -58,7 +56,7 @@
                 });
                 vm.user = {
                     name: '',
-                    last_name: '',
+                    lastname: '',
                     email: ''
                 }
             }
