@@ -210,23 +210,40 @@ body {
   }
   textarea {
     @include inputs-style;
-    width: 80%;
+    width: 70%;
     height: 9vh;
     padding: 2%;
   }
 }
 
 // input
-.input-block{
+.input-block {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 12px;
   width: 80%;
+  &.input-phone {
+    .select-button {
+      width: 20%;
+    }
+    .item-input {
+      padding: 6px 7px 5px 7px;
+      width: 60%;
+    }
+
+    .phone-icon {
+      width: 20%;
+      background: none;
+      border: none;
+      img {
+        height: 3em;
+      }
+    }
+  }
   .item-input{
     margin-bottom: -1px;
   }
-
   input {
     padding:0;
     font-size:12.5px;

@@ -21,39 +21,38 @@
         }
 
         function send() {
-            // if (validCode()) {
-                // regSvc.sendVerify({
-                //     phone: vm.phone,
-                //     code: "" + vm.code
-                // }
-            // )
-                //     .then(function (data) {
-                //     if (data.success === true) {
-                //         toastr.success(data.message, '', {
-                //             onHidden: function () {
+            // if(validCode()){
+            //     vm.verify ={
+            //         phone: vm.phone,
+            //         code: "" + vm.code
+            //     };
+            //     regSvc.sendVerify(vm.verify).then(function (data) {
+            //         if(data.success === true) {
+            //             toastr.success(data.message, '', {
+            //                 onHidden: function () {
                                 $state.go('select-role');
-                //             }
-                //         });
-                //         $localStorage.code = code;
-                //         vm.code = '';
-                //     }
-                // });
+            //                 }
+            //             });
+            //             $localStorage.code = code;
+            //             vm.code = '';
+            //         }
+            //     });
             // } else {
             //     toastr.error(messagesSvc.error.invalidCode)
             // }
         }
 
         // function validCode() {
-        //     if (vm.code !== '') {
+        //     if(vm.code !== ''){
         //         let codeLength = vm.code.toString().length;
-        //         if (codeLength === 4) {
+        //         if(codeLength === 4){
         //             return true;
         //         } else {
         //             return false;
         //         }
         //     }
         // }
-
+        
         function goAddPhone() {
             $state.go('add-phone')
             vm.code = '';
