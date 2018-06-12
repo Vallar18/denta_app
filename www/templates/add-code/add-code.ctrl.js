@@ -42,9 +42,10 @@
                         }
                     }
                 }, function (err) {
-                    if(err.phone){
-                       error =  err.phone.toString();
-                        toastr.error(error)
+                    if(err.phone && angular.isArray(err.phone)){
+                        toastr.error(err.phone.reduce(function (acc, current) {
+                            return acc + '\n' + current;
+                        }, ''))
                     }
                 });
             } else {

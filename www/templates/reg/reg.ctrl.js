@@ -53,6 +53,12 @@
                     } else {
                         toastr.error(data.message)
                     }
+                }, function (err) {
+                    if(err.phone && angular.isArray(err.phone)){
+                        toastr.error(err.phone.reduce(function (acc, current) {
+                            return acc + '\n' + current;
+                        }, ''))
+                    }
                 });
                 vm.user = {
                     name: '',
