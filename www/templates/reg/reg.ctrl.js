@@ -11,19 +11,21 @@
         const vm = this;
         vm.send = send;
         vm.showContentDentist = undefined;
-        vm.user = $localStorage.user;
+        vm.role = $localStorage.role;
+        vm.phone = $localStorage.phone;
         vm.user = {
-            role: vm.user.role,
             name: '',
             lastName: '',
-            email: undefined
+            email: undefined,
+            phone: vm.phone,
+            key: ''
         }
 
         init()
 
         function init() {
-            if(vm.user && vm.user.role){
-                if(vm.user.role === 'dentist'){
+            if(vm.role && vm.role){
+                if(vm.role === 'dentist'){
                     vm.showContentDentist = true;
                 } else{
                     vm.showContentDentist = false;
@@ -34,10 +36,15 @@
 
         function send() {
             if(validation()){
-                regSvc.sendPhone(vm.user);
-                $state.go('add-clinic');
+                // regSvc.sendPhone(vm.user).then(function (res) {
+                //
+                // });
+                if(vm.showContentDentist){
+                    $state.go('add-clinic');
+                } else {
+                    $state.go('add-dentist-phone')
+                }
                 vm.user = {
-                    role: vm.user.role,
                     name: '',
                     lastName: '',
                     email: ''

@@ -86,6 +86,12 @@
                 controller: 'AddSpecialitiesCtrl',
                 controllerAs: 'vm'
             })
+            .state('add-dentist-phone', {
+                url: '/add-dentist-phone',
+                templateUrl: 'templates/add-dentist-phone/add-dentist-phone.html',
+                controller: 'AddDentistPhoneCtrl',
+                controllerAs: 'vm'
+            })
             .state('tabs', {
                 cache: false,
                 reload: true,

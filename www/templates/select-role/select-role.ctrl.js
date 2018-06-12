@@ -17,19 +17,17 @@
             role1: 'I\'m a dentist',
             role2: 'I\'m a patient'
         };
-        vm.user = {
-            role: undefined
-        };
+        vm.role = undefined;
 
         function select(type) {
             if (type === 0){
-                vm.user.role = 'dentist';
+                vm.role = 'dentist';
             } else {
-                vm.user.role = 'patient'
+                vm.role = 'patient'
             }
-            $localStorage.user = vm.user;
+            $localStorage.role = vm.role;
             $state.go('registration');
-            regSvc.sendRole(vm.user.role);
+            regSvc.sendRole(vm.role);
         }
     }
 
