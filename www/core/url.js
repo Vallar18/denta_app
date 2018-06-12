@@ -19,6 +19,10 @@
             },
             register: {
                 user: baseUrl + 'register/user'
+            },
+            clinic: {
+                check: baseUrl + 'clinic/check',
+                create: baseUrl + 'clinic/create'
             }
         };
     }

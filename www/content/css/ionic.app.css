@@ -10262,6 +10262,11 @@ body {
   width: 80%;
   margin-bottom: 12px; }
 
+.add-clinic .ion-ios-search:before {
+  content: "";
+  font-size: 30px;
+  padding-left: 10px; }
+
 .add-specialities .img-outer {
   position: relative; }
   .add-specialities .img-outer:after {

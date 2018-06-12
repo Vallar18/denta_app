@@ -10,6 +10,8 @@
         model.sendPhone = sendPhone;
         model.sendVerify = sendVerify;
         model.sendUser = sendUser;
+        model.sendClinicPhone = sendClinicPhone;
+        model.createClinic = createClinic;
         model.sendUserInfo = sendUserInfo;
         return model;
 
@@ -24,6 +26,14 @@
         function sendUser(user) {
             console.log('user:', user);
             return http.post(url.register.user, user)
+        }
+        function sendClinicPhone(phone) {
+            console.log('clinic phone:', phone);
+            return http.post(url.clinic.check, phone)
+        }
+        function createClinic(data) {
+            console.log('create clinic', data);
+            return http.post(url.clinic.create, data);
         }
         function sendUserInfo(userData) {
             console.log(userData)
