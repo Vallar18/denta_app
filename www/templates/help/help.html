@@ -1,17 +1,30 @@
 <ion-view>
-        <ion-content>
+        <ion-content  ng-init="model = 4">
                 <h2>help hhh</h2>
+                <!--<star-rating    sr-count="5"-->
+                                <!--sr-model="4"-->
+                                <!--sr-size=""-->
+                                <!--sr-color="black"-->
+                                <!--sr-enable="false"></star-rating>-->
                 <star-rating    sr-count="5"
-                                sr-model="4"
-                                sr-size=""
-                                sr-color="black"
-                                sr-enable="false"></star-rating>
-                <star-rating    sr-count="5"
-                                ng-init="model = 4"
                                 sr-model="model"
                                 sr-size="48px"
                                 sr-color="#FEC515"
                                 sr-enable="true"></star-rating>
                 Model:{{model}}
+
+               <button ng-click="vm.pickContactUsingNativeUI()">
+                       Test get contact
+               </button>
+            <div>
+                <pre>
+                    {{vm.phoneNumbers | json}}
+                </pre>
+            </div>
+
+            <button ng-click="vm.getCameraPic()">
+                Get photo
+            </button>
         </ion-content>
 </ion-view>
+

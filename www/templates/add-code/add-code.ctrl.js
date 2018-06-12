@@ -18,16 +18,16 @@
             val2: 'click here',
             val3: 'get me in',
             valBtn: 'Send'
-        }
+        };
 
         function send() {
-            if (validCode()) {
-                regSvc.sendVerify({
+            if(validCode()){
+                vm.verify ={
                     phone: vm.phone,
                     code: "" + vm.code
-                }
-            ).then(function (data) {
-                    if (data.success === true) {
+                };
+                regSvc.sendVerify(vm.verify).then(function (data) {
+                    if(data.success) {
                         toastr.success(data.message, '', {
                             onHidden: function () {
                                 $state.go('select-role');
