@@ -1,0 +1,25 @@
+<ion-view class="reg-step1">
+    <ion-content>
+        <div class="item-block-top">
+            <div class="img-wrap">
+                <p>Thank you</p>
+                <img src="content/img/border.svg">
+            </div>
+        </div>
+        <div class="item-block-content">
+            <form class="block-content">
+                <div class="input-block">
+                    <button class="button select-button" ng-click="vm.selectNumberCode()">
+                        380
+                    </button>
+                    <label class="item item-input">
+                        <input type="number" placeholder="Enter dentist phone number" ng-model="vm.phone">
+                    </label>
+                </div>
+                <button class="send-button" ng-click="vm.send()">Next</button>
+
+                <p>нада доробить </p>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>
