@@ -16,9 +16,8 @@
                         <input type="number" placeholder="Enter dentist phone number" ng-model="vm.phone">
                     </label>
                 </div>
-                <button class="send-button" ng-click="vm.send()">Next</button>
-
-                <p>нада доробить </p>
+                <p>Have no dentist <a ng-click="vm.skipAddPhoneDentist()"> skip</a></p>
+                <button class="send-button" ng-click="vm.send()">Submit</button>
             </form>
         </div>
     </ion-content>
