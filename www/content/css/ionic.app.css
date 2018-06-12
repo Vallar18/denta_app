@@ -9815,6 +9815,37 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+@font-face {
+  font-family: "alexxis_demoregular";
+  src: url("../../content/fonts/alexxis_demo-webfont.eot");
+  src: url("../../content/fonts/alexxis_demo-webfont.eot?#iefix") format("embedded-opentype"), url("../../content/fonts/alexxis_demo-webfont.woff2") format("woff2"), url("../../content/fonts/alexxis_demo-webfont.woff") format("woff"), url("../../content/fonts/alexxis_demo-webfont.ttf") format("truetype"), url("../../content/fonts/alexxis_demo-webfont.svg#alexxis_demoregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+/*
+@font-face {
+  font-family:'Microsoft JhengHei';
+  src: url('../../content/fonts/Microsoft JhengHei.eot');
+  src: url('../../content/fonts/Microsoft JhengHei.eot?#iefix') format('embedded-opentype'),
+  url('../../content/fonts/Microsoft JhengHei.woff2') format('woff2'),
+  url('../../content/fonts/Microsoft JhengHei.woff') format('woff'),
+  url('../../content/fonts/Microsoft JhengHei.svg#Microsoft JhengHei') format('svg');
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+}*/
+@font-face {
+  font-family: 'Microsoft JhengHei';
+  src: url("../../content/fonts/Microsoft JhengHei Light.eot");
+  src: url("../../content/fonts/Microsoft JhengHei Light.eot?#iefix") format("embedded-opentype"), url("../../content/fonts/Microsoft JhengHei Light.woff2") format("woff2"), url("../../content/fonts/Microsoft JhengHei Light.woff") format("woff"), url("../../content/fonts/Microsoft JhengHei Light.svg#Microsoft JhengHei Light") format("svg");
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-02DC; }
+
+body {
+  font-family: 'Microsoft JhengHei', sans-serif; }
+
 .background-image {
   height: 100%;
   background: url(../../content/img/5714520-sky-images.png) no-repeat;
@@ -9830,6 +9861,43 @@ a.button {
   width: 100%;
   background: #2c304b;
   position: relative; }
+  .item-block-top .steps-wrap {
+    height: 35%;
+    position: relative;
+    z-index: 9; }
+    .item-block-top .steps-wrap .steps-item {
+      width: 20%;
+      text-align: center;
+      position: relative;
+      color: #fff;
+      opacity: 0.3;
+      font-weight: 300; }
+      .item-block-top .steps-wrap .steps-item:before {
+        content: "";
+        width: 40%;
+        height: 1px;
+        display: block;
+        background: #fff;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        z-index: 9;
+        transform: translateY(-50%); }
+      .item-block-top .steps-wrap .steps-item:after {
+        content: "";
+        width: 40%;
+        height: 1px;
+        display: block;
+        background: #fff;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        z-index: 9;
+        transform: translateY(-50%); }
+      .item-block-top .steps-wrap .steps-item.active-step {
+        opacity: 1; }
+      .item-block-top .steps-wrap .steps-item span {
+        font-size: 1.5em; }
   .item-block-top .img-wrap {
     position: absolute;
     bottom: -2px;
@@ -9843,6 +9911,7 @@ a.button {
       width: 102%;
       margin-left: -2%; }
     .item-block-top .img-wrap p {
+      font-family: "alexxis_demoregular", sans-serif;
       text-align: center;
       color: #fff;
       font-size: 18px;
@@ -9855,7 +9924,7 @@ a.button {
   content: '';
   width: 100%;
   height: 100%;
-  background: url(../../content/img/item-top-sky-images.png) no-repeat;
+  background: url(../img/item-top-sky-images.png) no-repeat;
   background-size: 100%;
   position: absolute;
   opacity: .35;
@@ -9915,15 +9984,27 @@ a.button {
     margin-top: 15px;
     border: none; }
   .block-content .item-input {
-    margin-bottom: 12px;
-    width: 70%; }
+    width: 70%;
+    border: 1px solid #94a4c0;
+    color: #76869f; }
+    .block-content .item-input input {
+      color: #76869f; }
+      .block-content .item-input input::-webkit-input-placeholder {
+        color: #76869f; }
+  .block-content textarea {
+    width: 70%;
+    border: 1px solid #94a4c0;
+    color: #76869f;
+    width: 80%;
+    height: 9vh;
+    padding: 2%; }
 
 .input-block {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 12px;
-  width: 70%; }
+  width: 80%; }
   .input-block .item-input {
     margin-bottom: -1px; }
   .input-block input {
@@ -9931,10 +10012,11 @@ a.button {
     font-size: 12.5px; }
   .input-block .select-button {
     width: 30%;
-    border-color: #ddd;
+    border-color: #94a4c0;
     border-radius: 0;
-    color: #959393c4;
-    font-size: 12.5px; }
+    color: #76869f;
+    font-size: 12.5px;
+    background: none; }
   .input-block .button:hover {
     background-color: transparent; }
   .input-block .button.activated, .input-block .button:active {
@@ -9973,17 +10055,43 @@ a.button {
       height: 100%;
       display: block; }
 
+.gray-btn {
+  font-family: 'Microsoft JhengHei', sans-serif;
+  position: relative;
+  border: 1px solid #B2C1DB;
+  background: none;
+  width: 70%;
+  height: 7vh;
+  border-radius: 40px;
+  margin-bottom: 7%;
+  box-shadow: 0 0.3vh 0 0 #B2C1DB;
+  color: #8695AF; }
+  .gray-btn:before {
+    content: '';
+    display: block;
+    position: absolute;
+    background-position: center;
+    background-size: auto 73%;
+    background-repeat: no-repeat;
+    top: 39%;
+    left: 0;
+    transform: translateY(-34%);
+    width: 20%;
+    height: 84%; }
+  .gray-btn.dentist-btn:before {
+    background-image: url(../img/dentist-icon.png); }
+  .gray-btn.patient-btn:before {
+    background-image: url(../img/patient-icon.png); }
+
 .back-btn {
-  background: #FFF;
-  border: 1px solid #B1C0DA;
-  -webkit-box-shadow: 0px 2px 0px 1px #B1C0DA;
-  -moz-box-shadow: 0px 2px 0px 1px #B1C0DA;
-  box-shadow: 0px 2px 0px 1px #B1C0DA;
-  border-radius: 50%; }
-  .back-btn i {
-    color: #7389A4;
-    font-size: 2rem;
-    width: 2rem; }
+  background: none;
+  width: 3em;
+  padding: 0; }
+  .back-btn.activated, .back-btn.active {
+    background: none;
+    border: none; }
+  .back-btn img {
+    width: 90%; }
 
 .share-btn {
   background: #FFF;
@@ -10136,6 +10244,22 @@ a.button {
 .reg-step1 .item-input {
   width: 80%;
   margin-bottom: 12px; }
+
+.add-specialities .img-outer {
+  position: relative; }
+  .add-specialities .img-outer:after {
+    content: '';
+    position: absolute;
+    background: url(../img/dentist-photo.png) no-repeat;
+    width: 3em;
+    height: 3em;
+    background-size: cover;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%); }
+
+.add-specialities .gray-btn:before {
+  background-image: url(../img/redcross-icon.png); }
 
 .geo-view .scroll {
   height: 100%;

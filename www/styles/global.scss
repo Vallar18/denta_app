@@ -9,7 +9,7 @@
   font-weight: normal;
   font-style: normal;
 }
-
+/*
 @font-face {
   font-family:'Microsoft JhengHei';
   src: url('../../content/fonts/Microsoft JhengHei.eot');
@@ -20,7 +20,21 @@
   font-weight: 400;
   font-style: normal;
   font-stretch: normal;
-  unicode-range: U+0020-2074;
+}*/
+
+
+
+@font-face {
+  font-family:'Microsoft JhengHei';
+  src: url('../../content/fonts/Microsoft JhengHei Light.eot');
+  src: url('../../content/fonts/Microsoft JhengHei Light.eot?#iefix') format('embedded-opentype'),
+  url('../../content/fonts/Microsoft JhengHei Light.woff2') format('woff2'),
+  url('../../content/fonts/Microsoft JhengHei Light.woff') format('woff'),
+  url('../../content/fonts/Microsoft JhengHei Light.svg#Microsoft JhengHei Light') format('svg');
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-02DC;
 }
 
 
@@ -54,6 +68,7 @@ body {
       position: relative;
       color: $text-white-color;
       opacity: 0.3;
+      font-weight: 300;
       &:before {
         content: "";
         width: 40%;
@@ -80,6 +95,9 @@ body {
       }
       &.active-step {
         opacity: 1;
+      }
+      span {
+        font-size: 1.5em;
       }
     }
   }
@@ -110,11 +128,16 @@ body {
     }
   }
 }
+@mixin inputs-style {
+  width: 70%;
+  border: 1px solid $input-border;
+  color: $input-text;
+}
 .item-block-top:after {
   content: '';
   width: 100%;
   height: 100%;
-  background: url(../../content/img/item-top-sky-images.png) no-repeat;
+  background: url(../img/item-top-sky-images.png) no-repeat;
   background-size: 100%;
   position: absolute;
   opacity: .35;
@@ -177,15 +200,19 @@ body {
     border: none;
   }
   .item-input{
-    margin-bottom: 12px;
-    width: 70%;
-    border: 1px solid $input-border;
+    @include inputs-style;
     input {
       color: $input-text;
       &::-webkit-input-placeholder {
         color: $input-text;
       }
     }
+  }
+  textarea {
+    @include inputs-style;
+    width: 80%;
+    height: 9vh;
+    padding: 2%;
   }
 }
 
@@ -195,7 +222,7 @@ body {
   justify-content: center;
   align-items: center;
   margin-bottom: 12px;
-  width: 70%;
+  width: 80%;
   .item-input{
     margin-bottom: -1px;
   }
@@ -206,10 +233,11 @@ body {
   }
   .select-button{
     width: 30%;
-    border-color: #ddd;
+    border-color: $input-border;
     border-radius: 0;
-    color: #959393c4;
+    color: $input-text;
     font-size: 12.5px;
+    background: none;
   }
   .button:hover{
     background-color: transparent;
@@ -290,16 +318,15 @@ body {
 }
 
 .back-btn {
-  background: $background-color;
-  border: 1px solid $second-color-light;
-  -webkit-box-shadow: 0px 2px 0px 1px $second-color-light;
-  -moz-box-shadow: 0px 2px 0px 1px $second-color-light;
-  box-shadow: 0px 2px 0px 1px $second-color-light;
-  border-radius: 50%;
-  i {
-    color: $second-color-dark3;
-    font-size:2rem;
-    width:2rem;
+  background: none;
+  width: 3em;
+  padding: 0;
+  &.activated, &.active {
+    background: none;
+    border: none;
+  }
+  img {
+    width: 90%;
   }
 }
 
