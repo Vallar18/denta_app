@@ -18,7 +18,7 @@
             return http.post(url.code.send, phone)
         }
         function sendVerify (verify) {
-            console.log('verify:', verify);
+            console.log('verify', verify);
             return http.post(url.code.verify, verify)
         }
         function sendRole(role) {
