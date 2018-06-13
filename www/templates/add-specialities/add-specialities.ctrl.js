@@ -53,7 +53,7 @@
             // }
         }
         function getCurrency() {
-            vm.price = vm.priceArray.val4;
+            vm.price = 'euro';
         }
     }
 
