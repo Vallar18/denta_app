@@ -9,6 +9,7 @@
 
         function HelpCtrl($scope, $ionicModal, $cordovaContacts, $ionicPlatform, $cordovaCamera, $ionicPopup) {
             var vm = this;
+            $scope.textModel = 'fffffffffffffffff';
             $scope.picFile = null;
 
             vm.pickContactUsingNativeUI = function () {
@@ -42,7 +43,6 @@
                             callback(imgSrc);
                         }
                     }, function (err) {
-
                     });
                 }, false);
             };

@@ -1,5 +1,5 @@
 <ion-view>
-    <ion-content ng-init="model = 4">
+    <ion-content ng-init="model = 4" class="fdfdg">
         <h2>help hhh</h2>
         <!--<star-rating    sr-count="5"-->
         <!--sr-model="4"-->
@@ -17,9 +17,9 @@
             Test get contact
         </button>
         <div>
-                <pre>
-                    {{vm.phoneNumbers | json}}
-                </pre>
+            <pre>
+                {{vm.phoneNumbers | json}}
+            </pre>
         </div>
 
         <button ng-click="vm.vm.getPic()">
@@ -32,6 +32,7 @@
 
         <a href="tel:+380664421273">Phone</a>
 
+        <!--example of counter-->
         <div style="position:relative;">
             <textarea rows="4" ng-init="textModel = { text :'', maxLength: 250 }"
                       ng-model="textModel.text"
@@ -41,7 +42,7 @@
                 {{(textModel.text.length ? textModel.text.length: 0)+'/'+textModel.maxLength }}
             </span>
         </div>
-
+        <!---------------------->
     </ion-content>
 </ion-view>
 
