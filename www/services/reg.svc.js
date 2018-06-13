@@ -13,6 +13,8 @@
         model.sendClinicPhone = sendClinicPhone;
         model.createClinic = createClinic;
         model.addRolePatient = addRolePatient;
+        model.addSpeciality = addSpeciality;
+        model.getSpeciality = getSpeciality;
         return model;
 
         function sendPhone (phone) {
@@ -38,6 +40,13 @@
         function addRolePatient(data) {
             console.log('post data user:', data)
             return http.post(url.register.user_role, data);
+        }
+        function addSpeciality(data) {
+            console.log('post data user speciality:', data)
+            return http.post(url.register.user_role, data);
+        }
+        function getSpeciality() {
+            return http.get(url.specialties)
         }
     }
 })();

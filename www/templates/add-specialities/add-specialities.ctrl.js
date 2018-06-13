@@ -5,27 +5,35 @@
         .module('app')
         .controller('AddSpecialitiesCtrl', AddSpecialitiesCtrl);
 
-    AddSpecialitiesCtrl.$inject = ['$state', 'regSvc', 'toastr', '$localStorage'];
+    AddSpecialitiesCtrl.$inject = ['$scope', '$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc', '$ionicModal'];
 
-    function AddSpecialitiesCtrl($state, regSvc, toastr, $localStorage) {
+    function AddSpecialitiesCtrl($scope, $state, regSvc, toastr, $localStorage, messagesSvc, $ionicModal) {
         const vm = this;
         vm.send = send;
         vm.getCurrency = getCurrency;
+        vm.getSpeciality = getSpeciality;
         vm.user = $localStorage.user;
         vm.role = $localStorage.role;
-        vm.price = 'US Dollar - USD';
+        vm.price = '';
+        vm.description = '';
+        vm.currency = {
+            text: 'US Dollar - USD',
+            id: 1
+        };
 
         function send() {
-            $state.go('share');
-            if(validPhoneDentist()){
+            if(validation()){
                 if (vm.user){
                     vm.data = {
                         user_id: vm.user.id,
                         role: vm.role,
-
+                        currency_id: vm.currency.id,
+                        speciality_id: vm.speciality.id,
+                        description: vm.description,
+                        price: vm.price,
                     };
                 }
-                regSvc.addRolePatient(vm.send).then(function (data) {
+                regSvc.addSpeciality(vm.data).then(function (data) {
                     if(data.success) {
                         toastr.success(data.message, '', {
                             onHidden: function () {
@@ -53,7 +61,33 @@
             }
         }
         function getCurrency() {
-            vm.price = vm.priceArray.val4;
+            vm.currency ={
+                text: 'Euro',
+                id: 2
+            };
+        }
+        function getSpeciality() {
+            vm.specialities = [];
+            regSvc.getSpeciality()
+                .then(function (res) {
+                    vm.specialities =  res;
+                    $ionicModal.fromTemplateUrl('edit-specialities.html', {
+                        scope: $scope,
+                    }).then(function (modal) {
+                        $scope.model = modal;
+                    });
+                    $scope.openModal = function () {
+                        $scope.modal.show();
+                    }
+            });
+        }
+        function validation() {
+            if (vm.price === '' || vm.description === ''){
+                toastr.error(messagesSvc.error.emptyField);
+                return false;
+            } else {
+                return true;
+            }
         }
     }
 
