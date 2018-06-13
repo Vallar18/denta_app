@@ -13,14 +13,15 @@
                         380
                     </button>
                     <label class="item item-input">
-                        <input type="number" placeholder="Clinic phone number" ng-model="vm.phone">
+                        <input type="number" placeholder="Clinic phone number" ng-model="vm.clinic.phone">
                     </label>
+                    <i class="ion-ios-search" name="search" ng-click="vm.checkClinicPhone()"></i>
                 </div>
                 <label class="item item-input">
-                    <input class="text-center" type="text" placeholder="Clinic name" ng-model="vm.user.lastName">
+                    <input class="text-center" type="text" placeholder="Clinic name" ng-model="vm.clinic.name">
                 </label>
                 <label class="item item-input">
-                    <input class="text-center" type="text" placeholder="Clinic Address" ng-model="vm.user.email">
+                    <input class="text-center" type="text" placeholder="Clinic Address" ng-model="vm.clinic.address">
                 </label>
                 <button class="send-button" ng-click="vm.next()">Next</button>
             </div>
