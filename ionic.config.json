@@ -11,5 +11,9 @@
     "www/**/*",
     "!www/lib/**/*",
     "!www/**/*.map"
-  ]
+  ],
+  "gulp": {
+    "file": "D:\\OpenServer\\domains\\denta_app\\denta_app\\gulpfile.js",
+    "enabled": true
+  }
 }

@@ -42,6 +42,11 @@ body {
   font-family:'Microsoft JhengHei', sans-serif;
 }
 
+a {
+  color: $first-color;
+  text-decoration: underline;
+}
+
 .background-image{
   height: 100%;
   background: url(../../content/img/5714520-sky-images.png) no-repeat;
