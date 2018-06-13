@@ -1,3 +1,7 @@
 .add-clinic{
-
+  .ion-ios-search:before {
+    content: "";
+    font-size: 30px;
+    padding-left: 10px;
+  }
 }

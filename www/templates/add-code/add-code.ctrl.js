@@ -42,9 +42,16 @@
                         }
                     }
                 }, function (err) {
-                    if(err.phone){
-                       error =  err.phone.toString();
-                        toastr.error(error)
+                    var err_text = '';
+                    angular.forEach(err, function (val, key) {
+                        if (angular.isArray(val)){
+                            err_text += val.reduce(function (acc, current) {
+                                return acc + '\n' + current;
+                            }, '');
+                        }
+                    });
+                    if(err_text.length){
+                        toastr.error(err_text);
                     }
                 });
             } else {

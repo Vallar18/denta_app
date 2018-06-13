@@ -15,9 +15,13 @@
         </div>
         <div class="item-block-content">
             <div class="block-content">
-                <button class="gray-btn">Edit spesialties</button>
+                <div class="select-price-block">
+                    <input type="number" class="input-price" placeholder="Emergency price">
+                    <button type="button" class="select-currency" ng-click="vm.getCurrency()">{{vm.price}}</button>
+                </div>
+                 <button class="gray-btn">Edit spesialties</button>
                 <textarea name="" id="specialities-textarea"></textarea>
-                <button class="send-button" ng-click="vm.next()">Done</button>
+                <button class="send-button" ng-click="vm.send()">Done</button>
             </div>
         </div>
     </ion-content>

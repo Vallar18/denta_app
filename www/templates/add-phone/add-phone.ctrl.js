@@ -40,6 +40,10 @@
                         $localStorage.valView = false;
                         $localStorage.phone = phone;
                         vm.phone = '';
+                    }else {
+                        if(data.message){
+                            toastr.error(data.message)
+                        }
                     }
                 });
             } else {
