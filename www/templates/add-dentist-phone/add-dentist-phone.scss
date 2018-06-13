@@ -1,4 +1,13 @@
 .reg-step2 {
+  .overlay-block {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: $text-default-color;
+    opacity: 0.5;
+  }
   .item-block-content {
     top: auto;
     .title-block {
