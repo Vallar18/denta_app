@@ -24,7 +24,8 @@
             clinic: {
                 check: baseUrl + 'clinic/check',
                 create: baseUrl + 'clinic/create'
-            }
+            },
+            specialties: baseUrl + 'specialties'
         };
     }
 })();

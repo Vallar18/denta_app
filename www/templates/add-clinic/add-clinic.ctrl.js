@@ -12,7 +12,7 @@
         vm.checkClinicPhone = checkClinicPhone;
         vm.next = next;
         vm.user = $localStorage.user;
-
+        vm.phone = '';
         vm.clinic = {
             user_id: vm.user.id,
             name: '',
@@ -22,10 +22,9 @@
 
         function checkClinicPhone() {
             if(validPhone()){
-                let phone = '380' + vm.clinic.phone;
-                vm.clinic.phone = phone;
+                vm.clinic.phone = '380' + vm.phone;
                 let send = {
-                    phone: phone
+                    phone: vm.clinic.phone
                 };
                 regSvc.sendClinicPhone(send).then(function (data) {
                     if(data.success) {
@@ -41,6 +40,7 @@
 
         function next() {
             if(validation()){
+                vm.clinic.phone = '380' + vm.phone;
                 regSvc.createClinic(vm.clinic).then(function (data) {
                     if(data.success) {
                         toastr.success(data.message, '', {
@@ -48,12 +48,10 @@
                                 $state.go('add-specialities')
                             }
                         });
-                        vm.clinic = {
-                            user_id: vm.user.id,
-                            name: '',
-                            phone: '',
-                            address: ''
-                        }
+                        vm.clinc.name = '';
+                        vm.clinic.address = '';
+                        vm.phone = '';
+
                     } else {
                         if(data.message){
                             toastr.error(data.message)
@@ -76,8 +74,8 @@
         }
 
         function validPhone() {
-            if(vm.clinic.phone !== ''){
-                let phoneLength = vm.clinic.phone.toString().length;
+            if(vm.phone !== ''){
+                let phoneLength = vm.phone.toString().length;
                 if(phoneLength > 5 && phoneLength < 12){
                     return true;
                 } else {
@@ -87,7 +85,7 @@
             }
         }
         function validation() {
-            if (vm.clinic.name === '' || vm.clinic.address === ''){
+            if (vm.clinic.name === '' || vm.clinic.address === '' || vm.phone === ''){
                 toastr.error(messagesSvc.error.emptyField);
                 return false;
             } else {

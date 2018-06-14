@@ -19,11 +19,11 @@
         <div class="item-block-content">
             <div class="block-content">
                 <div class="select-price-block">
-                    <input type="number" class="input-price" placeholder="Emergency price">
-                    <button type="button" class="select-currency" ng-click="vm.getCurrency()">{{vm.price}}</button>
+                    <input type="number" class="input-price" placeholder="Emergency price" ng-model="vm.price">
+                    <button type="button" class="select-currency" ng-click="vm.getCurrency()">{{vm.currency.text}}</button>
                 </div>
-                 <button class="gray-btn">Edit spesialties</button>
-                <textarea name="" id="specialities-textarea"></textarea>
+                 <button class="gray-btn" ng-click="vm.getSpeciality()">Edit spesialties</button>
+                <textarea name="" id="specialities-textarea" ng-model="vm.description"></textarea>
                 <button class="send-button" ng-click="vm.send()">Done</button>
             </div>
         </div>
