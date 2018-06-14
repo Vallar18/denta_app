@@ -45,3 +45,37 @@
     }
 
 }
+
+.item-spec {
+  position: relative;
+  &:before {
+    content: '';
+    display: block;
+    background: url(../img/unchecked-icon.png);
+    background-size: cover;
+    width: 10vw;
+    height: 10vw;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  &.red:before {
+    content: '';
+    display: block;
+    background: url(../img/checked-icon.png);
+    background-size: cover;
+    width: 10vw;
+    height: 10vw;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+  }
+  .checkbox {
+    i {
+      display: none;
+    }
+  }
+}

@@ -62,7 +62,7 @@ a {
   width: 100%;
   background: #2c304b;
   position: relative;
-  padding-top: 10vw;
+  padding-top: 19vw;
 
   .steps-wrap {
     height: 35%;
@@ -140,7 +140,7 @@ a {
       img {
         display: block;
         width: 102%;
-        margin-left: -2%;
+        margin-left: -1%;
       }
     }
 
@@ -200,6 +200,7 @@ a {
   /*position: absolute;*/
   /*height: 60%;*/
   width: 100%;
+  margin-top: -3vw;
   /*top: 33%;*/
 }
 
@@ -394,6 +395,7 @@ a {
   }
 }
 
+/*
 .modal {
   display: block;
   position: absolute;
@@ -408,4 +410,4 @@ a {
 }
 .modal-backdrop.active {
   background-color: rgba(0, 0, 0, 0.5) !important;
-}
+}*/

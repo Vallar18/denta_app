@@ -80,19 +80,18 @@
 
         function getSpeciality() {
             vm.specialities = [];
-            regSvc.getSpeciality()
-                .then(function (res) {
-                    vm.specialities = res;
                     $scope.modal.show();
-            });
         }
         vm.spec_selected_id = [];
         function selectItem(spec) {
+            var icon = document.querySelector('.item-spec');
             if(spec.checked === true){
+                icon.classList.add('red')
                 vm.spec_selected_id.push(spec.id);
             } else if(spec.checked === false){
                 var spec_id = vm.spec_selected_id.indexOf(spec.id)
                 vm.spec_selected_id.splice(spec_id, 1)
+                icon.classList.remove('red')
             }
             console.log(vm.spec_selected_id)
         }
