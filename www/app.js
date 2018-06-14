@@ -3,8 +3,7 @@
 
     angular
         .module('app',
-            [
-                'factory.request',
+            [   'factory.request',
                 'factory.url',
                 'app.core',
                 'app.services',

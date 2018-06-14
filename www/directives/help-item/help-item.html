@@ -1,0 +1,16 @@
+<div class="help-item row">
+    <div class="col-20">
+        {{::(hiDistance + ' ')}}
+    </div>
+    <div class="col-60">
+        <div>{{::hiDoctor.name}}</div>
+        <a href="getInfo(hiDoctor.id)">Get info</a>
+    </div>
+    <div class="col-20">
+        <star-rating sr-count="5"
+                     sr-model="hiRating"
+                     sr-size="12px"
+                     sr-color="orange"></star-rating>
+        <div>Price: {{::hiPrice}}</div>
+    </div>
+</div>
