@@ -1,0 +1,33 @@
+<ion-modal-view class="edit-spec">
+    <div class="item-block-top">
+        <div layout="row" layout-align="space-around end" class="steps-wrap">
+            <div class="steps-item"><span>1</span></div>
+            <div class="steps-item"><span>2</span></div>
+            <div class="steps-item active-step"><span>3</span></div>
+        </div>
+        <div class="img-wrap">
+            <p>Aff specialities</p>
+            <div class="img-outer">
+                <img src="content/img/border.svg">
+            </div>
+        </div>
+    </div>
+    <div class="item-block-content">
+        <div class="block-content">
+            <ion-list class="spec-list">
+                    <ion-checkbox class="item-spec"
+                                  ng-repeat="item in vm.specialities"
+                                  ng-model="item.checked"
+                                  ng-checked="item.checked"
+                                  ng-click="vm.selectItem(item)">
+                        {{item.name}}
+                    </ion-checkbox>
+            </ion-list>
+            <button class="send-button" ng-click="vm.saveModal()">Save</button>
+            <!--<ion-infinite-scroll-->
+                    <!--on-infinite="loadMore()"-->
+                    <!--distance="1%">-->
+            <!--</ion-infinite-scroll>-->
+        </div>
+    </div>
+</ion-modal-view>
