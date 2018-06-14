@@ -9846,6 +9846,10 @@ a.button {
 body {
   font-family: 'Microsoft JhengHei', sans-serif; }
 
+a {
+  color: #D20340;
+  text-decoration: underline; }
+
 .background-image {
   height: 100%;
   background: url(../../content/img/5714520-sky-images.png) no-repeat;
@@ -9857,10 +9861,11 @@ body {
   height: 100%; }
 
 .item-block-top {
-  height: 40%;
+  /* height: 40%;*/
   width: 100%;
   background: #2c304b;
-  position: relative; }
+  position: relative;
+  padding-top: 10vw; }
   .item-block-top .steps-wrap {
     height: 35%;
     position: relative;
@@ -9899,26 +9904,45 @@ body {
       .item-block-top .steps-wrap .steps-item span {
         font-size: 1.5em; }
   .item-block-top .img-wrap {
-    position: absolute;
+    position: relative;
     bottom: -2px;
     z-index: 9;
     display: block;
-    width: 102%;
-    transform: translateX(-50%);
-    left: 50%; }
-    .item-block-top .img-wrap img {
-      display: block;
-      width: 102%;
-      margin-left: -2%; }
+    width: 100%;
+    /* transform: translateX(-50%);
+    left: 50%;*/ }
+    .item-block-top .img-wrap .img-outer {
+      position: relative; }
+      .item-block-top .img-wrap .img-outer .top-icon {
+        position: absolute;
+        width: 15vw;
+        height: 15vw;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        border: 1px solid #B1C0DA;
+        -webkit-box-shadow: 0 -2px 0 1px #B1C0DA;
+        -moz-box-shadow: 0 -2px 0 1px #B1C0DA;
+        box-shadow: 0 -2px 0 1px #B1C0DA; }
+        .item-block-top .img-wrap .img-outer .top-icon img {
+          width: 100%;
+          height: 100%;
+          margin: 0; }
+      .item-block-top .img-wrap .img-outer img {
+        display: block;
+        width: 102%;
+        margin-left: -2%; }
     .item-block-top .img-wrap p {
       font-family: "alexxis_demoregular", sans-serif;
       text-align: center;
       color: #fff;
-      font-size: 18px;
+      font-size: 2em;
       font-weight: 300;
       line-height: 42.67px;
       letter-spacing: -0.1px;
-      word-spacing: 1px; }
+      word-spacing: 1px;
+      margin-bottom: 7%; }
 
 .item-block-top:after {
   content: '';
@@ -9931,14 +9955,15 @@ body {
   top: 0; }
 
 .item-block-top-logo {
-  position: absolute;
+  position: relative;
   width: 100%;
-  display: flex;
+  /*display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center;*/
+  text-align: center;
   z-index: 1;
-  top: 26%;
-  transform: translateY(-50%); }
+  /*top: 26%;
+  transform: translateY(-50%);*/ }
 
 /*.item-block-top-logo p{
   color: #fff;
@@ -9954,10 +9979,10 @@ body {
   -webkit-user-drag: none; }
 
 .item-block-content {
-  position: absolute;
-  height: 60%;
+  /*position: absolute;*/
+  /*height: 60%;*/
   width: 100%;
-  top: 33%; }
+  /*top: 33%;*/ }
 
 /*.item-block-content:after {
   content: '';
@@ -9972,7 +9997,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 9%;
+  /*padding-top: 9%;*/
   z-index: 9; }
   .block-content p {
     font-size: 16px; }
@@ -9986,7 +10011,8 @@ body {
   .block-content .item-input {
     width: 70%;
     border: 1px solid #94a4c0;
-    color: #76869f; }
+    color: #76869f;
+    margin-bottom: 12px; }
     .block-content .item-input input {
       color: #76869f; }
       .block-content .item-input input::-webkit-input-placeholder {
@@ -9995,7 +10021,7 @@ body {
     width: 70%;
     border: 1px solid #94a4c0;
     color: #76869f;
-    width: 80%;
+    width: 70%;
     height: 9vh;
     padding: 2%; }
 
@@ -10005,6 +10031,17 @@ body {
   align-items: center;
   margin-bottom: 12px;
   width: 80%; }
+  .input-block.input-phone .select-button {
+    width: 20%; }
+  .input-block.input-phone .item-input {
+    padding: 6px 7px 5px 7px;
+    width: 60%; }
+  .input-block.input-phone .phone-icon {
+    width: 20%;
+    background: none;
+    border: none; }
+    .input-block.input-phone .phone-icon img {
+      height: 3em; }
   .input-block .item-input {
     margin-bottom: -1px; }
   .input-block input {
@@ -10260,21 +10297,107 @@ body {
   width: 80%;
   margin-bottom: 12px; }
 
+.reg-step1 .img-wrap p {
+  margin-bottom: 7%; }
+
+.add-clinic .ion-ios-search:before {
+  content: "";
+  font-size: 30px;
+  padding-left: 10px; }
+
+.add-clinic .item-input {
+  width: 80%; }
+
+.add-clinic .search-btn {
+  border: none;
+  background: none;
+  width: 20%;
+  padding-left: 0;
+  padding-right: 5%; }
+  .add-clinic .search-btn img {
+    width: 100%; }
+
+.add-clinic .map-marker {
+  background: none;
+  width: 10%;
+  border: none;
+  padding: 0;
+  height: auto; }
+  .add-clinic .map-marker img {
+    width: 100%;
+    display: block;
+    position: relative; }
+
 .add-specialities .img-outer {
-  position: relative; }
-  .add-specialities .img-outer:after {
-    content: '';
-    position: absolute;
-    background: url(../img/dentist-photo.png) no-repeat;
-    width: 3em;
-    height: 3em;
-    background-size: cover;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%); }
+  /* &:after {
+        content: '';
+        position: absolute;
+        background: url(../img/dentist-photo.png) no-repeat;
+        width: 3em;
+        height: 3em;
+        background-size: cover;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }*/ }
 
 .add-specialities .gray-btn:before {
   background-image: url(../img/redcross-icon.png); }
+
+.add-specialities .select-price-block {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  width: 80%; }
+  .add-specialities .select-price-block .input-price {
+    border-bottom: 1px solid #94a4c0;
+    width: 50%;
+    font-size: 12.5px;
+    color: #76869f;
+    height: 25px;
+    text-align: center; }
+    .add-specialities .select-price-block .input-price::-webkit-input-placeholder {
+      color: #76869f; }
+  .add-specialities .select-price-block .select-currency {
+    background: transparent;
+    font-size: 12px;
+    border: 1px solid #94a4c0;
+    color: #76869f;
+    border-radius: 17vh;
+    width: 40%;
+    height: 4vh; }
+
+.reg-step2 .overlay-block {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.8;
+  z-index: 99; }
+  .reg-step2 .overlay-block .overlay-text {
+    width: 80%;
+    margin: auto;
+    padding-top: 30%; }
+    .reg-step2 .overlay-block .overlay-text p {
+      text-align: center;
+      color: #fff;
+      font-size: 1.5em;
+      line-height: normal; }
+
+.reg-step2 .item-block-content {
+  top: auto; }
+  .reg-step2 .item-block-content .title-block {
+    width: 80%;
+    margin: auto;
+    text-align: center; }
+    .reg-step2 .item-block-content .title-block h1 {
+      font-size: 20px;
+      color: #76869f; }
+    .reg-step2 .item-block-content .title-block p {
+      font-size: 12.5px;
+      color: #8695AF; }
 
 .geo-view .scroll {
   height: 100%;

@@ -1,3 +1,35 @@
 .add-clinic{
+  .ion-ios-search:before {
+    content: "";
+    font-size: 30px;
+    padding-left: 10px;
+  }
 
+  .item-input {
+    width: 80%;
+  }
+
+  .search-btn {
+    border: none;
+    background: none;
+    width: 20%;
+    padding-left: 0;
+    padding-right: 5%;
+    img {
+      width: 100%;
+    }
+  }
+
+  .map-marker {
+    background: none;
+    width: 10%;
+    border: none;
+    padding: 0;
+    height: auto;
+    img {
+      width: 100%;
+      display: block;
+      position: relative;
+    }
+  }
 }

@@ -18,7 +18,12 @@
                 verify: baseUrl + 'code/verify'
             },
             register: {
-                user: baseUrl + 'register/user'
+                user: baseUrl + 'register/user',
+                user_role: baseUrl + 'register/user-role'
+            },
+            clinic: {
+                check: baseUrl + 'clinic/check',
+                create: baseUrl + 'clinic/create'
             }
         };
     }

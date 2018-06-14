@@ -1,20 +1,37 @@
-<ion-view class="reg-step1">
+<ion-view class="reg-step2">
     <ion-content>
+        <div class="overlay-block">
+            <div class="overlay-text">
+                <p>Please provide us your home dentist info.</p>
+                <p>He will be notified about any visit out of state.</p>
+            </div>
+        </div>
         <div class="item-block-top">
+            <div layout="row" layout-align="space-around end" class="steps-wrap">
+                <div class="steps-item"><span>1</span></div>
+                <div class="steps-item active-step"><span>2</span></div>
+            </div>
             <div class="img-wrap">
                 <p>Thank you</p>
-                <img src="content/img/border.svg">
+                <div class="img-outer">
+                    <img src="content/img/border.svg">
+                </div>
             </div>
         </div>
         <div class="item-block-content">
+            <div class="title-block">
+                <h1>You are now ready to use!</h1>
+                <p>Invite your dentist to start using app to be updated withing every medical step you are doing.</p>
+            </div>
             <form class="block-content">
-                <div class="input-block">
+                <div class="input-block input-phone">
                     <button class="button select-button" ng-click="vm.selectNumberCode()">
                         380
                     </button>
                     <label class="item item-input">
-                        <input type="number" placeholder="Enter dentist phone number" ng-model="vm.phone">
+                        <input type="number" placeholder="Enter dentist phone number" ng-model="vm.dentist_phone">
                     </label>
+                    <button class="phone-icon"><img src="content/img/phone.png" alt=""></button>
                 </div>
                 <p>Have no dentist <a ng-click="vm.skipAddPhoneDentist()"> skip</a></p>
                 <button class="send-button" ng-click="vm.send()">Submit</button>

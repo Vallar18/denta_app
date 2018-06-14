@@ -10,7 +10,9 @@
         model.sendPhone = sendPhone;
         model.sendVerify = sendVerify;
         model.sendUser = sendUser;
-        model.sendUserInfo = sendUserInfo;
+        model.sendClinicPhone = sendClinicPhone;
+        model.createClinic = createClinic;
+        model.addRolePatient = addRolePatient;
         return model;
 
         function sendPhone (phone) {
@@ -21,13 +23,21 @@
             console.log('verify', verify);
             return http.post(url.code.verify, verify)
         }
-        function sendUser(user) {
+        function sendUser (user) {
             console.log('user:', user);
             return http.post(url.register.user, user)
         }
-        function sendUserInfo(userData) {
-            console.log(userData)
-            return;
+        function sendClinicPhone (phone) {
+            console.log('clinic phone:', phone);
+            return http.post(url.clinic.check, phone)
+        }
+        function createClinic (data) {
+            console.log('create clinic', data);
+            return http.post(url.clinic.create, data);
+        }
+        function addRolePatient(data) {
+            console.log('post data user:', data)
+            return http.post(url.register.user_role, data);
         }
     }
 })();

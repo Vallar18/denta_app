@@ -42,6 +42,11 @@ body {
   font-family:'Microsoft JhengHei', sans-serif;
 }
 
+a {
+  color: $first-color;
+  text-decoration: underline;
+}
+
 .background-image{
   height: 100%;
   background: url(../../content/img/5714520-sky-images.png) no-repeat;
@@ -53,10 +58,11 @@ body {
   height: 100%;
 }
 .item-block-top{
-  height: 40%;
+ /* height: 40%;*/
   width: 100%;
   background: #2c304b;
   position: relative;
+  padding-top: 10vw;
 
   .steps-wrap {
     height: 35%;
@@ -103,28 +109,51 @@ body {
   }
 
   .img-wrap {
-    position: absolute;
+    position: relative;
     bottom: -2px;
     z-index: 9;
     display: block;
-    width: 102%;
-    transform: translateX(-50%);
-    left: 50%;
+    width: 100%;
+   /* transform: translateX(-50%);
+    left: 50%;*/
+    .img-outer {
+      position: relative;
+      .top-icon {
+        position: absolute;
+        width: 15vw;
+        height: 15vw;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        border-radius: 50%;
+        border: 1px solid $second-color-light;
+        -webkit-box-shadow: 0 -2px 0 1px $second-color-light;
+        -moz-box-shadow: 0 -2px 0 1px $second-color-light;
+        box-shadow: 0 -2px 0 1px $second-color-light;
 
-    img {
-      display: block; width: 102%;
-      margin-left: -2%;
+        img {
+          width: 100%;
+          height: 100%;
+          margin: 0;
+        }
+      }
+      img {
+        display: block;
+        width: 102%;
+        margin-left: -2%;
+      }
     }
 
     p {
       font-family: "alexxis_demoregular", sans-serif;
       text-align: center;
       color: #fff;
-      font-size: 18px;
+      font-size: 2em;
       font-weight: 300;
       line-height: 42.67px;
       letter-spacing: -0.1px;
       word-spacing: 1px;
+      margin-bottom: 7%;
     }
   }
 }
@@ -144,14 +173,15 @@ body {
   top: 0;
 }
 .item-block-top-logo {
-  position: absolute;
+  position: relative;
   width: 100%;
-  display: flex;
+  /*display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center;*/
+  text-align: center;
   z-index: 1;
-  top: 26%;
-  transform: translateY(-50%);
+  /*top: 26%;
+  transform: translateY(-50%);*/
 }
 /*.item-block-top-logo p{
   color: #fff;
@@ -167,10 +197,10 @@ body {
   -webkit-user-drag: none;
 }
 .item-block-content {
-  position: absolute;
-  height: 60%;
+  /*position: absolute;*/
+  /*height: 60%;*/
   width: 100%;
-  top: 33%;
+  /*top: 33%;*/
 }
 
 /*.item-block-content:after {
@@ -186,7 +216,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 9%;
+  /*padding-top: 9%;*/
   z-index: 9;
   p {
     font-size: 16px;
@@ -201,6 +231,7 @@ body {
   }
   .item-input{
     @include inputs-style;
+    margin-bottom: 12px;
     input {
       color: $input-text;
       &::-webkit-input-placeholder {
@@ -210,23 +241,40 @@ body {
   }
   textarea {
     @include inputs-style;
-    width: 80%;
+    width: 70%;
     height: 9vh;
     padding: 2%;
   }
 }
 
 // input
-.input-block{
+.input-block {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 12px;
   width: 80%;
+  &.input-phone {
+    .select-button {
+      width: 20%;
+    }
+    .item-input {
+      padding: 6px 7px 5px 7px;
+      width: 60%;
+    }
+
+    .phone-icon {
+      width: 20%;
+      background: none;
+      border: none;
+      img {
+        height: 3em;
+      }
+    }
+  }
   .item-input{
     margin-bottom: -1px;
   }
-
   input {
     padding:0;
     font-size:12.5px;
@@ -246,6 +294,8 @@ body {
     background-color: transparent;
   }
 }
+
+
 .text-center{
   text-align: center;
 }

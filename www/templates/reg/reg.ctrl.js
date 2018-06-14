@@ -18,7 +18,7 @@
         vm.user = {
             name: '',
             lastname: '',
-            email: undefined,
+            email: '',
             phone: vm.phone,
             key: vm.key
         };
@@ -49,7 +49,14 @@
                                 }
                             }
                         });
-                        vm.code = '';
+                        vm.user = {
+                            name: '',
+                            lastname: '',
+                            email: '',
+                            phone: vm.phone,
+                            key: vm.key
+                        }
+                        $localStorage.user = data.data;
                     } else {
                         toastr.error(data.message)
                     }
@@ -60,11 +67,6 @@
                         }, ''))
                     }
                 });
-                vm.user = {
-                    name: '',
-                    lastname: '',
-                    email: ''
-                }
             }
         }
         function validation() {
@@ -72,7 +74,7 @@
                 toastr.error(messagesSvc.error.invalidEmail);
                 return false
             }
-             if (vm.user.name === '' || vm.user.Lastname === 0){
+             if (vm.user.name === '' || vm.user.lastname === ''){
                  toastr.error(messagesSvc.error.emptyField);
                  return false;
              } else {
