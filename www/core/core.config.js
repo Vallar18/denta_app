@@ -54,7 +54,14 @@
                 url: '/add-phone',
                 templateUrl: 'templates/add-phone/add-phone.html',
                 controller: 'AddPhoneCtrl',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: {
+                    codes: function (regSvc) {
+                        return regSvc.getCodes().then(function (res) {
+                            return res;
+                        });
+                    }
+                }
             })
             .state('add-code', {
                 url: '/add-code',
@@ -90,6 +97,11 @@
                             return regSvc.getSpeciality().then(function (res) {
                                 return res;
                             });
+                    },
+                    currency: function (regSvc) {
+                        return regSvc.getCurrency().then(function (res) {
+                            return res;
+                        });
                     }
                 }
             })

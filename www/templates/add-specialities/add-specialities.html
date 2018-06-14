@@ -23,6 +23,7 @@
                     <button type="button" class="select-currency" ng-click="vm.getCurrency()">{{vm.currency.text}}</button>
                 </div>
                  <button class="gray-btn" ng-click="vm.getSpeciality()">Edit spesialties</button>
+                <p ng-if="vm.len_spec">{{vm.len_spec}} selected</p>
                 <div class="description">
                      <textarea rows="4" ng-model="vm.description" maxlength="250"></textarea>
                      <span>{{(vm.description.length ? vm.description.length: 0)+'/'+250 }}</span>

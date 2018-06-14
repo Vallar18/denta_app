@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddSpecialitiesCtrl', AddSpecialitiesCtrl);
 
-    AddSpecialitiesCtrl.$inject = ['$scope', '$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc', '$ionicModal', 'spec'];
+    AddSpecialitiesCtrl.$inject = ['$scope', '$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc', '$ionicModal', 'spec', 'currency'];
 
-    function AddSpecialitiesCtrl($scope, $state, regSvc, toastr, $localStorage, messagesSvc, $ionicModal, spec) {
+    function AddSpecialitiesCtrl($scope, $state, regSvc, toastr, $localStorage, messagesSvc, $ionicModal, spec, currency) {
         const vm = this;
         vm.send = send;
         vm.getCurrency = getCurrency;
@@ -17,6 +17,7 @@
         vm.user = $localStorage.user;
         vm.role = $localStorage.role;
         vm.specialities = spec;
+        vm.currency = currency;
         vm.spec_selected_id = [];
         vm.price = '';
         vm.description = '';
@@ -73,7 +74,7 @@
                 id: 2
             };
         }
-        $ionicModal.fromTemplateUrl('components/edit-specialities/edit-specialities.html', {
+        $ionicModal.fromTemplateUrl('components/speciality-select/speciality-select.html', {
             scope: $scope,
             animation: 'slide-in-up'
         }).then(function (modal) {
@@ -90,10 +91,10 @@
                 let spec_id = vm.spec_selected_id.indexOf(spec.id)
                 vm.spec_selected_id.splice(spec_id, 1);
             }
-            console.log(vm.spec_selected_id)
+            vm.len_spec = vm.spec_selected_id.length;
         }
         function saveModal() {
-            if (vm.spec_selected_id && vm.spec_selected_id.length){
+            if (vm.spec_selected_id && vm.len_spec){
                 $scope.modal.hide();
             } else {
                 toastr.error(messagesSvc.error.emptySpec);
@@ -103,7 +104,7 @@
             if (vm.price === '' || vm.description === ''){
                 toastr.error(messagesSvc.error.emptyField);
                 return false;
-            } else if(vm.spec_selected_id.length <= 0){
+            } else if(vm.len_spec <= 0){
                 toastr.error(messagesSvc.error.emptySpec);
                 return false;
             } else {
