@@ -44,8 +44,11 @@ $ionicons-font-path: "../../lib/ionic/fonts" !default;
 //Components
 @import "../www/components/select-subscription/select-subscription";
 @import "../www/components/edit-specialities/edit-specialities";
+@import "../www/components/create-avatar/create-avatar";
 //Directives
 @import "../www/directives/menu-custom/menu-custom";
 @import "../www/directives/star-rating/star-rating";
+@import "../www/directives/help-item/help-item";
+@import "../www/directives/review-item/review-item";
 
 

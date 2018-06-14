@@ -58,10 +58,11 @@ a {
   height: 100%;
 }
 .item-block-top{
-  height: 40%;
+ /* height: 40%;*/
   width: 100%;
   background: #2c304b;
   position: relative;
+  padding-top: 10vw;
 
   .steps-wrap {
     height: 35%;
@@ -108,13 +109,13 @@ a {
   }
 
   .img-wrap {
-    position: absolute;
+    position: relative;
     bottom: -2px;
     z-index: 9;
     display: block;
-    width: 102%;
-    transform: translateX(-50%);
-    left: 50%;
+    width: 100%;
+   /* transform: translateX(-50%);
+    left: 50%;*/
     .img-outer {
       position: relative;
       .top-icon {
@@ -172,14 +173,15 @@ a {
   top: 0;
 }
 .item-block-top-logo {
-  position: absolute;
+  position: relative;
   width: 100%;
-  display: flex;
+  /*display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center;*/
+  text-align: center;
   z-index: 1;
-  top: 26%;
-  transform: translateY(-50%);
+  /*top: 26%;
+  transform: translateY(-50%);*/
 }
 /*.item-block-top-logo p{
   color: #fff;
@@ -195,9 +197,10 @@ a {
   -webkit-user-drag: none;
 }
 .item-block-content {
-  height: 60%;
+  /*position: absolute;*/
+  /*height: 60%;*/
   width: 100%;
-  background: $background-color;
+  /*top: 33%;*/
 }
 
 /*.item-block-content:after {
@@ -213,6 +216,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
+  /*padding-top: 9%;*/
   z-index: 9;
   p {
     font-size: 16px;
@@ -390,20 +394,18 @@ a {
   }
 }
 
-//.modal {
-//  display: block;
-//  position: absolute;
-//  top: 50% !important;
-//  left: 20px !important;
-//  right: 20px !important;
-//  bottom: 20% !important;
-//  z-index: 10 !important;
-//  width: auto !important;
-//  min-height: initial !important;
-//  overflow: hidden;
-//  background-color: #fff;
-//  transform: translate(0,-50%);
-//}
+.modal {
+  display: block;
+  position: absolute;
+  left: 20px !important;
+  right: 20px !important;
+  bottom: 20% !important;
+  z-index: 10 !important;
+  width: auto !important;
+  min-height: initial !important;
+  overflow: hidden;
+  background-color: #fff;
+}
 .modal-backdrop.active {
   background-color: rgba(0, 0, 0, 0.5) !important;
 }
