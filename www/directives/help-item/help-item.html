@@ -1,16 +1,38 @@
-<div class="help-item row">
-    <div class="col-20">
-        {{::(hiDistance + ' ')}}
+<div class="help-item">
+    <div ng-if="!hiType || hiType  === 'simple' " class="row">
+        <div class="col-20">
+            {{::(hiDistance + ' ')}}
+        </div>
+        <div class="col-60">
+            <div>{{::hiDoctor.name}}</div>
+            <a ng-click="angular.isFunction(hiClickInfo) && hiClickInfo(hiDoctor.id)">Get info</a>
+        </div>
+        <div class="col-20">
+            <star-rating sr-count="5"
+                         sr-model="hiRating"
+                         sr-size="12px"
+                         sr-color="orange"></star-rating>
+            <div>Price: {{::hiPrice}}</div>
+        </div>
     </div>
-    <div class="col-60">
-        <div>{{::hiDoctor.name}}</div>
-        <a href="getInfo(hiDoctor.id)">Get info</a>
+
+    <div ng-if="hiType === 'detail'" class="row">
+        <div class="col-20">
+            {{::(hiDistance + ' ')}}
+            <a ng-click="angular.isFunction(hiClickInfo) && hiClickInfo(hiDoctor.id)">Get info</a>
+        </div>
+        <div class="col-60">
+            <div>{{::hiDoctor.name}}</div>
+            <div>{{::hiDoctor.address}}</div>
+
+        </div>
+        <div class="col-20">
+            <star-rating sr-count="5"
+                         sr-model="hiRating"
+                         sr-size="12px"
+                         sr-color="orange"></star-rating>
+            <div>Price: {{::hiPrice}}</div>
+        </div>
     </div>
-    <div class="col-20">
-        <star-rating sr-count="5"
-                     sr-model="hiRating"
-                     sr-size="12px"
-                     sr-color="orange"></star-rating>
-        <div>Price: {{::hiPrice}}</div>
-    </div>
+
 </div>

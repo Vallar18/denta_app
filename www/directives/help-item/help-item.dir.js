@@ -13,7 +13,9 @@
                 hiDoctor: '<',
                 hiPrice: '<',
                 hiCurrency: '<',
-                hiRating: '<'
+                hiRating: '<',
+                hiClickInfo: '&',
+                hiType: '<'
             },
             controller: 'HelpItemCtrl',
             link: function (scope, element, attrs) {

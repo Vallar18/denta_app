@@ -49,6 +49,7 @@
                 <help-item  hi-distance="item.distance"
                             hi-doctor="item.doctor"
                             hi-price="item.price"
+                            hi-type="'simple'"
                             hi-currency="item.currency"
                             hi-rating="item.rating"></help-item>
             </ion-item>
@@ -57,8 +58,8 @@
         <ion-list>
             <ion-item ng-repeat="item in vm.reviewArr track by $index">
                 <review-item ri-date="item.date"
-                            ri-rating="item.rating",
-                            ri-name="item.name",
+                            ri-rating="item.rating"
+                            ri-name="item.name"
                             ri-text="item.text"></review-item>
             </ion-item>
         </ion-list>
