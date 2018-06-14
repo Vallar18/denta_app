@@ -40,6 +40,7 @@
 
         function next() {
             if(validation()){
+                vm.clinic.phone = '380' + vm.phone;
                 regSvc.createClinic(vm.clinic).then(function (data) {
                     if(data.success) {
                         toastr.success(data.message, '', {
@@ -47,12 +48,10 @@
                                 $state.go('add-specialities')
                             }
                         });
-                        vm.clinic = {
-                            user_id: vm.user.id,
-                            name: '',
-                            phone: '',
-                            address: ''
-                        }
+                        vm.clinc.name = '';
+                        vm.clinic.address = '';
+                        vm.phone = '';
+
                     } else {
                         if(data.message){
                             toastr.error(data.message)

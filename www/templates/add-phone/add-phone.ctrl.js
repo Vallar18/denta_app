@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddPhoneCtrl', AddPhoneCtrl);
 
-    AddPhoneCtrl.$inject = ['$state', '$localStorage', 'regSvc', 'toastr', 'messagesSvc'];
+    AddPhoneCtrl.$inject = ['$scope', '$state', '$localStorage', 'regSvc', 'toastr', 'messagesSvc', '$ionicPopup'];
 
-    function AddPhoneCtrl($state, $localStorage, regSvc, toastr, messagesSvc) {
+    function AddPhoneCtrl($scope, $state, $localStorage, regSvc, toastr, messagesSvc, $ionicPopup) {
         const vm = this;
         vm.send = send;
         vm.selectNumberCode = selectNumberCode;
@@ -17,10 +17,6 @@
             val3: 'get me in',
             val4: '380',
             valBtn: 'Send'
-        }
-
-        function selectNumberCode() {
-            console.log('select number code')
         }
 
         function send() {
@@ -59,6 +55,28 @@
                     return false;
                 }
             }
+        }
+        function selectNumberCode() {
+            $scope.data = {};
+            $ionicPopup.show({
+                template: '<input type="search" class="input-search" ng-model="vm.search">',
+                title: 'Select country',
+                scope: $scope,
+                buttons: [
+                    {
+                        text: '<b>Save</b>',
+                        type: 'button-positive',
+                        onTap: function (e) {
+                            if (!$scope.data.wifi) {
+                                //don't allow the user to close unless he enters wifi password
+                                e.preventDefault();
+                            } else {
+                                return $scope.data.wifi;
+                            }
+                        }
+                    }
+                ]
+            });
         }
     }
 
