@@ -1,7 +1,6 @@
 .add-specialities{
     .img-outer{
-      position: relative;
-      &:after {
+     /* &:after {
         content: '';
         position: absolute;
         background: url(../img/dentist-photo.png) no-repeat;
@@ -11,7 +10,7 @@
         top: 0;
         left: 50%;
         transform: translate(-50%, -50%);
-      }
+      }*/
     }
     .gray-btn {
       &:before {
@@ -22,21 +21,26 @@
       display: flex;
       justify-content: space-between;
       padding-bottom: 20px;
-      width:80%;
+      width: 80%;
       .input-price {
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid $input-border;
         width: 50%;
         font-size: 12.5px;
-        height:25px;
+        color: $input-text;
+        height: 25px;
         text-align: center;
+        &::-webkit-input-placeholder {
+          color: $input-text;
+        }
       }
       .select-currency {
         background: transparent;
         font-size: 12px;
-        border: 1px solid grey;
-        border-radius: 30%;
+        border: 1px solid $input-border;
+        color: $input-text;
+        border-radius: 17vh;
         width: 40%;
-        height: 25px;
+        height: 4vh;
       }
     }
 

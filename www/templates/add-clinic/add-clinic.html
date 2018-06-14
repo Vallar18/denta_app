@@ -3,7 +3,9 @@
         <div class="item-block-top">
             <div class="img-wrap">
                 <p>Let us know you</p>
-                <img src="content/img/border.svg">
+                <div class="img-outer">
+                    <img src="content/img/border.svg">
+                </div>
             </div>
         </div>
         <div class="item-block-content">
@@ -14,13 +16,19 @@
                     </button>
                     <label class="item item-input">
                         <input type="number" placeholder="Clinic phone number" ng-model="vm.phone">
+                        <button name="search" ng-click="vm.checkClinicPhone()" class="search-btn">
+                            <img src="content/img/search.svg" alt="">
+                        </button>
                     </label>
-                    <i class="ion-ios-search" name="search" ng-click="vm.checkClinicPhone()"></i>
+                    <!--<i class="ion-ios-search" name="search" ng-click="vm.checkClinicPhone()"></i>-->
                 </div>
                 <label class="item item-input">
-                    <input class="text-center" type="text" placeholder="Clinic name" ng-model="vm.clinic.name">
+                    <input class="text-center" type="text" placeholder="Clinic name" ng-model="vm.user.lastName">
                 </label>
                 <label class="item item-input">
+                    <button class="map-marker">
+                        <img src="content/img/marker.png" alt="">
+                    </button>
                     <input class="text-center" type="text" placeholder="Clinic Address" ng-model="vm.clinic.address">
                 </label>
                 <button class="send-button" ng-click="vm.next()">Next</button>
