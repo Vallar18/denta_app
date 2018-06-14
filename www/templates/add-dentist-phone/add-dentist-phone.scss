@@ -1,0 +1,39 @@
+.reg-step2 {
+  .overlay-block {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: $text-default-color;
+    opacity: 0.8;
+    z-index: 99;
+    .overlay-text {
+      width: 80%;
+      margin: auto;
+      padding-top: 30%;
+      p {
+        text-align: center;
+        color: $text-white-color;
+        font-size: 1.5em;
+        line-height: normal;
+      }
+    }
+  }
+  .item-block-content {
+    top: auto;
+    .title-block {
+      width: 80%;
+      margin: auto;
+      text-align: center;
+      h1 {
+        font-size: 20px;
+        color: $input-text;
+      }
+      p {
+        font-size: 12.5px;
+        color: $text-gray-color2;
+      }
+    }
+  }
+}

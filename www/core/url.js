@@ -10,10 +10,21 @@
 
     function url() {
 
-        var baseUrl = 'https://ico.grassbusinesslabs.tk/api/web/v1/';
+        var baseUrl = 'http://denta.grassbusinesslabs.tk/api/';
 
         return {
-
+            code: {
+                send: baseUrl + 'code/send',
+                verify: baseUrl + 'code/verify'
+            },
+            register: {
+                user: baseUrl + 'register/user',
+                user_role: baseUrl + 'register/user-role'
+            },
+            clinic: {
+                check: baseUrl + 'clinic/check',
+                create: baseUrl + 'clinic/create'
+            }
         };
     }
 })();

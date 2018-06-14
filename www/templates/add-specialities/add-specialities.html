@@ -1,0 +1,31 @@
+<ion-view class="add-specialities">
+    <ion-content>
+        <div class="item-block-top">
+            <div layout="row" layout-align="space-around end" class="steps-wrap">
+                <div class="steps-item"><span>1</span></div>
+                <div class="steps-item"><span>2</span></div>
+                <div class="steps-item active-step"><span>3</span></div>
+            </div>
+            <div class="img-wrap">
+                <p>Let us know you</p>
+                <div class="img-outer">
+                    <img src="content/img/border.svg">
+                    <div class="top-icon">
+                        <img src="content/img/add-photo-icon.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item-block-content">
+            <div class="block-content">
+                <div class="select-price-block">
+                    <input type="number" class="input-price" placeholder="Emergency price">
+                    <button type="button" class="select-currency" ng-click="vm.getCurrency()">{{vm.price}}</button>
+                </div>
+                 <button class="gray-btn">Edit spesialties</button>
+                <textarea name="" id="specialities-textarea"></textarea>
+                <button class="send-button" ng-click="vm.send()">Done</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

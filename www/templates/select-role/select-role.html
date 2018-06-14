@@ -1,0 +1,20 @@
+<ion-view class="select-role">
+    <ion-content>
+        <div class="item-block-top">
+            <div class="img-wrap">
+                <p>{{vm.content.val3}}</p>
+                <img src="content/img/border.svg">
+            </div>
+            <div class="item-block-top-background-image"></div>
+            <div class="item-block-top-logo">
+                <img src="content/img/vector-smart-object.png">
+            </div>
+        </div>
+        <div class="item-block-content">
+            <div class="block-content">
+                <button  ng-click="vm.select(0)" class="gray-btn dentist-btn">{{vm.content.role1}}</button>
+                <button  ng-click="vm.select(1)" class="gray-btn patient-btn">{{vm.content.role2}}</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

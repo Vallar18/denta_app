@@ -16,8 +16,38 @@ $dark:                            #444 !default;
 */
 
 // The path for our ionicons font files, relative to the built CSS in www/css
-$ionicons-font-path: "../lib/ionic/fonts" !default;
+$ionicons-font-path: "../../lib/ionic/fonts" !default;
 
 // Include all of Ionic
-@import "www/lib/ionic/scss/ionic";
+@import "../www/lib/ionic/scss/ionic";
+@import "../www/styles/variables";
+@import "../www/styles/global";
+//Templates
+@import "../www/templates/login/login";
+@import "../www/templates/tabs/tabs";
+@import "../www/templates/view/view";
+@import "../www/templates/add-phone/add-phone";
+@import "../www/templates/add-code/add-code";
+@import "../www/templates/reg/reg";
+@import "../www/templates/add-clinic/add-clinic";
+@import "../www/templates/add-specialities/add-specialities";
+@import "../www/templates/add-dentist-phone/add-dentist-phone";
+@import "../www/templates/geolocation/geo";
+@import "../www/templates/about/about";
+@import "../www/templates/privacy/privacy";
+@import "../www/templates/terms/terms";
+@import "../www/templates/share/share";
+@import "../www/templates/help/help";
+@import "../www/templates/profile/profile";
+@import "../www/templates/my-treatments/my-treatments";
+@import "../www/templates/need-dentist/need-dentist";
+//Components
+@import "../www/components/select-subscription/select-subscription";
+@import "../www/components/create-avatar/create-avatar";
+//Directives
+@import "../www/directives/menu-custom/menu-custom";
+@import "../www/directives/star-rating/star-rating";
+@import "../www/directives/help-item/help-item";
+@import "../www/directives/review-item/review-item";
+
 

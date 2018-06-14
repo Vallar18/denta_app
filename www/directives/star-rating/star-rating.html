@@ -1,0 +1,9 @@
+<div class="star-rating-directive">
+    <i class="icon"
+       ng-click="srEnable && vm.setValue(item.val)"
+       ng-style="{'color': srColor,
+                  'font-size': srSize ? srSize:''}"
+       ng-class="item.type"
+       ng-if="vm.ratingArr.length"
+       ng-repeat="item in vm.ratingArr track by $index"></i>
+</div>

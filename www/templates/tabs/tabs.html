@@ -1,18 +1,22 @@
-<ion-view cache-view="false" class="news" view-title="Мої заявки">
-    <ion-tabs class="tabs-stable   tabs-icon-bottom">
-        <div class="tabs tabs-icon-left">
-            <a class="tab-item">
-                <i class="icon ion-home"></i>
-                Home
-            </a>
-            <a class="tab-item">
-                <i class="icon ion-star"></i>
-                Favorites
-            </a>
-            <a class="tab-item">
-                <i class="icon ion-gear-a"></i>
-                Settings
-            </a>
-        </div>
+<ion-view view-title="ff">
+    <ion-nav-view></ion-nav-view>
+    <ion-tabs class="tabs-stable tabs-icon-bottom tabs-custom"
+              ng-class="{ 'tabs-custom__menu': vm.tabsModel.isShowMenu,
+                           'tabs-custom__menu--open' : vm.menuModel.isShow }">
+        <ion-tab title="Help" ui-sref='tabs.help'>
+        </ion-tab>
+        <ion-tab title="Profile" ui-sref='tabs.profile'>
+        </ion-tab>
+        <ion-tab title="History" ui-sref='tabs.history'>
+        </ion-tab>
+        <ion-tab title="" icon-on="ion-more"
+                 ng-click="vm.toggleMenu()"
+                 ng-if="vm.tabsModel.isShowMenu"
+                 icon-off="ion-more">
+        </ion-tab>
     </ion-tabs>
+    <menu-custom is-show="vm.menuModel.isShow"
+                 model="vm.menuModel.model"
+                 items="vm.menuModel.items"
+                 select="vm.selectingItem"></menu-custom>
 </ion-view>

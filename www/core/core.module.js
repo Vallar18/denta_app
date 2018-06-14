@@ -3,6 +3,7 @@
 
     angular.module('app.core', [
         'ui.router',
+        'ngCordova',
         'ionic',
         'ngAnimate',
         'ui.mask',
@@ -10,6 +11,9 @@
         'ngStorage',
         'ngAria',
         'ngMaterial',
+        'pascalprecht.translate',
+        'ngFileUpload',
+        'ngImgCrop'
     ]);
 
 

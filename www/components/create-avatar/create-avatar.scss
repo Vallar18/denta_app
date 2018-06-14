@@ -1,0 +1,11 @@
+.create-avatar {
+  .popup {
+    height: 75%;
+    width: 95%;
+  }
+  &__crop {
+    overflow: hidden;
+    width:100%;
+    height:60vh;
+  }
+}
