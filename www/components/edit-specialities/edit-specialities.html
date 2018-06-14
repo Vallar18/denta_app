@@ -6,7 +6,7 @@
             <div class="steps-item active-step"><span>3</span></div>
         </div>
         <div class="img-wrap">
-            <p>Aff specialities</p>
+            <p>Add specialities</p>
             <div class="img-outer">
                 <img src="content/img/border.svg">
             </div>
@@ -15,13 +15,27 @@
     <div class="item-block-content">
         <div class="block-content">
             <ion-list class="spec-list">
-                    <ion-checkbox class="item-spec"
-                                  ng-repeat="item in vm.specialities"
-                                  ng-model="item.checked"
-                                  ng-checked="item.checked"
-                                  ng-click="vm.selectItem(item)">
+                <div  ng-repeat="item in vm.specialities" style="position: relative;"
+                      ng-click="vm.selectItem(item)">
+                    <i class=""
+                       style="position: absolute; left:0;"
+                       ng-class="{'icon icon ion-star':item.checked,
+                               'icon icon ion-compass':!item.checked}"></i>
+                    <label>
+                        <input type="checkbox"
+                               style="opacity: 0"
+                               ng-model="item.checked"
+                               ng-checked="item.checked">
                         {{item.name}}
-                    </ion-checkbox>
+                    </label>
+                </div>
+                    <!--<ion-checkbox class="item-spec"-->
+                                  <!--ng-repeat="item in vm.specialities track by $index"-->
+                                  <!--ng-model="item.checked"-->
+                                  <!--ng-checked="item.checked"-->
+                                  <!--ng-click="vm.selectItem(item)">-->
+                                  <!--{{item.name}}-->
+                    <!--</ion-checkbox>-->
             </ion-list>
             <button class="send-button" ng-click="vm.saveModal()">Save</button>
             <!--<ion-infinite-scroll-->
