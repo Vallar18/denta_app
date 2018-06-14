@@ -167,10 +167,9 @@ body {
   -webkit-user-drag: none;
 }
 .item-block-content {
-  position: absolute;
   height: 60%;
   width: 100%;
-  top: 33%;
+  background: $background-color;
 }
 
 /*.item-block-content:after {
@@ -186,7 +185,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 9%;
   z-index: 9;
   p {
     font-size: 16px;
@@ -226,7 +224,6 @@ body {
   .item-input{
     margin-bottom: -1px;
   }
-
   input {
     padding:0;
     font-size:12.5px;
@@ -344,20 +341,20 @@ body {
   }
 }
 
-.modal {
-  display: block;
-  position: absolute;
-  top: 50% !important;
-  left: 20px !important;
-  right: 20px !important;
-  bottom: 20% !important;
-  z-index: 10 !important;
-  width: auto !important;
-  min-height: initial !important;
-  overflow: hidden;
-  background-color: #fff;
-  transform: translate(0,-50%);
-}
+//.modal {
+//  display: block;
+//  position: absolute;
+//  top: 50% !important;
+//  left: 20px !important;
+//  right: 20px !important;
+//  bottom: 20% !important;
+//  z-index: 10 !important;
+//  width: auto !important;
+//  min-height: initial !important;
+//  overflow: hidden;
+//  background-color: #fff;
+//  transform: translate(0,-50%);
+//}
 .modal-backdrop.active {
   background-color: rgba(0, 0, 0, 0.5) !important;
 }
