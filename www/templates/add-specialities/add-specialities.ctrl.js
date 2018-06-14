@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddSpecialitiesCtrl', AddSpecialitiesCtrl);
 
-    AddSpecialitiesCtrl.$inject = ['$scope', '$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc', '$ionicModal'];
+    AddSpecialitiesCtrl.$inject = ['$scope', '$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc', '$ionicModal', 'spec'];
 
-    function AddSpecialitiesCtrl($scope, $state, regSvc, toastr, $localStorage, messagesSvc, $ionicModal) {
+    function AddSpecialitiesCtrl($scope, $state, regSvc, toastr, $localStorage, messagesSvc, $ionicModal, spec) {
         const vm = this;
         vm.send = send;
         vm.getCurrency = getCurrency;
@@ -16,6 +16,8 @@
         vm.selectItem = selectItem;
         vm.user = $localStorage.user;
         vm.role = $localStorage.role;
+        vm.specialities = spec;
+        vm.spec_selected_id = [];
         vm.price = '';
         vm.description = '';
         vm.currency = {
@@ -79,14 +81,8 @@
         });
 
         function getSpeciality() {
-            vm.specialities = [];
-            regSvc.getSpeciality()
-                .then(function (res) {
-                    vm.specialities = res;
-                    $scope.modal.show();
-            });
+            $scope.modal.show();
         }
-        vm.spec_selected_id = [];
         function selectItem(spec) {
             if(spec.checked === true){
                 vm.spec_selected_id.push(spec.id);

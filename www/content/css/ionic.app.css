@@ -9977,10 +9977,9 @@ a {
   -webkit-user-drag: none; }
 
 .item-block-content {
-  position: absolute;
   height: 60%;
   width: 100%;
-  top: 33%; }
+  background: #FFF; }
 
 /*.item-block-content:after {
   content: '';
@@ -9995,7 +9994,6 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 9%;
   z-index: 9; }
   .block-content p {
     font-size: 16px; }
@@ -10139,20 +10137,6 @@ a {
     color: #7389A4;
     font-size: 2rem;
     width: 2rem; }
-
-.modal {
-  display: block;
-  position: absolute;
-  top: 50% !important;
-  left: 20px !important;
-  right: 20px !important;
-  bottom: 20% !important;
-  z-index: 10 !important;
-  width: auto !important;
-  min-height: initial !important;
-  overflow: hidden;
-  background-color: #fff;
-  transform: translate(0, -50%); }
 
 .modal-backdrop.active {
   background-color: rgba(0, 0, 0, 0.5) !important; }
@@ -10451,6 +10435,9 @@ a {
   position: fixed;
   bottom: 5vh; }
 
+.fdfdg {
+  background: grey; }
+
 .my-treatments-view {
   background-color: #B1C0DA; }
   .my-treatments-view__main {
@@ -10460,6 +10447,15 @@ a {
     background-color: #FFF;
     font-size: 0.9rem;
     padding: 0 5% 5% 5%; }
+
+.edit-spec {
+  position: absolute;
+  width: 100%;
+  height: 100%; }
+  .edit-spec .spec-list {
+    width: 100%; }
+  .edit-spec .item-spec {
+    border: none; }
 
 .menu-custom {
   position: absolute;

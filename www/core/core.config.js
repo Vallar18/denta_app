@@ -84,7 +84,14 @@
                 url: '/add-specialities',
                 templateUrl: 'templates/add-specialities/add-specialities.html',
                 controller: 'AddSpecialitiesCtrl',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: {
+                    spec: function (regSvc) {
+                            return regSvc.getSpeciality().then(function (res) {
+                                return res;
+                            });
+                    }
+                }
             })
             .state('add-dentist-phone', {
                 url: '/add-dentist-phone',

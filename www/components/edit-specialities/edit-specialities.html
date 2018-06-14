@@ -16,7 +16,7 @@
         <div class="block-content">
             <ion-list class="spec-list">
                     <ion-checkbox class="item-spec"
-                                  ng-repeat="item in vm.specialities"
+                                  ng-repeat="item in vm.specialities track by $index"
                                   ng-model="item.checked"
                                   ng-checked="item.checked"
                                   ng-click="vm.selectItem(item)">
