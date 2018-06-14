@@ -87,8 +87,8 @@
             if(spec.checked === true){
                 vm.spec_selected_id.push(spec.id);
             } else if(spec.checked === false){
-                var spec_id = vm.spec_selected_id.indexOf(spec.id)
-                vm.spec_selected_id.splice(spec_id, 1)
+                let spec_id = vm.spec_selected_id.indexOf(spec.id)
+                vm.spec_selected_id.splice(spec_id, 1);
             }
             console.log(vm.spec_selected_id)
         }

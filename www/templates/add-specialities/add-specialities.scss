@@ -12,6 +12,21 @@
         transform: translate(-50%, -50%);
       }*/
     }
+    .description {
+      position: relative;
+      width: 80%;
+      textarea {
+        width:100%;
+        border: 1px solid $input-border;
+        display: block;
+      }
+      span {
+        position: absolute;
+        bottom: 1%;
+        right: 1%;
+        color: $text-gray-color
+      }
+    }
     .gray-btn {
       &:before {
         background-image: url(../img/redcross-icon.png);
@@ -43,5 +58,4 @@
         height: 4vh;
       }
     }
-
 }
