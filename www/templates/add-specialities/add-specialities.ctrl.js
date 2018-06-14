@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddSpecialitiesCtrl', AddSpecialitiesCtrl);
 
-    AddSpecialitiesCtrl.$inject = ['$scope', '$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc', '$ionicModal'];
+    AddSpecialitiesCtrl.$inject = ['$scope', '$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc', '$ionicModal', 'spec'];
 
-    function AddSpecialitiesCtrl($scope, $state, regSvc, toastr, $localStorage, messagesSvc, $ionicModal) {
+    function AddSpecialitiesCtrl($scope, $state, regSvc, toastr, $localStorage, messagesSvc, $ionicModal, spec) {
         const vm = this;
         vm.send = send;
         vm.getCurrency = getCurrency;
@@ -16,6 +16,8 @@
         vm.selectItem = selectItem;
         vm.user = $localStorage.user;
         vm.role = $localStorage.role;
+        vm.specialities = spec;
+        vm.spec_selected_id = [];
         vm.price = '';
         vm.description = '';
         vm.currency = {
@@ -79,19 +81,14 @@
         });
 
         function getSpeciality() {
-            vm.specialities = [];
-                    $scope.modal.show();
+            $scope.modal.show();
         }
-        vm.spec_selected_id = [];
         function selectItem(spec) {
-            var icon = document.querySelector('.item-spec');
             if(spec.checked === true){
-                icon.classList.add('red')
                 vm.spec_selected_id.push(spec.id);
             } else if(spec.checked === false){
-                var spec_id = vm.spec_selected_id.indexOf(spec.id)
-                vm.spec_selected_id.splice(spec_id, 1)
-                icon.classList.remove('red')
+                let spec_id = vm.spec_selected_id.indexOf(spec.id)
+                vm.spec_selected_id.splice(spec_id, 1);
             }
             console.log(vm.spec_selected_id)
         }

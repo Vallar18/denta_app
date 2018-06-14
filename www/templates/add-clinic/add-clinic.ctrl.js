@@ -21,6 +21,7 @@
         }
 
         function checkClinicPhone() {
+            console.log('alksjh')
             if(validPhone()){
                 vm.clinic.phone = '380' + vm.phone;
                 let send = {
