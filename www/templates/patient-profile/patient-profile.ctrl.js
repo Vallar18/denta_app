@@ -3,11 +3,11 @@
 
     angular
         .module('app')
-        .controller('ProfileCtrl', ProfileCtrl);
+        .controller('PatientProfileCtrl', PatientProfileCtrl);
 
-    ProfileCtrl.$inject = [];
+    PatientProfileCtrl.$inject = [];
 
-    function ProfileCtrl() {
+    function PatientProfileCtrl() {
 
         var vm = this;
 

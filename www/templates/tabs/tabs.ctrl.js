@@ -5,58 +5,28 @@
         .module('app')
         .controller('TabsController', TabsController);
 
-    TabsController.$inject = ['$state', '$localStorage', '$ionicHistory','$cordovaSocialSharing','$ionicPlatform'];
+    TabsController.$inject = ['$state', '$localStorage', '$ionicHistory', '$cordovaSocialSharing', '$ionicPlatform', 'tabsSvc'];
 
-    function TabsController($state, $localStorage, $ionicHistory,$cordovaSocialSharing,$ionicPlatform) {
+    function TabsController($state, $localStorage, $ionicHistory, $cordovaSocialSharing, $ionicPlatform, tabsSvc) {
 
         var vm = this;
         vm.toggleMenu = toggleMenu;
         vm.selectingItem = selectingItem;
+        vm.currentUserType = 'patient';
         vm.menuModel = {
             isShow: false,
             items: [],
             model: undefined
         };
         vm.tabsModel = {
-            isShowMenu: true
+            isShowMenu: vm.currentUserType === 'dentist',
+            items: []
         };
 
         init();
-
         function init() {
-            vm.menuModel.items = getMenuItems();
-        }
-
-        function getMenuItems() {
-            return [{
-                id: 5,
-                name: 'Terms Of Use',
-                view: 'terms'
-            }, {
-                id: 6,
-                name: 'Privacy Police',
-                view: 'privacy'
-            }, {
-                id: 4,
-                name: 'About',
-                view: 'about'
-            }, {
-                id: 7,
-                name: 'Log out',
-                act: 'logout'
-            }, {
-                id: 1,
-                name: 'Need a dentist',
-                view: 'need-dentist'
-            }, {
-                id: 2,
-                name: 'My treatments',
-                view: 'my-treatments'
-            }, {
-                id: 3,
-                name: 'Share with friends',
-                act: 'share'
-            }];
+            vm.menuModel.items = tabsSvc.getMenuItems(vm.currentUserType);
+            vm.tabsModel.items = tabsSvc.getTabItems(vm.currentUserType);
         }
 
         function toggleMenu() {

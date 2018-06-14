@@ -15,18 +15,34 @@
     <div class="item-block-content">
         <div class="block-content">
             <ion-list class="spec-list">
-                    <ion-checkbox class="item-spec"
-                                  ng-repeat="item in vm.specialities"
-                                  ng-model="item.checked"
-                                  ng-checked="item.checked"
-                                  ng-click="vm.selectItem(item)">
+
+                <div ng-repeat="item in vm.specialities"
+                     style="position: relative;"
+                     ng-click="vm.selectItem(item)">
+                    <label>
+                        <i class=""
+                           style="position: absolute; left:0;"
+                           ng-class="{'icon icon ion-star':item.checked,
+                               'icon icon ion-compass':!item.checked}"></i>
+                        <input type="checkbox"
+                               style="display: none"
+                               ng-model="item.checked"
+                               ng-checked="item.checked">
                         {{item.name}}
-                    </ion-checkbox>
+                    </label>
+                </div>
+                <!--<ion-checkbox class="item-spec"-->
+                <!--ng-repeat="item in vm.specialities"-->
+                <!--ng-model="item.checked"-->
+                <!--ng-checked="item.checked"-->
+                <!--ng-click="vm.selectItem(item)">-->
+                <!--{{item.name}}-->
+                <!--</ion-checkbox>-->
             </ion-list>
             <button class="send-button" ng-click="vm.saveModal()">Save</button>
             <!--<ion-infinite-scroll-->
-                    <!--on-infinite="loadMore()"-->
-                    <!--distance="1%">-->
+            <!--on-infinite="loadMore()"-->
+            <!--distance="1%">-->
             <!--</ion-infinite-scroll>-->
         </div>
     </div>

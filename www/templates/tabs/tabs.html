@@ -2,12 +2,10 @@
     <ion-nav-view></ion-nav-view>
     <ion-tabs class="tabs-stable tabs-icon-bottom tabs-custom"
               ng-class="{ 'tabs-custom__menu': vm.tabsModel.isShowMenu,
-                           'tabs-custom__menu--open' : vm.menuModel.isShow }">
-        <ion-tab title="Help" ui-sref='tabs.help'>
-        </ion-tab>
-        <ion-tab title="Profile" ui-sref='tabs.profile'>
-        </ion-tab>
-        <ion-tab title="History" ui-sref='tabs.history'>
+                          'tabs-custom__menu--open' : vm.menuModel.isShow }">
+        <ion-tab ng-repeat="tab in vm.tabsModel.items | orderBy:'id' track by $index"
+                 title='{{::tab.title}}'
+                 ui-sref='{{::tab.view}}'>
         </ion-tab>
         <ion-tab title="" icon-on="ion-more"
                  ng-click="vm.toggleMenu()"

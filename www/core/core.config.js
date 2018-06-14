@@ -116,12 +116,17 @@
                 controllerAs: 'vm'
 
             })
-            .state('tabs.profile', {
+            .state('tabs.patient-profile', {
                 url: '/profile',
-                templateUrl: 'templates/profile/profile.html',
-                controller: 'ProfileCtrl',
+                templateUrl: 'templates/patient-profile/patient-profile.html',
+                controller: 'PatientProfileCtrl',
                 controllerAs: 'vm'
-
+            })
+            .state('tabs.dentist-profile', {
+                url: '/profile',
+                templateUrl: 'templates/dentist-profile/dentist-profile.html',
+                controller: 'DentistProfileCtrl',
+                controllerAs: 'vm'
             })
             .state('about', {
                 url: '/about',

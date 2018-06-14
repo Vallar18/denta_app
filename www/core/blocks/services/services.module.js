@@ -8,6 +8,7 @@
         'service.userSvc',
         'service.regSvc',
         'service.messagesSvc',
-        'service.fileSvc'
+        'service.fileSvc',
+        'service.tabsSvc',
     ]);
 })();

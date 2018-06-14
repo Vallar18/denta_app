@@ -29,7 +29,7 @@
                 function addListenerClick() {
                     $document.on('click', function (e) {
                         if (element !== e.target && !element[0].contains(e.target)) {
-                            scope.$applyAsync(function(){
+                            scope.$applyAsync(function () {
                                 scope.isShow = false;
                             });
                         }
