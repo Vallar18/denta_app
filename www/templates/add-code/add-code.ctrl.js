@@ -42,16 +42,10 @@
                         }
                     }
                 }, function (err) {
-                    var err_text = '';
-                    angular.forEach(err, function (val, key) {
-                        if (angular.isArray(val)){
-                            err_text += val.reduce(function (acc, current) {
-                                return acc + '\n' + current;
-                            }, '');
-                        }
-                    });
-                    if(err_text.length){
-                        toastr.error(err_text);
+                    if(err.phone && angular.isArray(err.phone)){
+                        toastr.error(err.phone.reduce(function (acc, current) {
+                            return acc + '\n' + current;
+                        }, ''))
                     }
                 });
             } else {

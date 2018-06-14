@@ -61,8 +61,6 @@
         function requestSuccess(response) {
             $rootScope.loading = false;
             let defer = $q.defer();
-            // console.clear();
-            // console.info('response', url, response);
             $ionicLoading.hide();
             if (response.data.error) {
                 // toastr.error(response.data.error);

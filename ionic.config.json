@@ -7,13 +7,12 @@
     "cordova": {}
   },
   "watchPatterns": [
-    "scss/**/*",
-    "www/**/*",
     "!www/lib/**/*",
-    "!www/**/*.map"
-  ],
-  "gulp": {
-    "file": "D:\\OpenServer\\domains\\denta_app\\denta_app\\gulpfile.js",
-    "enabled": true
-  }
+    "!www/**/*.map",
+    "scss/ionic.app.scss",
+    "www/**/*.html",
+    "www/**/*.js",
+    "www/content/css/style.min.css"
+  ]
+
 }

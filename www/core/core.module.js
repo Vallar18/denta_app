@@ -12,7 +12,8 @@
         'ngAria',
         'ngMaterial',
         'pascalprecht.translate',
-        'ngFileUpload'
+        'ngFileUpload',
+        'ngImgCrop'
     ]);
 
 
