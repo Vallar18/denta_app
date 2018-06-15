@@ -1,0 +1,17 @@
+<div class="code-select">
+    <ion-content>
+        <div class="title-popup">Select country</div>
+        <div class="search-block">
+            <input type="search" placeholder="Search" ng-model="test">
+            <button name="search" ng-click="vm.searchCode()" class="search-btn">
+                <img src="content/img/search.svg" alt="">
+            </button>
+        </div>
+        <ion-list>
+            <ion-item ng-repeat="code in vm.codes | filter : test" ng-click="vm.selectCode(code);">
+                <span>{{code.name}}</span>
+                <span>{{code.code}}</span>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</div>
