@@ -49,13 +49,13 @@
         }
       }
       .select-currency {
-        background: transparent;
+        background: 0 0;
         font-size: 12px;
-        border: 1px solid $input-border;
-        color: $input-text;
+        border: 1px solid #94a4c0;
+        color: #76869f;
         border-radius: 17vh;
-        width: 40%;
-        height: 4vh;
+        width: 45%;
+        height: 2.5vh;
       }
     }
 

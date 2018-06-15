@@ -9,8 +9,8 @@
   font-weight: normal;
   font-style: normal;
 }
-/*
-@font-face {
+
+/*@font-face {
   font-family:'Microsoft JhengHei';
   src: url('../../content/fonts/Microsoft JhengHei.eot');
   src: url('../../content/fonts/Microsoft JhengHei.eot?#iefix') format('embedded-opentype'),
@@ -120,8 +120,8 @@ a {
       position: relative;
       .top-icon {
         position: absolute;
-        width: 15vw;
-        height: 15vw;
+        width: 13vw;
+        height: 13vw;
         top: 0;
         left: 50%;
         transform: translate(-50%,-50%);
