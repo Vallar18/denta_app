@@ -89,7 +89,7 @@
                 resolve: {
                     codes: function (regSvc) {
                         return regSvc.getCodes().then(function (res) {
-                            return res;
+                                return res;
                         });
                     }
                 }

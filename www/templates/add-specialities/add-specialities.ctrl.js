@@ -16,6 +16,7 @@
         vm.selectItem = selectItem;
         vm.getSelectCurrency = getSelectCurrency;
         vm.selectCurrency = selectCurrency;
+        // vm.closeModal = closeModal;
         vm.user = $localStorage.user;
         vm.role = $localStorage.role;
         vm.specialities = spec;
@@ -90,8 +91,8 @@
                 let spec_id = vm.spec_selected_id.indexOf(spec.id)
                 vm.spec_selected_id.splice(spec_id, 1);
             }
-            vm.len_spec = vm.spec_selected_id.length;
-        }
+            vm.len_spec = vm.spec_selected_id.length
+        };
         function saveModal() {
             if (vm.spec_selected_id && vm.len_spec){
                 $scope.modal.hide();
@@ -121,6 +122,9 @@
             vm.select_currency = currency;
             vm.currencyPopup.close();
         }
+        // function closeModal() {
+        //     vm.currencyPopup.close();
+        // }
     }
 
 })();
