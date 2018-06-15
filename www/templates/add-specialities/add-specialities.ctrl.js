@@ -5,26 +5,25 @@
         .module('app')
         .controller('AddSpecialitiesCtrl', AddSpecialitiesCtrl);
 
-    AddSpecialitiesCtrl.$inject = ['$scope', '$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc', '$ionicModal', 'spec', 'currency'];
+    AddSpecialitiesCtrl.$inject = ['$scope', '$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc', '$ionicModal', 'spec', 'currencies', '$ionicPopup'];
 
-    function AddSpecialitiesCtrl($scope, $state, regSvc, toastr, $localStorage, messagesSvc, $ionicModal, spec, currency) {
+    function AddSpecialitiesCtrl($scope, $state, regSvc, toastr, $localStorage, messagesSvc, $ionicModal, spec, currencies, $ionicPopup) {
         const vm = this;
         vm.send = send;
         vm.getCurrency = getCurrency;
         vm.getSpeciality = getSpeciality;
         vm.saveModal = saveModal;
         vm.selectItem = selectItem;
+        vm.getSelectCurrency = getSelectCurrency;
+        vm.selectCurrency = selectCurrency;
         vm.user = $localStorage.user;
         vm.role = $localStorage.role;
         vm.specialities = spec;
-        vm.currency = currency;
+        vm.currencies = currencies;
+        vm.select_currency = vm.currencies[221];
         vm.spec_selected_id = [];
         vm.price = '';
         vm.description = '';
-        vm.currency = {
-            text: 'US Dollar - USD',
-            id: 1
-        };
 
         function send() {
             if(validation()){
@@ -110,6 +109,17 @@
             } else {
                 return true;
             }
+        }
+        function getSelectCurrency() {
+            $scope.data = {};
+            vm.currencyPopup = $ionicPopup.show({
+                templateUrl: 'components/select-currency/select-currency.html',
+                scope: $scope,
+            });
+        }
+        function selectCurrency(currency) {
+            vm.select_currency = currency;
+            vm.currencyPopup.close();
         }
     }
 

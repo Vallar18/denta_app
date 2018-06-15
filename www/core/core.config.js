@@ -85,7 +85,14 @@
                 url: '/add-clinic',
                 templateUrl: 'templates/add-clinic/add-clinic.html',
                 controller: 'AddClinicCtrl',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: {
+                    codes: function (regSvc) {
+                        return regSvc.getCodes().then(function (res) {
+                            return res;
+                        });
+                    }
+                }
             })
             .state('add-specialities', {
                 url: '/add-specialities',
@@ -98,7 +105,7 @@
                                 return res;
                             });
                     },
-                    currency: function (regSvc) {
+                    currencies: function (regSvc) {
                         return regSvc.getCurrency().then(function (res) {
                             return res;
                         });

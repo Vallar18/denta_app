@@ -8,18 +8,13 @@
   .item-input {
     width: 80%;
   }
-
-  .search-btn {
-    border: none;
-    background: none;
-    width: 20%;
-    padding-left: 0;
-    padding-right: 5%;
-    img {
-      width: 100%;
-    }
+  .add-clinic-block {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
   }
-
   .map-marker {
     background: none;
     width: 10%;

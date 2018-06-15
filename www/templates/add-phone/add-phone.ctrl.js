@@ -50,8 +50,8 @@
         function validPhone() {
             if(vm.phone !== ''){
                 vm.sum_phone = vm.select_code + vm.phone;
-                let phoneLength = vm.sum_phone.toString().length;
-                if(phoneLength > 5 && phoneLength < 12){
+                vm.len_phone = vm.sum_phone.toString().length;
+                if(vm.len_phone> 5 && vm.len_phone< 12){
                     return true;
                 } else {
                     return false;
@@ -67,7 +67,6 @@
         }
         function selectCode(code) {
             vm.select_code = code.code;
-            console.log(vm.select_code)
             vm.codePopup.close();
         }
     }

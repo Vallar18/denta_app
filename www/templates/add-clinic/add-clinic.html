@@ -11,24 +11,26 @@
         <div class="item-block-content">
             <div class="block-content">
                 <div class="input-block">
-                    <button class="button select-button" ng-click="vm.selectNumberCode()">
-                        380
+                    <button class="button select-button" ng-click="vm.getSelectCode()">
+                        {{vm.select_code}}
                     </button>
                     <label class="item item-input">
-                        <input type="number" placeholder="Clinic phone number" ng-model="vm.clinic.phone">
+                        <input type="number" placeholder="Enter your phone number" ng-model="vm.phone">
                     </label>
-                    <!--<i class="ion-ios-search" name="search" ng-click="vm.checkClinicPhone()"></i>-->
                 </div>
-                <label class="item item-input">
-                    <input class="text-center" type="text" placeholder="Clinic name" ng-model="vm.clinic.name">
-                </label>
-                <label class="item item-input">
-                    <button class="map-marker">
-                        <img src="content/img/marker.png" alt="">
-                    </button>
-                    <input class="text-center" type="text" placeholder="Clinic Address" ng-model="vm.clinic.address">
-                </label>
-                <button class="send-button" ng-click="vm.next()">Next</button>
+                <div class="add-clinic-block" ng-if="vm.len_phone">
+                    <label class="item item-input">
+                        <input class="text-center" type="text" placeholder="Clinic name" ng-model="vm.clinic.name">
+                    </label>
+                    <label class="item item-input">
+                        <button class="map-marker">
+                            <img src="content/img/marker.png" alt="">
+                        </button>
+                        <input class="text-center" type="text" placeholder="Clinic Address" ng-model="vm.clinic.address">
+                    </label>
+                    <button class="send-button" ng-click="vm.send()">Send</button>
+                </div>
+                <button class="send-button" ng-if="!vm.len_phone" ng-click="vm.checkClinicPhone()">Next</button>
             </div>
         </div>
     </ion-content>
