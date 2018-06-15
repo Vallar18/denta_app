@@ -1,0 +1,17 @@
+<div class="select-currency">
+    <ion-content>
+        <div class="title-popup">Select currency</div>
+        <div class="search-block">
+            <input type="search" placeholder="Search" ng-model="name">
+            <button name="search" class="search-btn">
+                <img src="content/img/search.svg" alt="">
+            </button>
+        </div>
+        <ion-list>
+            <ion-item ng-repeat="currency in vm.currencies | filter : name" ng-click="vm.selectCurrency(currency);">
+                <span>{{currency.country}}</span>
+                <span>{{currency.name}}</span>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</div>
