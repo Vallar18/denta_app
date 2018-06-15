@@ -6,7 +6,7 @@
             <div class="steps-item active-step"><span>3</span></div>
         </div>
         <div class="img-wrap">
-            <p>Add specialities</p>
+            <p>Aff specialities</p>
             <div class="img-outer">
                 <img src="content/img/border.svg">
             </div>
@@ -17,11 +17,18 @@
             <ion-list class="spec-list">
                 <div  ng-repeat="item in vm.specialities" style="position: relative;"
                       ng-click="vm.selectItem(item)">
-                    <i class=""
-                       style="position: absolute; left:0;"
-                       ng-class="{'icon icon ion-star':item.checked,
-                               'icon icon ion-compass':!item.checked}"></i>
-                    <label>
+                    <!--<i class=""-->
+                       <!--style="position: absolute; left:0;"-->
+                       <!--ng-class="{'icon icon ion-star':item.checked,-->
+                               <!--'icon icon ion-compass':!item.checked}"></i>-->
+                    <!---->
+                    <label layout="row" layout-align="start center">
+                        <div ng-if="item.checked" class="spec-check">
+                            <img src="content/img/checked-icon.png" alt="">
+                        </div>
+                        <div ng-if="!item.checked" class="spec-check">
+                            <img src="content/img/unchecked-icon.png" alt="">
+                        </div>
                         <input type="checkbox"
                                style="opacity: 0"
                                ng-model="item.checked"
