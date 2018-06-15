@@ -32,7 +32,7 @@
                     vm.data = {
                         user_id: vm.user.id,
                         role: vm.role,
-                        currency_id: vm.currency.id,
+                        currency_id: vm.select_currency.id,
                         specialty_id: vm.spec_selected_id,
                         description: vm.description,
                         price: vm.price,

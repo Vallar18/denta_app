@@ -18,7 +18,7 @@
                         <input type="number" placeholder="Enter your phone number" ng-model="vm.phone">
                     </label>
                 </div>
-                <div class="add-clinic-block" ng-if="vm.len_phone">
+                <div class="add-clinic-block" ng-if="vm.show_clinic">
                     <label class="item item-input">
                         <input class="text-center" type="text" placeholder="Clinic name" ng-model="vm.clinic.name">
                     </label>
@@ -30,7 +30,7 @@
                     </label>
                     <button class="send-button" ng-click="vm.send()">Send</button>
                 </div>
-                <button class="send-button" ng-if="!vm.len_phone" ng-click="vm.checkClinicPhone()">Next</button>
+                <button class="send-button" ng-if="!vm.show_clinic" ng-click="vm.checkClinicPhone()">Next</button>
             </div>
         </div>
     </ion-content>

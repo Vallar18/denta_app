@@ -51,7 +51,7 @@
             if(vm.phone !== ''){
                 vm.sum_phone = vm.select_code + vm.phone;
                 vm.len_phone = vm.sum_phone.toString().length;
-                if(vm.len_phone> 5 && vm.len_phone< 12){
+                if(vm.len_phone> 8 && vm.len_phone< 20){
                     return true;
                 } else {
                     return false;

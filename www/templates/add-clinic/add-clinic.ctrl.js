@@ -13,6 +13,7 @@
         vm.send = send;
         vm.getSelectCode = getSelectCode;
         vm.selectCode = selectCode;
+        vm.validPhone = validPhone;
         vm.codes = codes;
         vm.select_code = vm.codes[235].code;
         vm.user = $localStorage.user;
@@ -25,14 +26,14 @@
         }
 
         function checkClinicPhone() {
-            console.log('alksjh')
             if(validPhone()){
                 let send = {
                     phone: vm.clinic.phone
                 };
                 regSvc.sendClinicPhone(send).then(function (data) {
                     if(data.success) {
-                        toastr.success(data.message);
+                        toastr.success(messagesSvc.error.selectClinicName);
+                        console.log(data.data[0])
                     } else {
                         if(data.message){
                             toastr.error(data.message)
@@ -51,7 +52,7 @@
                                 $state.go('add-specialities')
                             }
                         });
-                        vm.clinc.name = '';
+                        vm.clinic.name = '';
                         vm.clinic.address = '';
                         vm.phone = '';
 
@@ -78,22 +79,27 @@
 
         function validPhone() {
             if(vm.phone !== ''){
+                // vm.code = vm.select_code.toString().slice(1);
                 vm.clinic.phone = vm.select_code + vm.phone;
-                vm.len_phone = vm.clinic.phone.toString().length;
-                if( vm.len_phone > 5 &&  vm.len_phone < 12){
+                vm.len_phone = vm.clinic.phone.length;
+                if( vm.len_phone > 8 &&  vm.len_phone < 20  ){
+                    vm.show_clinic = true;
                     return true;
                 } else {
-                    toastr.error(messagesSvc.error.invalidPhone)
+                    toastr.error(messagesSvc.error.invalidPhone);
+                    vm.show_clinic = false;
                     return false;
                 }
             }
         }
         function validation() {
-            if (vm.clinic.name === '' || vm.clinic.address === ''){
-                toastr.error(messagesSvc.error.emptyField);
-                return false;
-            } else {
-                return true;
+            if(validPhone()){
+                if (vm.clinic.name === '' || vm.clinic.address === ''){
+                    toastr.error(messagesSvc.error.emptyField);
+                    return false;
+                } else {
+                    return true;
+                }
             }
         }
         function getSelectCode() {

@@ -7,12 +7,9 @@
     "cordova": {}
   },
   "watchPatterns": [
+    "scss/**/*",
+    "www/**/*",
     "!www/lib/**/*",
-    "!www/**/*.map",
-    "scss/ionic.app.scss",
-    "www/**/*.html",
-    "www/**/*.js",
-    "www/content/css/style.min.css"
+    "!www/**/*.map"
   ]
-
 }
