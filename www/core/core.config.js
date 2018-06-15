@@ -165,6 +165,13 @@
                 controllerAs: 'vm'
             })
 
+            .state('send-review', {
+                url: '/send-review',
+                templateUrl: 'templates/send-review/send-review.html',
+                controller: 'SendReviewCtrl',
+                controllerAs: 'vm'
+            })
+
         //
     }
 })();

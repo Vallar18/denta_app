@@ -395,16 +395,16 @@ a {
 }
 
 .modal {
-  display: block;
-  position: absolute;
-  left: 20px !important;
-  right: 20px !important;
-  bottom: 20% !important;
-  z-index: 10 !important;
-  width: auto !important;
-  min-height: initial !important;
-  overflow: hidden;
-  background-color: #fff;
+  //display: block;
+  //position: absolute;
+  //left: 20px !important;
+  //right: 20px !important;
+  //bottom: 20% !important;
+  //z-index: 10 !important;
+  //width: auto !important;
+  //min-height: initial !important;
+  //overflow: hidden;
+  //background-color: #fff;
 }
 .modal-backdrop.active {
   background-color: rgba(0, 0, 0, 0.5) !important;

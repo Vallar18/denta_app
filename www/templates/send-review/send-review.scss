@@ -1,0 +1,38 @@
+.send-review {
+  background-color: $second-color-light;
+
+  &__main {
+    margin-top: 20vh;
+    background-color: $background-color;
+  }
+  &__content {
+    background-color: $background-color;
+    font-size: 0.9rem;
+    padding:0 10% 10% 10%;
+  }
+
+  &__item {
+    padding: 0 0 15px 0;
+    &-title {
+      text-align: center;
+      color: $text-default-color;
+    }
+    &-rating {
+      text-align: center;
+      i {
+        margin:0 5px;
+      }
+    }
+
+  }
+
+  &__price {
+
+  }
+
+  &__comment {
+
+  }
+
+
+}
