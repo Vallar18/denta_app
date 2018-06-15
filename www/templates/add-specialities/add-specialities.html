@@ -20,10 +20,14 @@
             <div class="block-content">
                 <div class="select-price-block">
                     <input type="number" class="input-price" placeholder="Emergency price" ng-model="vm.price">
-                    <button type="button" class="select-currency" ng-click="vm.getCurrency()">{{vm.currency.text}}</button>
+                    <button type="button" class="select-currency" ng-click="vm.getSelectCurrency()">{{vm.select_currency.name}}</button>
                 </div>
                  <button class="gray-btn" ng-click="vm.getSpeciality()">Edit spesialties</button>
-                <textarea name="" id="specialities-textarea" ng-model="vm.description"></textarea>
+                <p ng-if="vm.len_spec">{{vm.len_spec}} selected</p>
+                <div class="description">
+                     <textarea rows="4" ng-model="vm.description" maxlength="250"></textarea>
+                     <span>{{(vm.description.length ? vm.description.length: 0)+'/'+250 }}</span>
+                </div>
                 <button class="send-button" ng-click="vm.send()">Done</button>
             </div>
         </div>

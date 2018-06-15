@@ -5,36 +5,37 @@
         .module('app')
         .controller('AddPhoneCtrl', AddPhoneCtrl);
 
-    AddPhoneCtrl.$inject = ['$scope', '$state', '$localStorage', 'regSvc', 'toastr', 'messagesSvc', '$ionicPopup'];
+    AddPhoneCtrl.$inject = ['$scope', '$state', '$localStorage', 'regSvc', 'toastr', 'messagesSvc', '$ionicPopup', 'codes'];
 
-    function AddPhoneCtrl($scope, $state, $localStorage, regSvc, toastr, messagesSvc, $ionicPopup) {
+    function AddPhoneCtrl($scope, $state, $localStorage, regSvc, toastr, messagesSvc, $ionicPopup, codes) {
         const vm = this;
         vm.send = send;
-        vm.selectNumberCode = selectNumberCode;
+        vm.getSelectCode = getSelectCode;
+        vm.selectCode = selectCode;
+        vm.codes = codes;
+        vm.select_code = vm.codes[235].code;
         vm.phone = '';
         vm.content = {
             val1: 'You will receive sms with code',
             val3: 'get me in',
-            val4: '380',
             valBtn: 'Send'
         }
 
         function send() {
             if(validPhone()){
-                let phone = vm.content.val4 + vm.phone;
                 let send = {
-                    phone: phone
+                    phone: vm.sum_phone
                 };
                 regSvc.sendPhone(send).then(function (data) {
                     if(data.success) {
-                        console.log(data.data)
+                        console.log(data.data);
                         toastr.success(data.message, '', {
                             onHidden: function () {
                                 $state.go('add-code');
                             }
                         });
                         $localStorage.valView = false;
-                        $localStorage.phone = phone;
+                        $localStorage.phone = vm.sum_phone;
                         vm.phone = '';
                     }else {
                         if(data.message){
@@ -48,35 +49,25 @@
         }
         function validPhone() {
             if(vm.phone !== ''){
-                let phoneLength = vm.phone.toString().length;
-                if(phoneLength > 5 && phoneLength < 12){
+                vm.sum_phone = vm.select_code + vm.phone;
+                vm.len_phone = vm.sum_phone.toString().length;
+                if(vm.len_phone> 5 && vm.len_phone< 12){
                     return true;
                 } else {
                     return false;
                 }
             }
         }
-        function selectNumberCode() {
+        function getSelectCode() {
             $scope.data = {};
-            $ionicPopup.show({
-                template: '<input type="search" class="input-search" ng-model="vm.search">',
-                title: 'Select country',
+            vm.codePopup = $ionicPopup.show({
+                templateUrl: 'components/code-select/code-select.html',
                 scope: $scope,
-                buttons: [
-                    {
-                        text: '<b>Save</b>',
-                        type: 'button-positive',
-                        onTap: function (e) {
-                            if (!$scope.data.wifi) {
-                                //don't allow the user to close unless he enters wifi password
-                                e.preventDefault();
-                            } else {
-                                return $scope.data.wifi;
-                            }
-                        }
-                    }
-                ]
             });
+        }
+        function selectCode(code) {
+            vm.select_code = code.code;
+            vm.codePopup.close();
         }
     }
 

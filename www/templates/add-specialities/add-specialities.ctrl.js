@@ -5,23 +5,26 @@
         .module('app')
         .controller('AddSpecialitiesCtrl', AddSpecialitiesCtrl);
 
-    AddSpecialitiesCtrl.$inject = ['$scope', '$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc', '$ionicModal'];
+    AddSpecialitiesCtrl.$inject = ['$scope', '$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc', '$ionicModal', 'spec', 'currencies', '$ionicPopup'];
 
-    function AddSpecialitiesCtrl($scope, $state, regSvc, toastr, $localStorage, messagesSvc, $ionicModal) {
+    function AddSpecialitiesCtrl($scope, $state, regSvc, toastr, $localStorage, messagesSvc, $ionicModal, spec, currencies, $ionicPopup) {
         const vm = this;
         vm.send = send;
         vm.getCurrency = getCurrency;
         vm.getSpeciality = getSpeciality;
         vm.saveModal = saveModal;
         vm.selectItem = selectItem;
+        vm.getSelectCurrency = getSelectCurrency;
+        vm.selectCurrency = selectCurrency;
+        // vm.closeModal = closeModal;
         vm.user = $localStorage.user;
         vm.role = $localStorage.role;
+        vm.specialities = spec;
+        vm.currencies = currencies;
+        vm.select_currency = vm.currencies[221];
+        vm.spec_selected_id = [];
         vm.price = '';
         vm.description = '';
-        vm.currency = {
-            text: 'US Dollar - USD',
-            id: 1
-        };
 
         function send() {
             if(validation()){
@@ -71,7 +74,7 @@
                 id: 2
             };
         }
-        $ionicModal.fromTemplateUrl('components/edit-specialities/edit-specialities.html', {
+        $ionicModal.fromTemplateUrl('components/speciality-select/speciality-select.html', {
             scope: $scope,
             animation: 'slide-in-up'
         }).then(function (modal) {
@@ -79,25 +82,19 @@
         });
 
         function getSpeciality() {
-            vm.specialities = [];
-            regSvc.getSpeciality()
-                .then(function (res) {
-                    vm.specialities = res;
-                    $scope.modal.show();
-            });
+            $scope.modal.show();
         }
-        vm.spec_selected_id = [];
         function selectItem(spec) {
             if(spec.checked === true){
                 vm.spec_selected_id.push(spec.id);
             } else if(spec.checked === false){
-                var spec_id = vm.spec_selected_id.indexOf(spec.id)
-                vm.spec_selected_id.splice(spec_id, 1)
+                let spec_id = vm.spec_selected_id.indexOf(spec.id)
+                vm.spec_selected_id.splice(spec_id, 1);
             }
-            console.log(vm.spec_selected_id)
-        }
+            vm.len_spec = vm.spec_selected_id.length
+        };
         function saveModal() {
-            if (vm.spec_selected_id && vm.spec_selected_id.length){
+            if (vm.spec_selected_id && vm.len_spec){
                 $scope.modal.hide();
             } else {
                 toastr.error(messagesSvc.error.emptySpec);
@@ -107,13 +104,27 @@
             if (vm.price === '' || vm.description === ''){
                 toastr.error(messagesSvc.error.emptyField);
                 return false;
-            } else if(vm.spec_selected_id.length <= 0){
+            } else if(vm.len_spec <= 0){
                 toastr.error(messagesSvc.error.emptySpec);
                 return false;
             } else {
                 return true;
             }
         }
+        function getSelectCurrency() {
+            $scope.data = {};
+            vm.currencyPopup = $ionicPopup.show({
+                templateUrl: 'components/select-currency/select-currency.html',
+                scope: $scope,
+            });
+        }
+        function selectCurrency(currency) {
+            vm.select_currency = currency;
+            vm.currencyPopup.close();
+        }
+        // function closeModal() {
+        //     vm.currencyPopup.close();
+        // }
     }
 
 })();
