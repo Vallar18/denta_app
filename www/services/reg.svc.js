@@ -7,6 +7,7 @@
 
     function regSvc(url, http, toastr) {
         var model = {};
+        model.getCodes = getCodes;
         model.sendPhone = sendPhone;
         model.sendVerify = sendVerify;
         model.sendUser = sendUser;
@@ -15,8 +16,12 @@
         model.addRolePatient = addRolePatient;
         model.addSpeciality = addSpeciality;
         model.getSpeciality = getSpeciality;
+        model.getCurrency = getCurrency;
         return model;
 
+        function getCodes() {
+            return http.get(url.codes);
+        }
         function sendPhone (phone) {
             console.log('phone number:', phone);
             return http.post(url.code.send, phone)
@@ -47,6 +52,9 @@
         }
         function getSpeciality() {
             return http.get(url.specialties)
+        }
+        function getCurrency() {
+            return http.get(url.currencies)
         }
     }
 })();

@@ -5,12 +5,16 @@
         .module('app')
         .controller('AddClinicCtrl', AddClinicCtrl);
 
-    AddClinicCtrl.$inject = ['$state', 'regSvc', 'toastr', 'messagesSvc', '$localStorage'];
+    AddClinicCtrl.$inject = ['$scope', '$state', 'regSvc', 'toastr', 'messagesSvc', '$localStorage', 'codes', '$ionicPopup'];
 
-    function AddClinicCtrl($state, regSvc, toastr, messagesSvc, $localStorage) {
+    function AddClinicCtrl($scope, $state, regSvc, toastr, messagesSvc, $localStorage, codes, $ionicPopup) {
         const vm = this;
         vm.checkClinicPhone = checkClinicPhone;
-        vm.next = next;
+        vm.send = send;
+        vm.getSelectCode = getSelectCode;
+        vm.selectCode = selectCode;
+        vm.codes = codes;
+        vm.select_code = vm.codes[235].code;
         vm.user = $localStorage.user;
         vm.phone = '';
         vm.clinic = {
@@ -23,7 +27,6 @@
         function checkClinicPhone() {
             console.log('alksjh')
             if(validPhone()){
-                vm.clinic.phone = '380' + vm.phone;
                 let send = {
                     phone: vm.clinic.phone
                 };
@@ -39,9 +42,8 @@
             }
         }
 
-        function next() {
+        function send() {
             if(validation()){
-                vm.clinic.phone = '380' + vm.phone;
                 regSvc.createClinic(vm.clinic).then(function (data) {
                     if(data.success) {
                         toastr.success(data.message, '', {
@@ -60,7 +62,7 @@
                     }
                 }, function (err) {
                     var err_text = '';
-                    angular.forEach(err, function (val, key) {
+                    angular.forEach(err, function (val) {
                         if (angular.isArray(val)){
                             err_text += val.reduce(function (acc, current) {
                                 return acc + '\n' + current;
@@ -76,8 +78,9 @@
 
         function validPhone() {
             if(vm.phone !== ''){
-                let phoneLength = vm.phone.toString().length;
-                if(phoneLength > 5 && phoneLength < 12){
+                vm.clinic.phone = vm.select_code + vm.phone;
+                vm.len_phone = vm.clinic.phone.toString().length;
+                if( vm.len_phone > 5 &&  vm.len_phone < 12){
                     return true;
                 } else {
                     toastr.error(messagesSvc.error.invalidPhone)
@@ -86,12 +89,23 @@
             }
         }
         function validation() {
-            if (vm.clinic.name === '' || vm.clinic.address === '' || vm.phone === ''){
+            if (vm.clinic.name === '' || vm.clinic.address === ''){
                 toastr.error(messagesSvc.error.emptyField);
                 return false;
             } else {
                 return true;
             }
+        }
+        function getSelectCode() {
+            $scope.data = {};
+            vm.codePopup = $ionicPopup.show({
+                templateUrl: 'components/code-select/code-select.html',
+                scope: $scope,
+            });
+        }
+        function selectCode(code) {
+            vm.select_code = code.code;
+            vm.codePopup.close();
         }
     }
 

@@ -54,7 +54,14 @@
                 url: '/add-phone',
                 templateUrl: 'templates/add-phone/add-phone.html',
                 controller: 'AddPhoneCtrl',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: {
+                    codes: function (regSvc) {
+                        return regSvc.getCodes().then(function (res) {
+                            return res;
+                        });
+                    }
+                }
             })
             .state('add-code', {
                 url: '/add-code',
@@ -78,7 +85,14 @@
                 url: '/add-clinic',
                 templateUrl: 'templates/add-clinic/add-clinic.html',
                 controller: 'AddClinicCtrl',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: {
+                    codes: function (regSvc) {
+                        return regSvc.getCodes().then(function (res) {
+                                return res;
+                        });
+                    }
+                }
             })
             .state('add-specialities', {
                 url: '/add-specialities',
@@ -90,6 +104,11 @@
                             return regSvc.getSpeciality().then(function (res) {
                                 return res;
                             });
+                    },
+                    currencies: function (regSvc) {
+                        return regSvc.getCurrency().then(function (res) {
+                            return res;
+                        });
                     }
                 }
             })

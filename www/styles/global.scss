@@ -241,12 +241,6 @@ a {
       }
     }
   }
-  textarea {
-    @include inputs-style;
-    width: 70%;
-    height: 9vh;
-    padding: 2%;
-  }
 }
 
 // input
@@ -411,4 +405,10 @@ a {
 }
 .modal-backdrop.active {
   background-color: rgba(0, 0, 0, 0.5) !important;
+}
 }*/
+.popup{
+  width:80%;
+  height: 80%;
+}
+

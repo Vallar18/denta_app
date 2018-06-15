@@ -13,6 +13,7 @@
         var baseUrl = 'http://denta.grassbusinesslabs.tk/api/';
 
         return {
+            codes: baseUrl + 'codes',
             code: {
                 send: baseUrl + 'code/send',
                 verify: baseUrl + 'code/verify'
@@ -25,7 +26,8 @@
                 check: baseUrl + 'clinic/check',
                 create: baseUrl + 'clinic/create'
             },
-            specialties: baseUrl + 'specialties'
+            specialties: baseUrl + 'specialties',
+            currencies: baseUrl + 'currencies'
         };
     }
 })();
