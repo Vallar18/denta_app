@@ -27,7 +27,7 @@
                 },
             ],
             comment: '',
-            price: 0.00,
+            price: null,
             currency: 1
         };
 

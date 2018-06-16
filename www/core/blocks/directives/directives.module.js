@@ -5,5 +5,6 @@
         'directives.starRating',
         'directives.helpItem',
         'directives.reviewItem',
+        'directives.inputChangeColor',
     ]);
 })();
