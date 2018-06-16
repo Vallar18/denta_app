@@ -56,8 +56,8 @@
                 controller: 'AddPhoneCtrl',
                 controllerAs: 'vm',
                 resolve: {
-                    codes: function (regSvc) {
-                        return regSvc.getCodes().then(function (res) {
+                    codes: function (phoneSvc) {
+                        return phoneSvc.getCodes().then(function (res) {
                             return res;
                         });
                     }
@@ -87,8 +87,8 @@
                 controller: 'AddClinicCtrl',
                 controllerAs: 'vm',
                 resolve: {
-                    codes: function (regSvc) {
-                        return regSvc.getCodes().then(function (res) {
+                    codes: function (phoneSvc) {
+                        return phoneSvc.getCodes().then(function (res) {
                                 return res;
                         });
                     }
@@ -105,8 +105,8 @@
                                 return res;
                             });
                     },
-                    currencies: function (regSvc) {
-                        return regSvc.getCurrency().then(function (res) {
+                    currencies: function (currencySvc) {
+                        return currencySvc.getCurrency().then(function (res) {
                             return res;
                         });
                     }

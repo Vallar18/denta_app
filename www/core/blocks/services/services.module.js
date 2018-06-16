@@ -10,5 +10,8 @@
         'service.messagesSvc',
         'service.fileSvc',
         'service.tabsSvc',
+        'service.specSvc',
+        'service.currencySvc',
+        'service.phoneSvc'
     ]);
 })();

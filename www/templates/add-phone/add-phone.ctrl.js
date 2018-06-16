@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddPhoneCtrl', AddPhoneCtrl);
 
-    AddPhoneCtrl.$inject = ['$scope', '$state', '$localStorage', 'regSvc', 'toastr', 'messagesSvc', '$ionicPopup', 'codes'];
+    AddPhoneCtrl.$inject = ['$scope', '$state', '$localStorage', 'regSvc', 'toastr', 'messagesSvc', '$ionicPopup', 'codes','phoneSvc'];
 
-    function AddPhoneCtrl($scope, $state, $localStorage, regSvc, toastr, messagesSvc, $ionicPopup, codes) {
+    function AddPhoneCtrl($scope, $state, $localStorage, regSvc, toastr, messagesSvc, $ionicPopup, codes, phoneSvc) {
         const vm = this;
         vm.send = send;
         vm.getSelectCode = getSelectCode;
@@ -60,10 +60,7 @@
         }
         function getSelectCode() {
             $scope.data = {};
-            vm.codePopup = $ionicPopup.show({
-                templateUrl: 'components/code-select/code-select.html',
-                scope: $scope,
-            });
+            vm.codePopup = phoneSvc.showSelect($scope);
         }
         function selectCode(code) {
             vm.select_code = code.code;

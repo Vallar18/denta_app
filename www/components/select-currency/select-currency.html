@@ -8,9 +8,10 @@
             </button>
         </div>
         <ion-list>
-            <ion-item ng-repeat="currency in vm.currencies | filter : name" ng-click="vm.selectCurrency(currency);">
-                <span>{{currency.country}}</span>
-                <span>{{currency.name}}</span>
+            <ion-item ng-repeat="item in vm.currencyItems | filter : name"
+                      ng-click="vm.selectCurrItem && vm.selectCurrItem(item)">
+                <span>{{item.country}}</span>
+                <span>{{item.name}}</span>
             </ion-item>
         </ion-list>
     </ion-content>

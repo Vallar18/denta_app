@@ -21,13 +21,16 @@
                                 sr-count="5"
                                 sr-model="item.rating"
                                 sr-color="orange"
-                                sr-size="3rem"
+                                sr-size="2.5rem"
                                 sr-enable="true">
                         </star-rating>
                     </div>
                 </div>
                 <div class="send-review__price">
-
+                    <div class="select-price-block">
+                        <input type="number" class="input-price" placeholder="How much did you pay?" ng-model="vm.reviewModel.price">
+                        <button type="button" class="select-currency" ng-click="vm.getSelectCurrency()">{{vm.select_currency.name}}</button>
+                    </div>
                 </div>
                 <div class="send-review__comment">
                     <div style="position:relative;">
