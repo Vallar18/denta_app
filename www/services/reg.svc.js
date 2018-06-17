@@ -3,9 +3,9 @@
 
     angular.module('service.regSvc', []).factory('regSvc', regSvc,);
 
-    regSvc.$inject = ['url', 'http', 'toastr'];
+    regSvc.$inject = ['url', 'http'];
 
-    function regSvc(url, http, toastr) {
+    function regSvc(url, http) {
         var model = {};
         model.sendPhone = sendPhone;
         model.sendVerify = sendVerify;

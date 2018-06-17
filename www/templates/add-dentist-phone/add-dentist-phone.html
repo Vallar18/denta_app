@@ -25,11 +25,12 @@
             </div>
             <form class="block-content">
                 <div class="input-block input-phone">
-                    <button class="button select-button" ng-click="vm.selectNumberCode()">
-                        380
+                    <button class="button select-button" ng-click="vm.getSelectCode()">
+                        {{vm.select_code}}
                     </button>
                     <label class="item item-input">
-                        <input type="number" placeholder="Enter dentist phone number" ng-model="vm.phone">
+                        <input type="number" placeholder="Enter dentist phone number"
+                               ng-model="vm.phone" input-change-color="#000">
                     </label>
                     <button class="phone-icon"><img src="content/img/phone.png" alt=""></button>
                 </div>

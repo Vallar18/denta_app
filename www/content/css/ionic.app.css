@@ -10159,14 +10159,14 @@ textarea {
   color: #76869f;
   padding: 5px; }
 
-.select-code {
+.select-code, .select-currency-popup {
   bottom: auto;
   height: 175vw;
   max-height: 100vh; }
-  .select-code .popup {
+  .select-code .popup, .select-currency-popup .popup {
     width: 78%;
     height: 82%; }
-    .select-code .popup .popup-content {
+    .select-code .popup .popup-content, .select-currency-popup .popup .popup-content {
       margin-top: 40vw;
       background-color: #FFF; }
 
@@ -10316,6 +10316,12 @@ textarea {
 .add-clinic .ion-ios-search:before {
   content: "";
   font-size: 30px;
+  padding-left: 10px; }
+
+.add-clinic .select-block {
+  width: 80%;
+  height: 45px;
+  margin-bottom: 15px;
   padding-left: 10px; }
 
 .add-clinic .item-input {

@@ -5,13 +5,15 @@
         .module('app')
         .controller('AddDentistPhoneCtrl', AddDentistPhoneCtrl);
 
-    AddDentistPhoneCtrl.$inject = ['$state', '$localStorage', 'regSvc', 'codes', 'toastr', 'messagesSvc'];
+    AddDentistPhoneCtrl.$inject = ['$scope', '$state', '$localStorage', 'regSvc', 'phoneSvc', 'codes', 'toastr', 'messagesSvc'];
 
-    function AddDentistPhoneCtrl($state, $localStorage, regSvc, codes, toastr, messagesSvc) {
+    function AddDentistPhoneCtrl($scope, $state, $localStorage, regSvc, phoneSvc, codes, toastr, messagesSvc) {
         const vm = this;
         vm.send = send;
         vm.skipAddPhoneDentist = skipAddPhoneDentist;
         vm.hideOverlay = hideOverlay;
+        vm.getSelectCode = getSelectCode;
+        vm.selectCode = selectCode;
         vm.codes = codes;
         vm.select_code = vm.codes[235].code;
         vm.user = $localStorage.user;
@@ -73,6 +75,14 @@
                     return false;
                 }
             }
+        }
+        function getSelectCode() {
+            $scope.data = {};
+            vm.codePopup = phoneSvc.showSelect($scope);
+        }
+        function selectCode(code) {
+            vm.select_code = code.code;
+            vm.codePopup.close();
         }
     }
 

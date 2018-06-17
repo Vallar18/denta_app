@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddClinicCtrl', AddClinicCtrl);
 
-    AddClinicCtrl.$inject = ['$scope', '$state', 'regSvc', 'toastr', 'messagesSvc', '$localStorage', 'codes', '$ionicPopup'];
+    AddClinicCtrl.$inject = ['$scope', '$state', 'regSvc', 'phoneSvc', 'toastr', 'messagesSvc', '$localStorage', 'codes', '$ionicPopup'];
 
-    function AddClinicCtrl($scope, $state, regSvc, toastr, messagesSvc, $localStorage, codes, $ionicPopup) {
+    function AddClinicCtrl($scope, $state, regSvc, phoneSvc, toastr, messagesSvc, $localStorage, codes, $ionicPopup) {
         const vm = this;
         vm.checkClinicPhone = checkClinicPhone;
         vm.send = send;
@@ -22,10 +22,9 @@
             user_id: vm.user.id,
             name: '',
             phone: '',
-            address: '',
             longitude: 30.5238,
             latitude: 50.45466
-        }
+        };
 
         function checkClinicPhone() {
             if(validPhone()){
@@ -34,14 +33,42 @@
                 };
                 regSvc.sendClinicPhone(send).then(function (data) {
                     if(data.success) {
-                        toastr.success(messagesSvc.error.selectClinicName);
+                        showPopUp();
+                        vm.listClinic = data.data
                         console.log(data.data[0])
                     } else {
                         if(data.message){
-                            toastr.error(data.message)
+                            // toastr.error(data.message)
                         }
                     }
                 });
+            }
+        }
+        function showPopUp() {
+            $ionicPopup.show({
+                title: 'This clinic already exists. <br> Use this data base',
+                scope: $scope,
+                buttons: [
+                    {
+                        text: '<b>Yes</b>',
+                        type: 'button-positive',
+                        onTap: getListClinic
+                    },
+                    { text: 'No' }
+                ]
+            });
+        }
+
+        function getListClinic() {
+            if (vm.listClinic && vm.listClinic.length) {
+                vm.select_clinic = vm.listClinic[0];
+                vm.clinic.name = vm.select_clinic.name;
+                vm.clinic.latitude = vm.select_clinic.latitude;
+                vm.clinic.longitude = vm.select_clinic.longitude;
+                vm.showSelect = true;
+            } else {
+
+                vm.showSelect = false;
             }
         }
 
@@ -64,7 +91,7 @@
                         }
                     }
                 }, function (err) {
-                    var err_text = '';
+                    let err_text = '';
                     angular.forEach(err, function (val) {
                         if (angular.isArray(val)){
                             err_text += val.reduce(function (acc, current) {
@@ -78,10 +105,8 @@
                 });
             }
         }
-
         function validPhone() {
             if(vm.phone !== ''){
-                // vm.code = vm.select_code.toString().slice(1);
                 vm.clinic.phone = vm.select_code + vm.phone;
                 vm.len_phone = vm.clinic.phone.length;
                 if( vm.len_phone > 8 &&  vm.len_phone < 20  ){
@@ -106,10 +131,7 @@
         }
         function getSelectCode() {
             $scope.data = {};
-            vm.codePopup = $ionicPopup.show({
-                templateUrl: 'components/code-select/code-select.html',
-                scope: $scope,
-            });
+            vm.codePopup = phoneSvc.showSelect($scope);
         }
         function selectCode(code) {
             vm.select_code = code.code;

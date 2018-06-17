@@ -10,6 +10,9 @@
                 <p>Let us know you</p>
                 <div class="img-outer">
                     <img src="content/img/border.svg">
+                    <div class="top-icon">
+                        <img src="content/img/add-photo-icon.png" alt="">
+                    </div>
                 </div>
             </div>
         </div>
@@ -20,18 +23,24 @@
                         {{vm.select_code}}
                     </button>
                     <label class="item item-input">
-                        <input type="number" placeholder="Clinic Phone number" ng-model="vm.phone">
+                        <input type="number" placeholder="Clinic Phone number"
+                               ng-model="vm.phone" input-change-color="#000">
                     </label>
                 </div>
                 <div class="add-clinic-block" ng-if="vm.len_phone">
-                    <label class="item item-input">
-                        <input class="text-center" type="text" placeholder="Clinic name" ng-model="vm.clinic.name">
+                    <label class="item item-input" ng-if="!vm.showSelect">
+                        <input class="text-center"  type="text" placeholder="Clinic name"
+                               ng-model="vm.clinic.name" input-change-color="#000">
                     </label>
+                    <select class="text-center select-block" ng-if="vm.listClinic && vm.showSelect" ng-model="vm.select_clinic"
+                            ng-options="item as item.name for item in vm.listClinic track by item.id">
+                    </select>
                     <label class="item item-input">
                         <button class="map-marker">
                             <img src="content/img/marker.png" alt="">
                         </button>
-                        <input class="text-center" type="text" placeholder="Clinic Address" ng-model="vm.clinic.address">
+                        <input class="text-center" type="text" placeholder="Clinic Address"
+                               ng-model="vm.clinic.address" input-change-color="#000">
                     </label>
                     <button class="send-button" ng-click="vm.send()">Send</button>
                 </div>

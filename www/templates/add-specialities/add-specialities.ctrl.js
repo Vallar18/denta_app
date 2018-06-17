@@ -5,7 +5,7 @@
         .module('app')
         .controller('AddSpecialitiesCtrl', AddSpecialitiesCtrl);
 
-    AddSpecialitiesCtrl.$inject = ['$scope', '$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc', '$ionicModal', 'spec', 'currencies', '$ionicPopup'];
+    AddSpecialitiesCtrl.$inject = ['$scope', '$state', 'specSvc', 'toastr', '$localStorage', 'messagesSvc', '$ionicModal', 'spec', 'currencies', '$ionicPopup'];
 
     function AddSpecialitiesCtrl($scope, $state, specSvc, toastr, $localStorage, messagesSvc, $ionicModal, spec, currencies, $ionicPopup) {
         const vm = this;
@@ -54,7 +54,7 @@
                         }
                     }
                 }, function (err) {
-                    var err_text = '';
+                    let err_text = '';
                     angular.forEach(err, function (val, key) {
                         if (angular.isArray(val)){
                             err_text += val.reduce(function (acc, current) {
@@ -116,15 +116,13 @@
             vm.currencyPopup = $ionicPopup.show({
                 templateUrl: 'components/select-currency/select-currency.html',
                 scope: $scope,
+                cssClass: 'select-currency-popup'
             });
         }
         function selectCurrency(currency) {
             vm.select_currency = currency;
             vm.currencyPopup.close();
         }
-        // function closeModal() {
-        //     vm.currencyPopup.close();
-        // }
     }
 
 })();
