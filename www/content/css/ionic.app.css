@@ -10159,14 +10159,14 @@ textarea {
   color: #76869f;
   padding: 5px; }
 
-.popup-container {
+.select-code {
   bottom: auto;
   height: 175vw;
   max-height: 100vh; }
-  .popup-container .popup {
+  .select-code .popup {
     width: 78%;
     height: 82%; }
-    .popup-container .popup .popup-content {
+    .select-code .popup .popup-content {
       margin-top: 40vw;
       background-color: #FFF; }
 
@@ -10487,6 +10487,46 @@ textarea {
     background-color: #FFF;
     font-size: 0.9rem;
     padding: 0 5% 5% 5%; }
+
+.send-review {
+  background-color: #B1C0DA; }
+  .send-review__main {
+    margin-top: 20vh;
+    background-color: #FFF; }
+  .send-review__content {
+    background-color: #FFF;
+    font-size: 0.9rem;
+    padding: 0 10% 10% 10%; }
+  .send-review__item {
+    padding: 0 0 15px 0; }
+    .send-review__item-title {
+      text-align: center;
+      color: #000; }
+    .send-review__item-rating {
+      text-align: center; }
+      .send-review__item-rating i {
+        margin: 0 5px; }
+  .send-review__price .select-price-block {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px; }
+    .send-review__price .select-price-block .input-price {
+      border-bottom: 1px solid #94a4c0;
+      width: 50%;
+      font-size: 12.5px;
+      color: #76869f;
+      height: 25px;
+      text-align: center; }
+      .send-review__price .select-price-block .input-price::-webkit-input-placeholder {
+        color: #76869f; }
+    .send-review__price .select-price-block .select-currency {
+      background: transparent;
+      font-size: 12px;
+      border: 1px solid #94a4c0;
+      color: #76869f;
+      border-radius: 17vh;
+      width: 40%;
+      height: 4vh; }
 
 .edit-spec {
   position: absolute;

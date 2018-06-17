@@ -5,16 +5,18 @@
         .module('app')
         .controller('AddDentistPhoneCtrl', AddDentistPhoneCtrl);
 
-    AddDentistPhoneCtrl.$inject = ['$state', '$localStorage', 'regSvc', 'toastr', 'messagesSvc'];
+    AddDentistPhoneCtrl.$inject = ['$state', '$localStorage', 'regSvc', 'codes', 'toastr', 'messagesSvc'];
 
-    function AddDentistPhoneCtrl($state, $localStorage, regSvc, toastr, messagesSvc) {
+    function AddDentistPhoneCtrl($state, $localStorage, regSvc, codes, toastr, messagesSvc) {
         const vm = this;
         vm.send = send;
         vm.skipAddPhoneDentist = skipAddPhoneDentist;
         vm.hideOverlay = hideOverlay;
+        vm.codes = codes;
+        vm.select_code = vm.codes[235].code;
         vm.user = $localStorage.user;
         vm.role = $localStorage.role;
-        vm.dentist_phone = '';
+        vm.phone = '';
         vm.overlay = true;
 
         function send() {
@@ -22,7 +24,7 @@
                 if (vm.user){
                     vm.data = {
                         user_id: vm.user.id,
-                        dentist_phone: "+380" + vm.dentist_phone,
+                        dentist_phone: vm.sum_phone,
                         role: vm.role
                     };
                 }
@@ -38,7 +40,7 @@
                         $state.go('share')
                     }
                 }, function (err) {
-                    var err_text = '';
+                    let err_text = '';
                     angular.forEach(err, function (val, key) {
                         if (angular.isArray(val)){
                             err_text += val.reduce(function (acc, current) {
@@ -62,8 +64,9 @@
 
         function validPhoneDentist() {
             if (vm.dentist_phone !== '') {
-                let phoneLength = vm.dentist_phone.toString().length;
-                if (phoneLength > 5 && phoneLength < 12) {
+                vm.sum_phone = vm.select_code + vm.phone;
+                vm.len_phone = vm.sum_phone.toString().length;
+                if (vm.len_phone > 8 && vm.len_phone < 20) {
                     return true;
                 } else {
                     toastr.error(messagesSvc.error.invalidPhone)

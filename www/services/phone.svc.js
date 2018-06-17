@@ -27,6 +27,7 @@
             return $ionicPopup.show({
                 templateUrl: 'components/code-select/code-select.html',
                 scope: $scope,
+                cssClass: 'select-code'
             });
         }
     }

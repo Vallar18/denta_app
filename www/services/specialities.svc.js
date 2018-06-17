@@ -2,10 +2,9 @@
     'use strict';
 
     angular.module('service.specSvc', []).factory('specSvc', specSvc);
+    specSvc.$inject = ['http', '$ionicPopup', 'url'];
 
-    specSvc.$inject = ['http','$ionicPopup','url'];
-
-    function specSvc(http,$ionicPopup,url) {
+    function specSvc(http, $ionicPopup, url) {
         var model = {
             addSpeciality : addSpeciality,
             getSpeciality:  getSpeciality

@@ -7,7 +7,7 @@
 
     AddSpecialitiesCtrl.$inject = ['$scope', '$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc', '$ionicModal', 'spec', 'currencies', '$ionicPopup'];
 
-    function AddSpecialitiesCtrl($scope, $state, regSvc, toastr, $localStorage, messagesSvc, $ionicModal, spec, currencies, $ionicPopup) {
+    function AddSpecialitiesCtrl($scope, $state, specSvc, toastr, $localStorage, messagesSvc, $ionicModal, spec, currencies, $ionicPopup) {
         const vm = this;
         vm.send = send;
         vm.getCurrency = getCurrency;

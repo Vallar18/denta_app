@@ -100,8 +100,8 @@
                 controller: 'AddSpecialitiesCtrl',
                 controllerAs: 'vm',
                 resolve: {
-                    spec: function (regSvc) {
-                            return regSvc.getSpeciality().then(function (res) {
+                    spec: function (specSvc) {
+                            return specSvc.getSpeciality().then(function (res) {
                                 return res;
                             });
                     },
@@ -116,7 +116,14 @@
                 url: '/add-dentist-phone',
                 templateUrl: 'templates/add-dentist-phone/add-dentist-phone.html',
                 controller: 'AddDentistPhoneCtrl',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: {
+                    codes: function (phoneSvc) {
+                        return phoneSvc.getCodes().then(function (res) {
+                            return res;
+                        });
+                    }
+                }
             })
             .state('tabs', {
                 cache: false,
