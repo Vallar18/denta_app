@@ -100,8 +100,8 @@
                 controller: 'AddSpecialitiesCtrl',
                 controllerAs: 'vm',
                 resolve: {
-                    spec: function (regSvc) {
-                            return regSvc.getSpeciality().then(function (res) {
+                    spec: function (specSvc) {
+                            return specSvc.getSpeciality().then(function (res) {
                                 return res;
                             });
                     },

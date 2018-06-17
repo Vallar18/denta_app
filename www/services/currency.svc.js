@@ -10,6 +10,7 @@
         let model = {
             getCurrency: getCurrency,
             showSelect: showSelect,
+            getIndexByName: getIndexByName
         };
         return model;
 
@@ -21,6 +22,22 @@
             } else {
                 return http.get(url.currencies);
             }
+        }
+
+        /**
+         * @description Find in currency array item with name === name in parameters, if found - return index;
+         * @param currencyName - name of currency, 'USD'
+         * @param array - optional, array of currency if need, by default use cache array
+         * @returns {number}
+         */
+        function getIndexByName(currencyName,array){
+            if(currencyName){
+                let findArray = angular.isArray(array) ? array : cache;
+                return findArray.findIndex(function(item){
+                    return item.name && item.name === currencyName;
+                })
+            }
+            return 0;
         }
 
         function showSelect($scope) {

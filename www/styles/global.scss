@@ -417,6 +417,7 @@ a {
 }
 
 .textarea-default {
+  padding:0.5rem;
   border: 1px solid $input-border;
   width: 100%;
   display: block;
@@ -426,8 +427,8 @@ a {
   position: relative;
   span {
     position: absolute;
-    bottom: 1%;
-    right: 1%;
+    bottom: 5%;
+    right: 2.5%;
     color: #ddd;
   }
 }
