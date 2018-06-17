@@ -27,6 +27,8 @@
       width: 80%;
       margin: auto;
       text-align: center;
+      position: relative;
+      z-index: 9;
       h1 {
         font-size: 20px;
         color: $input-text;

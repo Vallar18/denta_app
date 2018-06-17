@@ -1,12 +1,15 @@
 <ion-view>
-    <ion-content ng-init="model = 4" class="fdfdg">
-        <h2>help hhh</h2>
+    <ion-content ng-init="model = 4" class="help-content">
+        <!--<h2>help hhh</h2>-->
         <!--<star-rating    sr-count="5"-->
         <!--sr-model="4"-->
         <!--sr-size=""-->
         <!--sr-color="black"-->
         <!--sr-enable="false"></star-rating>-->
-        <star-rating sr-count="5"
+
+
+        <!--its me-->
+        <!--<star-rating sr-count="5"
                      sr-model="model"
                      sr-size="48px"
                      sr-color="#FEC515"
@@ -30,10 +33,10 @@
 
         <button ng-click="vm.selectAvatar()">Test select avatar</button>
 
-        <a href="tel:+380664421273">Phone</a>
+        <a href="tel:+380664421273">Phone</a>-->
 
         <!--example of counter-->
-        <div style="position:relative;">
+        <!--<div style="position:relative;">
             <textarea rows="4" ng-init="textModel = { text :'', maxLength: 250 }"
                       ng-model="textModel.text"
                       maxlength="{{textModel.maxLength+1}}"
@@ -41,28 +44,51 @@
             <span style="position:absolute;bottom:1%;right:1%; color: #ddd;">
                 {{(textModel.text.length ? textModel.text.length: 0)+'/'+textModel.maxLength }}
             </span>
-        </div>
+        </div>-->
         <!---------------------->
 
+        <div layout="row" layout-align="space-between center" class="white-header">
+            <div class="radio-outer">
+                <div layout="row" layout-align="space-between center" class="radio-wrap" ng-class="{'show': slideOpen}">
+                    <div class="radio-block">
+                        <div layout="row" layout-align="space-around none">
+                            <input type="radio" name="white-header-radio" id="rating">
+                            <label for="rating">Rating</label>
+
+                            <input type="radio" name="white-header-radio" id="distance">
+                            <label for="distance">Distance</label>
+
+                            <input type="radio" name="white-header-radio" id="price">
+                            <label for="price">Price</label>
+                        </div>
+                    </div>
+                    <img src="content/img/options-icon.png"
+                         ng-click="slideOpen = !slideOpen" alt="">
+                </div>
+            </div>
+            <button class="geolocation-btn">
+                <img src="content/img/geolocation-icon.png" alt="">
+            </button>
+        </div>
         <ion-list>
             <ion-item ng-repeat="item in vm.helpArr track by $index">
-                <help-item  hi-distance="item.distance"
-                            hi-doctor="item.doctor"
-                            hi-price="item.price"
-                            hi-type="'simple'"
-                            hi-currency="item.currency"
-                            hi-rating="item.rating"></help-item>
+                <help-item hi-distance="item.distance"
+                           hi-doctor="item.doctor"
+                           hi-price="item.price"
+                           hi-type="'simple'"
+                           hi-currency="item.currency"
+                           hi-rating="item.rating"></help-item>
             </ion-item>
         </ion-list>
 
-        <ion-list>
+        <!--<ion-list>
             <ion-item ng-repeat="item in vm.reviewArr track by $index">
                 <review-item ri-date="item.date"
                             ri-rating="item.rating"
                             ri-name="item.name"
                             ri-text="item.text"></review-item>
             </ion-item>
-        </ion-list>
+        </ion-list>-->
     </ion-content>
 </ion-view>
 

@@ -433,3 +433,94 @@ textarea {
   }
 }
 
+.help-content {
+  .item {
+    border-color: $role-btn-border;
+    &:first-child {
+      border: none;
+    }
+  }
+  .white-header {
+    background: $background-color;
+    padding: 16px;
+    padding-bottom: 0;
+    .radio-outer {
+      width: 80%;
+      .radio-wrap {
+        border: 1px solid $role-btn-border;
+        border-radius: 16vw;
+        display: -ms-inline-flexbox;
+        display: -webkit-inline-flex;
+        display: inline-flex;
+        .radio-block {
+          overflow: hidden;
+          width: 0;
+          height: 0;
+          max-height: 13vw;
+          text-align: center;
+          /* -webkit-transition: ease 0.5s;
+           -moz-transition: ease 0.5s;
+           -ms-transition: ease 0.5s;
+           -o-transition: ease 0.5s;
+           transition: ease 0.5s;*/
+
+          input[type="radio"] {
+            opacity: 0;
+            position: absolute;
+          }
+          label {
+            position: relative;
+            padding-left: 6vw;
+            color: $filters-color;
+            font-size: 3vw;
+            line-height: 2;
+            &:before {
+              content: "";
+              width: 5vw;
+              height: 5vw;
+              border-radius: 50%;
+              position: absolute;
+              border: 2px solid $filters-color;
+              left: 0;
+            }
+            &:after {
+              content: "";
+              width: 3vw;
+              height: 3vw;
+              position: absolute;
+              left: 1vw;
+              border-radius: 50%;
+              top: 1vw;
+              opacity: 0;
+              background-color: $filters-color;
+            }
+          }
+          input[type="radio"]:checked + label:after {
+            opacity: 1;
+          }
+        }
+        img {
+          width: 13vw;
+        }
+        &.show {
+          width: 100%;
+          .radio-block {
+            width: 100%;
+            height: auto;
+          }
+        }
+      }
+    }
+    .geolocation-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      img{
+        width: 13vw;
+      }
+    }
+  }
+}
+
+
+
