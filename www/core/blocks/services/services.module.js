@@ -15,6 +15,7 @@
         'service.phoneSvc',
         'service.profileSvc',
         'service.reviewSvc',
-        'service.helpSvc'
+        'service.helpSvc',
+        'service.utilsSvc'
     ]);
 })();

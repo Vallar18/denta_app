@@ -10,6 +10,7 @@
         let model = {
             getCurrency: getCurrency,
             showSelect: showSelect,
+            getIndexByName: getIndexByName
         };
         return model;
 
@@ -19,8 +20,28 @@
                     resolve(cache);
                 });
             } else {
-                return http.get(url.currencies);
+                return http.get(url.currencies).then(function(res){
+                    cache = res;
+                    return res;
+                });
             }
+        }
+
+        /**
+         * @description Find in currency array item with name === name in parameters, if found - return index;
+         * @param currencyName - name of currency, 'USD'
+         * @param array - optional, array of currency if need, by default use cache array
+         * @returns {number}
+         */
+        function getIndexByName(currencyName,array){
+            if(currencyName){
+                let findArray = angular.isArray(array) ? array : cache;
+                let currNameLwr = currencyName.toLowerCase();
+                return findArray.findIndex(function(item){
+                    return item.name && item.name.toLowerCase() === currNameLwr;
+                })
+            }
+            return 0;
         }
 
         function showSelect($scope) {

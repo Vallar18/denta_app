@@ -20,7 +20,8 @@
                 invalidEmail: 'Please enter the correct email',
                 emptyField: 'Please fill in all fields',
                 emptySpec: 'Please choose a specialty',
-                selectClinicName: 'Please choose a clinic'
+                selectClinicName: 'Please choose a clinic',
+                emptyReview: 'Please write review text'
             },
             success: {
                 test: 'Test'

@@ -14,13 +14,16 @@
         return model;
 
         function getCodes() {
-                if (cache.length) {
-                    return $q.defer(function (resolve, reject) {
-                        resolve(cache);
-                    });
-                } else {
-                    return http.get(url.codes);
-                }
+            if (cache.length) {
+                return $q.defer(function (resolve, reject) {
+                    resolve(cache);
+                });
+            } else {
+                return http.get(url.codes).then(function (res) {
+                    cache = res;
+                    return res;
+                });
+            }
         }
 
         function showSelect($scope){
