@@ -210,7 +210,6 @@
                 controller: 'SendReviewCtrl',
                 controllerAs: 'vm'
             })
-
         //
     }
 })();
