@@ -10512,39 +10512,73 @@ a {
 
 .code-select {
   background: white; }
+  .code-select .header-simple {
+    background: #B2C1DB; }
+  .code-select .title-popup {
+    text-align: center;
+    padding-top: 8vw;
+    font-weight: bold; }
+  .code-select .list .item {
+    border-color: #B2C1DB; }
   .code-select .search-block {
+    padding: 16px;
+    position: absolute;
+    bottom: 0;
     width: 100%;
     height: 50px;
     display: flex;
-    position: fixed;
-    top: 0;
+    bottom: 0;
     z-index: 10; }
+    .code-select .search-block input {
+      background: none; }
     .code-select .search-block .search-btn {
       border: none;
-      background: white; }
+      background: none;
+      top: auto;
+      bottom: 0; }
     .code-select .search-block img {
-      height: 25px; }
+      height: 4vh; }
+    .code-select .search-block .popup {
+      width: 78% !important; }
   .code-select ion-item {
     display: flex;
     justify-content: space-between; }
 
-.select-currency {
-  background: white; }
-  .select-currency .search-block {
-    width: 100%;
-    height: 50px;
-    display: flex;
-    position: fixed;
-    top: 0;
-    z-index: 10; }
-    .select-currency .search-block .search-btn {
-      border: none;
-      background: white; }
-    .select-currency .search-block img {
-      height: 25px; }
-  .select-currency ion-item {
-    display: flex;
-    justify-content: space-between; }
+.select-currency .header-simple {
+  background: #B2C1DB; }
+
+.select-currency .title-popup {
+  text-align: center;
+  padding-top: 8vw;
+  font-weight: bold; }
+
+.select-currency .list .item {
+  border-color: #B2C1DB; }
+
+.select-currency .search-block {
+  padding: 16px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  bottom: 0;
+  z-index: 10; }
+  .select-currency .search-block input {
+    background: none; }
+  .select-currency .search-block .search-btn {
+    border: none;
+    background: none;
+    top: auto;
+    bottom: 0; }
+  .select-currency .search-block img {
+    height: 4vh; }
+  .select-currency .search-block .popup {
+    width: 78% !important; }
+
+.select-currency ion-item {
+  display: flex;
+  justify-content: space-between; }
 
 .menu-custom {
   position: absolute;

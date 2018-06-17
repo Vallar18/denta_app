@@ -1,6 +1,11 @@
 <ion-view class="add-clinic">
     <ion-content>
         <div class="item-block-top">
+            <div layout="row" layout-align="space-around end" class="steps-wrap">
+                <div class="steps-item"><span>1</span></div>
+                <div class="steps-item active-step"><span>2</span></div>
+                <div class="steps-item"><span>3</span></div>
+            </div>
             <div class="img-wrap">
                 <p>Let us know you</p>
                 <div class="img-outer">
@@ -11,15 +16,14 @@
         <div class="item-block-content">
             <div class="block-content">
                 <div class="input-block">
-
                     <button class="button select-button" ng-click="vm.getSelectCode()">
                         {{vm.select_code}}
                     </button>
                     <label class="item item-input">
-                        <input type="number" placeholder="Enter your clinic number" ng-model="vm.phone">
+                        <input type="number" placeholder="Clinic Phone number" ng-model="vm.phone">
                     </label>
                 </div>
-                <div class="add-clinic-block" ng-if="vm.show_clinic">
+                <div class="add-clinic-block" ng-if="vm.len_phone">
                     <label class="item item-input">
                         <input class="text-center" type="text" placeholder="Clinic name" ng-model="vm.clinic.name">
                     </label>
@@ -31,7 +35,7 @@
                     </label>
                     <button class="send-button" ng-click="vm.send()">Send</button>
                 </div>
-                <button class="send-button" ng-if="!vm.show_clinic" ng-click="vm.checkClinicPhone()">Next</button>
+                <button class="send-button" ng-if="!vm.len_phone" ng-click="vm.checkClinicPhone()">Next</button>
             </div>
         </div>
     </ion-content>
