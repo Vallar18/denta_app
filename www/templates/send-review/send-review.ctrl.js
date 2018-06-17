@@ -5,10 +5,14 @@
         .module('app')
         .controller('SendReviewCtrl', SendReviewCtrl);
 
-    SendReviewCtrl.$inject = ['$ionicPopup', '$scope', '$ionicHistory'];
+    SendReviewCtrl.$inject = ['$ionicPopup', '$scope', '$ionicHistory','toastr','messagesSvc'];
 
-    function SendReviewCtrl($ionicPopup, $scope, $ionicHistory) {
+    function SendReviewCtrl($ionicPopup, $scope, $ionicHistory,toastr, messagesSvc) {
         const vm = this;
+        vm.sendReview = sendReview;
+        vm.back = function () {
+            $ionicHistory.goBack();
+        };
         vm.reviewModel = {
             items: [
                 {
@@ -31,8 +35,12 @@
             currency: 1
         };
 
-        vm.back = function () {
-            $ionicHistory.goBack();
-        };
+        function sendReview(){
+            if(!vm.reviewModel.comment.length){
+                toastr.error(messagesSvc.error.emptyReview);
+            } else {
+
+            }
+        }
     }
 })();

@@ -20,7 +20,10 @@
                     resolve(cache);
                 });
             } else {
-                return http.get(url.currencies);
+                return http.get(url.currencies).then(function(res){
+                    cache = res;
+                    return res;
+                });
             }
         }
 
@@ -33,8 +36,9 @@
         function getIndexByName(currencyName,array){
             if(currencyName){
                 let findArray = angular.isArray(array) ? array : cache;
+                let currNameLwr = currencyName.toLowerCase();
                 return findArray.findIndex(function(item){
-                    return item.name && item.name === currencyName;
+                    return item.name && item.name.toLowerCase() === currNameLwr;
                 })
             }
             return 0;

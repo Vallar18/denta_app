@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddSpecialitiesCtrl', AddSpecialitiesCtrl);
 
-    AddSpecialitiesCtrl.$inject = ['$scope', '$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc', '$ionicModal', 'spec', 'currencies', '$ionicPopup'];
+    AddSpecialitiesCtrl.$inject = ['$scope', '$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc', '$ionicModal', 'spec', 'currencies', '$ionicPopup','currencySvc'];
 
-    function AddSpecialitiesCtrl($scope, $state, regSvc, toastr, $localStorage, messagesSvc, $ionicModal, spec, currencies, $ionicPopup) {
+    function AddSpecialitiesCtrl($scope, $state, regSvc, toastr, $localStorage, messagesSvc, $ionicModal, spec, currencies, $ionicPopup,currencySvc) {
         const vm = this;
         vm.send = send;
         vm.getCurrency = getCurrency;
@@ -16,12 +16,13 @@
         vm.selectItem = selectItem;
         vm.getSelectCurrency = getSelectCurrency;
         vm.selectCurrency = selectCurrency;
+        const DEFAULT_CURRENCY = 'USD';
         // vm.closeModal = closeModal;
         vm.user = $localStorage.user;
         vm.role = $localStorage.role;
         vm.specialities = spec;
         vm.currencies = currencies;
-        vm.select_currency = vm.currencies[221];
+        vm.select_currency = vm.currencies[currencySvc.getIndexByName(DEFAULT_CURRENCY)];
         vm.spec_selected_id = [];
         vm.price = '';
         vm.description = '';

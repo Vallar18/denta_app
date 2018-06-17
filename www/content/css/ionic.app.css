@@ -10172,6 +10172,12 @@ a {
     right: 2.5%;
     color: #ddd; }
 
+.default-btn {
+  height: 48px;
+  background-color: #D20340;
+  color: #fff;
+  border: none; }
+
 .tabs-custom .tab-item {
   opacity: 1;
   border: none !important; }
@@ -10529,6 +10535,21 @@ a {
       border-radius: 17vh;
       width: 40%;
       height: 4vh; }
+  .send-review__action {
+    padding-top: 25px;
+    text-align: center; }
+    .send-review__action button {
+      min-width: 35%; }
+
+.my-patient {
+  background-color: #B1C0DA; }
+  .my-patient__main {
+    margin-top: 20vh;
+    background-color: #FFF; }
+  .my-patient__content {
+    background-color: #FFF;
+    font-size: 0.9rem;
+    padding: 0 5% 5% 5%; }
 
 .edit-spec {
   position: absolute;

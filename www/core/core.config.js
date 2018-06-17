@@ -154,6 +154,12 @@
                 controller: 'DentistProfileCtrl',
                 controllerAs: 'vm'
             })
+            .state('tabs.my-patient', {
+                url: '/my-patient',
+                templateUrl: 'templates/my-patient/my-patient.html',
+                controller: 'MyPatientCtrl',
+                controllerAs: 'vm'
+            })
             .state('about', {
                 url: '/about',
                 templateUrl: 'templates/about/about.html',

@@ -52,7 +52,7 @@
                     {
                         id: 1,
                         title: 'Patient',
-                        view: 'tabs.patient'
+                        view: 'tabs.my-patient'
                     }, {
                         id: 2,
                         title: 'Profile',

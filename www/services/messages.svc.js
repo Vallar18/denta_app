@@ -19,7 +19,8 @@
                 invalidCode: 'The code should consist of 4 digits',
                 invalidEmail: 'Please enter the correct email',
                 emptyField: 'Please fill in all fields',
-                emptySpec: 'Please choose a specialty'
+                emptySpec: 'Please choose a specialty',
+                emptyReview: 'Please write review text'
             },
             success: {
                 test: 'Test'

@@ -47,6 +47,11 @@
                         <span>{{(vm.reviewModel.comment.length ? vm.reviewModel.comment.length: 0)+'/'+250 }}</span>
                     </div>
                 </div>
+                <div class="send-review__action">
+                    <button class="default-btn" ng-click="vm.sendReview()">
+                        Submit
+                    </button>
+                </div>
             </div>
         </ion-content>
 

@@ -58,5 +58,11 @@
 
   }
 
-
+   &__action {
+     padding-top:25px;
+     text-align: center;
+     button {
+       min-width: 35%;
+     }
+   }
 }
