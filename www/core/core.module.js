@@ -13,7 +13,8 @@
         'ngMaterial',
         'pascalprecht.translate',
         'ngFileUpload',
-        'ngImgCrop'
+        'ngImgCrop',
+        'ionic.closePopup'
     ]);
 
 

@@ -9927,7 +9927,8 @@ a {
         .item-block-top .img-wrap .img-outer .top-icon img {
           width: 100%;
           height: 100%;
-          margin: 0; }
+          margin: 0;
+          border-radius: 50%; }
       .item-block-top .img-wrap .img-outer img {
         display: block;
         width: 102%;

@@ -137,8 +137,8 @@
 
             .state('tabs.history', {
                 url: '/history',
-                templateUrl: 'templates/homepage/homepage.html',
-                controller: 'HomepageCtrl',
+                templateUrl: 'templates/history/history.html',
+                controller: 'HistoryCtrl',
                 controllerAs: 'vm'
 
             })

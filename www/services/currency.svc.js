@@ -15,16 +15,18 @@
         return model;
 
         function getCurrency() {
-            if (cache.length) {
-                return $q.defer(function (resolve, reject) {
-                    resolve(cache);
-                });
-            } else {
+            // if (cache.length) {
+            //     return $q.defer(function (resolve, reject) {
+            //         $timeout(function(){
+            //             resolve(cache);
+            //         },150);
+            //     });
+            // } else {
                 return http.get(url.currencies).then(function(res){
                     cache = res;
                     return res;
                 });
-            }
+            // }
         }
 
         /**
