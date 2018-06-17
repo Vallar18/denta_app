@@ -12,7 +12,7 @@
                 <img src="content/img/border.svg">
             </div>
         </div>
-        <ion-content class="about-view__main">
+        <ion-content class="popup-content">
             <ion-list>
                 <ion-item ng-repeat="code in vm.codes | filter : name" ng-click="vm.selectCode(code);">
                     <span>{{code.name}}</span>

@@ -12,7 +12,7 @@
                 <img src="content/img/border.svg">
             </div>
         </div>
-        <ion-content class="about-view__main">
+        <ion-content class="popup-content">
             <ion-list>
                 <ion-item ng-repeat="currency in vm.currencies | filter : name" ng-click="vm.selectCurrency(currency);">
                     <span>{{currency.country}}</span>
