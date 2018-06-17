@@ -56,8 +56,8 @@
                 controller: 'AddPhoneCtrl',
                 controllerAs: 'vm',
                 resolve: {
-                    codes: function (regSvc) {
-                        return regSvc.getCodes().then(function (res) {
+                    codes: function (phoneSvc) {
+                        return phoneSvc.getCodes().then(function (res) {
                             return res;
                         });
                     }
@@ -87,8 +87,8 @@
                 controller: 'AddClinicCtrl',
                 controllerAs: 'vm',
                 resolve: {
-                    codes: function (regSvc) {
-                        return regSvc.getCodes().then(function (res) {
+                    codes: function (phoneSvc) {
+                        return phoneSvc.getCodes().then(function (res) {
                                 return res;
                         });
                     }
@@ -105,8 +105,8 @@
                                 return res;
                             });
                     },
-                    currencies: function (regSvc) {
-                        return regSvc.getCurrency().then(function (res) {
+                    currencies: function (currencySvc) {
+                        return currencySvc.getCurrency().then(function (res) {
                             return res;
                         });
                     }
@@ -142,12 +142,17 @@
                 controllerAs: 'vm'
 
             })
-            .state('tabs.profile', {
+            .state('tabs.patient-profile', {
                 url: '/profile',
-                templateUrl: 'templates/profile/profile.html',
-                controller: 'ProfileCtrl',
+                templateUrl: 'templates/patient-profile/patient-profile.html',
+                controller: 'PatientProfileCtrl',
                 controllerAs: 'vm'
-
+            })
+            .state('tabs.dentist-profile', {
+                url: '/profile',
+                templateUrl: 'templates/dentist-profile/dentist-profile.html',
+                controller: 'DentistProfileCtrl',
+                controllerAs: 'vm'
             })
             .state('about', {
                 url: '/about',
@@ -183,6 +188,13 @@
                 url: '/need-dentist',
                 templateUrl: 'templates/need-dentist/need-dentist.html',
                 controller: 'NeedDentistCtrl',
+                controllerAs: 'vm'
+            })
+
+            .state('send-review', {
+                url: '/send-review',
+                templateUrl: 'templates/send-review/send-review.html',
+                controller: 'SendReviewCtrl',
                 controllerAs: 'vm'
             })
 

@@ -1,0 +1,55 @@
+<ion-view>
+    <ion-pane class="send-review">
+        <div class="header-simple">
+            <div class="header-simple__title">
+                Give a review
+            </div>
+            <button class="button back-btn" ng-click="vm.back()">
+                <img src="content/img/back.png" alt="">
+            </button>
+            <div class="header-simple__border">
+                <img src="content/img/border.svg">
+            </div>
+        </div>
+        <ion-content class="send-review__main">
+            <div class="send-review__content">
+                <div ng-repeat="item in vm.reviewModel.items track by $index"
+                     class="send-review__item">
+                    <div class="send-review__item-title">{{::item.text}}</div>
+                    <div class="send-review__item-rating">
+                        <star-rating
+                                sr-count="5"
+                                sr-model="item.rating"
+                                sr-color="#FEC515"
+                                sr-size="2.5rem"
+                                sr-enable="true">
+                        </star-rating>
+                    </div>
+                </div>
+                <div class="send-review__price">
+                    <div class="select-price-block">
+                        <input type="number" class="input-price"
+                               placeholder="How much did you pay?"
+                               ng-model="vm.reviewModel.price"
+                               input-change-color="#000">
+                        <button type="button" class="select-currency" ng-click="vm.getSelectCurrency()">
+                            {{vm.select_currency.name}}
+                        </button>
+                    </div>
+                </div>
+                <div class="send-review__comment">
+                    <div style="position:relative;">
+                        <textarea rows="4"
+                                  ng-model="vm.reviewModel.comment"
+                                  maxlength="250"
+                                  style="width:100%; border:1px solid black; display:block;"></textarea>
+                        <span style="position:absolute;bottom:1%;right:1%; color: #ddd;">
+                            {{(vm.reviewModel.comment.length ? vm.reviewModel.comment.length: 0)+'/'+250 }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </ion-content>
+
+    </ion-pane>
+</ion-view>

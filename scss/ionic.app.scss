@@ -38,9 +38,11 @@ $ionicons-font-path: "../../lib/ionic/fonts" !default;
 @import "../www/templates/terms/terms";
 @import "../www/templates/share/share";
 @import "../www/templates/help/help";
-@import "../www/templates/profile/profile";
+@import "../www/templates/patient-profile/patient-profile";
 @import "../www/templates/my-treatments/my-treatments";
 @import "../www/templates/need-dentist/need-dentist";
+@import "../www/templates/dentist-profile/dentist-profile";
+@import "../www/templates/send-review/send-review";
 //Components
 @import "../www/components/select-subscription/select-subscription";
 @import "../www/components/speciality-select/speciality-select";
@@ -52,5 +54,6 @@ $ionicons-font-path: "../../lib/ionic/fonts" !default;
 @import "../www/directives/star-rating/star-rating";
 @import "../www/directives/help-item/help-item";
 @import "../www/directives/review-item/review-item";
+@import "../www/directives/input-change-color/input-change-color";
 
 

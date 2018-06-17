@@ -38,7 +38,7 @@
                         price: vm.price,
                     };
                 }
-                regSvc.addSpeciality(vm.data).then(function (data) {
+                specSvc.addSpeciality(vm.data).then(function (data) {
                     if(data.success) {
                         // toastr.success(data.message, '', {
                         //     onHidden: function () {

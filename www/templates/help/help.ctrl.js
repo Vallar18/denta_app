@@ -5,12 +5,13 @@
             .module('app')
             .controller('HelpCtrl', HelpCtrl);
 
-        HelpCtrl.$inject = ['$scope', '$ionicModal', '$cordovaContacts', '$ionicPlatform', '$cordovaCamera', '$ionicPopup'];
+        HelpCtrl.$inject = ['$scope', '$ionicModal', '$cordovaContacts', '$ionicPlatform', '$cordovaCamera', '$ionicPopup','currencySvc'];
 
-        function HelpCtrl($scope, $ionicModal, $cordovaContacts, $ionicPlatform, $cordovaCamera, $ionicPopup) {
+        function HelpCtrl($scope, $ionicModal, $cordovaContacts, $ionicPlatform, $cordovaCamera, $ionicPopup,currencySvc) {
             var vm = this;
             $scope.textModel = 'fffffffffffffffff';
             $scope.picFile = null;
+
 
             vm.helpArr = [
                 {

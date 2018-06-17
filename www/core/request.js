@@ -53,7 +53,7 @@
                 config.url = url;
             }
             $ionicLoading.show({
-                template: 'Loading...',
+                template: '<ion-spinner></ion-spinner> <br>Loading...',
             });
             return $http(config).then( requestSuccess, requestError);
         };

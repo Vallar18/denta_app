@@ -8,6 +8,13 @@
         'service.userSvc',
         'service.regSvc',
         'service.messagesSvc',
-        'service.fileSvc'
+        'service.fileSvc',
+        'service.tabsSvc',
+        'service.specSvc',
+        'service.currencySvc',
+        'service.phoneSvc',
+        'service.profileSvc',
+        'service.reviewSvc',
+        'service.helpSvc'
     ]);
 })();

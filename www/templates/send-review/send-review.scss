@@ -1,0 +1,62 @@
+.send-review {
+  background-color: $second-color-light;
+
+  &__main {
+    margin-top: 20vh;
+    background-color: $background-color;
+  }
+  &__content {
+    background-color: $background-color;
+    font-size: 0.9rem;
+    padding:0 10% 10% 10%;
+  }
+
+  &__item {
+    padding: 0 0 15px 0;
+    &-title {
+      text-align: center;
+      color: $text-default-color;
+    }
+    &-rating {
+      text-align: center;
+      i {
+        margin:0 5px;
+      }
+    }
+
+  }
+
+  &__price {
+    .select-price-block{
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 20px;
+      .input-price {
+        border-bottom: 1px solid $input-border;
+        width: 50%;
+        font-size: 12.5px;
+        color: $input-text;
+        height: 25px;
+        text-align: center;
+        &::-webkit-input-placeholder {
+          color: $input-text;
+        }
+      }
+      .select-currency {
+        background: transparent;
+        font-size: 12px;
+        border: 1px solid $input-border;
+        color: $input-text;
+        border-radius: 17vh;
+        width: 40%;
+        height: 4vh;
+      }
+    }
+  }
+
+  &__comment {
+
+  }
+
+
+}
