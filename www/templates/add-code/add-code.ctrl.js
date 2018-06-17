@@ -12,6 +12,7 @@
         vm.send = send;
         vm.goAddPhone = goAddPhone;
         vm.phone = $localStorage.phone;
+        vm.alertcode = $localStorage.alertcode;
         vm.code = '';
         vm.content = {
             val1: 'Didn\'t recived code',
@@ -28,11 +29,11 @@
                 };
                 regSvc.sendVerify(vm.verify).then(function (data) {
                     if(data.success) {
-                        toastr.success(data.message, '', {
-                            onHidden: function () {
+                        // toastr.success(data.message, '', {
+                        //     onHidden: function () {
                                 $state.go('select-role');
-                            }
-                        });
+                        //     }
+                        // });
                         $localStorage.code = vm.verify.code;
                         $localStorage.key = data.authKey;
                         vm.code = '';

@@ -22,7 +22,9 @@
             user_id: vm.user.id,
             name: '',
             phone: '',
-            address: ''
+            address: '',
+            longitude: 30.5238,
+            latitude: 50.45466
         }
 
         function checkClinicPhone() {
@@ -47,11 +49,11 @@
             if(validation()){
                 regSvc.createClinic(vm.clinic).then(function (data) {
                     if(data.success) {
-                        toastr.success(data.message, '', {
-                            onHidden: function () {
+                        // toastr.success(data.message, '', {
+                        //     onHidden: function () {
                                 $state.go('add-specialities')
-                            }
-                        });
+                        //     }
+                        // });
                         vm.clinic.name = '';
                         vm.clinic.address = '';
                         vm.phone = '';

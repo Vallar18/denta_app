@@ -11,35 +11,31 @@
         const vm = this;
         vm.send = send;
         vm.skipAddPhoneDentist = skipAddPhoneDentist;
+        vm.hideOverlay = hideOverlay;
         vm.user = $localStorage.user;
         vm.role = $localStorage.role;
         vm.dentist_phone = '';
+        vm.overlay = true;
 
         function send() {
             if(validPhoneDentist()){
                 if (vm.user){
                     vm.data = {
                         user_id: vm.user.id,
-                        dentist_phone: "380" + vm.dentist_phone,
+                        dentist_phone: "+380" + vm.dentist_phone,
                         role: vm.role
                     };
                 }
                 regSvc.addRolePatient(vm.data).then(function (data) {
                     if(data.success) {
-                        toastr.success(data.message, '', {
-                            onHidden: function () {
+                        // toastr.success(data.message, '', {
+                        //     onHidden: function () {
                                 $state.go('share')
-                            }
-                        });
+                            // }
+                        // });
                         vm.dentist.phone = '';
                     } else {
-                        if(data.message) {
-                            // toastr.error(data.message, '', {
-                            //     onHidden: function () {
-                                    $state.go('share')
-                                // }
-                            // })
-                        }
+                        $state.go('share')
                     }
                 }, function (err) {
                     var err_text = '';
@@ -55,6 +51,9 @@
                     }
                 });
             }
+        }
+        function hideOverlay() {
+            vm.overlay = false;
         }
 
         function skipAddPhoneDentist() {

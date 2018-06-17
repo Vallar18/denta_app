@@ -28,12 +28,13 @@
                 };
                 regSvc.sendPhone(send).then(function (data) {
                     if(data.success) {
-                        console.log(data.data);
-                        toastr.success(data.message, '', {
-                            onHidden: function () {
+                        console.log(data.data)
+                        $localStorage.alertcode = data.data;
+                        // toastr.success(data.message, '', {
+                        //     onHidden: function () {
                                 $state.go('add-code');
-                            }
-                        });
+                        //     }
+                        // });
                         $localStorage.valView = false;
                         $localStorage.phone = vm.sum_phone;
                         vm.phone = '';

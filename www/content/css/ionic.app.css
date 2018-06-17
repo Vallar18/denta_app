@@ -10399,7 +10399,8 @@ a {
       line-height: normal; }
 
 .reg-step2 .item-block-content {
-  top: auto; }
+  top: auto;
+  margin-top: 0; }
   .reg-step2 .item-block-content .title-block {
     width: 80%;
     margin: auto;

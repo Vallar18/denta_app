@@ -1,6 +1,6 @@
 <ion-view class="reg-step2">
     <ion-content>
-        <div class="overlay-block">
+        <div class="overlay-block" ng-if="vm.overlay" ng-click="vm.hideOverlay()">
             <div class="overlay-text">
                 <p>Please provide us your home dentist info.</p>
                 <p>He will be notified about any visit out of state.</p>

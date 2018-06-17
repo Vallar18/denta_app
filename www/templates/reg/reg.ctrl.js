@@ -40,15 +40,15 @@
             if(validation()){
                 regSvc.sendUser(vm.user).then(function (data) {
                     if(data.success) {
-                        toastr.success(data.message, '', {
-                            onHidden: function () {
+                        // toastr.success(data.message, '', {
+                        //     onHidden: function () {
                                 if(vm.showContentDentist){
                                     $state.go('add-clinic');
                                 } else {
                                     $state.go('add-dentist-phone')
                                 }
-                            }
-                        });
+                            // }
+                        // });
                         vm.user = {
                             name: '',
                             lastname: '',
