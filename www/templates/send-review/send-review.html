@@ -38,14 +38,13 @@
                     </div>
                 </div>
                 <div class="send-review__comment">
-                    <div style="position:relative;">
+                    <div class="textarea-with-counter">
                         <textarea rows="4"
+                                  placeholder="Write about the clinic"
+                                  class="textarea-default"
                                   ng-model="vm.reviewModel.comment"
-                                  maxlength="250"
-                                  style="width:100%; border:1px solid black; display:block;"></textarea>
-                        <span style="position:absolute;bottom:1%;right:1%; color: #ddd;">
-                            {{(vm.reviewModel.comment.length ? vm.reviewModel.comment.length: 0)+'/'+250 }}
-                        </span>
+                                  maxlength="250"></textarea>
+                        <span>{{(vm.reviewModel.comment.length ? vm.reviewModel.comment.length: 0)+'/'+250 }}</span>
                     </div>
                 </div>
             </div>

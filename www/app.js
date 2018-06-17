@@ -11,9 +11,10 @@
                 'app.directives',
             ])
         .run(runBlock);
-    runBlock.$inject = ['$ionicPlatform', '$localStorage', '$state'];
+    runBlock.$inject = ['$ionicPlatform', '$localStorage', '$state', 'utilsSvc'];
 
-    function runBlock($ionicPlatform, $localStorage, $state) {
+    function runBlock($ionicPlatform, $localStorage, $state, utilsSvc) {
+        utilsSvc.initializePolyfill();
         $ionicPlatform.ready(function() {
             // $state.go('tabs.help');
             window.addEventListener('keyboardDidShow', (event) => {
