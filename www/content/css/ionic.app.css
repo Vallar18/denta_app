@@ -10182,17 +10182,20 @@ textarea {
   .help-content .white-header .radio-outer {
     width: 80%; }
     .help-content .white-header .radio-outer .radio-wrap {
-      border: 1px solid #B2C1DB;
+      border: 1px solid #b2c1db;
       border-radius: 16vw;
       display: -ms-inline-flexbox;
       display: -webkit-inline-flex;
-      display: inline-flex; }
+      display: inline-flex;
+      width: 13vw;
+      transition: ease 0.5s; }
       .help-content .white-header .radio-outer .radio-wrap .radio-block {
         overflow: hidden;
-        width: 0;
-        height: 0;
         max-height: 13vw;
         text-align: center;
+        width: 0;
+        height: auto;
+        transition: ease 0.5s;
         /* -webkit-transition: ease 0.5s;
            -moz-transition: ease 0.5s;
            -ms-transition: ease 0.5s;
@@ -10230,9 +10233,11 @@ textarea {
       .help-content .white-header .radio-outer .radio-wrap img {
         width: 13vw; }
       .help-content .white-header .radio-outer .radio-wrap.show {
-        width: 100%; }
+        width: 100%;
+        border: 1px solid #b2c1db;
+        transition: ease 0.5s; }
         .help-content .white-header .radio-outer .radio-wrap.show .radio-block {
-          width: 100%;
+          width: 83%;
           height: auto; }
   .help-content .white-header .geolocation-btn {
     background: none;

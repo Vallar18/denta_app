@@ -447,17 +447,20 @@ textarea {
     .radio-outer {
       width: 80%;
       .radio-wrap {
-        border: 1px solid $role-btn-border;
+        border: 1px solid #b2c1db;
         border-radius: 16vw;
         display: -ms-inline-flexbox;
         display: -webkit-inline-flex;
         display: inline-flex;
+        width: 13vw;
+        transition: ease 0.5s;
         .radio-block {
           overflow: hidden;
-          width: 0;
-          height: 0;
           max-height: 13vw;
           text-align: center;
+          width: 0;
+          height: auto;
+          transition: ease 0.5s;
           /* -webkit-transition: ease 0.5s;
            -moz-transition: ease 0.5s;
            -ms-transition: ease 0.5s;
@@ -504,8 +507,10 @@ textarea {
         }
         &.show {
           width: 100%;
+          border: 1px solid #b2c1db;
+          transition: ease 0.5s;
           .radio-block {
-            width: 100%;
+            width: 83%;
             height: auto;
           }
         }
