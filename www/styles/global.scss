@@ -436,6 +436,7 @@ textarea {
 .help-content {
   .item {
     border-color: $role-btn-border;
+    padding-bottom: 0;
     &:first-child {
       border: none;
     }

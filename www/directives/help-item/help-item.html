@@ -1,18 +1,19 @@
 <div class="help-item">
     <div ng-if="!hiType || hiType  === 'simple' " class="row">
-        <div class="col-20">
-            {{::(hiDistance + ' ')}}
+        <div class="col-33 distance-block">
+            <img src="content/img/gray-marker.png" alt="">
+            <span>{{::(hiDistance + ' ')}}</span>
         </div>
-        <div class="col-60">
+        <div class="col-33 doctor-block">
             <div>{{::hiDoctor.name}}</div>
             <a ng-click="angular.isFunction(hiClickInfo) && hiClickInfo(hiDoctor.id)">Get info</a>
         </div>
-        <div class="col-20">
+        <div class="col-33 rating-block">
             <star-rating sr-count="5"
                          sr-model="hiRating"
                          sr-size="12px"
                          sr-color="orange"></star-rating>
-            <div>Price: {{::hiPrice}}</div>
+            <div class="price-block">Price: <span>{{::hiPrice}}</span></div>
         </div>
     </div>
 

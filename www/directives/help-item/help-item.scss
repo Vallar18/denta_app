@@ -1,3 +1,18 @@
 .help-item {
-
+  .distance-block {
+    img {
+      height: 59%;
+    }
+  }
+  .doctor-block {
+    text-align: center;
+  }
+  .rating-block {
+    text-align: right;
+    .price-block {
+      span{
+        color: $red-text;
+      }
+    }
+  }
 }
