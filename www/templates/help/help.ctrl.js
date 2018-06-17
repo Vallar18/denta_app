@@ -11,6 +11,7 @@
             var vm = this;
             $scope.textModel = 'fffffffffffffffff';
             $scope.picFile = null;
+            $scope.slideOpen = false;
 
             vm.helpArr = [
                 {
@@ -21,7 +22,7 @@
                     },
                     price: 100,
                     rating: 2.8,
-                    distance: 4.8,
+                    distance: '4.8 km',
                 },
                 {
                     id: 2,
@@ -31,7 +32,7 @@
                     },
                     price: 100,
                     rating: 2.8,
-                    distance: 4.8,
+                    distance: '4.8 km',
                 },
                 {
                     id: 3,
@@ -41,7 +42,7 @@
                     },
                     price: 100,
                     rating: 2.8,
-                    distance: 4.8,
+                    distance: '4.8 km',
                 },
             ];
 
