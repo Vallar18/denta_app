@@ -10170,6 +10170,77 @@ textarea {
       margin-top: 40vw;
       background-color: #FFF; }
 
+.help-content .item {
+  border-color: #B2C1DB; }
+  .help-content .item:first-child {
+    border: none; }
+
+.help-content .white-header {
+  background: #FFF;
+  padding: 16px;
+  padding-bottom: 0; }
+  .help-content .white-header .radio-outer {
+    width: 80%; }
+    .help-content .white-header .radio-outer .radio-wrap {
+      border: 1px solid #B2C1DB;
+      border-radius: 16vw;
+      display: -ms-inline-flexbox;
+      display: -webkit-inline-flex;
+      display: inline-flex; }
+      .help-content .white-header .radio-outer .radio-wrap .radio-block {
+        overflow: hidden;
+        width: 0;
+        height: 0;
+        max-height: 13vw;
+        text-align: center;
+        /* -webkit-transition: ease 0.5s;
+           -moz-transition: ease 0.5s;
+           -ms-transition: ease 0.5s;
+           -o-transition: ease 0.5s;
+           transition: ease 0.5s;*/ }
+        .help-content .white-header .radio-outer .radio-wrap .radio-block input[type="radio"] {
+          opacity: 0;
+          position: absolute; }
+        .help-content .white-header .radio-outer .radio-wrap .radio-block label {
+          position: relative;
+          padding-left: 6vw;
+          color: #7a89a3;
+          font-size: 3vw;
+          line-height: 2; }
+          .help-content .white-header .radio-outer .radio-wrap .radio-block label:before {
+            content: "";
+            width: 5vw;
+            height: 5vw;
+            border-radius: 50%;
+            position: absolute;
+            border: 2px solid #7a89a3;
+            left: 0; }
+          .help-content .white-header .radio-outer .radio-wrap .radio-block label:after {
+            content: "";
+            width: 3vw;
+            height: 3vw;
+            position: absolute;
+            left: 1vw;
+            border-radius: 50%;
+            top: 1vw;
+            opacity: 0;
+            background-color: #7a89a3; }
+        .help-content .white-header .radio-outer .radio-wrap .radio-block input[type="radio"]:checked + label:after {
+          opacity: 1; }
+      .help-content .white-header .radio-outer .radio-wrap img {
+        width: 13vw; }
+      .help-content .white-header .radio-outer .radio-wrap.show {
+        width: 100%; }
+        .help-content .white-header .radio-outer .radio-wrap.show .radio-block {
+          width: 100%;
+          height: auto; }
+  .help-content .white-header .geolocation-btn {
+    background: none;
+    border: none;
+    padding: 0; }
+    .help-content .white-header .geolocation-btn img {
+      width: 13vw; }
+
 .tabs-custom .tab-item {
   opacity: 1;
   border: none !important; }
@@ -10421,7 +10492,9 @@ textarea {
   .reg-step2 .item-block-content .title-block {
     width: 80%;
     margin: auto;
-    text-align: center; }
+    text-align: center;
+    position: relative;
+    z-index: 9; }
     .reg-step2 .item-block-content .title-block h1 {
       font-size: 20px;
       color: #76869f; }
@@ -10533,6 +10606,21 @@ textarea {
       border-radius: 17vh;
       width: 40%;
       height: 4vh; }
+  .send-review__action {
+    padding-top: 25px;
+    text-align: center; }
+    .send-review__action button {
+      min-width: 35%; }
+
+.my-patient {
+  background-color: #B1C0DA; }
+  .my-patient__main {
+    margin-top: 20vh;
+    background-color: #FFF; }
+  .my-patient__content {
+    background-color: #FFF;
+    font-size: 0.9rem;
+    padding: 0 5% 5% 5%; }
 
 .edit-spec {
   position: absolute;
