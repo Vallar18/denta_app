@@ -75,15 +75,15 @@
                 controller: 'SelectRoleCtrl',
                 controllerAs: 'vm'
             })
-            .state('registration-', {
-                url: '/registration',
+            .state('registration-dentist', {
+                url: '/registration-dentist',
                 templateUrl: 'templates/reg-doc/reg-doc.html',
                 controller: 'RegDocCtrl',
                 controllerAs: 'vm'
             })
             .state('registration-patient', {
                 url: '/registration-patient',
-                templateUrl: 'templates/reg-doc/reg-pat.html',
+                templateUrl: 'templates/reg-pat/reg-pat.html',
                 controller: 'RegPatCtrl',
                 controllerAs: 'vm'
             })

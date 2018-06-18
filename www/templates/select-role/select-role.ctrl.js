@@ -22,11 +22,12 @@
         function select(type) {
             if (type === 0){
                 vm.role = 'dentist';
+                $state.go('registration-dentist');
             } else {
                 vm.role = 'patient'
+                $state.go('registration-patient');
             }
             $localStorage.role = vm.role;
-            $state.go('registration');
         }
     }
 

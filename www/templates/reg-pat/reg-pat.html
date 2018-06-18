@@ -1,0 +1,33 @@
+<ion-view class="reg-step1">
+    <ion-content>
+        <div class="item-block-top">
+            <div layout="row" layout-align="space-around end" class="steps-wrap">
+                <div class="steps-item active-step"><span>1</span></div>
+                <div class="steps-item"><span>2</span></div>
+            </div>
+            <div class="img-wrap">
+                <p>Let us know you</p>
+                <div class="img-outer">
+                    <img src="content/img/border.svg">
+                </div>
+            </div>
+        </div>
+        <div class="item-block-content">
+            <form class="block-content">
+                <label class="item item-input">
+                    <input class="text-center" type="text" placeholder="First name" ng-model="vm.user.name"
+                           minlength="3" maxlength="20" input-change-color="#000">
+                </label>
+                <label class="item item-input">
+                    <input class="text-center" type="text" placeholder="Last name"
+                           ng-model="vm.user.lastname" input-change-color="#000">
+                </label>
+                <label class="item item-input">
+                    <input class="text-center" type="email" placeholder="Email"
+                           ng-model="vm.user.email" input-change-color="#000">
+                </label>
+                <button class="send-button" ng-click="vm.send()">Next</button>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>
