@@ -32,7 +32,9 @@
                         <input type="number" placeholder="Enter dentist phone number"
                                ng-model="vm.phone" input-change-color="#000">
                     </label>
-                    <button class="phone-icon"><img src="content/img/phone.png" alt=""></button>
+                    <button class="phone-icon" ng-click="vm.pickContactUsingNativeUI()">
+                        <img src="content/img/phone.png" alt="">
+                    </button>
                 </div>
                 <p>Have no dentist <a ng-click="vm.skipAddPhoneDentist()"> skip</a></p>
                 <button class="send-button" ng-click="vm.send()">Submit</button>

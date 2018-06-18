@@ -1,0 +1,11 @@
+<div class="select-contact">
+    <div class="select-contact__header text-center">
+        Please select number
+    </div>
+    <div class="select-contact__body">
+        <div ng-repeat="c_item in vm.contactList track by $index"
+             class="select-contact__item">
+            <div ng-click="vm.selectOneContact(c_item)">{{c_item.value}}</div>
+        </div>
+    </div>
+</div>
