@@ -77,7 +77,7 @@
         }
 
         function isPat(){
-            return ($localStorage.role && $localStorage.role === PATIENT);
+             return ($localStorage.role && $localStorage.role === PATIENT);
         }
 
 
