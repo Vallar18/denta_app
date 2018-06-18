@@ -1,5 +1,22 @@
 <ion-view>
-        <ion-content>
-                <h2>history hhh</h2>
-        </ion-content>
+        <ion-pane class="history-view">
+                <div class="header-simple">
+                        <div class="header-simple__title">
+                                History
+                        </div>
+                        <button class="button back-btn" ng-click="vm.back()">
+                                <!--<i class="icon ion-ios-arrow-thin-left"></i>-->
+                                <img src="content/img/back.png" alt="">
+                        </button>
+                        <div class="header-simple__border">
+                                <img src="content/img/border.svg">
+                        </div>
+                </div>
+                <ion-content class="history-view__main">
+                        <div class="history-view__content">
+
+                        </div>
+                </ion-content>
+
+        </ion-pane>
 </ion-view>

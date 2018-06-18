@@ -27,7 +27,7 @@
                 <p ng-if="vm.len_spec" class="selected-counter">{{vm.len_spec}} selected</p>
                 <div class="description">
                      <textarea rows="4" ng-model="vm.description" maxlength="250" placeholder="Write about the clinic.."></textarea>
-                     <span>{{(vm.description.length ? vm.description.length7: 0)+'/'+250 }}</span>
+                     <span>{{(vm.description.length ? vm.description.length: 0)+'/'+250 }}</span>
                 </div>
                 <button class="send-button" ng-click="vm.send()">Done</button>
             </div>

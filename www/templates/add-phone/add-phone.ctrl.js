@@ -28,8 +28,12 @@
                 };
                 regSvc.sendPhone(send).then(function (data) {
                     if(data.success) {
-                        console.log(data.data)
+                        console.log(data.data);
                         $localStorage.alertcode = data.data;
+                        toastr.success(data.data,null,{
+                            timeOut:20000,
+                            tapToDismiss: true
+                        });
                         // toastr.success(data.message, '', {
                         //     onHidden: function () {
                                 $state.go('add-code');

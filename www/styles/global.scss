@@ -312,6 +312,41 @@ a {
     left: 50%;
     font-size: 0.8rem;
   }
+  &__subtitle {
+    position: absolute;
+    display: inline-block;
+    color: $text-default-color;
+    transform: translate(-50%, 0);
+    top: 38%;
+    left: 50%;
+    font-weight: bold;
+  }
+  &__right-btn {
+    i {
+      color:$text-gray-color2;
+      font-size:26px;
+    }
+    background: white;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    right: 5%;
+    top: 15%;
+  }
+  &__left-btn {
+    i {
+      color:$text-gray-color2;
+      font-size:26px;
+    }
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    background: white;
+    position: absolute;
+    left: 5%;
+    top: 15%;
+  }
   button {
     position: absolute;
     right: 5%;
@@ -321,7 +356,7 @@ a {
     position: absolute;
     right: 0;
     bottom: -2px;
-    height: 50%;
+    height: 40%;
     display: block;
     width: 102%;
     transform: translateX(-50%);

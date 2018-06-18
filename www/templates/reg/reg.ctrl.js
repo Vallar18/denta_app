@@ -54,7 +54,8 @@
                 //     onHidden: function () {
                 // }
                 // });
-                $localStorage.user = data.data;
+                $localStorage.user = data.user;
+                $localStorage.token = data.token;
                 vm.user = {
                     name: '',
                     lastname: '',
@@ -90,10 +91,10 @@
                  toastr.error(messagesSvc.error.emptyField);
                  return false;
              }
-             // if (!vm.user.avatar.length){
-             //     toastr.error(messagesSvc.error.emptyField);
-             //     return false;
-             // }
+             if (!vm.user.avatar.length){
+                 toastr.error(messagesSvc.error.emptyField);
+                 return false;
+             }
              return true;
         }
 

@@ -43,7 +43,7 @@
                     if(data.success) {
                         // toastr.success(data.message, '', {
                         //     onHidden: function () {
-                                $state.go('share')
+                                $state.go('share');
                         //     }
                         // });
                         vm.price = '';

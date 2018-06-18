@@ -12,7 +12,8 @@
         var vm = this;
         vm.toggleMenu = toggleMenu;
         vm.selectingItem = selectingItem;
-        vm.currentUserType = 'patient';
+        vm.role = $localStorage.role;
+        vm.currentUserType = vm.role;
         vm.menuModel = {
             isShow: false,
             items: [],
