@@ -73,13 +73,13 @@
 
             vm.pickContactUsingNativeUI = function () {
                 $ionicPlatform.ready(function () {
-                    $cordovaContacts.pickContact().then(function (contactPicked) {
-                        vm.phoneNumbers = contactPicked.phoneNumbers;
-                    }, function (error) {
+                $cordovaContacts.pickContact().then(function (contactPicked) {
+                    vm.phoneNumbers = contactPicked.phoneNumbers;
+                }, function (error) {
 
-                    })
-                });
-            };
+                })
+            });
+        };
 
 
 
