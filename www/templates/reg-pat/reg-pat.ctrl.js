@@ -5,9 +5,9 @@
         .module('app')
         .controller('RegPatCtrl', RegPatCtrl);
 
-    RegPatCtrl.$inject = ['$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc'];
+    RegPatCtrl.$inject = ['$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc', 'userSvc'];
 
-    function RegPatCtrl($state, regSvc, toastr, $localStorage, messagesSvc) {
+    function RegPatCtrl($state, regSvc, toastr, $localStorage, messagesSvc, userSvc) {
         const vm = this;
         vm.send = send;
         vm.phone = $localStorage.phone;
@@ -34,8 +34,8 @@
         function processRegSuccess(data){
             if(data.success) {
                 $state.go('add-dentist-phone')
-                $localStorage.user = data.user;
-                $localStorage.token = data.token;
+                userSvc.setUser(data.user);
+                userSvc.setToken(data.token);
                 vm.user = {
                     name: '',
                     lastname: '',
