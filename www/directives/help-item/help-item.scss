@@ -10,7 +10,40 @@
   .rating-block {
     text-align: right;
     .price-block {
-      span{
+      span {
+        color: $red-text;
+      }
+    }
+  }
+
+  .detail-wrap {
+    padding: 1vw;
+    .adress-block {
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-align-items: flex-end;
+      -ms-flex-align: end;
+      align-items: flex-end;
+      p {
+        white-space: normal;
+        padding-right: 1vw;
+        color: $filters-color;
+      }
+    }
+    .time-block {
+      color: $filters-color;
+      img {
+        height: 6vw;
+      }
+    }
+    .rating-block,
+    .price-block {
+      text-align: right;
+    }
+    .price-block {
+      color: $filters-color;
+      span {
         color: $red-text;
       }
     }

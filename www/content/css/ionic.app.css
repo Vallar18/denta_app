@@ -10763,3 +10763,28 @@ textarea {
   text-align: right; }
   .help-item .rating-block .price-block span {
     color: #d30041; }
+
+.help-item .detail-wrap {
+  padding: 1vw; }
+  .help-item .detail-wrap .adress-block {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: flex-end;
+    -ms-flex-align: end;
+    align-items: flex-end; }
+    .help-item .detail-wrap .adress-block p {
+      white-space: normal;
+      padding-right: 1vw;
+      color: #7a89a3; }
+  .help-item .detail-wrap .time-block {
+    color: #7a89a3; }
+    .help-item .detail-wrap .time-block img {
+      height: 6vw; }
+  .help-item .detail-wrap .rating-block,
+  .help-item .detail-wrap .price-block {
+    text-align: right; }
+  .help-item .detail-wrap .price-block {
+    color: #7a89a3; }
+    .help-item .detail-wrap .price-block span {
+      color: #d30041; }

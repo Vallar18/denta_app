@@ -24,6 +24,8 @@
                     price: 100,
                     rating: 2.8,
                     distance: '4.8 km',
+                    address: 'Rishon LeTsiyon, Levi Eshkol St. 16',
+                    time: '10min'
                 },
                 {
                     id: 2,
@@ -34,6 +36,8 @@
                     price: 100,
                     rating: 2.8,
                     distance: '4.8 km',
+                    address: ' kmfvfdvkjfdnkj vdfnv kjdfn vkjdfdfkjnv kjdfnv kdfkvjndfkjvnn kjdfnv df v',
+                    time: '10min'
                 },
                 {
                     id: 3,
@@ -44,6 +48,8 @@
                     price: 100,
                     rating: 2.8,
                     distance: '4.8 km',
+                    address: ' kmfvfdvkjfdnkj vdfnv kjdfn vkjdfn vkdfnvkjndfkjv  kdfkvjndfkjvnn kjdfnv df v',
+                    time: '10min'
                 },
             ];
 
@@ -53,21 +59,21 @@
                     date: '12 03 1093',
                     rating: 4,
                     name: 'Vasylyi',
-                    text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
+                    text: 'Test test tskjnfkvlfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
                 },
                 {
                     id:2,
                     date: '12 03 1093',
                     rating: 4,
                     name: 'Vasylyi',
-                    text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
+                    text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfj    vnksdjnvdfvkjnkjdfvn sd'
                 },
                 {
                     id:3,
                     date: '12 03 1093',
                     rating: 4,
                     name: 'Vasylyi',
-                    text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
+                    text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvnd    klfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
                 },
             ];
 

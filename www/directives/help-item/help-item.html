@@ -12,27 +12,57 @@
             <star-rating sr-count="5"
                          sr-model="hiRating"
                          sr-size="12px"
-                         sr-color="orange"></star-rating>
+                         sr-color="#ffc600"></star-rating>
             <div class="price-block">Price: <span>{{::hiPrice}}</span></div>
         </div>
     </div>
 
-    <div ng-if="hiType === 'detail'" class="row">
-        <div class="col-20">
+    <div ng-if="hiType === 'detail'">
+        <div class="row detail-wrap">
+            <div class="col-75">
+                {{::hiDoctor.name}}
+            </div>
+            <div class="col-25 rating-block">
+                <star-rating sr-count="5"
+                             sr-model="hiRating"
+                             sr-size="12px"
+                             sr-color="#ffc600">
+                </star-rating>
+            </div>
+        </div>
+        <div class="row detail-wrap">
+            <div class="col-75 adress-block">
+                <p>{{hiAddress}}</p>
+            </div>
+            <div class="col-25 time-block">
+                <img src="content/img/walk-icon.png" alt="">
+                <span>{{hiTime}}</span>
+            </div>
+        </div>
+        <div class="row detail-wrap">
+            <div class="col-75">
+                <a ng-click="angular.isFunction(hiClickInfo) && hiClickInfo(hiDoctor.id)">Get info</a>
+            </div>
+            <div class="col-25 price-block">
+                Price: <span>{{::hiPrice}}</span>
+            </div>
+        </div>
+        <!--<div class="col-20">
             {{::(hiDistance + ' ')}}
             <a ng-click="angular.isFunction(hiClickInfo) && hiClickInfo(hiDoctor.id)">Get info</a>
         </div>
         <div class="col-60">
             <div>{{::hiDoctor.name}}</div>
-            <div>{{::hiDoctor.address}}</div>
         </div>
+        <div>{{hiAddress}}</div>
+        <div>{{hiTime}}</div>
         <div class="col-20">
             <star-rating sr-count="5"
                          sr-model="hiRating"
                          sr-size="12px"
-                         sr-color="orange"></star-rating>
+                         sr-color="#ffc600"></star-rating>
             <div>Price: {{::hiPrice}}</div>
-        </div>
+        </div>-->
     </div>
 
 </div>
