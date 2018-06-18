@@ -18,6 +18,9 @@
 
   .detail-wrap {
     padding: 1vw;
+    .name-block {
+      color: $text-default-color;
+    }
     .adress-block {
       display: -ms-flexbox;
       display: -webkit-flex;
@@ -37,14 +40,15 @@
         height: 6vw;
       }
     }
-    .rating-block,
-    .price-block {
+    .rating-block {
       text-align: right;
     }
     .price-block {
       color: $filters-color;
+      text-align: right;
       span {
         color: $red-text;
+        font-weight: 700;
       }
     }
   }

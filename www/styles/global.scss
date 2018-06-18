@@ -10,7 +10,20 @@
   font-style: normal;
 }
 
-/*@font-face {
+@font-face {
+  font-family:'Microsoft JhengHei';
+  src: url('../../content/fonts/Microsoft JhengHei Bold.eot');
+  src: url('../../content/fonts/Microsoft JhengHei Bold.eot?#iefix') format('embedded-opentype'),
+  url('../../content/fonts/Microsoft JhengHei Bold.woff2') format('woff2'),
+  url('../../content/fonts/Microsoft JhengHei Bold.woff') format('woff'),
+  url('../../content/fonts/Microsoft JhengHei Bold.svg#Microsoft JhengHei Bold') format('svg');
+  font-weight: 700;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-2074;
+}
+
+@font-face {
   font-family:'Microsoft JhengHei';
   src: url('../../content/fonts/Microsoft JhengHei.eot');
   src: url('../../content/fonts/Microsoft JhengHei.eot?#iefix') format('embedded-opentype'),
@@ -20,7 +33,8 @@
   font-weight: 400;
   font-style: normal;
   font-stretch: normal;
-}*/
+  unicode-range: U+0020-2074;
+}
 
 @font-face {
   font-family: 'Microsoft JhengHei';

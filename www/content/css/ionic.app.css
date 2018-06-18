@@ -9822,17 +9822,24 @@ a.button {
   font-weight: normal;
   font-style: normal; }
 
-/*@font-face {
-  font-family:'Microsoft JhengHei';
-  src: url('../../content/fonts/Microsoft JhengHei.eot');
-  src: url('../../content/fonts/Microsoft JhengHei.eot?#iefix') format('embedded-opentype'),
-  url('../../content/fonts/Microsoft JhengHei.woff2') format('woff2'),
-  url('../../content/fonts/Microsoft JhengHei.woff') format('woff'),
-  url('../../content/fonts/Microsoft JhengHei.svg#Microsoft JhengHei') format('svg');
+@font-face {
+  font-family: 'Microsoft JhengHei';
+  src: url("../../content/fonts/Microsoft JhengHei Bold.eot");
+  src: url("../../content/fonts/Microsoft JhengHei Bold.eot?#iefix") format("embedded-opentype"), url("../../content/fonts/Microsoft JhengHei Bold.woff2") format("woff2"), url("../../content/fonts/Microsoft JhengHei Bold.woff") format("woff"), url("../../content/fonts/Microsoft JhengHei Bold.svg#Microsoft JhengHei Bold") format("svg");
+  font-weight: 700;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-2074; }
+
+@font-face {
+  font-family: 'Microsoft JhengHei';
+  src: url("../../content/fonts/Microsoft JhengHei.eot");
+  src: url("../../content/fonts/Microsoft JhengHei.eot?#iefix") format("embedded-opentype"), url("../../content/fonts/Microsoft JhengHei.woff2") format("woff2"), url("../../content/fonts/Microsoft JhengHei.woff") format("woff"), url("../../content/fonts/Microsoft JhengHei.svg#Microsoft JhengHei") format("svg");
   font-weight: 400;
   font-style: normal;
   font-stretch: normal;
-}*/
+  unicode-range: U+0020-2074; }
+
 @font-face {
   font-family: 'Microsoft JhengHei';
   src: url("../../content/fonts/Microsoft JhengHei Light.eot");
@@ -10766,6 +10773,8 @@ textarea {
 
 .help-item .detail-wrap {
   padding: 1vw; }
+  .help-item .detail-wrap .name-block {
+    color: #000; }
   .help-item .detail-wrap .adress-block {
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -10781,10 +10790,11 @@ textarea {
     color: #7a89a3; }
     .help-item .detail-wrap .time-block img {
       height: 6vw; }
-  .help-item .detail-wrap .rating-block,
-  .help-item .detail-wrap .price-block {
+  .help-item .detail-wrap .rating-block {
     text-align: right; }
   .help-item .detail-wrap .price-block {
-    color: #7a89a3; }
+    color: #7a89a3;
+    text-align: right; }
     .help-item .detail-wrap .price-block span {
-      color: #d30041; }
+      color: #d30041;
+      font-weight: 700; }
