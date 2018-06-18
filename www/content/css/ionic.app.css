@@ -10171,7 +10171,8 @@ textarea {
       background-color: #FFF; }
 
 .help-content .item {
-  border-color: #B2C1DB; }
+  border-color: #B2C1DB;
+  padding-bottom: 0; }
   .help-content .item:first-child {
     border: none; }
 
@@ -10751,3 +10752,14 @@ textarea {
 
 .star-rating-directive {
   display: inline-block; }
+
+.help-item .distance-block img {
+  height: 59%; }
+
+.help-item .doctor-block {
+  text-align: center; }
+
+.help-item .rating-block {
+  text-align: right; }
+  .help-item .rating-block .price-block span {
+    color: #d30041; }
