@@ -40,6 +40,10 @@
 
         function send() {
             if(validation()){
+                if (!vm.showContentDentist){
+                    delete vm.user.avatar;
+                    console.log(vm.user)
+                }
                 regSvc.sendUser(vm.user).then(function (data) {
                     processRegSuccess(data);
                 }, function (err) {
@@ -91,9 +95,11 @@
                  toastr.error(messagesSvc.error.emptyField);
                  return false;
              }
-             if (!vm.user.avatar.length){
-                 toastr.error(messagesSvc.error.emptyField);
-                 return false;
+             if(vm.showContentDentist){
+                 if (!vm.user.avatar.length){
+                     toastr.error(messagesSvc.error.emptyField);
+                     return false;
+                 }
              }
              return true;
         }

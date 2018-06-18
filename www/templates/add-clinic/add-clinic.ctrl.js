@@ -35,8 +35,7 @@
                 regSvc.sendClinicPhone(send).then(function (data) {
                     if (data.success) {
                         showPopUp();
-                        vm.listClinic = data.data
-                        console.log(data.data[0])
+                        vm.listClinic = data.data;
                     } else {
                         if (data.message) {
                             // toastr.error(data.message)

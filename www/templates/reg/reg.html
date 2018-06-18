@@ -14,11 +14,8 @@
                 <p>Let us know you</p>
                 <div class="img-outer">
                     <img src="content/img/border.svg">
-                    <div class="top-icon" ng-click="vm.selectAvatar()">
-                        <img src="content/img/add-photo-icon.png" alt=""
-                         ng-if="!vm.user.avatar">
-                        <img ng-src="{{vm.user.avatar}}" alt=""
-                            ng-if="vm.user.avatar">
+                    <div class="top-icon" ng-click="vm.selectAvatar()" ng-if="vm.showContentDentist">
+                        <img src="content/img/add-photo-icon.png" ng-src="{{vm.user.avatar}}" alt="">
                     </div>
                 </div>
             </div>
