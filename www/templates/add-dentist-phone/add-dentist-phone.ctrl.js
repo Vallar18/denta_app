@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddDentistPhoneCtrl', AddDentistPhoneCtrl);
 
-    AddDentistPhoneCtrl.$inject = ['$scope', '$state', '$localStorage', 'regSvc', 'phoneSvc', 'codes', 'toastr', 'messagesSvc', '$ionicPlatform', '$cordovaContacts', '$ionicPopup'];
+    AddDentistPhoneCtrl.$inject = ['$scope', '$state', '$localStorage', 'regSvc', 'phoneSvc', 'codes', 'toastr', 'messagesSvc', '$ionicPlatform', '$cordovaContacts', 'userSvc'];
 
-    function AddDentistPhoneCtrl($scope, $state, $localStorage, regSvc, phoneSvc, codes, toastr, messagesSvc, $ionicPlatform, $cordovaContacts, $ionicPopup) {
+    function AddDentistPhoneCtrl($scope, $state, $localStorage, regSvc, phoneSvc, codes, toastr, messagesSvc, $ionicPlatform, $cordovaContacts, userSvc) {
         const vm = this;
         vm.send = send;
         vm.skipAddPhoneDentist = skipAddPhoneDentist;
@@ -17,8 +17,8 @@
         vm.pickContactUsingNativeUI = pickContactUsingNativeUI;
         vm.codes = codes;
         vm.select_code = vm.codes[235].code;
-        vm.user = $localStorage.user;
-        vm.role = $localStorage.role;
+        vm.user = userSvc.getUser();
+        vm.role = userSvc.getRole();
         vm.phone = '';
         vm.overlay = true;
         vm.phoneFromContact = '';
@@ -48,7 +48,7 @@
         //         cssClass: 'select-contact'
         //     });
         // }
-
+    // спитать про запрос для пропуску номера дантиста
 
         function send() {
             if (validPhoneDentist()) {
@@ -63,7 +63,7 @@
                     if (data.success) {
                         // toastr.success(data.message, '', {
                         //     onHidden: function () {
-                        $state.go('share')
+                        $state.go('share');
                         // }
                         // });
                         vm.dentist.phone = '';

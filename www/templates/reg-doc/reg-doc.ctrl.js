@@ -13,7 +13,6 @@
         vm.phone = $localStorage.phone;
         vm.key = $localStorage.key;
         vm.croppedDataUrl = '';
-        console.log(vm.key)
         vm.user = {
             name: '',
             lastname: '',
@@ -36,8 +35,8 @@
         function processRegSuccess(data){
             if(data.success) {
                 $state.go('add-clinic');
-                $localStorage.user = data.user;
-                $localStorage.token = data.token;
+                userSvc.setUser(data.user);
+                userSvc.setUser(data.token);
                 vm.user = {
                     name: '',
                     lastname: '',

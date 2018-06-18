@@ -3,10 +3,25 @@
 
     angular.module('service.authSvc', []).factory('authSvc', authSvc);
 
-    authSvc.$inject = [];
+    authSvc.$inject = ['userSvc'];
 
-    function authSvc() {
-        var model = {};
+    function authSvc(userSvc) {
+        var model = {
+            isLogined: isLogined,
+            logout: logout
+        };
         return model;
+
+        function isLogined(){
+            let user = userSvc.getUser();
+            if(angular.isDefined(user) && user.id && userSvc.getToken() && userSvc.getRole()){
+                return true;
+            }
+            return false;
+        }
+
+        function logout(){
+            userSvc.resetData();
+        }
     }
 })();
