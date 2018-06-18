@@ -22,7 +22,8 @@
                 emptySpec: 'Please choose a specialty',
                 selectClinicName: 'Please choose a clinic',
                 emptyReview: 'Please write review text',
-                emptyAddress: 'Address not found, enter manually'
+                emptyAddress: 'Address not found, enter manually',
+                notGetContact: 'It is not possible to access the phone book'
             },
             success: {
                 test: 'Test'
