@@ -21,7 +21,8 @@
                 emptyField: 'Please fill in all fields',
                 emptySpec: 'Please choose a specialty',
                 selectClinicName: 'Please choose a clinic',
-                emptyReview: 'Please write review text'
+                emptyReview: 'Please write review text',
+                emptyAddress: 'Address not found, enter manually'
             },
             success: {
                 test: 'Test'

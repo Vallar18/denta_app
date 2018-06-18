@@ -16,7 +16,7 @@
     function runBlock($ionicPlatform, $localStorage, $state, utilsSvc) {
         utilsSvc.initializePolyfill();
         $ionicPlatform.ready(function() {
-            $state.go('registration');
+            $state.go('add-clinic');
             window.addEventListener('keyboardDidShow', (event) => {
                 // Describe your logic which will be run each time when keyboard is about to be shown.
                 console.log(event.keyboardHeight);

@@ -28,7 +28,7 @@
         init();
 
         function init() {
-            if(vm.role && vm.role){
+            if(vm.role){
                 if(vm.role === 'dentist'){
                     vm.showContentDentist = true;
                 } else{
@@ -52,14 +52,10 @@
             if(data.success) {
                 // toastr.success(data.message, '', {
                 //     onHidden: function () {
-                if(vm.showContentDentist){
-                    $state.go('add-clinic');
-                } else {
-                    $state.go('add-dentist-phone')
-                }
                 // }
                 // });
                 $localStorage.user = data.data;
+                //temporary save user avatar in base64 in localstorage
                 $localStorage[data.data.id].avatar = vm.user.avatar;
                 vm.user = {
                     name: '',
@@ -68,6 +64,11 @@
                     phone: vm.phone,
                     key: vm.key,
                     avatar: ''
+                }
+                if(vm.showContentDentist){
+                    $state.go('add-clinic');
+                } else {
+                    $state.go('add-dentist-phone')
                 }
             } else {
                 toastr.error(data.message);
