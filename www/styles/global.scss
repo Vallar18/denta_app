@@ -55,7 +55,10 @@ a {
 .scroll {
   height: 100%;
 }
-
+.popup-bottom {
+  bottom: 0;
+  position: absolute;
+}
 .item-block-top {
   /* height: 40%;*/
   width: 100%;
