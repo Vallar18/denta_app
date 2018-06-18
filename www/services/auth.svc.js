@@ -7,7 +7,8 @@
 
     function authSvc(userSvc) {
         var model = {
-            isLogined: isLogined
+            isLogined: isLogined,
+            logout: logout
         };
         return model;
 
@@ -17,6 +18,10 @@
                 return true;
             }
             return false;
+        }
+
+        function logout(){
+            userSvc.resetData();
         }
     }
 })();

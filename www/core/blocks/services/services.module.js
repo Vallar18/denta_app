@@ -17,6 +17,8 @@
         'service.reviewSvc',
         'service.helpSvc',
         'service.utilsSvc',
-        'service.historySvc'
+        'service.historySvc',
+        'service.patientSvc',
+        'service.dentistSvc'
     ]);
 })();
