@@ -30,6 +30,7 @@
             });
             window.addEventListener('keyboardDidHide', () => {
                 let popup = document.querySelector('.popup');
+
                 if(popup != null){
                     popup.classList.remove('popup-bottom')
                 }
