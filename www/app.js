@@ -23,6 +23,7 @@
                 let popup = document.querySelector('.popup');
                 console.log(popup);
                 if (popup != null){
+
                     console.log(typeof popup);
                     popup.classList.add('popup-bottom')
                 }
