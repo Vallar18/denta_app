@@ -34,17 +34,15 @@
                             timeOut:20000,
                             tapToDismiss: true
                         });
-                        // toastr.success(data.message, '', {
-                        //     onHidden: function () {
-                                $state.go('add-code');
-                        //     }
-                        // });
+                        $state.go('add-code');
                         $localStorage.valView = false;
                         $localStorage.phone = vm.sum_phone;
                         vm.phone = '';
                     }else {
                         if(data.message){
                             toastr.error(data.message)
+                            //getinfo login
+
                         }
                     }
                 });

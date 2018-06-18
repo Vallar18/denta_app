@@ -1,20 +1,16 @@
 <ion-view class="reg-step1">
     <ion-content>
         <div class="item-block-top">
-            <div layout="row" ng-if="vm.showContentDentist" layout-align="space-around end" class="steps-wrap">
+            <div layout="row" layout-align="space-around end" class="steps-wrap">
                 <div class="steps-item active-step"><span>1</span></div>
                 <div class="steps-item"><span>2</span></div>
                 <div class="steps-item"><span>3</span></div>
-            </div>
-            <div layout="row" ng-if="!vm.showContentDentist" layout-align="space-around end" class="steps-wrap">
-                <div class="steps-item active-step"><span>1</span></div>
-                <div class="steps-item"><span>2</span></div>
             </div>
             <div class="img-wrap">
                 <p>Let us know you</p>
                 <div class="img-outer">
                     <img src="content/img/border.svg">
-                    <div class="top-icon" ng-click="vm.selectAvatar()" ng-if="vm.showContentDentist">
+                    <div class="top-icon" ng-click="vm.selectAvatar()">
                         <img src="content/img/add-photo-icon.png" ng-src="{{vm.user.avatar}}" alt="">
                     </div>
                 </div>
