@@ -55,8 +55,6 @@
                 // }
                 // });
                 $localStorage.user = data.data;
-                //temporary save user avatar in base64 in localstorage
-                $localStorage[data.data.id].avatar = vm.user.avatar;
                 vm.user = {
                     name: '',
                     lastname: '',
@@ -64,7 +62,7 @@
                     phone: vm.phone,
                     key: vm.key,
                     avatar: ''
-                }
+                };
                 if(vm.showContentDentist){
                     $state.go('add-clinic');
                 } else {
@@ -92,10 +90,10 @@
                  toastr.error(messagesSvc.error.emptyField);
                  return false;
              }
-             if (!vm.user.avatar.length){
-                 toastr.error(messagesSvc.error.emptyField);
-                 return false;
-             }
+             // if (!vm.user.avatar.length){
+             //     toastr.error(messagesSvc.error.emptyField);
+             //     return false;
+             // }
              return true;
         }
 

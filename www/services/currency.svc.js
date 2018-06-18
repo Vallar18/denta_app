@@ -40,7 +40,7 @@
                 let findArray = angular.isArray(array) ? array : cache;
                 let currNameLwr = currencyName.toLowerCase();
                 return findArray.findIndex(function(item){
-                    return item.name && item.name.toLowerCase() === currNameLwr;
+                    return item.abr && item.abr.toLowerCase() === currNameLwr;
                 })
             }
             return 0;
