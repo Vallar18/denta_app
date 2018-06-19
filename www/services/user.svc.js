@@ -23,8 +23,8 @@
         return model;
 
         function getUser(){
-            // if($localStorage.user && $localStorage.id){ закоментирував бо не находили id
-            if($localStorage.user){
+            // if($localStorage.user && $localStorage.user.id){ закоментирував бо не находили id
+            if($localStorage.user && $localStorage.user.id){
                 return $localStorage.user;
             }
         }
