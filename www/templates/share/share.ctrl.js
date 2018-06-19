@@ -5,18 +5,17 @@
         .module('app')
         .controller('ShareCtrl', ShareCtrl);
 
-    ShareCtrl.$inject = ['$cordovaSocialSharing', '$ionicPlatform', '$state', '$localStorage'];
+    ShareCtrl.$inject = ['$cordovaSocialSharing', '$ionicPlatform', '$state', 'userSvc'];
 
-    function ShareCtrl($cordovaSocialSharing, $ionicPlatform, $state, $localStorage) {
+    function ShareCtrl($cordovaSocialSharing, $ionicPlatform, $state, userSvc) {
         const vm = this;
         vm.share = share;
         vm.finish = finishReg;
-        vm.role = $localStorage.role;
 
         function finishReg() {
-            if (vm.role !== 'dentist') {
+            if (userSvc.isDoc()) {
                 $state.go('tabs.patient-profile');
-            } else if (vm.role === 'dentist') {
+            } else if (userSvc.isPat) {
                 $state.go('tabs.dentist-profile');
             }
         }

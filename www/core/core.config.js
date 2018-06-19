@@ -156,13 +156,13 @@
 
             })
             .state('tabs.patient-profile', {
-                url: '/profile',
+                url: '/patient-profile',
                 templateUrl: 'templates/patient-profile/patient-profile.html',
                 controller: 'PatientProfileCtrl',
                 controllerAs: 'vm'
             })
             .state('tabs.dentist-profile', {
-                url: '/profile',
+                url: '/dentist-profile',
                 templateUrl: 'templates/dentist-profile/dentist-profile.html',
                 controller: 'DentistProfileCtrl',
                 controllerAs: 'vm'

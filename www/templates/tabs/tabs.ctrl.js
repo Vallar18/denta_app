@@ -5,29 +5,28 @@
         .module('app')
         .controller('TabsController', TabsController);
 
-    TabsController.$inject = ['$state', '$localStorage', '$ionicHistory', '$cordovaSocialSharing', '$ionicPlatform', 'tabsSvc'];
+    TabsController.$inject = ['$state', '$localStorage', 'userSvc', '$cordovaSocialSharing', '$ionicPlatform', 'tabsSvc'];
 
-    function TabsController($state, $localStorage, $ionicHistory, $cordovaSocialSharing, $ionicPlatform, tabsSvc) {
+    function TabsController($state, $localStorage, userSvc, $cordovaSocialSharing, $ionicPlatform, tabsSvc) {
 
         var vm = this;
         vm.toggleMenu = toggleMenu;
         vm.selectingItem = selectingItem;
-        vm.role = $localStorage.role;
-        vm.currentUserType = vm.role;
+        let currentUserType = userSvc.getRole();
         vm.menuModel = {
             isShow: false,
             items: [],
             model: undefined
         };
         vm.tabsModel = {
-            isShowMenu: vm.currentUserType === 'dentist',
+            isShowMenu: userSvc.isDoc(),
             items: []
         };
 
         init();
         function init() {
-            vm.menuModel.items = tabsSvc.getMenuItems(vm.currentUserType);
-            vm.tabsModel.items = tabsSvc.getTabItems(vm.currentUserType);
+            vm.menuModel.items = tabsSvc.getMenuItems(currentUserType);
+            vm.tabsModel.items = tabsSvc.getTabItems(currentUserType);
         }
 
         function toggleMenu() {

@@ -3,9 +3,9 @@
 
     angular.module('service.tabsSvc', []).factory('tabsSvc', tabsSvc);
 
-    tabsSvc.$inject = [];
+    tabsSvc.$inject = ['userSvc'];
 
-    function tabsSvc() {
+    function tabsSvc(userSvc) {
         var model = {
             getMenuItems: getMenuItems,
             getTabItems: getTabItems
@@ -13,7 +13,7 @@
         return model;
 
         function getMenuItems(type) {
-            if (angular.isUndefined(type) || type === 'dentist') {
+            if (angular.isUndefined(type) || type === userSvc.roleConst().doctor) {
                 return [{
                     id: 5,
                     name: 'Terms Of Use',
@@ -47,7 +47,7 @@
         }
 
         function getTabItems(type) {
-            if (type === 'dentist') {
+            if (type === userSvc.roleConst().doctor) {
                 return [
                     {
                         id: 1,
@@ -63,7 +63,7 @@
                         view: 'tabs.history'
                     }
                 ]
-            } else if (type === 'patient') {
+            } else if (type === userSvc.roleConst().patient) {
                 return [
                     {
                         id: 1,

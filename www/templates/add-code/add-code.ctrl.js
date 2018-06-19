@@ -47,11 +47,12 @@
                         console.log('pat')
                         $state.go('tabs.patient-profile');
                     }
+                } else {
+                    $state.go('select-role');
+                    authSvc.setCode(vm.verify.code);
+                    authSvc.setKey(data.authKey);
+                    vm.code = '';
                 }
-                $state.go('select-role');
-                authSvc.setCode(vm.verify.code);
-                authSvc.setKey(data.authKey);
-                vm.code = '';
             } else {
                 if(data.message){
                     toastr.error(data.message)
