@@ -21,6 +21,27 @@
             valBtn: 'Send'
         }
 
+        vm.test = function(){
+            $ionicPopup.show({
+                templateUrl: 'components/select-subscription/select-subscription.html',
+                cssClass: 'select-subscription',
+                title: '',
+                scope: $scope,
+                buttons: [
+                    { text: 'Cancel' },
+                    {
+                        text: '<b>OK</b>',
+                        type: 'button-positive',
+                        onTap: function(e) {
+                            if (!$scope.data.wifi) {
+                                //don't allow the user to close unless he enters wifi password
+                                e.preventDefault();
+                            } else {
+                                return $scope.data.wifi;
+                            }
+                        });
+        };
+
         function send() {
             if(validPhone()){
                 let send = {
