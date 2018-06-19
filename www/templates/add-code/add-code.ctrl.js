@@ -1,5 +1,5 @@
 ;(function () {
-    'use string'
+    'use strict';
 
     angular
         .module('app')

@@ -42,7 +42,6 @@
             delete $localStorage.user;
             delete $localStorage.token;
             delete $localStorage.role;
-
         }
 
         function delUser(){
@@ -79,7 +78,5 @@
         function isPat(){
             return ($localStorage.role && $localStorage.role === PATIENT);
         }
-
-
     }
 })();
