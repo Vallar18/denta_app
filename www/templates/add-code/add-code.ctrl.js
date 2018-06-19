@@ -1,5 +1,5 @@
 ;(function () {
-    'use string'
+    'use strict';
 
     angular
         .module('app')
@@ -22,7 +22,7 @@
 
         function send() {
             if(validCode()){
-                vm.verify ={
+                vm.verify = {
                     phone: vm.phone,
                     code: "" + vm.code
                 };

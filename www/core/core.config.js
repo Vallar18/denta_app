@@ -4,10 +4,15 @@
         .config(mainConfig);
 
     mainConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$mdGestureProvider',
-        '$ionicConfigProvider', '$translateProvider'];
+        '$ionicConfigProvider', '$translateProvider','toastrConfig'];
 
     function mainConfig($stateProvider, $urlRouterProvider, $mdGestureProvider,
-                        $ionicConfigProvider, $translateProvider) {
+                        $ionicConfigProvider, $translateProvider,toastrConfig) {
+
+        angular.extend(toastrConfig, {
+            // preventDuplicates: true,
+            preventOpenDuplicates: false,
+        });
         //example of user translation
         $translateProvider.translations('en', {
             'TITLE': 'Hello',

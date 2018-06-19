@@ -29,7 +29,8 @@
             specialties: baseUrl + 'specialties',
             currencies: baseUrl + 'currencies',
             invite: {
-                dentist: baseUrl + 'invite/dentist'
+                dentist: baseUrl + 'invite/dentist',
+                checkDentist: baseUrl + 'check/dentist'
             }
         };
     }

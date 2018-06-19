@@ -48,7 +48,6 @@
             delete $localStorage.user;
             delete $localStorage.token;
             delete $localStorage.role;
-
         }
 
         function setToken(token){
@@ -87,7 +86,5 @@
                 patient: PATIENT
             }
         }
-
-
     }
 })();
