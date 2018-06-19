@@ -22,7 +22,7 @@
 
         function send() {
             if(validCode()){
-                vm.verify ={
+                vm.verify = {
                     phone: vm.phone,
                     code: "" + vm.code
                 };
@@ -71,7 +71,7 @@
         }
 
         function goAddPhone() {
-            $state.go('add-phone')
+            $state.go('add-phone');
             vm.code = '';
         }
     }
