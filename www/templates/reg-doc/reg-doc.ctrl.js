@@ -5,9 +5,9 @@
         .module('app')
         .controller('RegDocCtrl', RegDocCtrl);
 
-    RegDocCtrl.$inject = ['$scope', '$ionicPlatform','$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc', '$ionicPopup', 'IonicClosePopupService', '$cordovaCamera'];
+    RegDocCtrl.$inject = ['$scope', '$ionicPlatform','$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc', '$ionicPopup', 'IonicClosePopupService', '$cordovaCamera','userSvc'];
 
-    function RegDocCtrl($scope, $ionicPlatform, $state, regSvc, toastr, $localStorage, messagesSvc, $ionicPopup, IonicClosePopupService, $cordovaCamera) {
+    function RegDocCtrl($scope, $ionicPlatform, $state, regSvc, toastr, $localStorage, messagesSvc, $ionicPopup, IonicClosePopupService, $cordovaCamera,userSvc) {
         const vm = this;
         vm.send = send;
         vm.phone = $localStorage.phone;
@@ -36,7 +36,7 @@
             if(data.success) {
                 $state.go('add-clinic');
                 userSvc.setUser(data.user);
-                userSvc.setUser(data.token);
+                userSvc.setToken(data.token);
                 vm.user = {
                     name: '',
                     lastname: '',

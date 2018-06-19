@@ -5,12 +5,12 @@
         .module('app')
         .controller('AddDentistPhoneCtrl', AddDentistPhoneCtrl);
 
-    AddDentistPhoneCtrl.$inject = ['$scope', '$state', '$localStorage', 'regSvc', 'phoneSvc', 'codes', 'toastr', 'messagesSvc', '$ionicPlatform', '$cordovaContacts', 'userSvc'];
+    AddDentistPhoneCtrl.$inject = ['$scope', '$state', '$localStorage', 'regSvc', 'phoneSvc', 'codes', 'toastr', 'messagesSvc', '$ionicPlatform', '$cordovaContacts', 'userSvc','$ionicPopup','dentistSvc'];
 
-    function AddDentistPhoneCtrl($scope, $state, $localStorage, regSvc, phoneSvc, codes, toastr, messagesSvc, $ionicPlatform, $cordovaContacts, userSvc) {
+    function AddDentistPhoneCtrl($scope, $state, $localStorage, regSvc, phoneSvc, codes, toastr, messagesSvc, $ionicPlatform, $cordovaContacts, userSvc, $ionicPopup, dentistSvc) {
         const vm = this;
         vm.send = send;
-        vm.skipAddPhoneDentist = skipAddPhoneDentist;
+        vm.skip = skip;
         vm.hideOverlay = hideOverlay;
         vm.getSelectCode = getSelectCode;
         vm.selectCode = selectCode;
@@ -48,60 +48,66 @@
         //         cssClass: 'select-contact'
         //     });
         // }
-    // спитать про запрос для пропуску номера дантиста
+        // спитать про запрос для пропуску номера дантиста
 
         function send() {
             if (validPhoneDentist()) {
                 if (vm.user) {
-                    vm.data = {
+                    var data = {
                         user_id: vm.user.id,
                         dentist_phone: vm.sum_phone,
                         role: vm.role
                     };
+                    addRoleProcess(data);
                 }
-                regSvc.addRolePatient(vm.data).then(function (data) {
-                    if (data.success) {
-                        // toastr.success(data.message, '', {
-                        //     onHidden: function () {
-                        $state.go('share');
-                        // }
-                        // });
-                        vm.dentist.phone = '';
-                    } else {
-                        $state.go('share')
-                    }
-                }, function (err) {
-                    let err_text = '';
-                    angular.forEach(err, function (val, key) {
-                        if (angular.isArray(val)) {
-                            err_text += val.reduce(function (acc, current) {
-                                return acc + '\n' + current;
-                            }, '');
-                        }
-                    });
-                    if (err_text.length) {
-                        toastr.error(err_text);
+            }
+        }
+
+        function addRoleProcess(data) {
+            if(angular.isUndefined(data)){ return; }
+            regSvc.addRolePatient(data).then(function (data) {
+                if (data.success) {
+                    $state.go('share');
+                } else {
+                   showAskDentist();
+                }
+            }, function (err) {
+                let err_text = '';
+                angular.forEach(err, function (val, key) {
+                    if (angular.isArray(val)) {
+                        err_text += val.reduce(function (acc, current) {
+                            return acc + '\n' + current;
+                        }, '');
                     }
                 });
-            }
+                if (err_text.length) {
+                    toastr.error(err_text);
+                }
+            });
         }
 
         function hideOverlay() {
             vm.overlay = false;
         }
 
-        function skipAddPhoneDentist() {
-            $state.go('share')
+        function skip() {
+            if (vm.user) {
+                var data = {
+                    user_id: vm.user.id,
+                    role: vm.role
+                };
+                addRoleProcess(data);
+            }
         }
 
         function validPhoneDentist() {
-            if (vm.dentist_phone !== '') {
+            if (vm.phone !== '') {
                 vm.sum_phone = vm.select_code + vm.phone;
-                vm.len_phone = vm.sum_phone.toString().length;
-                if (vm.len_phone > 8 && vm.len_phone < 20) {
+                var len_phone = vm.sum_phone.toString().length;
+                if (len_phone > 8 && len_phone < 20) {
                     return true;
                 } else {
-                    toastr.error(messagesSvc.error.invalidPhone)
+                    toastr.error(messagesSvc.error.invalidPhone);
                     return false;
                 }
             }
@@ -116,6 +122,35 @@
             vm.select_code = code.code;
             vm.codePopup.close();
         }
+
+
+        function showAskDentist(){
+            $ionicPopup.show({
+                template: 'This dentist is not in our database, send him an invitation?',
+                title: 'Send invite',
+                scope: $scope,
+                buttons: [
+                    { text: 'NO',
+                        onTap: function(){
+                            skip();
+                        }},
+                    {
+                        text: '<b>YES</b>',
+                        type: 'button-positive',
+                        onTap: function(e) {
+                            dentistSvc.invite({
+                                dentist_phone: vm.sum_phone,
+                                patient_phone: vm.user.phone
+                            }).then(function(res){
+                                skip();
+                            });
+                        }
+                    }
+                ]
+            });
+        }
+
+
     }
 
 })();

@@ -27,7 +27,10 @@
                 create: baseUrl + 'clinic/create'
             },
             specialties: baseUrl + 'specialties',
-            currencies: baseUrl + 'currencies'
+            currencies: baseUrl + 'currencies',
+            invite: {
+                dentist: baseUrl + 'invite/dentist'
+            }
         };
     }
 })();
