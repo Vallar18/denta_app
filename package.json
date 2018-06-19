@@ -11,6 +11,7 @@
   "dependencies": {
     "angular-material": "^1.1.9",
     "cordova-android": "^7.0.0",
+    "cordova-ios": "4.5.4",
     "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-console": "^1.1.0",
     "cordova-plugin-contacts": "^3.0.1",
@@ -41,6 +42,8 @@
       "cordova-plugin-camera": {},
       "cordova-plugin-file": {}
     },
-    "platforms": []
+    "platforms": [
+      "ios"
+    ]
   }
 }
