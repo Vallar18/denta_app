@@ -10122,25 +10122,25 @@ a {
 
 .back-btn {
   background: none;
-  width: 3em;
+  width: auto;
   padding: 0; }
   .back-btn.activated, .back-btn.active {
     background: none;
     border: none; }
   .back-btn img {
-    width: 90%; }
+    width: 12vw; }
 
 .share-btn {
-  background: #FFF;
-  border: 1px solid #B1C0DA;
-  -webkit-box-shadow: 0px 2px 0px 1px #B1C0DA;
-  -moz-box-shadow: 0px 2px 0px 1px #B1C0DA;
-  box-shadow: 0px 2px 0px 1px #B1C0DA;
-  border-radius: 50%; }
-  .share-btn i {
-    color: #7389A4;
-    font-size: 2rem;
-    width: 2rem; }
+  background: none;
+  border: none; }
+  .share-btn.active {
+    border: none;
+    background: none; }
+  .share-btn.activated {
+    border: none;
+    background: none; }
+  .share-btn img {
+    width: 12vw; }
 
 /*
 .modal {
