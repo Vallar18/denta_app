@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddCodeCtrl', AddCodeCtrl);
 
-    AddCodeCtrl.$inject = ['$state', 'regSvc', 'authSvc', 'userSvc', 'toastr', 'messagesSvc', '$localStorage'];
+    AddCodeCtrl.$inject = ['$state', 'regSvc', 'authSvc', 'userSvc', 'toastr', 'messagesSvc', 'dentistSvc'];
 
-    function AddCodeCtrl($state, regSvc, authSvc, userSvc, toastr, messagesSvc, $localStorage) {
+    function AddCodeCtrl($state, regSvc, authSvc, userSvc, toastr, messagesSvc, dentistSvc) {
         const vm = this;
         vm.send = send;
         vm.goAddPhone = goAddPhone;
@@ -48,10 +48,10 @@
                         $state.go('tabs.patient-profile');
                     }
                 } else {
-                    $state.go('select-role');
                     authSvc.setCode(vm.verify.code);
                     authSvc.setKey(data.authKey);
                     vm.code = '';
+                    checkDentistInvite();
                 }
             } else {
                 if(data.message){
@@ -59,6 +59,21 @@
                 }
             }
         }
+
+        function checkDentistInvite(){
+            dentistSvc.checkDentistInvite({
+                phone: vm.phone
+            }).then(function(res){
+                if(res && angular.isDefined(res.status)){
+                    if(res.status){
+                        $state.go('registration-dentist');
+                    } else {
+                        $state.go('select-role');
+                    }
+                }
+            });
+        }
+
         function processRegError(err) {
             var err_text = '';
             angular.forEach(err, function (val, key) {
