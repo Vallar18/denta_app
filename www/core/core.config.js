@@ -75,10 +75,16 @@
                 controller: 'SelectRoleCtrl',
                 controllerAs: 'vm'
             })
-            .state('registration', {
-                url: '/registration',
-                templateUrl: 'templates/reg/reg.html',
-                controller: 'RegCtrl',
+            .state('registration-dentist', {
+                url: '/registration-dentist',
+                templateUrl: 'templates/reg-doc/reg-doc.html',
+                controller: 'RegDocCtrl',
+                controllerAs: 'vm'
+            })
+            .state('registration-patient', {
+                url: '/registration-patient',
+                templateUrl: 'templates/reg-pat/reg-pat.html',
+                controller: 'RegPatCtrl',
                 controllerAs: 'vm'
             })
             .state('add-clinic', {

@@ -12,7 +12,6 @@
         vm.send = send;
         vm.goAddPhone = goAddPhone;
         vm.phone = $localStorage.phone;
-        vm.alertcode = $localStorage.alertcode;
         vm.code = '';
         vm.content = {
             val1: 'Didn\'t recived code',
@@ -62,8 +61,8 @@
 
         function validCode() {
             if (vm.code !== '') {
-                let codeLength = vm.code.toString().length;
-                if (codeLength === 4) {
+                let code_len = vm.code.toString().length;
+                if (code_len === 4) {
                     return true;
                 } else {
                     return false;

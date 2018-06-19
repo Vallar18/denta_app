@@ -3,19 +3,16 @@
 
     angular
         .module('app')
-        .controller('RegCtrl', RegCtrl);
+        .controller('RegDocCtrl', RegDocCtrl);
 
-    RegCtrl.$inject = ['$scope', '$ionicPlatform','$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc', '$ionicPopup', 'IonicClosePopupService', '$cordovaCamera'];
+    RegDocCtrl.$inject = ['$scope', '$ionicPlatform','$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc', '$ionicPopup', 'IonicClosePopupService', '$cordovaCamera'];
 
-    function RegCtrl($scope, $ionicPlatform, $state, regSvc, toastr, $localStorage, messagesSvc, $ionicPopup, IonicClosePopupService, $cordovaCamera) {
+    function RegDocCtrl($scope, $ionicPlatform, $state, regSvc, toastr, $localStorage, messagesSvc, $ionicPopup, IonicClosePopupService, $cordovaCamera) {
         const vm = this;
         vm.send = send;
-        vm.showContentDentist = undefined;
-        vm.role = $localStorage.role;
         vm.phone = $localStorage.phone;
         vm.key = $localStorage.key;
         vm.croppedDataUrl = '';
-        console.log(vm.key)
         vm.user = {
             name: '',
             lastname: '',
@@ -25,25 +22,8 @@
             avatar: ''
         };
 
-        init();
-
-        function init() {
-            if(vm.role){
-                if(vm.role === 'dentist'){
-                    vm.showContentDentist = true;
-                } else{
-                    vm.showContentDentist = false;
-                }
-            }
-            console.log(vm.showContentDentist)
-        }
-
         function send() {
             if(validation()){
-                if (!vm.showContentDentist){
-                    delete vm.user.avatar;
-                    console.log(vm.user)
-                }
                 regSvc.sendUser(vm.user).then(function (data) {
                     processRegSuccess(data);
                 }, function (err) {
@@ -54,12 +34,9 @@
 
         function processRegSuccess(data){
             if(data.success) {
-                // toastr.success(data.message, '', {
-                //     onHidden: function () {
-                // }
-                // });
-                $localStorage.user = data.user;
-                $localStorage.token = data.token;
+                $state.go('add-clinic');
+                userSvc.setUser(data.user);
+                userSvc.setUser(data.token);
                 vm.user = {
                     name: '',
                     lastname: '',
@@ -68,11 +45,6 @@
                     key: vm.key,
                     avatar: ''
                 };
-                if(vm.showContentDentist){
-                    $state.go('add-clinic');
-                } else {
-                    $state.go('add-dentist-phone')
-                }
             } else {
                 toastr.error(data.message);
             }
@@ -95,11 +67,9 @@
                  toastr.error(messagesSvc.error.emptyField);
                  return false;
              }
-             if(vm.showContentDentist){
-                 if (!vm.user.avatar.length){
-                     toastr.error(messagesSvc.error.emptyField);
-                     return false;
-                 }
+             if (!vm.user.avatar.length){
+                 toastr.error(messagesSvc.error.emptyField);
+                 return false;
              }
              return true;
         }

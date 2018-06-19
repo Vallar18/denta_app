@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddClinicCtrl', AddClinicCtrl);
 
-    AddClinicCtrl.$inject = ['$scope', '$state', 'regSvc', 'phoneSvc', 'toastr', 'messagesSvc', '$localStorage', 'codes', '$ionicPopup', 'geoSvc', '$ionicLoading'];
+    AddClinicCtrl.$inject = ['$scope', '$state', 'regSvc', 'phoneSvc', 'toastr', 'messagesSvc', '$localStorage', 'codes', '$ionicPopup', 'geoSvc', '$ionicLoading', 'userSvc'];
 
-    function AddClinicCtrl($scope, $state, regSvc, phoneSvc, toastr, messagesSvc, $localStorage, codes, $ionicPopup, geoSvc, $ionicLoading) {
+    function AddClinicCtrl($scope, $state, regSvc, phoneSvc, toastr, messagesSvc, $localStorage, codes, $ionicPopup, geoSvc, $ionicLoading, userSvc) {
         const vm = this;
         vm.checkClinicPhone = checkClinicPhone;
         vm.send = send;
@@ -17,7 +17,7 @@
         vm.openMapPopup = openMapPopup;
         vm.codes = codes;
         vm.select_code = vm.codes[235].code;
-        vm.user = $localStorage.user;
+        vm.user = userSvc.getUser();
         vm.phone = '';
         vm.clinic = {
             user_id: vm.user.id,
@@ -142,7 +142,6 @@
             vm.select_code = code.code;
             vm.codePopup.close();
         }
-
 
         function openMapPopup() {
             var mapPopup = $ionicPopup.show({

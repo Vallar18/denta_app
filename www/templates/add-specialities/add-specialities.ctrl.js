@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddSpecialitiesCtrl', AddSpecialitiesCtrl);
 
-    AddSpecialitiesCtrl.$inject = ['$scope', '$state', 'specSvc', 'toastr', '$localStorage', 'messagesSvc', '$ionicModal', 'spec', 'currencies', '$ionicPopup', 'currencySvc'];
+    AddSpecialitiesCtrl.$inject = ['$scope', '$state', 'specSvc', 'toastr', 'userSvc', 'messagesSvc', '$ionicModal', 'spec', 'currencies', '$ionicPopup', 'currencySvc'];
 
-    function AddSpecialitiesCtrl($scope, $state, specSvc, toastr, $localStorage, messagesSvc, $ionicModal, spec, currencies, $ionicPopup, currencySvc) {
+    function AddSpecialitiesCtrl($scope, $state, specSvc, toastr, userSvc, messagesSvc, $ionicModal, spec, currencies, $ionicPopup, currencySvc) {
         const vm = this;
         vm.send = send;
         vm.getCurrency = getCurrency;
@@ -17,9 +17,8 @@
         vm.getSelectCurrency = getSelectCurrency;
         vm.selectCurrency = selectCurrency;
         const DEFAULT_CURRENCY = 'USD';
-        // vm.closeModal = closeModal;
-        vm.user = $localStorage.user;
-        vm.role = $localStorage.role;
+        vm.user = userSvc.getUser();
+        vm.role = userSvc.getRole();
         vm.specialities = spec;
         vm.currencies = currencies;
         vm.select_currency = vm.currencies[currencySvc.getIndexByName(DEFAULT_CURRENCY)];
@@ -93,7 +92,7 @@
                 vm.spec_selected_id.splice(spec_id, 1);
             }
             vm.len_spec = vm.spec_selected_id.length
-        };
+        }
         function saveModal() {
             if (vm.spec_selected_id && vm.len_spec){
                 $scope.modal.hide();
