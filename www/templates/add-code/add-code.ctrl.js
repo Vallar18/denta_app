@@ -41,10 +41,10 @@
                     userSvc.setUser(data.user);
                     userSvc.setRole(data.user.roles[0].name);
                     if(userSvc.isDoc()){
-                        console.log('doc')
+                        console.log('doc');
                         $state.go('tabs.dentist-profile');
                     } else if(userSvc.isPat()){
-                        console.log('pat')
+                        console.log('pat');
                         $state.go('tabs.patient-profile');
                     }
                 } else {
@@ -66,6 +66,7 @@
             }).then(function(res){
                 if(res && angular.isDefined(res.status)){
                     if(res.status){
+                        userSvc.setRole(userSvc.roleConst().doctor);
                         $state.go('registration-dentist');
                     } else {
                         $state.go('select-role');
