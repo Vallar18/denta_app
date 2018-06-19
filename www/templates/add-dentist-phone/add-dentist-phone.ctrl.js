@@ -48,7 +48,7 @@
         //         cssClass: 'select-contact'
         //     });
         // }
-    // спитать про запрос для пропуску номера дантиста
+        // спитать про запрос для пропуску номера дантиста
 
         function send() {
             if (validPhoneDentist()) {
@@ -59,31 +59,32 @@
                         role: vm.role
                     };
                 }
-                regSvc.addRolePatient(vm.data).then(function (data) {
-                    if (data.success) {
-                        // toastr.success(data.message, '', {
-                        //     onHidden: function () {
-                        $state.go('share');
-                        // }
-                        // });
-                        vm.dentist.phone = '';
-                    } else {
-                        $state.go('share')
-                    }
-                }, function (err) {
-                    let err_text = '';
-                    angular.forEach(err, function (val, key) {
-                        if (angular.isArray(val)) {
-                            err_text += val.reduce(function (acc, current) {
-                                return acc + '\n' + current;
-                            }, '');
-                        }
-                    });
-                    if (err_text.length) {
-                        toastr.error(err_text);
+
+            }
+        }
+
+        function addRoleProcess(data) {
+            if(angular.isUndefined(data)){ return; }
+            regSvc.addRolePatient(data).then(function (data) {
+                if (data.success) {
+                    $state.go('share');
+                    vm.dentist.phone = '';
+                } else {
+                    $state.go('share')
+                }
+            }, function (err) {
+                let err_text = '';
+                angular.forEach(err, function (val, key) {
+                    if (angular.isArray(val)) {
+                        err_text += val.reduce(function (acc, current) {
+                            return acc + '\n' + current;
+                        }, '');
                     }
                 });
-            }
+                if (err_text.length) {
+                    toastr.error(err_text);
+                }
+            });
         }
 
         function hideOverlay() {
@@ -91,7 +92,14 @@
         }
 
         function skipAddPhoneDentist() {
-            $state.go('share')
+            if (vm.user) {
+                var data = {
+                    user_id: vm.user.id,
+                    role: vm.role
+                };
+                addRoleProcess(data);
+            }
+
         }
 
         function validPhoneDentist() {
@@ -101,7 +109,7 @@
                 if (vm.len_phone > 8 && vm.len_phone < 20) {
                     return true;
                 } else {
-                    toastr.error(messagesSvc.error.invalidPhone)
+                    toastr.error(messagesSvc.error.invalidPhone);
                     return false;
                 }
             }

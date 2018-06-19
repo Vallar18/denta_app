@@ -31,12 +31,12 @@
             // });
         }
 
-        function processSelectedPlace(place) {
-            console.log(place);
-        }
+        // function processSelectedPlace(place) {
+        //     console.log(place);
+        // }
 
-        function initMap(isAccuracy) {
-            var options = {timeout: 20000, enableHighAccuracy: isAccuracy || true};
+        function initMap() {
+            var options = {timeout: 30000, enableHighAccuracy: true};
             $cordovaGeolocation.getCurrentPosition(options)
                 .then(function (position) {
                     var latLng = new window.google.maps.LatLng(position.coords.latitude,
@@ -65,12 +65,7 @@
                         enableMap();
                     });
                 }, function (error) {
-                    if (counterTryGetPosition < 2) {
-                        initMap(false);
-                        counterTryGetPosition++;
-                    } else {
-                        counterTryGetPosition = 0;
-                    }
+                    initMap();
                     console.log("Could not get location");
                 });
         }

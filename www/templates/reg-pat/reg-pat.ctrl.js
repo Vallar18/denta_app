@@ -33,7 +33,7 @@
 
         function processRegSuccess(data){
             if(data.success) {
-                $state.go('add-dentist-phone')
+                $state.go('add-dentist-phone');
                 userSvc.setUser(data.user);
                 userSvc.setToken(data.token);
                 vm.user = {
