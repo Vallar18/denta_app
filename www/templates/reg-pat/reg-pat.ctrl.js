@@ -5,13 +5,13 @@
         .module('app')
         .controller('RegPatCtrl', RegPatCtrl);
 
-    RegPatCtrl.$inject = ['$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc', 'userSvc'];
+    RegPatCtrl.$inject = ['$state', 'regSvc', 'authSvc', 'toastr', '$localStorage', 'messagesSvc', 'userSvc'];
 
-    function RegPatCtrl($state, regSvc, toastr, $localStorage, messagesSvc, userSvc) {
+    function RegPatCtrl($state, regSvc, authSvc, toastr, $localStorage, messagesSvc, userSvc) {
         const vm = this;
         vm.send = send;
-        vm.phone = $localStorage.phone;
-        vm.key = $localStorage.key;
+        vm.phone = authSvc.getPhone();
+        vm.key = authSvc.getKey();
         vm.croppedDataUrl = '';
         vm.user = {
             name: '',

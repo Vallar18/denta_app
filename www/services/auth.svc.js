@@ -3,15 +3,16 @@
 
     angular.module('service.authSvc', []).factory('authSvc', authSvc);
 
-    authSvc.$inject = ['userSvc'];
+    authSvc.$inject = ['userSvc', '$localStorage'];
 
-    function authSvc(userSvc) {
+    function authSvc(userSvc, $localStorage) {
         var model = {
             setCode: setCode,
             getCode: getCode,
             setKey: setKey,
             getKey: getKey,
-            setPhone: getPhone,
+            setPhone: setPhone,
+            getPhone: getPhone,
             clearAuthData: clearAuthData,
             isLogined: isLogined,
             logout: logout

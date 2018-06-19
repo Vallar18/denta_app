@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddPhoneCtrl', AddPhoneCtrl);
 
-    AddPhoneCtrl.$inject = ['$scope', '$state', '$localStorage', 'regSvc', 'toastr', 'messagesSvc', '$ionicPopup', 'codes','phoneSvc'];
+    AddPhoneCtrl.$inject = ['$scope', '$state', '$localStorage', 'regSvc', 'authSvc', 'toastr', 'messagesSvc', '$ionicPopup', 'codes','phoneSvc'];
 
-    function AddPhoneCtrl($scope, $state, $localStorage, regSvc, toastr, messagesSvc, $ionicPopup, codes, phoneSvc) {
+    function AddPhoneCtrl($scope, $state, $localStorage, regSvc, authSvc, toastr, messagesSvc, $ionicPopup, codes, phoneSvc) {
         const vm = this;
         vm.send = send;
         vm.getSelectCode = getSelectCode;
@@ -29,20 +29,17 @@
                 regSvc.sendPhone(send).then(function (data) {
                     if(data.success) {
                         console.log(data.data);
-                        $localStorage.alertcode = data.data;
                         toastr.success(data.data,null,{
                             timeOut:20000,
                             tapToDismiss: true
                         });
                         $state.go('add-code');
                         $localStorage.valView = false;
-                        $localStorage.phone = vm.sum_phone;
+                        authSvc.setPhone(vm.sum_phone);
                         vm.phone = '';
                     }else {
                         if(data.message){
                             toastr.error(data.message)
-                            //getinfo login
-
                         }
                     }
                 });

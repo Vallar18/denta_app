@@ -20,14 +20,15 @@
         vm.role = undefined;
 
         function select(type) {
+            let role;
             if (type === 0){
-                vm.role = 'dentist';
+                role = userSvc.roleConst().doctor;
                 $state.go('registration-dentist');
             } else {
-                vm.role = 'patient'
+                role =  userSvc.roleConst().patient;
                 $state.go('registration-patient');
             }
-            userSvc.setRole(vm.role);
+            userSvc.setRole(role);
         }
     }
 

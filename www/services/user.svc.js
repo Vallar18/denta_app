@@ -6,8 +6,8 @@
     userSvc.$inject = ['$localStorage'];
 
     function userSvc($localStorage) {
-        const DOCTOR = 'dentist';
-        const PATIENT = 'patient';
+        const DOCTOR = 'Dentist';
+        const PATIENT = 'Patient';
         var model = {
             getUser: getUser,
             setUser:setUser,
@@ -18,7 +18,8 @@
             getRole: getRole,
             isDoc: isDoc,
             isPat: isPat,
-            resetData: resetData
+            resetData: resetData,
+            roleConst: roleConst
         };
         return model;
 
@@ -35,6 +36,11 @@
             }
         }
 
+        function delUser(){
+            $localStorage.user = null;
+            delete $localStorage.user;
+        }
+
         function resetData(){
             $localStorage.user = null;
             $localStorage.token = null;
@@ -43,11 +49,6 @@
             delete $localStorage.token;
             delete $localStorage.role;
 
-        }
-
-        function delUser(){
-            $localStorage.user = null;
-            delete $localStorage.user;
         }
 
         function setToken(token){
@@ -78,6 +79,13 @@
 
         function isPat(){
              return ($localStorage.role && $localStorage.role === PATIENT);
+        }
+
+        function roleConst() {
+            return {
+                doctor: DOCTOR,
+                patient: PATIENT
+            }
         }
 
 

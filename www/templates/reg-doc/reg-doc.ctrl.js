@@ -5,13 +5,13 @@
         .module('app')
         .controller('RegDocCtrl', RegDocCtrl);
 
-    RegDocCtrl.$inject = ['$scope', '$ionicPlatform','$state', 'regSvc', 'toastr', '$localStorage', 'messagesSvc', '$ionicPopup', 'IonicClosePopupService', '$cordovaCamera','userSvc'];
+    RegDocCtrl.$inject = ['$scope', '$ionicPlatform','$state', 'regSvc', 'toastr', 'authSvc', 'messagesSvc', '$ionicPopup', 'IonicClosePopupService', '$cordovaCamera','userSvc'];
 
-    function RegDocCtrl($scope, $ionicPlatform, $state, regSvc, toastr, $localStorage, messagesSvc, $ionicPopup, IonicClosePopupService, $cordovaCamera,userSvc) {
+    function RegDocCtrl($scope, $ionicPlatform, $state, regSvc, toastr, authSvc, messagesSvc, $ionicPopup, IonicClosePopupService, $cordovaCamera,userSvc) {
         const vm = this;
         vm.send = send;
-        vm.phone = $localStorage.phone;
-        vm.key = $localStorage.key;
+        vm.phone = authSvc.getPhone();
+        vm.key = authSvc.getKey();
         vm.croppedDataUrl = '';
         vm.user = {
             name: '',
