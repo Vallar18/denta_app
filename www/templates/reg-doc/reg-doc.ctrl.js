@@ -109,14 +109,14 @@
                 scope: $scope,
                 buttons: [
                     {
-                        text: 'Open',
+                        text: 'Gallery',
                         type: 'button-default',
                         onTap: function (e) {
                             afterSelectImg('open');
                         }
                     },
                     {
-                        text: 'Create',
+                        text: 'Camera',
                         type: 'button-positive',
                         onTap: function (e) {
                             afterSelectImg('create');

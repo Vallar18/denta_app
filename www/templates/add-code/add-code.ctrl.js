@@ -40,11 +40,10 @@
                 if(data.user){
                     userSvc.setUser(data.user);
                     userSvc.setRole(data.user.roles[0].name);
+                    userSvc.setToken(data.token);
                     if(userSvc.isDoc()){
-                        console.log('doc');
                         $state.go('tabs.dentist-profile');
                     } else if(userSvc.isPat()){
-                        console.log('pat');
                         $state.go('tabs.patient-profile');
                     }
                 } else {

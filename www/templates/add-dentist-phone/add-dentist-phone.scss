@@ -30,12 +30,14 @@
       position: relative;
       z-index: 9;
       h1 {
-        font-size: 20px;
+        font-size: 5vw;
         color: $input-text;
+        text-transform: uppercase;
       }
       p {
-        font-size: 12.5px;
+        font-size: 4vw;
         color: $text-gray-color2;
+        line-height: normal;
       }
     }
   }

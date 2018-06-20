@@ -15,7 +15,9 @@
                 hiCurrency: '<',
                 hiRating: '<',
                 hiClickInfo: '&',
-                hiType: '<'
+                hiType: '<',
+                hiTime: '<',
+                hiAddress: '<'
             },
             controller: 'HelpItemCtrl',
             link: function (scope, element, attrs) {

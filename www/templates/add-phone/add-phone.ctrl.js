@@ -23,28 +23,29 @@
         };
 
 
-        vm.test = function () {
-            $ionicPopup.show({
-                templateUrl: 'components/select-subscription/select-subscription.html',
-                cssClass: 'select-subscription',
-                title: '',
-                scope: $scope,
-                buttons: [
-                    {text: 'Cancel'},
-                    {
-                        text: '<b>OK</b>',
-                        type: 'button-positive',
-                        onTap: function (e) {
-                        }
-                    }
-                ]
-            });
-        };
+        // vm.test = function () {
+        //     $ionicPopup.show({
+        //         templateUrl: 'components/select-subscription/select-subscription.html',
+        //         cssClass: 'select-subscription',
+        //         title: '',
+        //         scope: $scope,
+        //         buttons: [
+        //             {text: 'Cancel'},
+        //             {
+        //                 text: '<b>OK</b>',
+        //                 type: 'button-positive',
+        //                 onTap: function (e) {
+        //                 }
+        //             }
+        //         ]
+        //     });
+        // };
 
         function send() {
             authSvc.setCountryId(selectedCountry.id);
             if (!validPhone()) {
                 toastr.error(messagesSvc.error.invalidPhone);
+                return
             }
             let send = {
                 phone: vm.sum_phone
