@@ -56,24 +56,24 @@
             vm.reviewArr = [
                 {
                    id:1,
-                    date: '12 03 1093',
-                    rating: 4,
+                    date: '14.05.1948',
+                    rating: 5,
                     name: 'Vasylyi',
-                    text: 'Test test tskjnfkvlfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
+                    text: 'Test test tskjnfkvl fvnskdfjvn ksdjnvdfvkj nkjdfvn sd'
                 },
                 {
                     id:2,
                     date: '12 03 1093',
                     rating: 4,
                     name: 'Vasylyi',
-                    text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfj    vnksdjnvdfvkjnkjdfvn sd'
+                    text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjv ndk nsdfkj vndkl fvnskdfj    vnksdj nvdfv kjnkj dfvn sd'
                 },
                 {
                     id:3,
                     date: '12 03 1093',
                     rating: 4,
                     name: 'Vasylyi',
-                    text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvnd    klfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
+                    text: 'Test test tskjnfkvn dsvkn lkdfjvn sdkn vdslfk vndkf jvndknsd fkjvnd    klfv nskdfjvnksd jnvdf vkjn kjdfvn sd'
                 },
             ];
 

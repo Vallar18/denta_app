@@ -1,10 +1,12 @@
 <div class="review-item">
-    <div>{{::riDate }}</div>
-    <div>
-        <star-rating sr-model="riRating"
-                     sr-color="black"
-                     sr-size="12px"></star-rating>
+    <div class="row date-rating-wrap">
+        <div class="col-50 date-block">{{::riDate }}</div>
+        <div class="col-50 rating-block">
+            <star-rating sr-model="riRating"
+                         sr-color="#ffc600"
+                         sr-size="12px"></star-rating>
+        </div>
     </div>
-    <div>{{::riName}}</div>
-    <div>{{::riText}}</div>
+    <div class="name-block">{{::riName}}</div>
+    <div class="text-block">{{::riText}}</div>
 </div>
