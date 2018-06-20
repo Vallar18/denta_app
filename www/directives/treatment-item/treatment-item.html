@@ -1,0 +1,17 @@
+<div class="treatment-item">
+    <div class="row">
+        <div class="col-40">
+            <div ng-if='tiDate' class="treatment-item__date">{{::tiDate}}</div>
+        </div>
+        <div class="col-20">
+            <img src="icon">
+        </div>
+        <div class="col-40">
+            <div ng-if="tiPrice" class="treatment-item__price">{{::tiPrice}}</div>
+            <a ng-if="tiReview" class="treatment-item__review" ng-click="tiReview()">Give a review</a>
+            <div ng-if="tiNotify && !tiIsNotified"  class="treatment-item__notify"
+                 ng-click="tiNotify()">Notify H.D.</div>
+            <div ng-if="tiIsNotified" class="treatment-item--notified">Notify H.D.</div>
+        </div>
+    </div>
+</div>

@@ -24,6 +24,7 @@
 
         function send() {
             if(validation()){
+                vm.user.country_id = authSvc.getCountryId();
                 regSvc.sendUser(vm.user).then(function (data) {
                     processRegSuccess(data);
                 }, function (err) {
@@ -108,14 +109,14 @@
                 scope: $scope,
                 buttons: [
                     {
-                        text: 'Open',
+                        text: 'Gallery',
                         type: 'button-default',
                         onTap: function (e) {
                             afterSelectImg('open');
                         }
                     },
                     {
-                        text: 'Create',
+                        text: 'Camera',
                         type: 'button-positive',
                         onTap: function (e) {
                             afterSelectImg('create');

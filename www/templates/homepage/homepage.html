@@ -1,5 +1,26 @@
 <ion-view>
         <ion-content>
                 <h2>hello hhh</h2>
+                <patient-item
+                        pi-country="'Israel'"
+                        pi-date="'12 04 2043'"
+                        pi-doctor="'Dr House'"
+                        pi-patient="'house Patient'"
+                        pi-alarm="true">
+                </patient-item>
+
+
+                <treatment-item
+                        ti-country="'Israel"
+                        ti-date="12.04.18"
+                        ti-dentist="'Dr House'"
+                        ti-files="files"
+                        ti-is-notified="false"
+                        ti-need-review="true"
+                        ti-notify="notify()"
+                        ti-price="0.0"
+                        ti-review="review()"
+                        >
+                </treatment-item>
         </ion-content>
 </ion-view>

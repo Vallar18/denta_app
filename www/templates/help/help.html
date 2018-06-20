@@ -47,18 +47,18 @@
         </div>-->
         <!---------------------->
 
-        <div layout="row" layout-align="space-between center" class="white-header">
+       <!-- <div layout="row" layout-align="space-between center" class="white-header">
             <div class="radio-outer">
                 <div layout="row" layout-align="space-between center" class="radio-wrap" ng-class="{'show': slideOpen}">
                     <div class="radio-block">
                         <div layout="row" layout-align="space-around none">
-                            <input type="radio" name="white-header-radio" id="rating">
+                            <input type="radio" name="white-header-radio" id="rating" ng-model="vm.sort" value="rating">
                             <label for="rating">Rating</label>
 
-                            <input type="radio" name="white-header-radio" id="distance">
+                            <input type="radio" name="white-header-radio" id="distance" ng-model="vm.sort" value="distance">
                             <label for="distance">Distance</label>
 
-                            <input type="radio" name="white-header-radio" id="price">
+                            <input type="radio" name="white-header-radio" id="price" ng-model="vm.sort" value="price">
                             <label for="price">Price</label>
                         </div>
                     </div>
@@ -75,20 +75,22 @@
                 <help-item hi-distance="item.distance"
                            hi-doctor="item.doctor"
                            hi-price="item.price"
-                           hi-type="'simple'"
+                           hi-type="'detail'"
                            hi-currency="item.currency"
+                           hi-address="item.address"
+                           hi-time="item.time"
                            hi-rating="item.rating"></help-item>
             </ion-item>
         </ion-list>
-
-        <!--<ion-list>
+-->
+        <ion-list>
             <ion-item ng-repeat="item in vm.reviewArr track by $index">
                 <review-item ri-date="item.date"
                             ri-rating="item.rating"
                             ri-name="item.name"
                             ri-text="item.text"></review-item>
             </ion-item>
-        </ion-list>-->
+        </ion-list>
     </ion-content>
 </ion-view>
 

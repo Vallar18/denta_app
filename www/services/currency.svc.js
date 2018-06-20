@@ -6,11 +6,14 @@
     currencySvc.$inject = ['url', 'http', '$timeout', '$q','$ionicPopup'];
 
     function currencySvc(url, http, $timeout, $q,$ionicPopup) {
+        let DEFAULT_CURR_NAME = 'USD';
         let cache = [];
         let model = {
             getCurrency: getCurrency,
             showSelect: showSelect,
-            getIndexByName: getIndexByName
+            getIndexByName: getIndexByName,
+            getDefaultIndex: getDefaultIndex,
+            setDefaultName: setDefaultName
         };
         return model;
 
@@ -44,6 +47,16 @@
                 })
             }
             return 0;
+        }
+
+        function getDefaultIndex(){
+            return getIndexByName(DEFAULT_CURR_NAME);
+        }
+
+        function setDefaultName(name){
+            if(name){
+                DEFAULT_CURR_NAME = name;
+            }
         }
 
         function showSelect($scope) {

@@ -18,19 +18,13 @@
         $ionicPlatform.ready(function() {
             // $state.go('add-clinic');
             window.addEventListener('keyboardDidShow', (event) => {
-                console.log(event.keyboardHeight);
-                console.log('hello')
                 let popup = document.querySelector('.popup');
-                console.log(popup);
                 if (popup != null){
-
-                    console.log(typeof popup);
                     popup.classList.add('popup-bottom')
                 }
             });
             window.addEventListener('keyboardDidHide', () => {
                 let popup = document.querySelector('.popup');
-
                 if(popup != null){
                     popup.classList.remove('popup-bottom')
                 }

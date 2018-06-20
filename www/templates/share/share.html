@@ -1,4 +1,4 @@
-<ion-view class="share-view">
+<ion-view class="share-view" can-swipe-back="false">
     <ion-content>
         <div class="item-block-top">
             <div class="item-block-top-logo">
@@ -17,7 +17,8 @@
                 <div class="share-view__subtitle">You are now ready to use!</div>
                 <div class="share-view__share-text">Feel free to share us with your friends and family</div>
                 <button class="button share-btn" ng-click="vm.share()">
-                    <i class="icon ion-android-share-alt"></i>
+                    <!--<i class="icon ion-android-share-alt"></i>-->
+                    <img src="content/img/share-icon.png" alt="">
                 </button>
                 <button class="send-button share-view__finish-btn" ng-click="vm.finish()">Finish</button>
             </div>
