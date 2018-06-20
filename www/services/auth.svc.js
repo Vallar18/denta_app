@@ -15,9 +15,24 @@
             getPhone: getPhone,
             clearAuthData: clearAuthData,
             isLogined: isLogined,
-            logout: logout
+            logout: logout,
+            getCountryId: getCountryId,
+            setCountryId: setCountryId
         };
         return model;
+
+
+        function setCountryId(id){
+            if(id){
+                $localStorage.country_id = id;
+            }
+        }
+
+        function getCountryId(){
+            if($localStorage.country_id){
+                return $localStorage.country_id;
+            }
+        }
 
 
         function isLogined(){
@@ -35,6 +50,7 @@
 
         function clearAuthData(){
             $localStorage.code = null;
+            $localStorage.country_id = null;
             $localStorage.key = null;
             $localStorage.phone = null;
             delete $localStorage.code;

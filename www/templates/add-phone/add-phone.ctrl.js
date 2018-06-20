@@ -13,13 +13,15 @@
         vm.getSelectCode = getSelectCode;
         vm.selectCode = selectCode;
         vm.codes = codes;
-        vm.select_code = vm.codes[phoneSvc.getDefaultIndex()].code;
+        var selectedCountry = vm.codes[phoneSvc.getDefaultIndex()];
+        vm.select_code = selectedCountry.code;
         vm.phone = '';
         vm.content = {
             val1: 'You will receive sms with code',
             val3: 'get me in',
             valBtn: 'Send'
         };
+
 
         vm.test = function () {
             $ionicPopup.show({
@@ -40,6 +42,7 @@
         };
 
         function send() {
+            authSvc.setCountryId(selectedCountry.id);
             if (!validPhone()) {
                 toastr.error(messagesSvc.error.invalidPhone);
             }
@@ -84,6 +87,7 @@
 
         function selectCode(code) {
             vm.select_code = code.code;
+            selectedCountry = code;
             vm.codePopup.close();
         }
     }
