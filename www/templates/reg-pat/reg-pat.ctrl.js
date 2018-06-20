@@ -36,12 +36,13 @@
             if (!validation()) {
                 return;
             }
+            vm.user.country_id = authSvc.getCountryId();
             if (vm.edit) {
                 userSvc.updateUser(vm.user).then(function (data) {
                     if (data.success) {
                         userSvc.getUserInfo().then(function (res) {
-                            vm.us = res
-                            console.log(vm.us)
+                            userSvc.setUser(res.user);
+                            $state.go('tabs.patient-profile');
                         })
                     } else {
                         toastr.error(data.message);
@@ -50,22 +51,19 @@
                     processRegError(err);
                 });
             } else {
-            if(validation()){
-                vm.user.country_id = authSvc.getCountryId();
                 regSvc.sendUser(vm.user).then(function (data) {
                     processRegSuccess(data);
                 }, function (err) {
                     processRegError(err);
                 });
             }
-
         }
 
         function processRegSuccess(data) {
             if (data.success) {
-                $state.go('add-dentist-phone');
                 userSvc.setUser(data.user);
                 userSvc.setToken(data.token);
+                $state.go('add-dentist-phone');
             } else {
                 toastr.error(data.message);
             }

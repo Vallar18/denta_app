@@ -5,17 +5,18 @@
         .module('app')
         .controller('PatientProfileCtrl', PatientProfileCtrl);
 
-    PatientProfileCtrl.$inject = ['$state'];
+    PatientProfileCtrl.$inject = ['$state', 'userSvc'];
 
-    function PatientProfileCtrl($state) {
+    function PatientProfileCtrl($state, userSvc) {
         var vm = this;
         vm.editPatient = editPatient;
         vm.editDentistPhone= editDentistPhone;
+        vm.user = userSvc.getUser();
         vm.logout = function () {
             ionic.Platform.exitApp();
         };
         vm.profile = {
-            name: 'Test Name Profile'
+            name: vm.user.name
         }
 
         function editPatient() {

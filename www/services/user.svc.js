@@ -18,6 +18,7 @@
             getToken: getToken,
             setRole: setRole,
             getRole: getRole,
+            updateUserRole: updateUserRole,
             isDoc: isDoc,
             isPat: isPat,
             resetData: resetData,
@@ -82,6 +83,11 @@
             if(angular.isDefined($localStorage.role)){
                 return $localStorage.role;
             }
+        }
+
+        function updateUserRole(data) {
+            console.log(data);
+            return http.post(url.user_role.update, data);
         }
 
         function isDoc(){

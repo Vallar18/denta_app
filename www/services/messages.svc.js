@@ -15,7 +15,7 @@
             error: {
                 test: 'Test',
                 emptyCode: 'Please select phone code',
-                invalidPhone: 'The number should be 5 to 10 digits',
+                invalidPhone: 'The number should be 8 to 20 digits',
                 invalidCode: 'The code should consist of 4 digits',
                 invalidEmail: 'Please enter the correct email',
                 emptyField: 'Please fill in all fields',

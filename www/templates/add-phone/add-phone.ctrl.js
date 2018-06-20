@@ -45,6 +45,7 @@
             authSvc.setCountryId(selectedCountry.id);
             if (!validPhone()) {
                 toastr.error(messagesSvc.error.invalidPhone);
+                return
             }
             let send = {
                 phone: vm.sum_phone

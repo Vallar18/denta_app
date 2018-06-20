@@ -24,7 +24,8 @@
             },
             clinic: {
                 check: baseUrl + 'clinic/check',
-                create: baseUrl + 'clinic/create'
+                create: baseUrl + 'clinic/create',
+                update: baseUrl + 'clinic/update'
             },
             specialties: baseUrl + 'specialties',
             currencies: baseUrl + 'currencies',
@@ -35,7 +36,11 @@
             user: {
                 update: baseUrl + 'user/update',
                 id: baseUrl + 'user'
+            },
+            user_role: {
+                update: baseUrl + 'user-role/update'
             }
+
         };
     }
 })();

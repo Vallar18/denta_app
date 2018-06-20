@@ -51,7 +51,11 @@
                         dentist_phone: vm.sum_phone,
                         role: vm.role
                     };
-                    addRoleProcess(data);
+                    if(vm.edit){
+                        updateRoleProcess(data);
+                    } else{
+                        addRoleProcess(data);
+                    }
                 }
             }
         }
@@ -78,6 +82,31 @@
                 }
             });
         }
+        function updateRoleProcess(data) {
+            if(angular.isUndefined(data)){ return; }
+            userSvc.updateUserRole(data).then(function (data) {
+                if (data.success) {
+                    userSvc.getUserInfo().then(function (res) {
+                        userSvc.setUser(res.user);
+                        $state.go('tabs.patient-profile');
+                    })
+                } else {
+                    showAskDentist();
+                }
+            }, function (err) {
+                let err_text = '';
+                angular.forEach(err, function (val, key) {
+                    if (angular.isArray(val)) {
+                        err_text += val.reduce(function (acc, current) {
+                            return acc + '\n' + current;
+                        }, '');
+                    }
+                });
+                if (err_text.length) {
+                    toastr.error(err_text);
+                }
+            });
+        }
 
         function hideOverlay() {
             vm.overlay = false;
@@ -89,7 +118,11 @@
                     user_id: vm.user.id,
                     role: vm.role
                 };
-                addRoleProcess(data);
+                if(vm.edit){
+                    updateRoleProcess(data);
+                } else{
+                    addRoleProcess(data);
+                }
             }
         }
 
