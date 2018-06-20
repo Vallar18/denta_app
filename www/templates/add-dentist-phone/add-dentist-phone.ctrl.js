@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddDentistPhoneCtrl', AddDentistPhoneCtrl);
 
-    AddDentistPhoneCtrl.$inject = ['$scope', '$state', '$localStorage', 'regSvc', 'phoneSvc', 'codes', 'toastr', 'messagesSvc', '$ionicPlatform', '$cordovaContacts', 'userSvc','$ionicPopup','dentistSvc'];
+    AddDentistPhoneCtrl.$inject = ['$scope', '$state', '$stateParams', 'regSvc', 'phoneSvc', 'codes', 'toastr', 'messagesSvc', '$ionicPlatform', '$cordovaContacts', 'userSvc','$ionicPopup','dentistSvc'];
 
-    function AddDentistPhoneCtrl($scope, $state, $localStorage, regSvc, phoneSvc, codes, toastr, messagesSvc, $ionicPlatform, $cordovaContacts, userSvc, $ionicPopup, dentistSvc) {
+    function AddDentistPhoneCtrl($scope, $state, $stateParams, regSvc, phoneSvc, codes, toastr, messagesSvc, $ionicPlatform, $cordovaContacts, userSvc, $ionicPopup, dentistSvc) {
         const vm = this;
         vm.send = send;
         vm.skip = skip;
@@ -15,6 +15,7 @@
         vm.getSelectCode = getSelectCode;
         vm.selectCode = selectCode;
         vm.pickContactUsingNativeUI = pickContactUsingNativeUI;
+        vm.edit = $stateParams.edit;
         vm.codes = codes;
         vm.select_code = vm.codes[235].code;
         vm.user = userSvc.getUser();
@@ -23,6 +24,13 @@
         vm.overlay = true;
         vm.phoneFromContact = '';
         vm.contactList = [];
+
+        init();
+        function init() {
+            if(vm.edit){
+                hideOverlay()
+            }
+        }
 
         function pickContactUsingNativeUI() {
             $ionicPlatform.ready(function () {
@@ -34,21 +42,6 @@
                 })
             });
         }
-
-        // function selectOneContact(contact){
-        //     vm.phoneFromContact = contact.value;
-        //     vm.phone = contact.value;
-        //     selectContact.close();
-        // }
-
-        // function showSelectContact(){
-        //     selectContact = $ionicPopup.show({
-        //         templateUrl: 'components/select-contact/select-contact.html',
-        //         scope: $scope,
-        //         cssClass: 'select-contact'
-        //     });
-        // }
-        // спитать про запрос для пропуску номера дантиста
 
         function send() {
             if (validPhoneDentist()) {

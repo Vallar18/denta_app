@@ -11,7 +11,7 @@
                     ng-click="vm.logout()">
                 <i class="icon ion-android-exit"></i>
             </button>
-            <button class="header-simple__left-btn">
+            <button class="header-simple__left-btn" ng-click="vm.editPatient()">
                 <i class="icon ion-edit"></i>
             </button>
             <div class="header-simple__border">
@@ -21,6 +21,7 @@
         <ion-content class="patient-profile__main">
             <div class="patient-profile__content">
                 <div class="patient-profile__items">
+                    <p><a ng-click="vm.editDentistPhone()">Change</a></p>
                     <i class="icon ion-document"></i>
                     <ul>
                         <li ui-sref="about">About</li>

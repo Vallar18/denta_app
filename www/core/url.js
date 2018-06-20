@@ -31,6 +31,10 @@
             invite: {
                 dentist: baseUrl + 'invite/dentist',
                 checkDentist: baseUrl + 'check/dentist'
+            },
+            user: {
+                update: baseUrl + 'user/update',
+                id: baseUrl + 'user'
             }
         };
     }

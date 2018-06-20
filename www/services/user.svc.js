@@ -3,15 +3,17 @@
 
     angular.module('service.userSvc', []).factory('userSvc', userSvc);
 
-    userSvc.$inject = ['$localStorage'];
+    userSvc.$inject = ['$localStorage', 'http', 'url'];
 
-    function userSvc($localStorage) {
+    function userSvc($localStorage, http, url) {
         const DOCTOR = 'Dentist';
         const PATIENT = 'Patient';
         var model = {
             getUser: getUser,
+            getUserInfo: getUserInfo,
             setUser:setUser,
             delUser:delUser,
+            updateUser:updateUser,
             setToken:setToken,
             getToken: getToken,
             setRole: setRole,
@@ -24,10 +26,15 @@
         return model;
 
         function getUser(){
-            // if($localStorage.user && $localStorage.user.id){ закоментирував бо не находили id
             if($localStorage.user && $localStorage.user.id){
                 return $localStorage.user;
             }
+        }
+        
+        function getUserInfo() {
+            return http.get(url.user.id + '/' + $localStorage.user.id ).then(function(res){
+                return res;
+            });
         }
 
         function setUser(user){
@@ -39,6 +46,11 @@
         function delUser(){
             $localStorage.user = null;
             delete $localStorage.user;
+        }
+
+        function updateUser(data) {
+            console.log(data);
+            return http.post(url.user.update, data);
         }
 
         function resetData(){
