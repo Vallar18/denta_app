@@ -3,9 +3,9 @@
 
     angular.module('service.phoneSvc', []).factory('phoneSvc', phoneSvc);
 
-    phoneSvc.$inject = ['$ionicPopup','http','url'];
+    phoneSvc.$inject = ['$ionicPopup','http','url', '$timeout'];
 
-    function phoneSvc($ionicPopup,http,url) {
+    function phoneSvc($ionicPopup,http,url,$timeout) {
         let cache = [];
         let model = {
             showSelect: showSelect,
@@ -14,16 +14,18 @@
         return model;
 
         function getCodes() {
-            if (cache.length) {
-                return $q.defer(function (resolve, reject) {
-                    resolve(cache);
-                });
-            } else {
+            // if (cache.length) {
+            //     return $q.defer(function (resolve, reject) {
+            //         $timeout(function(){
+            //             resolve(cache);
+            //         },150);
+            //     });
+            // } else {
                 return http.get(url.codes).then(function (res) {
                     cache = res;
                     return res;
                 });
-            }
+            // }
         }
 
         function showSelect($scope){

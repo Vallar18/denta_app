@@ -1,5 +1,34 @@
 <ion-view>
-        <ion-content>
-                <h2>profile hhh</h2>
+    <ion-pane class="patient-profile">
+        <div class="header-simple">
+            <div class="header-simple__title">
+                My profile
+            </div>
+            <div class="header-simple__subtitle">
+                {{vm.profile.name}}
+            </div>
+            <button class="header-simple__right-btn"
+                    ng-click="vm.logout()">
+                <i class="icon ion-android-exit"></i>
+            </button>
+            <button class="header-simple__left-btn">
+                <i class="icon ion-edit"></i>
+            </button>
+            <div class="header-simple__border">
+                <img src="content/img/border.svg">
+            </div>
+        </div>
+        <ion-content class="patient-profile__main">
+            <div class="patient-profile__content">
+                <div class="patient-profile__items">
+                    <i class="icon ion-document"></i>
+                    <ul>
+                        <li ui-sref="about">About</li>
+                        <li ui-sref="terms">Term of use</li>
+                        <li ui-sref="privacy">Privacy policy</li>
+                    </ul>
+                </div>
+            </div>
         </ion-content>
+    </ion-pane>
 </ion-view>

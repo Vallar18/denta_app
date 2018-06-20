@@ -3,10 +3,88 @@
 
     angular.module('service.userSvc', []).factory('userSvc', userSvc);
 
-    userSvc.$inject = [];
+    userSvc.$inject = ['$localStorage'];
 
-    function userSvc() {
-        var model = {};
+    function userSvc($localStorage) {
+        const DOCTOR = 'Dentist';
+        const PATIENT = 'Patient';
+        var model = {
+            getUser: getUser,
+            setUser:setUser,
+            delUser:delUser,
+            setToken:setToken,
+            getToken: getToken,
+            setRole: setRole,
+            getRole: getRole,
+            isDoc: isDoc,
+            isPat: isPat,
+            resetData: resetData,
+            roleConst: roleConst
+        };
         return model;
+
+        function getUser(){
+            // if($localStorage.user && $localStorage.user.id){ закоментирував бо не находили id
+            if($localStorage.user && $localStorage.user.id){
+                return $localStorage.user;
+            }
+        }
+
+        function setUser(user){
+            if(angular.isDefined(user)){
+                $localStorage.user = angular.copy(user);
+            }
+        }
+
+        function delUser(){
+            $localStorage.user = null;
+            delete $localStorage.user;
+        }
+
+        function resetData(){
+            $localStorage.user = null;
+            $localStorage.token = null;
+            $localStorage.role = null;
+            delete $localStorage.user;
+            delete $localStorage.token;
+            delete $localStorage.role;
+        }
+
+        function setToken(token){
+            if(angular.isDefined(token)){
+                $localStorage.token = token;
+            }
+        }
+
+        function getToken(){
+            return $localStorage.token || '';
+        }
+
+        function setRole(role){
+            if(angular.isDefined(role)){
+                $localStorage.role = role;
+            }
+        }
+
+        function getRole(){
+            if(angular.isDefined($localStorage.role)){
+                return $localStorage.role;
+            }
+        }
+
+        function isDoc(){
+            return ($localStorage.role && $localStorage.role === DOCTOR);
+        }
+
+        function isPat(){
+             return ($localStorage.role && $localStorage.role === PATIENT);
+        }
+
+        function roleConst() {
+            return {
+                doctor: DOCTOR,
+                patient: PATIENT
+            }
+        }
     }
 })();

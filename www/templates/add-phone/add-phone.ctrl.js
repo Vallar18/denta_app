@@ -1,13 +1,13 @@
 ;(function () {
-    'use string'
+    'use strict'
 
     angular
         .module('app')
         .controller('AddPhoneCtrl', AddPhoneCtrl);
 
-    AddPhoneCtrl.$inject = ['$scope', '$state', '$localStorage', 'regSvc', 'toastr', 'messagesSvc', '$ionicPopup', 'codes','phoneSvc'];
+    AddPhoneCtrl.$inject = ['$scope', '$state', '$localStorage', 'regSvc', 'authSvc', 'toastr', 'messagesSvc', '$ionicPopup', 'codes', 'phoneSvc'];
 
-    function AddPhoneCtrl($scope, $state, $localStorage, regSvc, toastr, messagesSvc, $ionicPopup, codes, phoneSvc) {
+    function AddPhoneCtrl($scope, $state, $localStorage, regSvc, authSvc, toastr, messagesSvc, $ionicPopup, codes, phoneSvc) {
         const vm = this;
         vm.send = send;
         vm.getSelectCode = getSelectCode;
@@ -21,25 +21,48 @@
             valBtn: 'Send'
         }
 
+        vm.test = function () {
+            $ionicPopup.show({
+                templateUrl: 'components/select-subscription/select-subscription.html',
+                cssClass: 'select-subscription',
+                title: '',
+                scope: $scope,
+                buttons: [
+                    {text: 'Cancel'},
+                    {
+                        text: '<b>OK</b>',
+                        type: 'button-positive',
+                        onTap: function (e) {
+                            if (!$scope.data.wifi) {
+                                //don't allow the user to close unless he enters wifi password
+                                e.preventDefault();
+                            } else {
+                                return $scope.data.wifi;
+                            }
+                        }
+                    }
+                ]
+            });
+        };
+
         function send() {
-            if(validPhone()){
+            if (validPhone()) {
                 let send = {
                     phone: vm.sum_phone
                 };
                 regSvc.sendPhone(send).then(function (data) {
-                    if(data.success) {
-                        console.log(data.data)
-                        $localStorage.alertcode = data.data;
-                        // toastr.success(data.message, '', {
-                        //     onHidden: function () {
-                                $state.go('add-code');
-                        //     }
-                        // });
+                    if (data.success) {
+                        console.log(data.data);
+                        toastr.success(data.data, null, {
+                            timeOut: 20000,
+                            tapToDismiss: true
+                        });
+                        $state.go('add-code');
                         $localStorage.valView = false;
-                        $localStorage.phone = vm.sum_phone;
+                        authSvc.setPhone(vm.sum_phone);
                         vm.phone = '';
-                    }else {
-                        if(data.message){
+                    } else {
+                        if (data.message) {
                             toastr.error(data.message)
                         }
                     }
@@ -48,21 +71,24 @@
                 toastr.error(messagesSvc.error.invalidPhone)
             }
         }
+
         function validPhone() {
-            if(vm.phone !== ''){
+            if (vm.phone !== '') {
                 vm.sum_phone = vm.select_code + vm.phone;
                 vm.len_phone = vm.sum_phone.toString().length;
-                if(vm.len_phone> 8 && vm.len_phone< 20){
+                if (vm.len_phone > 8 && vm.len_phone < 20) {
                     return true;
                 } else {
                     return false;
                 }
             }
         }
+
         function getSelectCode() {
             $scope.data = {};
             vm.codePopup = phoneSvc.showSelect($scope);
         }
+
         function selectCode(code) {
             vm.select_code = code.code;
             vm.codePopup.close();

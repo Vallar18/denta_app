@@ -1,0 +1,32 @@
+.patient-profile {
+  background-color: $second-color-light;
+  .header-simple {
+    height: 30vh;
+  }
+  &__main {
+    margin-top: 30vh;
+    background-color: $background-color;
+  }
+  &__content {
+    background-color: $background-color;
+    font-size: 0.9rem;
+    padding:0 5% 5% 5%;
+  }
+  &__items {
+    padding-top:20vw;
+    text-align: center;
+    i {
+      font-size: 35px;
+      color: $input-text;
+    }
+    ul {
+      padding-top:1.5rem;
+    }
+    li {
+      font-size:16px;
+      padding-bottom:1.5rem;
+      text-decoration: underline;
+      color: $input-text;
+    }
+  }
+}

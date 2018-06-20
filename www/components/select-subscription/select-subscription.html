@@ -1,6 +1,21 @@
 <div class="select-subscript">
-    Hello!
-    <button ng-click="vm.closePopup()">
-        Close
+    <div class="header-simple">
+        <div class="title-popup">Select your subscription</div>
+        <div class="price-block">
+            <img src="content/img/price-icon.png" alt="">
+        </div>
+        <div class="header-simple__border">
+            <img src="content/img/border.svg">
+        </div>
+    </div>
+    <button ng-click="vm.closePopup()" layout="row" layout-align="space-around center" class="gray-btn">
+        <img src="content/img/redcross-icon.png" alt="">
+        <span class="subscript-btn-text">One month</span>
+        <span class="price-item">$ 9.99</span>
+    </button>
+    <button ng-click="vm.closePopup()" layout="row" layout-align="space-around center" class="gray-btn">
+        <img src="content/img/redcross-icon.png" alt="">
+        <span class="subscript-btn-text">One year</span>
+        <span class="price-item">$ 9.99</span>
     </button>
 </div>

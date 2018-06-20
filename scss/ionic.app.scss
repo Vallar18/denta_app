@@ -28,7 +28,7 @@ $ionicons-font-path: "../../lib/ionic/fonts" !default;
 @import "../www/templates/view/view";
 @import "../www/templates/add-phone/add-phone";
 @import "../www/templates/add-code/add-code";
-@import "../www/templates/reg/reg";
+@import "../www/templates/reg-doc/reg-doc";
 @import "../www/templates/add-clinic/add-clinic";
 @import "../www/templates/add-specialities/add-specialities";
 @import "../www/templates/add-dentist-phone/add-dentist-phone";
@@ -44,12 +44,14 @@ $ionicons-font-path: "../../lib/ionic/fonts" !default;
 @import "../www/templates/dentist-profile/dentist-profile";
 @import "../www/templates/send-review/send-review";
 @import "../www/templates/my-patient/my-patient";
+@import "../www/templates/history/history";
 //Components
 @import "../www/components/select-subscription/select-subscription";
 @import "../www/components/speciality-select/speciality-select";
 @import "../www/components/create-avatar/create-avatar";
 @import "../www/components/code-select/code-select";
 @import "../www/components/select-currency/select-currency";
+@import "../www/components/google-maps/google-maps";
 //Directives
 @import "../www/directives/menu-custom/menu-custom";
 @import "../www/directives/star-rating/star-rating";

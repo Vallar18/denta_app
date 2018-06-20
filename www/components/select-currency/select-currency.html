@@ -15,9 +15,9 @@
         <ion-content class="popup-content">
             <ion-list>
                 <ion-item ng-repeat="currency in vm.currencies | filter : name" ng-click="vm.selectCurrency(currency);">
-                    <span>{{currency.country}}</span>
-                    <span>{{currency.title}}</span>
                     <span>{{currency.name}}</span>
+                    <!--<span>{{currency.title}}</span>-->
+                    <span>{{currency.abr}}</span>
                 </ion-item>
             </ion-list>
         </ion-content>

@@ -4,10 +4,15 @@
         .config(mainConfig);
 
     mainConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$mdGestureProvider',
-        '$ionicConfigProvider', '$translateProvider'];
+        '$ionicConfigProvider', '$translateProvider','toastrConfig'];
 
     function mainConfig($stateProvider, $urlRouterProvider, $mdGestureProvider,
-                        $ionicConfigProvider, $translateProvider) {
+                        $ionicConfigProvider, $translateProvider,toastrConfig) {
+
+        angular.extend(toastrConfig, {
+            // preventDuplicates: true,
+            preventOpenDuplicates: false,
+        });
         //example of user translation
         $translateProvider.translations('en', {
             'TITLE': 'Hello',
@@ -75,10 +80,16 @@
                 controller: 'SelectRoleCtrl',
                 controllerAs: 'vm'
             })
-            .state('registration', {
-                url: '/registration',
-                templateUrl: 'templates/reg/reg.html',
-                controller: 'RegCtrl',
+            .state('registration-dentist', {
+                url: '/registration-dentist',
+                templateUrl: 'templates/reg-doc/reg-doc.html',
+                controller: 'RegDocCtrl',
+                controllerAs: 'vm'
+            })
+            .state('registration-patient', {
+                url: '/registration-patient',
+                templateUrl: 'templates/reg-pat/reg-pat.html',
+                controller: 'RegPatCtrl',
                 controllerAs: 'vm'
             })
             .state('add-clinic', {
@@ -137,8 +148,8 @@
 
             .state('tabs.history', {
                 url: '/history',
-                templateUrl: 'templates/homepage/homepage.html',
-                controller: 'HomepageCtrl',
+                templateUrl: 'templates/history/history.html',
+                controller: 'HistoryCtrl',
                 controllerAs: 'vm'
 
             })
@@ -150,13 +161,13 @@
 
             })
             .state('tabs.patient-profile', {
-                url: '/profile',
+                url: '/patient-profile',
                 templateUrl: 'templates/patient-profile/patient-profile.html',
                 controller: 'PatientProfileCtrl',
                 controllerAs: 'vm'
             })
             .state('tabs.dentist-profile', {
-                url: '/profile',
+                url: '/dentist-profile',
                 templateUrl: 'templates/dentist-profile/dentist-profile.html',
                 controller: 'DentistProfileCtrl',
                 controllerAs: 'vm'
@@ -210,7 +221,6 @@
                 controller: 'SendReviewCtrl',
                 controllerAs: 'vm'
             })
-
         //
     }
 })();

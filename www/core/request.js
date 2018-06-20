@@ -23,32 +23,19 @@
             }
             if (method === 'GET') {
                 config.params = data;
-                // if ($sessionStorage.locale) {
-                //     console.log(config.params)
-                //     // config.params.locale = $sessionStorage.locale;
-                // }
                 if (data && data.responseType) {
                     config.responseType = data.responseType;
                 }
             } else {
                 config.data = data;
-                // if ($sessionStorage.locale) {
-                //     config.data.locale = $sessionStorage.locale;
-                // }
             }
-            if ($sessionStorage.auth_key) {
-                url = url + '?auth_key=' + $sessionStorage.auth_key;
-                if ($localStorage.locale) {
-                    url = url + '&locale=' + $localStorage.locale;
-                    // if ($sessionStorage.id){
-                    //     url = url + '&id=' + $sessionStorage.id;
-                    // }
-                }
+            if ($localStorage.auth_key) {
+                url = url + '?auth_key=' + $localStorage.auth_key;
             }
-            if ($sessionStorage.token) {
+            if ($localStorage.token) {
                 config.url = url;
-                // config.headers.Authorization = `Token ${$sessionStorage.token}`;
-                config.headers.Authorization = 'Token ' + $sessionStorage.token;
+                // config.headers.Authorization = 'Token ' + $sessionStorage.token;
+                config.headers.Authorization = 'Bearer ' + $localStorage.token;
             } else {
                 config.url = url;
             }
@@ -108,14 +95,8 @@
                 }
             };
 
-            if ($sessionStorage.auth_key) {
-                url = url + '?auth_key=' + $sessionStorage.auth_key;
-                if ($localStorage.locale) {
-                    url = url + '&locale=' + $localStorage.locale;
-                    // if ($sessionStorage.id){
-                    //     url = url + '&id=' + $sessionStorage.id;
-                    // }
-                }
+            if ($localStorage.auth_key) {
+                url = url + '?auth_key=' + $localStorage.auth_key;
             }
 
             return $http.post(url, data, config).then(

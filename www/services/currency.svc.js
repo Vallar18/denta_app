@@ -15,16 +15,18 @@
         return model;
 
         function getCurrency() {
-            if (cache.length) {
-                return $q.defer(function (resolve, reject) {
-                    resolve(cache);
-                });
-            } else {
+            // if (cache.length) {
+            //     return $q.defer(function (resolve, reject) {
+            //         $timeout(function(){
+            //             resolve(cache);
+            //         },150);
+            //     });
+            // } else {
                 return http.get(url.currencies).then(function(res){
                     cache = res;
                     return res;
                 });
-            }
+            // }
         }
 
         /**
@@ -38,7 +40,7 @@
                 let findArray = angular.isArray(array) ? array : cache;
                 let currNameLwr = currencyName.toLowerCase();
                 return findArray.findIndex(function(item){
-                    return item.name && item.name.toLowerCase() === currNameLwr;
+                    return item.abr && item.abr.toLowerCase() === currNameLwr;
                 })
             }
             return 0;

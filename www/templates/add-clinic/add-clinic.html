@@ -11,7 +11,7 @@
                 <div class="img-outer">
                     <img src="content/img/border.svg">
                     <div class="top-icon">
-                        <img src="content/img/add-photo-icon.png" alt="">
+                        <img ng-src="{{vm.user.avatar}}" alt="">
                     </div>
                 </div>
             </div>
@@ -35,13 +35,14 @@
                     <select class="text-center select-block" ng-if="vm.listClinic && vm.showSelect" ng-model="vm.select_clinic"
                             ng-options="item as item.name for item in vm.listClinic track by item.id">
                     </select>
-                    <label class="item item-input">
-                        <button class="map-marker">
+                    <div class="item item-input">
+                        <button class="map-marker"
+                                ng-click="vm.openMapPopup()">
                             <img src="content/img/marker.png" alt="">
                         </button>
                         <input class="text-center" type="text" placeholder="Clinic Address"
                                ng-model="vm.clinic.address" input-change-color="#000">
-                    </label>
+                    </div>
                     <button class="send-button" ng-click="vm.send()">Send</button>
                 </div>
                 <button class="send-button" ng-if="!vm.len_phone" ng-click="vm.checkClinicPhone()">Next</button>

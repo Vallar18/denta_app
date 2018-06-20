@@ -1,13 +1,13 @@
 ;(function () {
-    'use string'
+    'use strict'
 
     angular
         .module('app')
         .controller('SelectRoleCtrl', SelectRoleCtrl);
 
-    SelectRoleCtrl.$inject = ['$state', 'regSvc', '$localStorage'];
+    SelectRoleCtrl.$inject = ['$state', 'userSvc', '$localStorage'];
 
-    function SelectRoleCtrl($state, regSvc, $localStorage) {
+    function SelectRoleCtrl($state, userSvc, $localStorage) {
         const vm = this;
         vm.select = select;
 
@@ -20,13 +20,15 @@
         vm.role = undefined;
 
         function select(type) {
+            let role;
             if (type === 0){
-                vm.role = 'dentist';
+                role = userSvc.roleConst().doctor;
+                $state.go('registration-dentist');
             } else {
-                vm.role = 'patient'
+                role =  userSvc.roleConst().patient;
+                $state.go('registration-patient');
             }
-            $localStorage.role = vm.role;
-            $state.go('registration');
+            userSvc.setRole(role);
         }
     }
 
