@@ -1,2 +1,69 @@
-.select-subscript {
+.select-subscription {
+  .popup {
+    width: 78%;
+    position: absolute;
+    top: 20%;
+    .popup-head {
+      display: none;
+    }
+    .popup-body {
+      padding: 0;
+      overflow: visible;
+      background: #fff;
+    }
+    .popup-buttons {
+      display: none;
+    }
+  }
+  .select-subscript {
+    .header-simple {
+      background: #b2c1db;
+      height: 46vw;
+      .title-popup {
+        text-align: center;
+        padding-top: 8vw;
+        font-weight: 400;
+        font-size: 5vw;
+        line-height: normal;
+        .span-font-weight {
+          font-weight: 700;
+          text-transform: uppercase;
+        }
+      }
+      .price-block {
+        width: 24vw;
+        position: absolute;
+        right: -6vw;
+        top: 3vw;
+        z-index: 9;
+        img {
+          width: 100%;
+        }
+      }
+      .header-simple__border {
+        width: 100%;
+      }
+    }
+
+    .subscript-btn-block {
+      padding: 6vw 0;
+      .gray-btn {
+        margin: 0 auto 7%;
+        display: block;
+        width: 80%;
+        display: flex;
+        img {
+          height: 8vw;
+          width: auto;
+        }
+        .subscript-btn-text {
+          width: 40%;
+        }
+        .price-item {
+          font-weight: 700;
+          color: $red-text;
+        }
+      }
+    }
+  }
 }
