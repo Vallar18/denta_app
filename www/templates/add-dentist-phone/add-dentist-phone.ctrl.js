@@ -16,7 +16,7 @@
         vm.selectCode = selectCode;
         vm.pickContactUsingNativeUI = pickContactUsingNativeUI;
         vm.codes = codes;
-        vm.select_code = vm.codes[235].code;
+        vm.select_code = vm.codes[phoneSvc.getDefaultIndex()].code;
         vm.user = userSvc.getUser();
         vm.role = userSvc.getRole();
         vm.phone = '';

@@ -52,13 +52,13 @@
                 <div layout="row" layout-align="space-between center" class="radio-wrap" ng-class="{'show': slideOpen}">
                     <div class="radio-block">
                         <div layout="row" layout-align="space-around none">
-                            <input type="radio" name="white-header-radio" id="rating">
+                            <input type="radio" name="white-header-radio" id="rating" ng-model="vm.sort" value="rating">
                             <label for="rating">Rating</label>
 
-                            <input type="radio" name="white-header-radio" id="distance">
+                            <input type="radio" name="white-header-radio" id="distance" ng-model="vm.sort" value="distance">
                             <label for="distance">Distance</label>
 
-                            <input type="radio" name="white-header-radio" id="price">
+                            <input type="radio" name="white-header-radio" id="price" ng-model="vm.sort" value="price">
                             <label for="price">Price</label>
                         </div>
                     </div>

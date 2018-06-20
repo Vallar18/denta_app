@@ -5,14 +5,23 @@
             .module('app')
             .controller('HelpCtrl', HelpCtrl);
 
-        HelpCtrl.$inject = ['$scope', '$ionicModal', '$cordovaContacts', '$ionicPlatform', '$cordovaCamera', '$ionicPopup','currencySvc'];
+        HelpCtrl.$inject = ['$scope', '$ionicModal', '$cordovaContacts', '$ionicPlatform', '$cordovaCamera', '$ionicPopup','currencySvc','$filter'];
 
-        function HelpCtrl($scope, $ionicModal, $cordovaContacts, $ionicPlatform, $cordovaCamera, $ionicPopup,currencySvc) {
+        function HelpCtrl($scope, $ionicModal, $cordovaContacts, $ionicPlatform, $cordovaCamera, $ionicPopup,currencySvc,$filter) {
             var vm = this;
             $scope.textModel = 'fffffffffffffffff';
             $scope.picFile = null;
             $scope.slideOpen = false;
+            vm.sort = 'rating';
 
+
+            $scope.$watch(function(){
+                return vm.sort;
+            },function(newV,oldV){
+                if(newV !== oldV){
+                    $filter('orderBy')(vm.helpArr,vm.sort);
+                }
+            });
 
             vm.helpArr = [
                 {
@@ -21,36 +30,40 @@
                         id: 4,
                         name: 'Dr House'
                     },
-                    price: 100,
-                    rating: 2.8,
-                    distance: '4.8 km',
-                    address: 'Rishon LeTsiyon, Levi Eshkol St. 16',
-                    time: '10min'
+                    price: 95.3,
+                    rating: 1.8,
+                    distance: 2.6,
                 },
                 {
                     id: 2,
                     doctor: {
-                        id: 4,
+                        id: 6,
                         name: 'Dr House2'
                     },
-                    price: 100,
+                    price: 25.6,
                     rating: 2.8,
-                    distance: '4.8 km',
-                    address: ' kmfvfdvkjfdnkj vdfnv kjdfn vkjdfdfkjnv kjdfnv kdfkvjndfkjvnn kjdfnv df v',
-                    time: '10min'
+                    distance: 1.0,
                 },
                 {
                     id: 3,
                     doctor: {
                         id: 4,
-                        name: 'Dr House2'
+                        name: 'Dr House3'
                     },
-                    price: 100,
+                    price: 8.0,
                     rating: 2.8,
-                    distance: '4.8 km',
-                    address: ' kmfvfdvkjfdnkj vdfnv kjdfn vkjdfn vkdfnvkjndfkjv  kdfkvjndfkjvnn kjdfnv df v',
-                    time: '10min'
+                    distance: 1.8,
                 },
+                {
+                    id: 4,
+                    doctor: {
+                        id: 4,
+                        name: 'Dr House3'
+                    },
+                    price: 100.5,
+                    rating: 2.8,
+                    distance: 9.8,
+                }
             ];
 
             vm.reviewArr = [
@@ -59,21 +72,21 @@
                     date: '12 03 1093',
                     rating: 4,
                     name: 'Vasylyi',
-                    text: 'Test test tskjnfkvlfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
+                    text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
                 },
                 {
                     id:2,
                     date: '12 03 1093',
                     rating: 4,
                     name: 'Vasylyi',
-                    text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfj    vnksdjnvdfvkjnkjdfvn sd'
+                    text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
                 },
                 {
                     id:3,
                     date: '12 03 1093',
                     rating: 4,
                     name: 'Vasylyi',
-                    text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvnd    klfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
+                    text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
                 },
             ];
 

@@ -11,7 +11,7 @@
 
         angular.extend(toastrConfig, {
             // preventDuplicates: true,
-            preventOpenDuplicates: false,
+            preventOpenDuplicates: true,
         });
         //example of user translation
         $translateProvider.translations('en', {
@@ -35,14 +35,12 @@
         //     controller: 'HomepageController',
         //     controllerAs: 'vm'
         // })
-
             .state('geolocation', {
                 url: '/geo',
                 templateUrl: 'templates/geolocation/geo.html',
                 controller: 'GeoCtrl',
                 controllerAs: 'vm'
             })
-
             .state('login', {
                 url: '/login',
                 templateUrl: 'templates/login/login.html',
@@ -219,6 +217,13 @@
                 url: '/send-review',
                 templateUrl: 'templates/send-review/send-review.html',
                 controller: 'SendReviewCtrl',
+                controllerAs: 'vm'
+            })
+
+            .state('home', {
+                url: '/home',
+                templateUrl: 'templates/homepage/homepage.html',
+                controller: 'HomepageCtrl',
                 controllerAs: 'vm'
             })
         //
