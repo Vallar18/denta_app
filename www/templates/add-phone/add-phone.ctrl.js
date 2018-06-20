@@ -13,13 +13,13 @@
         vm.getSelectCode = getSelectCode;
         vm.selectCode = selectCode;
         vm.codes = codes;
-        vm.select_code = vm.codes[235].code;
+        vm.select_code = vm.codes[phoneSvc.getDefaultIndex()].code;
         vm.phone = '';
         vm.content = {
             val1: 'You will receive sms with code',
             val3: 'get me in',
             valBtn: 'Send'
-        }
+        };
 
         vm.test = function () {
             $ionicPopup.show({
@@ -28,7 +28,7 @@
                 title: '',
                 scope: $scope,
                 buttons: [
-                    { text: 'Cancel' },
+                    {text: 'Cancel'},
                     {
                         text: '<b>OK</b>',
                         type: 'button-positive',
@@ -40,30 +40,29 @@
         };
 
         function send() {
-            if (validPhone()) {
-                let send = {
-                    phone: vm.sum_phone
-                };
-                regSvc.sendPhone(send).then(function (data) {
-                    if (data.success) {
-                        console.log(data.data);
-                        toastr.success(data.data, null, {
-                            timeOut: 20000,
-                            tapToDismiss: true
-                        });
-                        $state.go('add-code');
-                        $localStorage.valView = false;
-                        authSvc.setPhone(vm.sum_phone);
-                        vm.phone = '';
-                    } else {
-                        if (data.message) {
-                            toastr.error(data.message)
-                        }
-                    }
-                });
-            } else {
-                toastr.error(messagesSvc.error.invalidPhone)
+            if (!validPhone()) {
+                toastr.error(messagesSvc.error.invalidPhone);
             }
+            let send = {
+                phone: vm.sum_phone
+            };
+            regSvc.sendPhone(send).then(function (data) {
+                if (data.success) {
+                    console.log(data.data);
+                    toastr.success(data.data, null, {
+                        timeOut: 20000,
+                        tapToDismiss: true
+                    });
+                    $state.go('add-code');
+                    $localStorage.valView = false;
+                    authSvc.setPhone(vm.sum_phone);
+                    vm.phone = '';
+                } else {
+                    if (data.message) {
+                        toastr.error(data.message);
+                    }
+                }
+            });
         }
 
         function validPhone() {
@@ -89,4 +88,5 @@
         }
     }
 
-})();
+})
+();

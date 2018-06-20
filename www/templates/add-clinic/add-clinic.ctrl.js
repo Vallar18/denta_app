@@ -16,7 +16,7 @@
         vm.validPhone = validPhone;
         vm.openMapPopup = openMapPopup;
         vm.codes = codes;
-        vm.select_code = vm.codes[235].code;
+        vm.select_code = vm.codes[phoneSvc.getDefaultIndex()].code;
         vm.user = userSvc.getUser();
         vm.phone = '';
         vm.clinic = {
@@ -78,13 +78,12 @@
                     if (data.success) {
                         // toastr.success(data.message, '', {
                         //     onHidden: function () {
-                        $state.go('add-specialities')
+                        $state.go('add-specialities');
                         //     }
                         // });
                         vm.clinic.name = '';
                         vm.clinic.address = '';
                         vm.phone = '';
-
                     } else {
                         if (data.message) {
                             toastr.error(data.message)

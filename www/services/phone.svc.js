@@ -6,10 +6,14 @@
     phoneSvc.$inject = ['$ionicPopup','http','url', '$timeout'];
 
     function phoneSvc($ionicPopup,http,url,$timeout) {
+        let DEFAULT_PHONE_CODE = '+380';
         let cache = [];
         let model = {
             showSelect: showSelect,
-            getCodes: getCodes
+            getCodes: getCodes,
+            getIndexByName: getIndexByName,
+            getDefaultIndex: getDefaultIndex,
+            setDefaultCode: setDefaultCode
         };
         return model;
 
@@ -26,6 +30,27 @@
                     return res;
                 });
             // }
+        }
+
+        function getIndexByName(codeName,array){
+            if(codeName){
+                let findArray = angular.isArray(array) ? array : cache;
+                let codeLower = codeName.toLowerCase();
+                return findArray.findIndex(function(item){
+                    return item.code && item.code.toLowerCase() === codeLower;
+                })
+            }
+            return 0;
+        }
+
+        function getDefaultIndex(){
+            return getIndexByName(DEFAULT_PHONE_CODE);
+        }
+
+        function setDefaultCode(code){
+            if(code){
+                DEFAULT_PHONE_CODE = code;
+            }
         }
 
         function showSelect($scope){
