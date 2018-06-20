@@ -18,7 +18,7 @@
                ng-click="tiReview && tiReview()">Give a review</a>
 
             <div ng-if="!tiIsNotified"  class="treatment-item__notify"
-                 ng-click=""
+                 ng-click="tiNotify && tiNotify()"
                  ng-class="{'treatment-item__notify--disabled':!tiCanNotify}">
                      Notify H.D.</div>
 

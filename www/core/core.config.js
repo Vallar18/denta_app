@@ -217,7 +217,14 @@
                 url: '/send-review',
                 templateUrl: 'templates/send-review/send-review.html',
                 controller: 'SendReviewCtrl',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: {
+                    currencieItems: function (currencySvc) {
+                        return currencySvc.getCurrency().then(function (res) {
+                            return res;
+                        });
+                    }
+                }
             })
 
             .state('home', {

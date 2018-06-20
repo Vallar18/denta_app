@@ -21,14 +21,14 @@
         <ion-list>
             <ion-item ng-repeat="item in vm.historyItems track by item.id">
                 <treatment-item
-                        ti-review=""
                         ti-price="item.price"
-                        ti-notify=""
+                        ti-notify="vm.notify(item)"
                         ti-is-files="item.isFiles"
                         ti-is-notified="item.isNotified"
                         ti-can-notify="item.canNotify"
                         ti-need-review="item.needReview"
                         ti-files=""
+                        ti-review="vm.goReview()"
                         ti-country="item.country"
                         ti-date="item.date"
                         ti-dentist="item.dentist"></treatment-item>

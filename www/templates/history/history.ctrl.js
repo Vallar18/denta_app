@@ -5,13 +5,23 @@
         .module('app')
         .controller('HistoryCtrl', HistoryCtrl);
 
-    HistoryCtrl.$inject = ['$ionicHistory'];
+    HistoryCtrl.$inject = ['$ionicHistory','$state','toastr'];
 
-    function HistoryCtrl($ionicHistory) {
+    function HistoryCtrl($ionicHistory, $state, toastr) {
         var vm = this;
         vm.back = function () {
             $ionicHistory.goBack();
-        }
+        };
+
+        vm.goReview = function(){
+            $state.go('send-review');
+        };
+
+        vm.notify = function(item){
+            toastr.success('Your home doctor will be notified');
+            item.isNotified = true;
+        };
+
         vm.historyItems = [
             {
                 id: 1,

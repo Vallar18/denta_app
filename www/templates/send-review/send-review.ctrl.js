@@ -5,11 +5,15 @@
         .module('app')
         .controller('SendReviewCtrl', SendReviewCtrl);
 
-    SendReviewCtrl.$inject = ['$ionicPopup', '$scope', '$ionicHistory','toastr','messagesSvc'];
+    SendReviewCtrl.$inject = ['$ionicPopup', '$scope', '$ionicHistory', 'toastr', 'messagesSvc', 'currencySvc', 'currencieItems'];
 
-    function SendReviewCtrl($ionicPopup, $scope, $ionicHistory,toastr, messagesSvc) {
+    function SendReviewCtrl($ionicPopup, $scope, $ionicHistory, toastr, messagesSvc, currencySvc, currencieItems) {
         const vm = this;
+        vm.currencies  = currencieItems;
+        vm.select_currency = vm.currencies[currencySvc.getDefaultIndex()];
         vm.sendReview = sendReview;
+        vm.selectCurrency = selectCurrency;
+        vm.getSelectCurrency = getSelectCurrency;
         vm.back = function () {
             $ionicHistory.goBack();
         };
@@ -35,12 +39,26 @@
             currency: 1
         };
 
-        function sendReview(){
-            if(!vm.reviewModel.comment.length){
+        function sendReview() {
+            if (!vm.reviewModel.comment.length) {
                 toastr.error(messagesSvc.error.emptyReview);
             } else {
+                toastr.success('Success send review!');
+                $ionicHistory.goBack();}
+        }
 
-            }
+        function selectCurrency(currency) {
+            vm.select_currency = currency;
+            vm.currencyPopup.close();
+        }
+
+        function getSelectCurrency() {
+            $scope.data = {};
+            vm.currencyPopup = $ionicPopup.show({
+                templateUrl: 'components/select-currency/select-currency.html',
+                scope: $scope,
+                cssClass: 'select-currency-popup'
+            });
         }
     }
 })();
