@@ -12,16 +12,6 @@
             $scope.textModel = 'fffffffffffffffff';
             $scope.picFile = null;
             $scope.slideOpen = false;
-            vm.sort = 'rating';
-
-
-            $scope.$watch(function(){
-                return vm.sort;
-            },function(newV,oldV){
-                if(newV !== oldV){
-                    $filter('orderBy')(vm.helpArr,vm.sort);
-                }
-            });
 
             vm.helpArr = [
                 {
@@ -41,7 +31,7 @@
                         name: 'Dr House2'
                     },
                     price: 25.6,
-                    rating: 2.8,
+                    rating: 3.8,
                     distance: 1.0,
                 },
                 {
@@ -51,7 +41,7 @@
                         name: 'Dr House3'
                     },
                     price: 8.0,
-                    rating: 2.8,
+                    rating: 1.8,
                     distance: 1.8,
                 },
                 {
@@ -61,10 +51,36 @@
                         name: 'Dr House3'
                     },
                     price: 100.5,
-                    rating: 2.8,
+                    rating: 4.8,
                     distance: 9.8,
                 }
             ];
+
+            $scope.$watch(function(){
+                return vm.sort;
+            },function(newV,oldV){
+                if(newV !== oldV){
+                    sortItem();
+                }
+            });
+
+            function sortItem(){
+                var isReverse = false;
+                switch (vm.sort) {
+                    case 'rating':isReverse = true;break;
+                    case 'price':isReverse = false;break;
+                    case 'distance':isReverse = true;break;
+                }
+                vm.helpArr =  $filter('orderBy')(vm.helpArr,vm.sort,isReverse);
+            }
+
+            init();
+            function init(){
+                vm.sort = 'rating';
+                sortItem();
+            }
+
+
 
             vm.reviewArr = [
                 {

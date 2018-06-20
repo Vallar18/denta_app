@@ -1,6 +1,9 @@
 .history-view {
   background-color: $second-color-light;
 
+  ion-item {
+    padding:5px;
+  }
   &__main {
     margin-top: 20vh;
     background-color: $background-color;
