@@ -21,7 +21,10 @@
                 <div class="select-price-block">
                     <input type="number" class="input-price" placeholder="Emergency price"
                            ng-model="vm.price" input-change-color="#000">
-                    <button type="button" class="select-currency" ng-click="vm.getSelectCurrency()">{{vm.select_currency.name}}{{vm.select_currency.abr}}</button>
+                    <button type="button" class="select-currency" ng-click="vm.getSelectCurrency()">
+                        <span>{{vm.select_currency.name}} - </span>
+                        <span>{{vm.select_currency.abr}}</span>
+                    </button>
                 </div>
                  <button class="gray-btn" ng-click="vm.getSpeciality()">Edit specialties</button>
                 <p ng-if="vm.len_spec" class="selected-counter">{{vm.len_spec}} selected</p>
