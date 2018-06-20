@@ -16,12 +16,11 @@
         vm.selectItem = selectItem;
         vm.getSelectCurrency = getSelectCurrency;
         vm.selectCurrency = selectCurrency;
-        const DEFAULT_CURRENCY = 'USD';
         vm.user = userSvc.getUser();
         vm.role = userSvc.getRole();
         vm.specialities = spec;
         vm.currencies = currencies;
-        vm.select_currency = vm.currencies[currencySvc.getIndexByName(DEFAULT_CURRENCY)];
+        vm.select_currency = vm.currencies[currencySvc.getDefaultIndex()];
         vm.spec_selected_id = [];
         vm.price = '';
         vm.description = '';

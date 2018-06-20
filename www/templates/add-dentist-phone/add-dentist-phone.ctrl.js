@@ -17,7 +17,7 @@
         vm.pickContactUsingNativeUI = pickContactUsingNativeUI;
         vm.edit = $stateParams.edit;
         vm.codes = codes;
-        vm.select_code = vm.codes[235].code;
+        vm.select_code = vm.codes[phoneSvc.getDefaultIndex()].code;
         vm.user = userSvc.getUser();
         vm.role = userSvc.getRole();
         vm.phone = '';

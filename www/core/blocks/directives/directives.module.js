@@ -6,5 +6,7 @@
         'directives.helpItem',
         'directives.reviewItem',
         'directives.inputChangeColor',
+        'directives.treatmentItem',
+        'directives.patientItem',
     ]);
 })();

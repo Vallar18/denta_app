@@ -50,6 +50,8 @@
                     processRegError(err);
                 });
             } else {
+            if(validation()){
+                vm.user.country_id = authSvc.getCountryId();
                 regSvc.sendUser(vm.user).then(function (data) {
                     processRegSuccess(data);
                 }, function (err) {
