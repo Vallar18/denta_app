@@ -41,12 +41,6 @@
                 controller: 'GeoCtrl',
                 controllerAs: 'vm'
             })
-            .state('login', {
-                url: '/login',
-                templateUrl: 'templates/login/login.html',
-                controller: 'LoginCtrl',
-                controllerAs: 'vm'
-            })
             .state('view', {
                 url: '/view',
                 templateUrl: 'templates/view/view.html',
@@ -176,6 +170,25 @@
                 url: '/my-patient',
                 templateUrl: 'templates/my-patient/my-patient.html',
                 controller: 'MyPatientCtrl',
+                controllerAs: 'vm',
+                resolve: {
+                    codeItems: function (phoneSvc) {
+                        return phoneSvc.getCodes().then(function (res) {
+                            return res;
+                        });
+                    }
+                }
+            })
+            .state('tabs.history-emergencies', {
+                url: '/history-emergencies',
+                templateUrl: 'templates/history-emergencies/history-emergencies.html',
+                controller: 'HistoryEmergenciesCtlr',
+                controllerAs: 'vm'
+            })
+            .state('tabs.history-patients', {
+                url: '/history-patients',
+                templateUrl: 'templates/history-patients/history-patients.html',
+                controller: 'HistoryPatientsCtlr',
                 controllerAs: 'vm'
             })
             .state('about', {

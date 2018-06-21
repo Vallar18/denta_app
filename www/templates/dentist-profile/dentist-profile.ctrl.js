@@ -11,7 +11,7 @@
         var vm = this;
         vm.country = 'Israel';
         vm.profile = userSvc.getUser();
-        vm.test = [ {name: 'tdddd est'}, {name: 'tefg dfg st'},{name: 'tdf vfdv est'}, {name: 'gdfgdfgdfgdfg '},{name: 'test'}, {name: 'test'},{name: 'test'}, {name: 'test'}];
+        vm.test = [ {name: 'tdddd est'}, {name: 'tefg dfg st'},{name: 'tdf v dfv fdv est'}, {name: 'gdfgdfgdfgdfg '},{name: 'test'}, {name: 'test'},{name: 'test'}, {name: 'test'}];
 
         vm.reviewArr = [
             {

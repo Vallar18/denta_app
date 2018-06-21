@@ -11,9 +11,9 @@
                 'app.directives',
             ])
         .run(runBlock);
-    runBlock.$inject = ['$ionicPlatform', '$localStorage', '$state', 'utilsSvc', 'authSvc'];
+    runBlock.$inject = ['$ionicPlatform', '$state', 'utilsSvc', 'authSvc','userSvc'];
 
-    function runBlock($ionicPlatform, $localStorage, $state, utilsSvc, authSvc) {
+    function runBlock($ionicPlatform, $state, utilsSvc, authSvc, userSvc) {
         utilsSvc.initializePolyfill();
         $ionicPlatform.ready(function () {
             // $state.go('add-clinic');
@@ -33,10 +33,9 @@
             if (window.StatusBar) {
                 StatusBar.styleDefault();
             }
-            let showView = angular.isDefined($localStorage.valView) ? $localStorage.valView : true;
             if (authSvc.isLogined()) {
                 authSvc.processAutoLogin();
-            } else if (showView) {
+            } else if (userSvc.isShowStart()) {
                 $state.go('view');
             }
 

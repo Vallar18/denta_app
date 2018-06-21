@@ -7,9 +7,10 @@
 
     function utilsSvc() {
         var model = {
-            initializePolyfill: initializePolyfill
+            initializePolyfill: initializePolyfill,
         };
         return model;
+
 
 
         function initializePolyfill(){

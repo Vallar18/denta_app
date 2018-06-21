@@ -1,7 +1,7 @@
 {
-  "name": "Denta",
+  "name": "Dent",
   "version": "0.0.1",
-  "description": "An Ionic project",
+  "description": "Get Dent App",
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-clean-css": "^3.9.4",

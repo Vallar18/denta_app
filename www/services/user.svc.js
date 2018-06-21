@@ -22,9 +22,24 @@
             isDoc: isDoc,
             isPat: isPat,
             resetData: resetData,
-            roleConst: roleConst
+            roleConst: roleConst,
+            setShowStart: setShowStart,
+            isShowStart: isShowStart
         };
         return model;
+
+        function setShowStart(isShow){
+            if(angular.isDefined(isShow)){
+                $localStorage.isShowStartPage = isShow;
+            }
+        }
+
+        function isShowStart(){
+            if(angular.isDefined($localStorage.isShowStartPage)){
+                return $localStorage.isShowStartPage;
+            }
+            return true;
+        }
 
         function getUser(){
             if($localStorage.user && $localStorage.user.id){

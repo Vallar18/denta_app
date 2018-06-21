@@ -60,7 +60,7 @@
                     }, {
                         id: 3,
                         title: 'History',
-                        view: 'home'
+                        view: 'tabs.history-patients'
                     }
                 ]
             } else if (type === userSvc.roleConst().patient) {

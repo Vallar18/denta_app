@@ -74,9 +74,9 @@ a {
   opacity: 0.5;
 }
 
-//.scroll {
-//  height: 100%;
-//}
+.scroll {
+  height: 100%;
+}
 
 .popup-bottom {
   bottom: 0;
@@ -258,7 +258,7 @@ a {
     width: 35%;
     height: 48px;
     background-color: #d30041;
-    color: white;
+    color: $text-white-color;
     margin-top: 15px;
     border: none;
   }
@@ -340,6 +340,7 @@ a {
     top: 25%;
     left: 50%;
     font-size: 0.8rem;
+    text-align: center;
   }
   &__subtitle {
     position: absolute;

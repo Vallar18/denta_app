@@ -28,7 +28,7 @@
         init();
         function init() {
             if(vm.edit){
-                hideOverlay()
+                hideOverlay();
             }
         }
 

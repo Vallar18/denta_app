@@ -13,9 +13,22 @@
             getCodes: getCodes,
             getIndexByName: getIndexByName,
             getDefaultIndex: getDefaultIndex,
-            setDefaultCode: setDefaultCode
+            setDefaultCode: setDefaultCode,
+            validatePhone: validatePhone,
+            preparePhone: preparePhone
         };
         return model;
+
+        function preparePhone(code,phone){
+            return (code || '+0') + ((phone || '') + '');
+        }
+
+        function validatePhone(phone){
+            if(angular.isDefined(phone)){
+                return (phone.length > 8 && phone.length < 20);
+            }
+            return false;
+        }
 
         function getCodes() {
             // if (cache.length) {

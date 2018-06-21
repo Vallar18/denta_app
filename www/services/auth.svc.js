@@ -18,10 +18,9 @@
             logout: logout,
             getCountryId: getCountryId,
             setCountryId: setCountryId,
-            processAutoLogin: processAutoLogin
+            processAutoLogin: processAutoLogin,
         };
         return model;
-
 
         function  processAutoLogin(callback) {
             if(isLogined()) {
@@ -63,7 +62,7 @@
             clearAuthData();
             userSvc.resetData();
             // ionic.Platform.exitApp();
-            $state.go('view');
+            $state.go('add-phone');
         }
 
 

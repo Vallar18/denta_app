@@ -1,6 +1,9 @@
-.my-patient {
+.history-patients {
   background-color: $second-color-light;
 
+  ion-item {
+    padding:5px;
+  }
   &__main {
     margin-top: 20vh;
     background-color: $background-color;
@@ -9,13 +12,5 @@
     background-color: $background-color;
     font-size: 0.9rem;
     padding:0 5% 5% 5%;
-  }
-
-  &__text {
-    text-align: center;
-    font-size: 14px;
-    font-weight: 100;
-    color: $second-color-dark4;
-    padding: 9vw 0 9vw 0;
   }
 }
