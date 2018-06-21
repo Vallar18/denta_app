@@ -64,26 +64,50 @@
             if (vm.listClinic && vm.listClinic.length) {
                 vm.select_clinic = vm.listClinic[0];
                 vm.clinic.name = vm.select_clinic.name;
+                vm.clinic.address = vm.select_clinic.address;
                 vm.clinic.latitude = vm.select_clinic.latitude;
                 vm.clinic.longitude = vm.select_clinic.longitude;
+                vm.change_clinic = {
+                    user_id: vm.user.id,
+                    clinic_id: vm.select_clinic.id
+                }
                 vm.showSelect = true;
+                debugger
             } else {
                 vm.showSelect = false;
             }
         }
 
         function send() {
-            if (validation()) {
+            if (!validation()) {
+                return
+            }
+            if(vm.showSelect){
+                regSvc.changeClinic(vm.change_clinic).then(function (data) {
+                    if (data.success) {
+                        $state.go('add-specialities');
+                    } else {
+                        if (data.message) {
+                            toastr.error(data.message)
+                        }
+                    }
+                }, function (err) {
+                    let err_text = '';
+                    angular.forEach(err, function (val) {
+                        if (angular.isArray(val)) {
+                            err_text += val.reduce(function (acc, current) {
+                                return acc + '\n' + current;
+                            }, '');
+                        }
+                    });
+                    if (err_text.length) {
+                        toastr.error(err_text);
+                    }
+                });
+            } else{
                 regSvc.createClinic(vm.clinic).then(function (data) {
                     if (data.success) {
-                        // toastr.success(data.message, '', {
-                        //     onHidden: function () {
                         $state.go('add-specialities');
-                        //     }
-                        // });
-                        vm.clinic.name = '';
-                        vm.clinic.address = '';
-                        vm.phone = '';
                     } else {
                         if (data.message) {
                             toastr.error(data.message)

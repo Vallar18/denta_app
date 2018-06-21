@@ -27,7 +27,7 @@
                                ng-model="vm.phone" input-change-color="#000">
                     </label>
                 </div>
-                <div class="add-clinic-block" ng-if="vm.len_phone">
+                <div class="add-clinic-block" ng-if="vm.show_clinic">
                     <label class="item item-input" ng-if="!vm.showSelect">
                         <input class="text-center"  type="text" placeholder="Clinic name"
                                ng-model="vm.clinic.name" input-change-color="#000">
@@ -36,12 +36,12 @@
                             ng-options="item as item.name for item in vm.listClinic track by item.id">
                     </select>
                     <div class="item item-input">
-                        <button class="map-marker"
-                                ng-click="vm.openMapPopup()">
+                        <button class="map-marker">
                             <img src="content/img/marker.png" alt="">
                         </button>
                         <input class="text-center" type="text" placeholder="Clinic Address"
-                               ng-model="vm.clinic.address" input-change-color="#000">
+                               ng-model="vm.clinic.address" input-change-color="#000"
+                               ng-click="vm.openMapPopup()">
                     </div>
                     <button class="send-button" ng-click="vm.send()">Send</button>
                 </div>
