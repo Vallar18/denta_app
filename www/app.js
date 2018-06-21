@@ -11,10 +11,11 @@
                 'app.directives',
             ])
         .run(runBlock);
-    runBlock.$inject = ['$ionicPlatform', '$localStorage', '$state', 'utilsSvc'];
+    runBlock.$inject = ['$ionicPlatform', '$localStorage', '$state', 'utilsSvc', 'authSvc'];
 
-    function runBlock($ionicPlatform, $localStorage, $state, utilsSvc) {
+    function runBlock($ionicPlatform, $localStorage, $state, utilsSvc, authSvc) {
         utilsSvc.initializePolyfill();
+        authSvc.processAutoLogin();
         $ionicPlatform.ready(function() {
             // $state.go('add-clinic');
             window.addEventListener('keyboardDidShow', (event) => {

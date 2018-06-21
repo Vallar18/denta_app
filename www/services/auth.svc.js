@@ -17,10 +17,15 @@
             isLogined: isLogined,
             logout: logout,
             getCountryId: getCountryId,
-            setCountryId: setCountryId
+            setCountryId: setCountryId,
+            processAutoLogin: processAutoLogin
         };
         return model;
 
+
+        function  processAutoLogin() {
+
+        }
 
         function setCountryId(id){
             if(id){
