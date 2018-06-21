@@ -16,7 +16,8 @@
             ionic.Platform.exitApp();
         };
         vm.profile = {
-            name: vm.user.name
+            name: vm.user.name,
+            last_name: vm.user.lastname
         }
 
         function editPatient() {

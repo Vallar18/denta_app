@@ -1,3 +1,70 @@
 .dentist-profile {
+  background-color: $second-color-light;
 
+  &__number {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%,0);
+    span {
+      text-decoration: underline;
+    }
+  }
+
+  &__address {
+    padding: 25px;
+  }
+
+  &__description {
+    max-height:50%;
+    padding: 25px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    ul {
+      list-style-type: circle;
+      li {
+        list-style-type: circle;
+        display: inline-block;
+        padding-right:20px;
+      }
+    }
+
+  }
+
+  &__rating {
+    position: absolute;
+    top: 11%;
+    left: 50%;
+    transform: translate(-50%,0);
+  }
+
+  .header-simple {
+    height: 30vh;
+  }
+  &__main {
+    margin-top: 30vh;
+    background-color: $background-color;
+  }
+  &__content {
+    background-color: $background-color;
+    font-size: 0.9rem;
+    padding:0 5% 5% 5%;
+  }
+  &__items {
+    padding-top:20vw;
+    text-align: center;
+    i {
+      font-size: 35px;
+      color: $input-text;
+    }
+    ul {
+      padding-top:1.5rem;
+    }
+    li {
+      font-size:16px;
+      padding-bottom:1.5rem;
+      text-decoration: underline;
+      color: $input-text;
+    }
+  }
 }

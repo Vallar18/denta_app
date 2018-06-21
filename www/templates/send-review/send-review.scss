@@ -55,14 +55,18 @@
   }
 
   &__comment {
-
   }
 
    &__action {
      padding-top:25px;
      text-align: center;
      button {
-       min-width: 35%;
+       font-size: 16px;
+       min-width: 50%;
+       background: $first-color;
+       color: white;
+       height: 45px;
+       border: none;
      }
    }
 }

@@ -33,11 +33,11 @@
                 }, {
                     id: 1,
                     name: 'Need a dentist',
-                    view: 'need-dentist'
+                    view: 'tabs.help'
                 }, {
                     id: 2,
                     name: 'My treatments',
-                    view: 'my-treatments'
+                    view: 'tab.history'
                 }, {
                     id: 3,
                     name: 'Share with friends',

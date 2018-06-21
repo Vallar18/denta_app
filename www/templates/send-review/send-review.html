@@ -33,13 +33,13 @@
                                ng-model="vm.reviewModel.price"
                                input-change-color="#000">
                         <button type="button" class="select-currency" ng-click="vm.getSelectCurrency()">
-                            {{vm.select_currency.name}}
+                            {{vm.select_currency.abr}}
                         </button>
                     </div>
                 </div>
                 <div class="send-review__comment">
                     <div class="textarea-with-counter">
-                        <textarea rows="4"
+                        <textarea rows="5"
                                   placeholder="Write about the clinic"
                                   class="textarea-default"
                                   ng-model="vm.reviewModel.comment"
