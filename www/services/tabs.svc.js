@@ -37,7 +37,7 @@
                 }, {
                     id: 2,
                     name: 'My treatments',
-                    view: 'tab.history'
+                    view: 'tabs.history'
                 }, {
                     id: 3,
                     name: 'Share with friends',
@@ -60,7 +60,7 @@
                     }, {
                         id: 3,
                         title: 'History',
-                        view: 'tabs.history'
+                        view: 'home'
                     }
                 ]
             } else if (type === userSvc.roleConst().patient) {

@@ -47,7 +47,7 @@
         </div>-->
         <!---------------------->
 
-       <!-- <div layout="row" layout-align="space-between center" class="white-header">
+        <div layout="row" layout-align="space-between center" class="white-header">
             <div class="radio-outer">
                 <div layout="row" layout-align="space-between center" class="radio-wrap" ng-class="{'show': slideOpen}">
                     <div class="radio-block">
@@ -75,22 +75,20 @@
                 <help-item hi-distance="item.distance"
                            hi-doctor="item.doctor"
                            hi-price="item.price"
-                           hi-type="'detail'"
+                           hi-type="'simple'"
                            hi-currency="item.currency"
-                           hi-address="item.address"
-                           hi-time="item.time"
                            hi-rating="item.rating"></help-item>
             </ion-item>
         </ion-list>
--->
-        <ion-list>
+
+        <!--<ion-list>
             <ion-item ng-repeat="item in vm.reviewArr track by $index">
                 <review-item ri-date="item.date"
                             ri-rating="item.rating"
                             ri-name="item.name"
                             ri-text="item.text"></review-item>
             </ion-item>
-        </ion-list>
+        </ion-list>-->
     </ion-content>
 </ion-view>
 

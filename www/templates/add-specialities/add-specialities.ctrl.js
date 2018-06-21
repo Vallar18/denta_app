@@ -41,6 +41,7 @@
                     if(data.success) {
                         // toastr.success(data.message, '', {
                         //     onHidden: function () {
+                                userSvc.setUser(data.data);
                                 $state.go('share');
                         //     }
                         // });
