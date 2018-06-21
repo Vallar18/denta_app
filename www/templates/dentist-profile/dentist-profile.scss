@@ -6,6 +6,15 @@
     top: 80%;
     left: 50%;
     transform: translate(-50%,0);
+    img {
+      height: 2vh;
+      vertical-align: middle;
+    }
+    a {
+      color: $filters-color;
+      font-weight: 700;
+      vertical-align: middle;
+    }
     span {
       text-decoration: underline;
     }
@@ -16,19 +25,21 @@
   }
 
   &__description {
+    color: $text-gray-color2;
+    font-weight: 300;
     &--expanded {
 
     }
     max-height:50%;
     padding: 25px;
-    border-top: 1px solid gray;
-    border-bottom: 1px solid gray;
+    border-top: 1px solid $role-btn-border;
+    border-bottom: 1px solid $role-btn-border;
     ul {
       list-style-type: circle;
       li {
         list-style-type: circle;
         display: inline-block;
-        padding-right:20px;
+        padding-right: 20px;
       }
     }
 
@@ -43,15 +54,74 @@
 
   .header-simple {
     height: 30vh;
+    &__title {
+      color: $text-default-color;
+      font-weight: 700;
+    }
+    &__subtitle {
+      font-weight: 400;
+    }
+    &__right-btn {
+      padding: 0;
+      width: auto;
+      border: none;
+      background: none;
+      img {
+        width: 12vw;
+      }
+    }
+    &__left-btn {
+      width: 18vw;
+      height: 18vw;
+      border-radius: 50%;
+      padding: 0;
+      background: $filters-color;
+      border: 1px solid $filters-color;
+      -webkit-box-shadow: 0 -0.3vh 0 0.2vh $filters-color;
+      -moz-box-shadow: 0 -0.3vh 0 0.2vh $filters-color;
+      box-shadow: 0 -0.3vh 0 0.2vh $filters-color;
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
+    }
   }
   &__main {
     margin-top: 30vh;
     background-color: $background-color;
   }
+  &__flex {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+  }
+  &__address {
+    color: $text-default-color;
+  }
+  &__navigate {
+    padding: 25px;
+    span {
+      text-decoration: underline;
+      color: $red-text;
+    }
+  }
+  
   &__content {
     background-color: $background-color;
     font-size: 0.9rem;
-    padding:0 5% 5% 5%;
+    /*padding:0 5% 5% 5%;*/
+    .item {
+      border-left: none;
+      border-right: none;
+      border-color: $role-btn-border;
+    }
   }
   &__items {
     padding-top:20vw;
