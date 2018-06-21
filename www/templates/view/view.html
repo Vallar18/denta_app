@@ -1,4 +1,4 @@
-<button ng-click="vm.shangeScreen()" id="view">
+<ion-view id="view">
     <div class="object title-block">
         <img src="content/img/vector-smart-object.png">
         <p>{{vm.item.title}}</p>
@@ -6,6 +6,6 @@
     <div class="object background-empty">
         <div class="obj"></div>
         <div class="background-image"></div>
-        <div class="text">{{vm.item.description}}</div>
+        <ion-content overflow-scroll="true" class="text" style="overflow: auto">{{vm.item.description}}</ion-content>
     </div>
-</button>
+</ion-view>
