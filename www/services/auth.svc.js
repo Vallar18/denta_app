@@ -3,9 +3,9 @@
 
     angular.module('service.authSvc', []).factory('authSvc', authSvc);
 
-    authSvc.$inject = ['userSvc', '$localStorage'];
+    authSvc.$inject = ['userSvc', '$localStorage', '$state'];
 
-    function authSvc(userSvc, $localStorage) {
+    function authSvc(userSvc, $localStorage, $state) {
         var model = {
             setCode: setCode,
             getCode: getCode,
@@ -23,9 +23,20 @@
         return model;
 
 
-        function  processAutoLogin() {
-
+        function  processAutoLogin(callback) {
+            if(isLogined()) {
+                switch(userSvc.getRole()){
+                    case userSvc.roleConst().doctor:
+                        $state.go('tabs.my-patient');
+                        break;
+                    case userSvc.roleConst().patient:
+                        $state.go('tabs.help');
+                        break;
+                }
+            }
+            return callback && callback();
         }
+
 
         function setCountryId(id){
             if(id){
@@ -49,15 +60,20 @@
         }
 
         function logout(){
+            clearAuthData();
             userSvc.resetData();
+            // ionic.Platform.exitApp();
+            $state.go('view');
         }
 
 
         function clearAuthData(){
+            $localStorage.country_id = null;
             $localStorage.code = null;
             $localStorage.country_id = null;
             $localStorage.key = null;
             $localStorage.phone = null;
+            delete $localStorage.country_id;
             delete $localStorage.code;
             delete $localStorage.key;
             delete $localStorage.phone;
