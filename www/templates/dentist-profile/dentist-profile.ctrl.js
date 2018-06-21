@@ -9,6 +9,7 @@
 
     function DentistProfileCtrl(userSvc) {
         var vm = this;
+        vm.isExpandDescr = false;
         vm.country = 'Israel';
         vm.profile = userSvc.getUser();
         vm.test = [ {name: 'tdddd est'}, {name: 'tefg dfg st'},{name: 'tdf vfdv est'}, {name: 'gdfgdfgdfgdfg '},{name: 'test'}, {name: 'test'},{name: 'test'}, {name: 'test'}];

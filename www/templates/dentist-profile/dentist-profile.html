@@ -35,7 +35,9 @@
             <div class="dentist-profile__address">
                 {{vm.profile.clinic.address}}
             </div>
-            <div class="dentist-profile__description">
+            <div class="dentist-profile__description"
+                 ng-click="vm.isExpandDescr = !vm.isExpandDescr"
+                 ng-class="{'dentist-profile__description--expanded':vm.isExpandDescr}">
                 <span>{{vm.profile.dentist.description}}</span>
                 <ul>
                     <li ng-repeat="item in vm.profile.dentist.specialities track by $index">
