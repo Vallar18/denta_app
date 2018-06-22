@@ -1,7 +1,12 @@
 .patient-item {
-    &--alarm {
-      border-bottom: 2px solid $first-color;
-    }
+
+  &__body {
+    padding: 5vw 5vw 2px 5vw;
+  }
+
+  &--alarm {
+    border-bottom: 2px solid $first-color;
+  }
   &__date {
     color: $second-color;
     font-size: 0.7rem;

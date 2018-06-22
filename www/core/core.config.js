@@ -144,7 +144,17 @@
                 url: '/history',
                 templateUrl: 'templates/history/history.html',
                 controller: 'HistoryCtrl',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: {
+                    emergItems: function(userSvc,historySvc){
+                        return historySvc.patient().then(function(res){
+                            if(!res.success){
+                                return [];
+                            }
+                            return res;
+                        });
+                    }
+                }
 
             })
             .state('tabs.help', {

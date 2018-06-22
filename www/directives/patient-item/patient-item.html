@@ -1,17 +1,19 @@
 <div class="patient-item">
-    <div class="row"
+    <div class=""
          ng-class="{'patient-item--alarm':piAlarm}">
-        <div class="col-40 col-bottom patient-item__info-one">
-            <div class="patient-item__date" ng-if="piDate">{{::piDate}}</div>
-            <div class="patient-item__country" ng-if="piCountry">{{::piCountry}}</div>
-            <div class="patient-item__doctor" ng-if="piDoctor">{{::piDoctor}}</div>
-        </div>
-        <div class="col-20 col-bottom">
-            <img src="">
-        </div>
-        <div class="col-40 col-bottom text-align-right patient-item__info-two">
-            <i ng-if="piAlarm" class="icon ion-ios-bell"></i>
-            <div class="patient-item__patient" ng-if="piPatient">{{::piPatient}}</div>
+        <div class="row patient-item__body">
+            <div class="col-40 col-bottom patient-item__info-one">
+                <div class="patient-item__date" ng-if="piDate">{{::piDate}}</div>
+                <div class="patient-item__country" ng-if="piCountry">{{::piCountry}}</div>
+                <div class="patient-item__doctor" ng-if="piDoctor">{{::piDoctor}}</div>
+            </div>
+            <div class="col-20 col-bottom">
+                <img src="">
+            </div>
+            <div class="col-40 col-bottom text-align-right patient-item__info-two">
+                <i ng-if="piAlarm" class="icon ion-ios-bell"></i>
+                <div class="patient-item__patient" ng-if="piPatient">{{::piPatient}}</div>
+            </div>
         </div>
     </div>
 </div>

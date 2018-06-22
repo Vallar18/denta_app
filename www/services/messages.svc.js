@@ -27,7 +27,8 @@
                 checkClinickOnMap: 'Check that you have indicated the location of the clinic on the map'
             },
             success: {
-                test: 'Test'
+                test: 'Test',
+                sendPatientEmergency: 'A notification was sent to the patient'
             }
         };
 

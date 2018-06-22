@@ -13,6 +13,22 @@
         var baseUrl = 'http://denta.grassbusinesslabs.tk/api/';
 
         return {
+            emergencies: {
+                create: baseUrl + 'emergency/create',
+                addPhotos: baseUrl + 'emergency/photos',
+                deletePhotos: baseUrl + 'emergency/photos/delete',
+                activate: baseUrl + 'emergency/activate',
+                changeToViewed: baseUrl + 'emergency/viewed',
+            },
+            history: {
+              patient:  baseUrl + 'patient/history',
+              dentistOwners:  baseUrl + 'dentist/owners/history',
+              dentist:  baseUrl + 'dentist/history',
+            },
+            review: {
+                create: baseUrl + 'review/create',
+                getAll: baseUrl + 'reviews'
+            },
             codes: baseUrl + 'codes',
             code: {
                 send: baseUrl + 'code/send',
