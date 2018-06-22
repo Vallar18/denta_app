@@ -1,7 +1,27 @@
 .patient-profile {
   background-color: $second-color-light;
+  &__address {
+    padding: 0 9px;
+  }
   .header-simple {
     height: 30vh;
+    &__btn {
+      padding: 0;
+      width: auto;
+      border: none;
+      background: none;
+      img {
+        width: 12vw;
+      }
+    }
+  }
+  &__home-dentist {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%,0);
+    color: $input-text;
+    text-transform: uppercase;
   }
   &__main {
     margin-top: 30vh;
@@ -10,21 +30,63 @@
   &__content {
     background-color: $background-color;
     font-size: 0.9rem;
-    padding:0 5% 5% 5%;
+    padding: 0 5% 70px 5%;
+    .gray-btn {
+      display: block;
+      margin: 0 auto;
+      &.invite-dentist-btn {
+        &:before {
+          background: url(../img/send-icon.png);
+          content: '';
+          display: block;
+          position: absolute;
+          background-position: center;
+          background-size: auto 73%;
+          background-repeat: no-repeat;
+          top: 39%;
+          left: 0;
+          transform: translateY(-34%);
+          width: 20%;
+          height: 84%;
+        }
+      }
+      &.become-dentist-btn {
+        &:before {
+          background: url(../img/redcross-icon.png);
+          content: '';
+          display: block;
+          position: absolute;
+          background-position: center;
+          background-size: auto 73%;
+          background-repeat: no-repeat;
+          top: 39%;
+          left: 0;
+          transform: translateY(-34%);
+          width: 20%;
+          height: 84%;
+        }
+      }
+    }
+    p {
+      text-align: center;
+    }
   }
   &__items {
-    padding-top:20vw;
+    padding-top: 8vw;
     text-align: center;
+    img {
+      width: 8vw;
+    }
     i {
       font-size: 35px;
       color: $input-text;
     }
     ul {
-      padding-top:1.5rem;
+      padding-top: 1.5rem;
     }
     li {
-      font-size:16px;
-      padding-bottom:1.5rem;
+      font-size: 4vw;
+      padding-bottom: 1.5rem;
       text-decoration: underline;
       color: $input-text;
     }

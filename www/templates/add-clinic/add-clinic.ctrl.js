@@ -26,6 +26,14 @@
             longitude: null,
             latitude: null
         };
+        
+        /*$scope.listClinic = [
+            {name: "Nacccccme"},
+            {name: "Namcccccccccccccfffffffffffffffffffffffffffffffffffffffdhdhe"},
+            {name: "Nabfgcme"},
+            {name: "Nambcccccccccce"},
+            {name: "Namcvvbcbcbce"},
+        ]*/
 
         function checkClinicPhone() {
             if (validPhone()) {
