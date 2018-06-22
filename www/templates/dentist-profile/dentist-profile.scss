@@ -1,6 +1,8 @@
 .dentist-profile {
-  background-color: $second-color-light;
-
+  background-color: $text-white-color;
+  .header-simple {
+    background-color: $second-color-light;
+  }
   &__number {
     position: absolute;
     top: 80%;
@@ -27,22 +29,41 @@
   &__description {
     color: $text-gray-color2;
     font-weight: 300;
-    &--expanded {
-
-    }
-    max-height:50%;
+    max-height: 50%;
     padding: 25px;
     border-top: 1px solid $role-btn-border;
     border-bottom: 1px solid $role-btn-border;
-    ul {
-      list-style-type: circle;
-      li {
-        list-style-type: circle;
-        display: inline-block;
-        padding-right: 20px;
+    &.dentist-profile--expanded {
+      .dentist-profile-specialities {
+        height: auto;
+        max-height: 500px;
+        transition: max-height 0.5s ease-in;
       }
     }
-
+    .dentist-profile-specialities {
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      max-height: 0;
+      transition: max-height 0.5s ease-out;
+      overflow: hidden;
+      .dentist-profile-specialities-item {
+        width: 33.33%;
+        padding-left: 3vw;
+        position: relative;
+        margin-bottom: 1vh;
+        &.dentist-profile-specialities-item:after {
+          content: "\2022";
+          position: absolute;
+          font-size: 5vw;
+          left: 0;
+          top: 0;
+        }
+      }
+    }
   }
 
   &__rating {
@@ -88,8 +109,10 @@
     }
   }
   &__main {
-    margin-top: 30vh;
+   /* margin-top: 30vh;*/
     background-color: $background-color;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
   &__flex {
     display: -ms-flexbox;
