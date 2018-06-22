@@ -71,14 +71,12 @@
             </button>
         </div>
         <ion-list>
-            <ion-item ng-repeat="item in vm.helpArr track by $index">
+            <ion-item ng-repeat="item in vm.helpArr track by item.id">
                 <help-item hi-distance="item.distance"
                            hi-doctor="item.doctor"
                            hi-price="item.price"
-                           hi-type="'detail'"
+                           hi-type="'simple'"
                            hi-currency="item.currency"
-                           hi-address="item.address"
-                           hi-time="item.time"
                            hi-rating="item.rating"></help-item>
             </ion-item>
         </ion-list>

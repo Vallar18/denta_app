@@ -1,22 +1,38 @@
 <ion-view>
-        <ion-pane class="history-view">
-                <div class="header-simple">
-                        <div class="header-simple__title">
-                                History
-                        </div>
-                        <button class="button back-btn" ng-click="vm.back()">
-                                <!--<i class="icon ion-ios-arrow-thin-left"></i>-->
-                                <img src="content/img/back.png" alt="">
-                        </button>
-                        <div class="header-simple__border">
-                                <img src="content/img/border.svg">
-                        </div>
-                </div>
-                <ion-content class="history-view__main">
-                        <div class="history-view__content">
+    <ion-pane class="history-view">
+        <div class="header-simple">
+            <div class="header-simple__title">
+                History
+            </div>
+            <button class="button back-btn" ng-click="vm.back()">
+                <!--<i class="icon ion-ios-arrow-thin-left"></i>-->
+                <img src="content/img/back.png" alt="">
+            </button>
+            <div class="header-simple__border">
+                <img src="content/img/border.svg">
+            </div>
+        </div>
+        <ion-content class="history-view__main">
+            <div class="history-view__content">
 
-                        </div>
-                </ion-content>
+            </div>
+        </ion-content>
 
-        </ion-pane>
+        <ion-list>
+            <ion-item ng-repeat="item in vm.historyItems track by item.id">
+                <treatment-item
+                        ti-price="item.price"
+                        ti-notify="vm.notify(item)"
+                        ti-is-files="item.isFiles"
+                        ti-is-notified="item.isNotified"
+                        ti-can-notify="item.canNotify"
+                        ti-need-review="item.needReview"
+                        ti-files=""
+                        ti-review="vm.goReview()"
+                        ti-country="item.country"
+                        ti-date="item.date"
+                        ti-dentist="item.dentist"></treatment-item>
+            </ion-item>
+        </ion-list>
+    </ion-pane>
 </ion-view>

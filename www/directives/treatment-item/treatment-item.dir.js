@@ -17,7 +17,9 @@
                 tiReview: '&',
                 tiNeedReview: '<',
                 tiNotify: '&',
-                tiIsNotified: '&'
+                tiIsNotified: '<',
+                tiIsFiles: '<',
+                tiCanNotify: '<'
             },
             controller: 'TreatmentItemCtrl',
             link: function (scope, element, attrs) {

@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddDentistPhoneCtrl', AddDentistPhoneCtrl);
 
-    AddDentistPhoneCtrl.$inject = ['$scope', '$state', '$localStorage', 'regSvc', 'phoneSvc', 'codes', 'toastr', 'messagesSvc', '$ionicPlatform', '$cordovaContacts', 'userSvc','$ionicPopup','dentistSvc'];
+    AddDentistPhoneCtrl.$inject = ['$scope', '$state', '$stateParams', 'regSvc', 'phoneSvc', 'codes', 'toastr', 'messagesSvc', '$ionicPlatform', '$cordovaContacts', 'userSvc','$ionicPopup','dentistSvc'];
 
-    function AddDentistPhoneCtrl($scope, $state, $localStorage, regSvc, phoneSvc, codes, toastr, messagesSvc, $ionicPlatform, $cordovaContacts, userSvc, $ionicPopup, dentistSvc) {
+    function AddDentistPhoneCtrl($scope, $state, $stateParams, regSvc, phoneSvc, codes, toastr, messagesSvc, $ionicPlatform, $cordovaContacts, userSvc, $ionicPopup, dentistSvc) {
         const vm = this;
         vm.send = send;
         vm.skip = skip;
@@ -15,6 +15,7 @@
         vm.getSelectCode = getSelectCode;
         vm.selectCode = selectCode;
         vm.pickContactUsingNativeUI = pickContactUsingNativeUI;
+        vm.edit = $stateParams.edit;
         vm.codes = codes;
         vm.select_code = vm.codes[phoneSvc.getDefaultIndex()].code;
         vm.user = userSvc.getUser();
@@ -23,6 +24,13 @@
         vm.overlay = true;
         vm.phoneFromContact = '';
         vm.contactList = [];
+
+        init();
+        function init() {
+            if(vm.edit){
+                hideOverlay()
+            }
+        }
 
         function pickContactUsingNativeUI() {
             $ionicPlatform.ready(function () {
@@ -35,21 +43,6 @@
             });
         }
 
-        // function selectOneContact(contact){
-        //     vm.phoneFromContact = contact.value;
-        //     vm.phone = contact.value;
-        //     selectContact.close();
-        // }
-
-        // function showSelectContact(){
-        //     selectContact = $ionicPopup.show({
-        //         templateUrl: 'components/select-contact/select-contact.html',
-        //         scope: $scope,
-        //         cssClass: 'select-contact'
-        //     });
-        // }
-        // спитать про запрос для пропуску номера дантиста
-
         function send() {
             if (validPhoneDentist()) {
                 if (vm.user) {
@@ -58,7 +51,11 @@
                         dentist_phone: vm.sum_phone,
                         role: vm.role
                     };
-                    addRoleProcess(data);
+                    if(vm.edit){
+                        updateRoleProcess(data);
+                    } else{
+                        addRoleProcess(data);
+                    }
                 }
             }
         }
@@ -85,6 +82,31 @@
                 }
             });
         }
+        function updateRoleProcess(data) {
+            if(angular.isUndefined(data)){ return; }
+            userSvc.updateUserRole(data).then(function (data) {
+                if (data.success) {
+                    userSvc.getUserInfo().then(function (res) {
+                        userSvc.setUser(res.user);
+                        $state.go('tabs.patient-profile');
+                    })
+                } else {
+                    showAskDentist();
+                }
+            }, function (err) {
+                let err_text = '';
+                angular.forEach(err, function (val, key) {
+                    if (angular.isArray(val)) {
+                        err_text += val.reduce(function (acc, current) {
+                            return acc + '\n' + current;
+                        }, '');
+                    }
+                });
+                if (err_text.length) {
+                    toastr.error(err_text);
+                }
+            });
+        }
 
         function hideOverlay() {
             vm.overlay = false;
@@ -96,7 +118,11 @@
                     user_id: vm.user.id,
                     role: vm.role
                 };
-                addRoleProcess(data);
+                if(vm.edit){
+                    updateRoleProcess(data);
+                } else{
+                    addRoleProcess(data);
+                }
             }
         }
 

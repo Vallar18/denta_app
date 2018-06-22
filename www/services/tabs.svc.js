@@ -33,11 +33,11 @@
                 }, {
                     id: 1,
                     name: 'Need a dentist',
-                    view: 'need-dentist'
+                    view: 'tabs.help'
                 }, {
                     id: 2,
                     name: 'My treatments',
-                    view: 'my-treatments'
+                    view: 'tabs.history'
                 }, {
                     id: 3,
                     name: 'Share with friends',
@@ -60,7 +60,7 @@
                     }, {
                         id: 3,
                         title: 'History',
-                        view: 'tabs.history'
+                        view: 'home'
                     }
                 ]
             } else if (type === userSvc.roleConst().patient) {

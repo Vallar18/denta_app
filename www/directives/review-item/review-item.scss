@@ -1,3 +1,21 @@
 .review-item {
+  .date-rating-wrap{
+    padding: 0 0 7px;
 
+    .date-block {
+      color: $filters-color;
+    }
+    .rating-block {
+      text-align: right;
+    }
+  }
+  .name-block {
+    color: $text-default-color;
+    padding-bottom: 7px;
+  }
+  .text-block {
+    white-space: normal;
+    padding-bottom: 7px;
+    font-weight: 300;
+  }
 }

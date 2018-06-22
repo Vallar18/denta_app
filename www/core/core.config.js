@@ -88,7 +88,8 @@
                 url: '/registration-patient',
                 templateUrl: 'templates/reg-pat/reg-pat.html',
                 controller: 'RegPatCtrl',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                params: {edit: null}
             })
             .state('add-clinic', {
                 url: '/add-clinic',
@@ -126,6 +127,7 @@
                 templateUrl: 'templates/add-dentist-phone/add-dentist-phone.html',
                 controller: 'AddDentistPhoneCtrl',
                 controllerAs: 'vm',
+                params: {edit: null},
                 resolve: {
                     codes: function (phoneSvc) {
                         return phoneSvc.getCodes().then(function (res) {
@@ -217,7 +219,14 @@
                 url: '/send-review',
                 templateUrl: 'templates/send-review/send-review.html',
                 controller: 'SendReviewCtrl',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: {
+                    currencieItems: function (currencySvc) {
+                        return currencySvc.getCurrency().then(function (res) {
+                            return res;
+                        });
+                    }
+                }
             })
 
             .state('home', {
