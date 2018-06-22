@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddSpecialitiesCtrl', AddSpecialitiesCtrl);
 
-    AddSpecialitiesCtrl.$inject = ['$scope', '$state', '$stateParams', 'specSvc', 'toastr', 'userSvc', 'messagesSvc', '$ionicModal', 'spec', 'currencies', '$ionicPopup', 'currencySvc'];
+    AddSpecialitiesCtrl.$inject = ['$scope', '$state', '$stateParams', 'utilsSvc', 'specSvc', 'toastr', 'userSvc', 'messagesSvc', '$ionicModal', 'spec', 'currencies', '$ionicPopup', 'currencySvc'];
 
-    function AddSpecialitiesCtrl($scope, $state, $stateParams, specSvc, toastr, userSvc, messagesSvc, $ionicModal, spec, currencies, $ionicPopup, currencySvc) {
+    function AddSpecialitiesCtrl($scope, $state, $stateParams, utilsSvc, specSvc, toastr, userSvc, messagesSvc, $ionicModal, spec, currencies, $ionicPopup, currencySvc) {
         const vm = this;
         vm.send = send;
         vm.getCurrency = getCurrency;
@@ -30,9 +30,13 @@
                 price: vm.user.dentist.price, description: vm.user.dentist.description,
                 specialty_id: [],
             };
-            angular.forEach(vm.user.dentist.specialties, function (val) {
-                vm.dentist.specialty_id.push(val.id);
+            prepareSpec();
+            angular.forEach(vm.specialities, function (val) {
+               if (vm.specById[val.id]) {
+                   val.checked = true;
+               }
             });
+
 
         }else {
             vm.dentist = {
@@ -41,6 +45,10 @@
             };
         }
 
+        function prepareSpec() {
+            vm.specById = utilsSvc.createObjByArrayIds(vm.user.dentist.specialties);
+
+        }
         function send() {
             if(validation()){
                 if (vm.edit){
@@ -112,15 +120,15 @@
         }
         function selectItem(spec) {
             if(spec.checked === true){
-                vm.dentist.speciality_id.push(spec.id);
+                vm.dentist.specialty_id.push(spec.id);
             } else if(spec.checked === false){
-                let spec_id = vm.dentist.speciality_id.indexOf(spec.id)
-                vm.dentist.speciality_id.splice(spec_id, 1);
+                let spec_id = vm.dentist.specialty_id.indexOf(spec.id)
+                vm.dentist.specialty_id.splice(spec_id, 1);
             }
-            vm.len_spec = vm.dentist.speciality_id.length
+            vm.len_spec = vm.dentist.specialty_id.length
         }
         function saveModal() {
-            if (vm.dentist.speciality_id && vm.len_spec){
+            if (vm.dentist.specialty_id && vm.len_spec){
                 $scope.modal.hide();
             } else {
                 toastr.error(messagesSvc.error.emptySpec);
