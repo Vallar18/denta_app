@@ -3,9 +3,9 @@
 
     angular.module('service.phoneSvc', []).factory('phoneSvc', phoneSvc);
 
-    phoneSvc.$inject = ['$ionicPopup','http','url', '$timeout'];
+    phoneSvc.$inject = ['$ionicPopup','http','url', '$timeout','$q'];
 
-    function phoneSvc($ionicPopup,http,url,$timeout) {
+    function phoneSvc($ionicPopup,http,url,$timeout,$q) {
         let DEFAULT_PHONE_CODE = '+380';
         let cache = [];
         let model = {
@@ -31,18 +31,18 @@
         }
 
         function getCodes() {
-            // if (cache.length) {
-            //     return $q.defer(function (resolve, reject) {
-            //         $timeout(function(){
-            //             resolve(cache);
-            //         },150);
-            //     });
-            // } else {
+            if (cache.length) {
+                return $q(function (resolve, reject) {
+                    $timeout(function(){
+                        resolve(cache);
+                    },250);
+                });
+            } else {
                 return http.get(url.codes).then(function (res) {
                     cache = res;
                     return res;
                 });
-            // }
+            }
         }
 
         function getIndexByName(codeName,array){

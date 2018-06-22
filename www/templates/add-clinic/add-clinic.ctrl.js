@@ -122,10 +122,11 @@
 
         function validation() {
             if (validPhone()) {
-                if (vm.clinic.name === '' || vm.clinic.address === '' ||
-                    !vm.clinic.latitude || !vm.clinic.longitude ) {
+                if (vm.clinic.name === '' || vm.clinic.address === '') {
                     toastr.error(messagesSvc.error.emptyField);
                     return false;
+                } else if( !vm.clinic.latitude || !vm.clinic.longitude){
+                    toastr.error(messagesSvc.error.checkClinickOnMap);
                 } else {
                     return true;
                 }
@@ -158,26 +159,28 @@
                     {
                         text: '<b>OK</b>',
                         type: 'button-positive',
-                        onTap: function (e) {
-                            $ionicLoading.hide();
-                            $ionicLoading.show({
-                                template:'Obtaining an address...'
-                            });
-                            geoSvc.getAddress(geoSvc.getMarkerPosition(), function (res) {
-                                if (res.address.length) {
-                                    vm.clinic.address = res.address;
-                                } else {
-                                    toastr.error(messagesSvc.error.emptyAddress);
-                                }
-                                vm.clinic.longitude = res.lng;
-                                vm.clinic.latitude = res.lat;
-                                $ionicLoading.hide();
-                            });
-                        }
+                        onTap: processMapPopupOK
                     }
                 ]
             });
             geoSvc.init();
+        }
+
+        function processMapPopupOK(){
+            $ionicLoading.hide();
+            $ionicLoading.show({
+                template:'Obtaining an address...'
+            });
+            geoSvc.getAddress(geoSvc.getMarkerPosition(), function (res) {
+                if (res.address.length) {
+                    vm.clinic.address = res.address;
+                } else {
+                    toastr.error(messagesSvc.error.emptyAddress);
+                }
+                vm.clinic.longitude = res.lng;
+                vm.clinic.latitude = res.lat;
+                $ionicLoading.hide();
+            });
         }
     }
 
