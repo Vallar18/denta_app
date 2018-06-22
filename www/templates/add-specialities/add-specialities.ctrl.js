@@ -10,7 +10,6 @@
     function AddSpecialitiesCtrl($scope, $state, $stateParams, utilsSvc, specSvc, toastr, userSvc, messagesSvc, $ionicModal, spec, currencies, $ionicPopup, currencySvc) {
         const vm = this;
         vm.send = send;
-        vm.getCurrency = getCurrency;
         vm.getSpeciality = getSpeciality;
         vm.saveModal = saveModal;
         vm.selectItem = selectItem;
@@ -25,8 +24,9 @@
         vm.select_currency = vm.currencies[currencySvc.getDefaultIndex()];
         if (vm.edit){
             vm.btn_text = 'Update';
+            vm.select_currency = vm.user.dentist.currency;
             vm.dentist = {
-                user_id: vm.user.id, role: vm.role, currency_id: vm.user.dentist.currency.id,
+                user_id: vm.user.id, role: vm.role, currency_id: vm.select_currency.id,
                 price: vm.user.dentist.price, description: vm.user.dentist.description,
                 specialty_id: [],
             };
@@ -41,22 +41,26 @@
         }else {
             vm.dentist = {
                 user_id: vm.user.id, role: vm.role, currency_id: vm.select_currency.id,
-                price: '', description: '', speciality_id: [],
+                price: '', description: '', specialty_id: [],
             };
         }
 
         function prepareSpec() {
             vm.specById = utilsSvc.createObjByArrayIds(vm.user.dentist.specialties);
+            angular.forEach(vm.user.dentist.specialties, function (val) {
+                vm.dentist.specialty_id.push(val.id);
+            });
 
         }
         function send() {
             if(validation()){
                 if (vm.edit){
+                    vm.dentist.currency_id = vm.select_currency.id;
                     specSvc.updateSpeciality(vm.dentist).then(function (data) {
                         if(data.success) {
                             userSvc.getUserInfo().then(function (res) {
                                 userSvc.setUser(res.user);
-                                $state.go('tabs.patient-profile');
+                                $state.go('tabs.dentist-profile');
                             });
                         } else {
                             if(data.message) {
@@ -102,12 +106,7 @@
                 });
             }
         }
-        function getCurrency() {
-            vm.currency ={
-                text: 'Euro',
-                id: 2
-            };
-        }
+
         $ionicModal.fromTemplateUrl('components/speciality-select/speciality-select.html', {
             scope: $scope,
             animation: 'slide-in-up'
