@@ -23,17 +23,34 @@
   }
 
   &__address {
-    padding: 25px;
+    padding: 0 25px;
   }
 
   &__description {
     color: $text-gray-color2;
     font-weight: 300;
-    max-height: 50%;
+    position: relative;
+    /*max-height: 50%;*/
     padding: 25px;
     border-top: 1px solid $role-btn-border;
     border-bottom: 1px solid $role-btn-border;
+    &:after {
+      content: "";
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 10px 10px 0 10px;
+      border-color: $second-color-light transparent transparent transparent;
+      position: absolute;
+      bottom: 9px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
     &.dentist-profile--expanded {
+      &:after {
+        border-width: 0 10px 10px 10px;
+        border-color: transparent transparent $second-color-light transparent;
+      }
       .dentist-profile-specialities {
         height: auto;
         max-height: 500px;
@@ -114,7 +131,7 @@
     overflow-y: scroll;
     overflow-x: hidden;
   }
-  &__flex {
+  /*&__flex {
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
@@ -124,12 +141,14 @@
     -webkit-align-items: flex-start;
     -ms-flex-align: start;
     align-items: flex-start;
-  }
+  }*/
   &__address {
     color: $text-default-color;
+    padding: 0 25px 10px;
   }
   &__navigate {
-    padding: 25px;
+    padding: 10px 0;
+    text-align: center;
     span {
       text-decoration: underline;
       color: $red-text;
