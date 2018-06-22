@@ -82,7 +82,8 @@
                 url: '/registration-dentist',
                 templateUrl: 'templates/reg-doc/reg-doc.html',
                 controller: 'RegDocCtrl',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                params: {edit: null}
             })
             .state('registration-patient', {
                 url: '/registration-patient',
@@ -96,6 +97,7 @@
                 templateUrl: 'templates/add-clinic/add-clinic.html',
                 controller: 'AddClinicCtrl',
                 controllerAs: 'vm',
+                params: {edit: null},
                 resolve: {
                     codes: function (phoneSvc) {
                         return phoneSvc.getCodes().then(function (res) {
@@ -109,6 +111,7 @@
                 templateUrl: 'templates/add-specialities/add-specialities.html',
                 controller: 'AddSpecialitiesCtrl',
                 controllerAs: 'vm',
+                params: {edit: null},
                 resolve: {
                     spec: function (specSvc) {
                             return specSvc.getSpeciality().then(function (res) {

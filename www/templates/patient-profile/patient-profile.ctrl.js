@@ -13,10 +13,6 @@
         vm.editDentistPhone= editDentistPhone;
         vm.user = userSvc.getUser();
         vm.logout = authSvc.logout;
-        vm.profile = {
-            name: vm.user.name,
-            last_name: vm.user.lastname
-        };
 
         function editPatient() {
             $state.go('registration-patient', {edit: true})

@@ -5,26 +5,49 @@
         .module('app')
         .controller('RegDocCtrl', RegDocCtrl);
 
-    RegDocCtrl.$inject = ['$scope', '$ionicPlatform','$state', 'regSvc', 'toastr', 'authSvc', 'messagesSvc', '$ionicPopup', 'IonicClosePopupService', '$cordovaCamera','userSvc'];
+    RegDocCtrl.$inject = ['$scope', '$ionicPlatform','$state', '$stateParams', 'regSvc', 'toastr', 'authSvc', 'messagesSvc', '$ionicPopup', 'IonicClosePopupService', '$cordovaCamera','userSvc'];
 
-    function RegDocCtrl($scope, $ionicPlatform, $state, regSvc, toastr, authSvc, messagesSvc, $ionicPopup, IonicClosePopupService, $cordovaCamera,userSvc) {
+    function RegDocCtrl($scope, $ionicPlatform, $state, $stateParams, regSvc, toastr, authSvc, messagesSvc, $ionicPopup, IonicClosePopupService, $cordovaCamera,userSvc) {
         const vm = this;
         vm.send = send;
         vm.phone = authSvc.getPhone();
         vm.key = authSvc.getKey();
+        vm.edit = $stateParams.edit;
+        vm.btn_text = 'Send';
         vm.croppedDataUrl = '';
-        vm.user = {
-            name: '',
-            lastname: '',
-            email: '',
-            phone: vm.phone,
-            key: vm.key,
-            avatar: ''
+        if(vm.edit){
+            let user = userSvc.getUser();
+            vm.btn_text = 'Update';
+            vm.user = {
+                name: user.name, lastname: user.lastname, email: user.email,
+                user_id: user.id, avatar: user.avatar
+            };
+        } else{
+            vm.user = {
+                name: '', lastname: '', email: '',
+                phone: vm.phone, key: vm.key, avatar: ''
+            }
         };
 
         function send() {
-            if(validation()){
-                vm.user.country_id = authSvc.getCountryId();
+            if(!validation()){
+
+            }
+            vm.user.country_id = authSvc.getCountryId();
+            if (vm.edit) {
+                userSvc.updateUser(vm.user).then(function (data) {
+                    if (data.success) {
+                        userSvc.getUserInfo().then(function (res) {
+                            userSvc.setUser(res.user);
+                            $state.go('add-clinic', {edit: true});
+                        })
+                    } else {
+                        toastr.error(data.message);
+                    }
+                }, function (err) {
+                    processRegError(err);
+                });
+            } else {
                 regSvc.sendUser(vm.user).then(function (data) {
                     processRegSuccess(data);
                 }, function (err) {
@@ -38,14 +61,6 @@
                 $state.go('add-clinic');
                 userSvc.setUser(data.user);
                 userSvc.setToken(data.token);
-                vm.user = {
-                    name: '',
-                    lastname: '',
-                    email: '',
-                    phone: vm.phone,
-                    key: vm.key,
-                    avatar: ''
-                };
             } else {
                 toastr.error(data.message);
             }

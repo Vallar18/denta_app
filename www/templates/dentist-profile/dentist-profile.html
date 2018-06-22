@@ -14,11 +14,12 @@
                 </star-rating>
             </div>
             <div class="header-simple__subtitle" style="color: black;">
+                {{vm.profile.name + ' '+ vm.profile.lastname}}
                 <div class="text-center">{{::vm.country}}</div>
             </div>
 
             <button class="header-simple__right-btn"
-                    ng-click="vm.logout()">
+                    ng-click="vm.editDentist()">
                 <i class="icon ion-edit"></i>
             </button>
             <button class="header-simple__left-btn" style="padding:0; border-radius:50%;" >

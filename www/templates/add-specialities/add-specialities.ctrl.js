@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddSpecialitiesCtrl', AddSpecialitiesCtrl);
 
-    AddSpecialitiesCtrl.$inject = ['$scope', '$state', 'specSvc', 'toastr', 'userSvc', 'messagesSvc', '$ionicModal', 'spec', 'currencies', '$ionicPopup', 'currencySvc'];
+    AddSpecialitiesCtrl.$inject = ['$scope', '$state', '$stateParams', 'specSvc', 'toastr', 'userSvc', 'messagesSvc', '$ionicModal', 'spec', 'currencies', '$ionicPopup', 'currencySvc'];
 
-    function AddSpecialitiesCtrl($scope, $state, specSvc, toastr, userSvc, messagesSvc, $ionicModal, spec, currencies, $ionicPopup, currencySvc) {
+    function AddSpecialitiesCtrl($scope, $state, $stateParams, specSvc, toastr, userSvc, messagesSvc, $ionicModal, spec, currencies, $ionicPopup, currencySvc) {
         const vm = this;
         vm.send = send;
         vm.getCurrency = getCurrency;
@@ -16,38 +16,64 @@
         vm.selectItem = selectItem;
         vm.getSelectCurrency = getSelectCurrency;
         vm.selectCurrency = selectCurrency;
+        vm.edit = $stateParams.edit;
+        vm.btn_text = 'Send';
         vm.user = userSvc.getUser();
         vm.role = userSvc.getRole();
         vm.specialities = spec;
         vm.currencies = currencies;
         vm.select_currency = vm.currencies[currencySvc.getDefaultIndex()];
-        vm.spec_selected_id = [];
-        vm.price = '';
-        vm.description = '';
+        if (vm.edit){
+            vm.btn_text = 'Update';
+            vm.dentist = {
+                user_id: vm.user.id, role: vm.role, currency_id: vm.user.dentist.currency.id,
+                price: vm.user.dentist.price, description: vm.user.dentist.description,
+                specialty_id: [],
+            };
+            angular.forEach(vm.user.dentist.specialties, function (val) {
+                vm.dentist.specialty_id.push(val.id);
+            });
+
+        }else {
+            vm.dentist = {
+                user_id: vm.user.id, role: vm.role, currency_id: vm.select_currency.id,
+                price: '', description: '', speciality_id: [],
+            };
+        }
 
         function send() {
             if(validation()){
-                if (vm.user){
-                    vm.data = {
-                        user_id: vm.user.id,
-                        role: vm.role,
-                        currency_id: vm.select_currency.id,
-                        specialty_id: vm.spec_selected_id,
-                        description: vm.description,
-                        price: vm.price,
-                    };
+                if (vm.edit){
+                    specSvc.updateSpeciality(vm.dentist).then(function (data) {
+                        if(data.success) {
+                            userSvc.getUserInfo().then(function (res) {
+                                userSvc.setUser(res.user);
+                                $state.go('tabs.patient-profile');
+                            });
+                        } else {
+                            if(data.message) {
+                                toastr.error(data.message);
+                            }
+                        }
+                    }, function (err) {
+                        let err_text = '';
+                        angular.forEach(err, function (val, key) {
+                            if (angular.isArray(val)){
+                                err_text += val.reduce(function (acc, current) {
+                                    return acc + '\n' + current;
+                                }, '');
+                            }
+                        });
+                        if(err_text.length){
+                            toastr.error(err_text);
+                        }
+                    });
+                    return
                 }
-                specSvc.addSpeciality(vm.data).then(function (data) {
+                specSvc.addSpeciality(vm.dentist).then(function (data) {
                     if(data.success) {
-                        // toastr.success(data.message, '', {
-                        //     onHidden: function () {
-                                userSvc.setUser(data.data);
-                                $state.go('share');
-                        //     }
-                        // });
-                        vm.price = '';
-                        vm.description = '';
-                        vm.spec_selected_id = [];
+                        userSvc.setUser(data.data);
+                        $state.go('share');
                     } else {
                         if(data.message) {
                             toastr.error(data.message);
@@ -86,22 +112,22 @@
         }
         function selectItem(spec) {
             if(spec.checked === true){
-                vm.spec_selected_id.push(spec.id);
+                vm.dentist.speciality_id.push(spec.id);
             } else if(spec.checked === false){
-                let spec_id = vm.spec_selected_id.indexOf(spec.id)
-                vm.spec_selected_id.splice(spec_id, 1);
+                let spec_id = vm.dentist.speciality_id.indexOf(spec.id)
+                vm.dentist.speciality_id.splice(spec_id, 1);
             }
-            vm.len_spec = vm.spec_selected_id.length
+            vm.len_spec = vm.dentist.speciality_id.length
         }
         function saveModal() {
-            if (vm.spec_selected_id && vm.len_spec){
+            if (vm.dentist.speciality_id && vm.len_spec){
                 $scope.modal.hide();
             } else {
                 toastr.error(messagesSvc.error.emptySpec);
             }
         }
         function validation() {
-            if (vm.price === '' || vm.description === ''){
+            if (vm.dentist.price === '' || vm.dentist.description === ''){
                 toastr.error(messagesSvc.error.emptyField);
                 return false;
             } else if(vm.len_spec <= 0){

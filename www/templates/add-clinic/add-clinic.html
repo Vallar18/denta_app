@@ -18,7 +18,7 @@
         </div>
         <div class="item-block-content">
             <div class="block-content">
-                <div class="input-block">
+                <div class="input-block" ng-if="!vm.edit">
                     <button class="button select-button" ng-click="vm.getSelectCode()">
                         {{vm.select_code}}
                     </button>
@@ -27,7 +27,11 @@
                                ng-model="vm.phone" input-change-color="#000">
                     </label>
                 </div>
-                <div class="add-clinic-block" ng-if="vm.show_clinic">
+                <label class="item item-input" ng-if="vm.edit">
+                    <input type="text" placeholder="Clinic Phone number"
+                           class="text-center" ng-model="vm.clinic.phone" input-change-color="#000">
+                </label>
+                <div class="add-clinic-block" ng-if="vm.show_clinic || vm.edit">
                     <label class="item item-input" ng-if="!vm.showSelect">
                         <input class="text-center"  type="text" placeholder="Clinic name"
                                ng-model="vm.clinic.name" input-change-color="#000">
@@ -35,17 +39,19 @@
                     <select class="text-center select-block" ng-if="vm.listClinic && vm.showSelect" ng-model="vm.select_clinic"
                             ng-options="item as item.name for item in vm.listClinic track by item.id">
                     </select>
-                    <div class="item item-input">
+                    <div class="item item-input" ng-click="vm.openMapPopup()">
                         <button class="map-marker">
                             <img src="content/img/marker.png" alt="">
                         </button>
                         <input class="text-center" type="text" placeholder="Clinic Address"
-                               ng-model="vm.clinic.address" input-change-color="#000"
-                               ng-click="vm.openMapPopup()">
+                               ng-model="vm.clinic.address" input-change-color="#000">
                     </div>
-                    <button class="send-button" ng-click="vm.send()">Send</button>
+                    <div class="clinic-button-block">
+                        <button class="send-button" ng-click="vm.send()">{{vm.btn_text}}</button>
+                        <button class="send-button" ng-if="vm.edit" ng-click="vm.newClinic()">New clinic</button>
+                    </div>
                 </div>
-                <button class="send-button" ng-if="!vm.len_phone" ng-click="vm.checkClinicPhone()">Next</button>
+                <button class="send-button" ng-if="!vm.len_phone && !vm.edit" ng-click="vm.checkClinicPhone()">Next</button>
             </div>
         </div>
     </ion-content>

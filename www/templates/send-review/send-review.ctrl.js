@@ -30,7 +30,7 @@
                     rating: 0
                 },
                 {
-                    id: 3, text: 'Woul you recommend this doctor?',
+                    id: 3, text: 'Would you recommend this doctor?',
                     rating: 0
                 },
             ],
