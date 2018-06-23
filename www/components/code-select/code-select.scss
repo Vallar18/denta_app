@@ -1,5 +1,5 @@
 .code-select{
-  background: white;
+  background: $background-color;
   .header-simple {
     background: $role-btn-border;
     height: 25vw;
@@ -13,6 +13,12 @@
 
   .list .item {
     border-color: $role-btn-border;
+    color: $text-default-color;
+    span:first-child {
+      white-space: normal;
+      max-width: 80%;
+      display: inline-block;
+    }
   }
   .search-block{
     padding: 16px;
