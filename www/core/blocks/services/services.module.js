@@ -20,6 +20,8 @@
         'service.historySvc',
         'service.patientSvc',
         'service.dentistSvc',
-        'service.emergenciesSvc'
+        'service.emergenciesSvc',
+        'service.notificationSvc',
+        'service.fcmSvc'
     ]);
 })();

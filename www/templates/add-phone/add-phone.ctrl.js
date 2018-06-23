@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddPhoneCtrl', AddPhoneCtrl);
 
-    AddPhoneCtrl.$inject = ['$scope', '$state', 'userSvc', 'regSvc', 'authSvc', 'toastr', 'messagesSvc', '$ionicPopup', 'codes', 'phoneSvc'];
+    AddPhoneCtrl.$inject = ['$scope', '$state', 'userSvc', 'fcmSvc', 'regSvc', 'authSvc', 'toastr', 'messagesSvc', '$ionicPopup', 'codes', 'phoneSvc'];
 
-    function AddPhoneCtrl($scope, $state, userSvc, regSvc, authSvc, toastr, messagesSvc, $ionicPopup, codes, phoneSvc) {
+    function AddPhoneCtrl($scope, $state, userSvc, fcmSvc, regSvc, authSvc, toastr, messagesSvc, $ionicPopup, codes, phoneSvc) {
         const vm = this;
         vm.send = send;
         vm.getSelectCode = getSelectCode;
@@ -21,6 +21,29 @@
             val3: 'get me in',
             valBtn: 'Send'
         };
+
+        getDeviceToken();
+        fcmSvc.subscribe();
+        function getDeviceToken() {
+            // if ($localStorage.token) {
+            //     token_device = $localStorage.token;
+            // } else {
+            console.log('fcm')
+                if (typeof FCMPlugin !== 'undefined') {
+                    FCMPlugin.getToken(
+                        function (token) {
+                            console.log('token = ', token);
+                            // token_device = token;
+                            $localStorage.token = token;
+                        },function (res) {
+                            {
+                                console.log(res);
+                            }
+                        })
+                }
+            // }
+
+        }
 
 
         // vm.test = function () {

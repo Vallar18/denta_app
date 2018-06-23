@@ -7,13 +7,14 @@
             </div>
         </div>
         <div class="item-block-top">
-            <div layout="row" layout-align="space-around end" class="steps-wrap" ng-if="!vm.edit">
+            <div layout="row" layout-align="space-around end" class="steps-wrap" ng-if="!vm.edit && !vm.c_invite">
                 <div class="steps-item"><span>1</span></div>
                 <div class="steps-item active-step"><span>2</span></div>
             </div>
             <div class="img-wrap">
                 <p ng-if="vm.edit">Change dentist</p>
-                <p ng-if="!vm.edit">Thank you</p>
+                <p ng-if="!vm.edit && !vm.c_invite">Thank you</p>
+                <p ng-if="vm.c_invite">Invite Dentist</p>
                 <div class="img-outer">
                     <img src="content/img/border.svg">
                 </div>
@@ -37,7 +38,7 @@
                         <img src="content/img/phone.png" alt="">
                     </button>
                 </div>
-                <p ng-if="!vm.edit">Have no dentist <a ng-click="vm.skip()"> skip</a></p>
+                <p ng-if="!vm.edit && !vm.c_invite">Have no dentist <a ng-click="vm.skip()"> skip</a></p>
                 <button class="send-button" ng-click="vm.send()">Submit</button>
             </form>
         </div>

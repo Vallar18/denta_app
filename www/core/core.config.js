@@ -124,7 +124,7 @@
                 templateUrl: 'templates/add-dentist-phone/add-dentist-phone.html',
                 controller: 'AddDentistPhoneCtrl',
                 controllerAs: 'vm',
-                params: {edit: null},
+                params: {edit: null, c_invite: null},
                 resolve: {
                     codes: function (phoneSvc) {
                         return phoneSvc.getCodes().then(function (res) {
