@@ -23,10 +23,10 @@
         </div>
         <ion-content class="patient-profile__main">
             <div class="patient-profile__content">
-                <div class="patient-profile__address">
-                    Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+                <div class="patient-profile__address" ng-if="vm.pat_den_binding">
+                     {{vm.user.clinic.address}}
+                    <span><a ng-click="vm.editDentistPhone()">Change</a></span>
                 </div>
-                <p><a ng-click="vm.editDentistPhone()">Change</a></p>
                 <button class="gray-btn invite-dentist-btn">Invite your dentist</button>
                 <div class="patient-profile__items">
                     <!--<i class="icon ion-document"></i>-->

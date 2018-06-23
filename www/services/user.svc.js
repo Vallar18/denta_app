@@ -24,7 +24,8 @@
             resetData: resetData,
             roleConst: roleConst,
             setShowStart: setShowStart,
-            isShowStart: isShowStart
+            isShowStart: isShowStart,
+            isPatientDentistBinding: isPatientDentistBinding
         };
         return model;
 
@@ -116,6 +117,16 @@
             return {
                 doctor: DOCTOR,
                 patient: PATIENT
+            }
+        }
+        
+        function isPatientDentistBinding() {
+            if ($localStorage.user.patient){
+                if($localStorage.user.patient.dentists && $localStorage.user.patient.dentists.length) {
+                    return true;
+                }
+            } else{
+                return false;
             }
         }
     }

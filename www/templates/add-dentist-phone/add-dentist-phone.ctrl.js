@@ -15,6 +15,7 @@
         vm.getSelectCode = getSelectCode;
         vm.selectCode = selectCode;
         vm.pickContactUsingNativeUI = pickContactUsingNativeUI;
+        vm.selectOneContact = selectOneContact;
         vm.edit = $stateParams.edit;
         vm.codes = codes;
         vm.select_code = vm.codes[phoneSvc.getDefaultIndex()].code;
@@ -31,15 +32,16 @@
                 hideOverlay();
             }
         }
-
         function pickContactUsingNativeUI() {
             $ionicPlatform.ready(function () {
                 $cordovaContacts.pickContact().then(function (contactPicked) {
                     if(contactPicked && contactPicked.phoneNumbers && contactPicked.phoneNumbers.length){
                         if(contactPicked.phoneNumbers.length > 1){
+                            vm.contactList = contactPicked.phoneNumbers;
                             showSelectPhonePopup();
                         } else {
                             vm.phone = +contactPicked.phoneNumbers[0].value;
+                            toastr.warning(messagesSvc.warning.checkCodePhone)
                         }
                     }
                     $scope.$evalAsync();
@@ -47,6 +49,20 @@
                     toastr.error(messagesSvc.error.notGetContact);
                 })
             });
+        }
+
+        function showSelectPhonePopup() {
+            vm.show_select_phone_popup = $ionicPopup.show({
+                templateUrl: 'components/select-contact/select-contact.html',
+                title: 'Which number of your doctor would you like to choose?',
+                scope: $scope,
+            });
+        }
+
+        function selectOneContact(c_item) {
+            vm.phone = phoneSvc.cutNumberCode(c_item.value, vm.codes);
+            vm.show_select_phone_popup.close();
+            toastr.warning(messagesSvc.warning.checkCodePhone)
         }
 
         function send() {
@@ -95,6 +111,7 @@
                     userSvc.getUserInfo().then(function (res) {
                         userSvc.setUser(res.user);
                         $state.go('tabs.patient-profile');
+                        vm.phone = '';
                     })
                 } else {
                     showAskDentist();
