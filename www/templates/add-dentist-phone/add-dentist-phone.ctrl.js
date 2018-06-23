@@ -86,7 +86,10 @@
             if(angular.isUndefined(data)){ return; }
             regSvc.addRolePatient(data).then(function (data) {
                 if (data.success) {
-                    $state.go('share');
+                    userSvc.getUserInfo().then(function (res) {
+                        userSvc.setUser(res.user);
+                        $state.go('share');
+                    })
                 } else {
                    showAskDentist();
                 }

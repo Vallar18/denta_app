@@ -49,6 +49,7 @@
             vm.specById = utilsSvc.createObjByArrayIds(vm.user.dentist.specialties);
             angular.forEach(vm.user.dentist.specialties, function (val) {
                 vm.dentist.specialty_id.push(val.id);
+                vm.len_spec = vm.dentist.specialty_id.length;
             });
 
         }

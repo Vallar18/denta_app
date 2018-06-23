@@ -16,7 +16,10 @@
         vm.user = userSvc.getUser();
         vm.logout = authSvc.logout;
         vm.pat_den_binding = userSvc.isPatientDentistBinding();
-        vm.home_dentist = userSvc.getPatientDentistBinding()[0].user;
+
+        if(userSvc.getPatientDentistBinding()){
+            vm.home_dentist = userSvc.getPatientDentistBinding()[0].user;
+        }
 
         function editPatient() {
             $state.go('registration-patient', {edit: true})

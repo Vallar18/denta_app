@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddCodeCtrl', AddCodeCtrl);
 
-    AddCodeCtrl.$inject = ['$state', 'regSvc', 'authSvc', 'userSvc', 'toastr', 'messagesSvc', 'dentistSvc'];
+    AddCodeCtrl.$inject = ['$state', 'regSvc', 'authSvc', 'userSvc', 'toastr', 'messagesSvc', 'dentistSvc', '$localStorage', 'fcmSvc'];
 
-    function AddCodeCtrl($state, regSvc, authSvc, userSvc, toastr, messagesSvc, dentistSvc) {
+    function AddCodeCtrl($state, regSvc, authSvc, userSvc, toastr, messagesSvc, dentistSvc, $localStorage, fcmSvc) {
         const vm = this;
         vm.send = send;
         vm.goAddPhone = goAddPhone;
@@ -41,6 +41,7 @@
                     userSvc.setUser(data.user);
                     userSvc.setRole(data.user.roles[0].name);
                     userSvc.setToken(data.token);
+                    getDeviceToken();
                     if(userSvc.isDoc()){
                         $state.go('tabs.dentist-profile');
                     } else if(userSvc.isPat()){
@@ -59,6 +60,22 @@
             }
         }
 
+        function getDeviceToken() {
+            let device_id;
+            if (typeof FCMPlugin !== 'undefined') {
+                FCMPlugin.getToken(function (token) {
+                    console.log('token = ', token);
+                    device_id = token;
+                    let sub = fcmSvc.subscribe(device_id);
+                    console.log(sub)
+                    $localStorage.device_id = token;
+                    }, function (res) {
+                        {
+                            console.log(res);
+                        }
+                    })
+            }
+        }
         function checkDentistInvite(){
             dentistSvc.checkDentistInvite({
                 phone: vm.phone
