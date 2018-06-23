@@ -196,13 +196,27 @@
                 url: '/history-emergencies',
                 templateUrl: 'templates/history-emergencies/history-emergencies.html',
                 controller: 'HistoryEmergenciesCtlr',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: {
+                    emergItems: function(historySvc){
+                        return historySvc.dentistOwners().then(function(res){
+                            return res;
+                        })
+                    }
+                }
             })
             .state('tabs.history-patients', {
                 url: '/history-patients',
                 templateUrl: 'templates/history-patients/history-patients.html',
                 controller: 'HistoryPatientsCtlr',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: {
+                    patientsItems: function(historySvc){
+                        return historySvc.dentist().then(function(res){
+                            return res;
+                        })
+                    }
+                }
             })
             .state('about', {
                 url: '/about',

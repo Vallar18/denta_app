@@ -10,7 +10,7 @@
     function TreatmentItemCtrl($scope, $ionicPopup, $cordovaCamera, $ionicPlatform, IonicClosePopupService, emergenciesSvc, userSvc, $ionicLoading) {
         let vm = this;
         vm.photoItems = $scope.tiFiles || [];
-
+        vm.emergencyItem = $scope.tiItem;
         vm.openPopupList = function () {
             var popupList = $ionicPopup.show({
                 templateUrl: 'components/photo-emergency/photo-emergency.html',
@@ -18,22 +18,29 @@
                 cssClass: 'photo-emergency',
                 subTitle: '',
                 scope: $scope,
-                buttons: [
-                    {
-                        text: 'Hide',
-                        type: 'button-default',
-                    },
-                    {
-                        text: 'Add',
-                        type: 'button-positive',
-                        onTap: function (e) {
-                            e.preventDefault();
-                            vm.openPopup();
-                        }
-                    }
-                ]
+                buttons: getButtonForListPopup()
             });
         };
+
+        function getButtonForListPopup(){
+            let arrBtn = [
+                {
+                    text: 'Hide',
+                    type: 'button-default',
+                }
+            ];
+            if(vm.emergencyItem.status && vm.emergencyItem.status === 0){
+                arrBtn.push({
+                    text: 'Add',
+                    type: 'button-positive',
+                    onTap: function (e) {
+                        e.preventDefault();
+                        vm.openPopup();
+                    }
+                })
+            }
+            return arrBtn;
+        }
 
         vm.sendPhoto = function sendPhoto(photoStr64) {
             if (photoStr64) {

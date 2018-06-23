@@ -4,7 +4,9 @@
             ng-repeat="item in vm.photoItems track by $index">
             <span ng-click="vm.viewPhoto(item, $event)">
                 {{::(item.name? item.name: vm.getNameByUrl(item.path))}}</span>
-            <i class="icon ion-trash-a" ng-click="vm.deletePhoto(item)"></i>
+            <i class="icon ion-trash-a"
+               ng-if="vm.emergencyItem.status === 0"
+               ng-click="vm.deletePhoto(item)"></i>
         </div>
     </div>
 </div>
