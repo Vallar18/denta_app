@@ -154,7 +154,7 @@
                             if(!res.success){
                                 return [];
                             }
-                            return res;
+                            return res.data;
                         });
                     }
                 }
@@ -246,7 +246,17 @@
                 templateUrl: 'templates/send-review/send-review.html',
                 controller: 'SendReviewCtrl',
                 controllerAs: 'vm',
+                params: {emergencyId: null},
                 resolve: {
+                    questionItems: function(questionSvc){
+                        return questionSvc.getAll().then(function(res){
+                            if(res && res.length){
+                                return res;
+                            } else {
+                                return [];
+                            }
+                        });
+                    },
                     currencieItems: function (currencySvc) {
                         return currencySvc.getCurrency().then(function (res) {
                             return res;

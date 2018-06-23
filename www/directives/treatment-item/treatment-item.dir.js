@@ -9,19 +9,21 @@
             restrict: 'E',
             templateUrl: 'directives/treatment-item/treatment-item.html',
             scope: {
-                tiDentist: '<',
-                tiDate: '<',
-                tiCountry: '<',
+                tiItem: '=',
+                tiDentist: '@',
+                tiDate: '=',
+                tiCountry: '=',
                 tiFiles: '=',
-                tiPrice: '<',
+                tiPrice: '=',
                 tiReview: '&',
-                tiNeedReview: '<',
+                tiNeedReview: '=',
                 tiNotify: '&',
-                tiIsNotified: '<',
-                tiIsFiles: '<',
-                tiCanNotify: '<'
+                tiIsNotified: '=',
+                tiIsFiles: '=',
+                tiCanNotify: '='
             },
             controller: 'TreatmentItemCtrl',
+            controllerAs: 'vm',
             link: function (scope, element, attrs) {
             }
         };

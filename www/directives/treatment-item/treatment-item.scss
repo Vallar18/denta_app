@@ -10,6 +10,9 @@
       &--disabled {
         opacity: 0.4;
       }
+      img {
+        height: 10vw;
+      }
     }
     &__price {
        color: $first-color;

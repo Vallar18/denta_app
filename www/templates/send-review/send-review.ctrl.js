@@ -5,11 +5,11 @@
         .module('app')
         .controller('SendReviewCtrl', SendReviewCtrl);
 
-    SendReviewCtrl.$inject = ['$ionicPopup', '$scope', '$ionicHistory', 'toastr', 'messagesSvc', 'currencySvc', 'currencieItems'];
+    SendReviewCtrl.$inject = ['$ionicPopup', '$scope', '$ionicHistory', 'toastr', 'messagesSvc', 'currencySvc', 'currencieItems', '$stateParams', 'reviewSvc', 'userSvc','questionItems'];
 
-    function SendReviewCtrl($ionicPopup, $scope, $ionicHistory, toastr, messagesSvc, currencySvc, currencieItems) {
+    function SendReviewCtrl($ionicPopup, $scope, $ionicHistory, toastr, messagesSvc, currencySvc, currencieItems, $stateParams, reviewSvc, userSvc,questionItems) {
         const vm = this;
-        vm.currencies  = currencieItems;
+        vm.currencies = currencieItems;
         vm.select_currency = vm.currencies[currencySvc.getDefaultIndex()];
         vm.sendReview = sendReview;
         vm.selectCurrency = selectCurrency;
@@ -17,6 +17,8 @@
         vm.back = function () {
             $ionicHistory.goBack();
         };
+        vm.questionItems = questionItems;
+
         vm.reviewModel = {
             items: [
                 {
@@ -43,8 +45,20 @@
             if (!vm.reviewModel.comment.length) {
                 toastr.error(messagesSvc.error.emptyReview);
             } else {
-                toastr.success('Success send review!');
-                $ionicHistory.goBack();}
+                reviewSvc.create({
+                    user_id: userSvc.getUser().id,
+                    emergency_id: $stateParams.emergencyId,
+                    currency_id: vm.reviewModel.currency,
+                    questions: {},
+                    description: vm.reviewModel.description,
+                    price: vm.reviewModel.price
+                }).then(function (res) {
+                    if (res && res.success) {
+                        toastr.success('Success send review!');
+                        $ionicHistory.goBack();
+                    }
+                });
+            }
         }
 
         function selectCurrency(currency) {
