@@ -1,5 +1,11 @@
 <div class="photo-viewer">
-    <ion-scroll zooming="true" direction="xy" style="width: 100vw; height: 100vh">
-        <img ng-src="{{vm.imageSourceForView}}">
+    <ion-scroll overflow-scroll="false"
+                zooming="true" direction="xy"
+                min-zoom="0.5"
+                style="width: 100vw; height: 100vh; background: #000"
+                delegate-handle="zoom-pane"
+                max-zoom="20" >
+        <img style="width:100%; height:auto; position: absolute; top:50%; transform:translate(0,-50%)"
+             ng-src="{{vm.imageSourceForView}}">
     </ion-scroll>
 </div>

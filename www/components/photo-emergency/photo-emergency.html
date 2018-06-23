@@ -1,9 +1,9 @@
 <div class="photo-emergency">
     <div class="list">
         <div class="item item-divider  item-icon-right photo-emergency__item"
-             ng-click="vm.viewPhoto(item)"
             ng-repeat="item in vm.photoItems track by $index">
-            {{::(item.name? item.name: vm.getNameByUrl(item.path))}}
+            <span ng-click="vm.viewPhoto(item, $event)">
+                {{::(item.name? item.name: vm.getNameByUrl(item.path))}}</span>
             <i class="icon ion-trash-a" ng-click="vm.deletePhoto(item)"></i>
         </div>
     </div>

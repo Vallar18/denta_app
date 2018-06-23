@@ -49,7 +49,8 @@
                     if (res.success && res.data && res.data.length && res.data[0].id && res.data[0].path) {
                         $scope.tiFiles.push({
                             id: res.data[0].id,
-                            name: vm.getNameByUrl(res.data[0].path)
+                            name: vm.getNameByUrl(res.data[0].path),
+                            path: res.data[0].path
                         })
                     }
 
@@ -86,7 +87,8 @@
             }
         };
 
-        vm.deletePhoto = function deletePhoto(item) {
+        vm.deletePhoto = function deletePhoto(item, $event) {
+            if($event){$event.preventDefault(); $event.stopProgressBar()}
             var confirmPopup = $ionicPopup.confirm({
                 title: 'Delete photo',
                 template: 'Are you sure you want to delete this photo?'
@@ -115,7 +117,7 @@
             var typeOfSource = type === 'open' ? Camera.PictureSourceType.PHOTOLIBRARY : Camera.PictureSourceType.CAMERA;
             $ionicPlatform.ready(function () {
                 var options = {
-                    quality: 85,
+                    quality: 90,
                     destinationType: Camera.DestinationType.DATA_URL,
                     sourceType: typeOfSource,
                     allowEdit: false,

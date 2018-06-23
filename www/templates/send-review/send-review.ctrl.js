@@ -41,6 +41,14 @@
             currency: 1
         };
 
+        function getRatingObj(){
+            let rObj = {};
+            angular.forEach(vm.questionItems,function(val,key){
+                rObj[val.id] = val.rating;
+            });
+            return rObj;
+        }
+
         function sendReview() {
             if (!vm.reviewModel.comment.length) {
                 toastr.error(messagesSvc.error.emptyReview);
@@ -49,13 +57,15 @@
                     user_id: userSvc.getUser().id,
                     emergency_id: $stateParams.emergencyId,
                     currency_id: vm.reviewModel.currency,
-                    questions: {},
-                    description: vm.reviewModel.description,
+                    questions: getRatingObj(),
+                    description: vm.reviewModel.comment,
                     price: vm.reviewModel.price
                 }).then(function (res) {
                     if (res && res.success) {
                         toastr.success('Success send review!');
                         $ionicHistory.goBack();
+                    } else if(res && !res.success && res.message){
+                        toastr.error(res.message);
                     }
                 });
             }
