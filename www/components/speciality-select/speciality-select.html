@@ -23,7 +23,7 @@
                                <!--'icon icon ion-compass':!item.checked}"></i>-->
                     <!---->
                     <label layout="row" layout-align="start center">
-                        <div ng-if="item.checked" class="spec-check">
+                        <div ng-if="item.checked || vm.specialty.checked" class="spec-check">
                             <img src="content/img/checked-icon.png" alt="">
                         </div>
                         <div ng-if="!item.checked" class="spec-check">

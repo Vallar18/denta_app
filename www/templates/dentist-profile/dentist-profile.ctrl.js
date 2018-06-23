@@ -5,14 +5,20 @@
         .module('app')
         .controller('DentistProfileCtrl', DentistProfileCtrl);
 
-    DentistProfileCtrl.$inject = ['userSvc'];
+    DentistProfileCtrl.$inject = ['userSvc', '$state'];
 
-    function DentistProfileCtrl(userSvc) {
+    function DentistProfileCtrl(userSvc, $state) {
         var vm = this;
         vm.isExpandDescr = false;
         vm.country = 'Israel';
         vm.profile = userSvc.getUser();
         vm.test = [{name: 'tdddd est'}, {name: 'tefg dfg st'}, {name: 'tdf vfdv est'}, {name: 'gdfgdfgdfgdfg '}, {name: 'test'}, {name: 'test'}, {name: 'test'}, {name: 'test'}];
+
+        vm.editDentist = editDentist;
+
+        function editDentist() {
+            $state.go('registration-dentist', {edit: true})
+        }
 
         vm.reviewArr = [
             {

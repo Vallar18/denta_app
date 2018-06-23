@@ -40,6 +40,7 @@
             },
             clinic: {
                 check: baseUrl + 'clinic/check',
+                change: baseUrl + 'clinic/change',
                 create: baseUrl + 'clinic/create',
                 update: baseUrl + 'clinic/update'
             },

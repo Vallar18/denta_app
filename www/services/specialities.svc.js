@@ -7,7 +7,8 @@
     function specSvc(http, $ionicPopup, url) {
         var model = {
             addSpeciality : addSpeciality,
-            getSpeciality:  getSpeciality
+            getSpeciality:  getSpeciality,
+            updateSpeciality: updateSpeciality
         };
         return model;
 
@@ -17,6 +18,9 @@
         }
         function getSpeciality() {
             return http.get(url.specialties)
+        }
+        function updateSpeciality(data) {
+            return http.post(url.user_role.update, data)
         }
     }
 })();

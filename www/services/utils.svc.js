@@ -8,6 +8,8 @@
     function utilsSvc() {
         var model = {
             initializePolyfill: initializePolyfill,
+            initializePolyfill: initializePolyfill,
+            createObjByArrayIds: createObjByArrayIds
         };
         return model;
 
@@ -40,6 +42,17 @@
                     return -1;
                 };
             }
+        }
+        function createObjByArrayIds(data_arr) {
+            var tempData = {};
+            if (Array.isArray(data_arr)) {
+                data_arr.forEach(function (item) {
+                    if (item.id) {
+                        tempData[item.id] = item;
+                    }
+                });
+            }
+            return tempData;
         }
 
     }

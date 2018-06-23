@@ -65,7 +65,6 @@
         }
 
         function updateUser(data) {
-            console.log(data);
             return http.post(url.user.update, data);
         }
 

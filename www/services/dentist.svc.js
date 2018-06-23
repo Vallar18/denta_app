@@ -8,6 +8,7 @@
     function dentistSvc(http, url) {
         var model = {
             invite: invite,
+            updateClinic: updateClinic,
             checkDentistInvite: checkDentistInvite
         };
         return model;
@@ -18,6 +19,10 @@
 
         function checkDentistInvite(data){
             return http.post(url.invite.checkDentist,data);
+        }
+
+        function updateClinic(data){
+            return http.post(url.clinic.update,data);
         }
     }
 })();
