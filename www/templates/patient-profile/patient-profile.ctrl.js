@@ -5,12 +5,13 @@
         .module('app')
         .controller('PatientProfileCtrl', PatientProfileCtrl);
 
-    PatientProfileCtrl.$inject = ['$state', 'userSvc','authSvc'];
+    PatientProfileCtrl.$inject = ['$state', 'userSvc', 'authSvc', '$ionicPlatform'];
 
-    function PatientProfileCtrl($state, userSvc, authSvc) {
+    function PatientProfileCtrl($state, userSvc, authSvc, $ionicPlatform) {
         var vm = this;
         vm.editPatient = editPatient;
         vm.editDentistPhone= editDentistPhone;
+        vm.share = share;
         vm.user = userSvc.getUser();
         vm.logout = authSvc.logout;
         vm.pat_den_binding = userSvc.isPatientDentistBinding();
@@ -21,6 +22,19 @@
 
         function editDentistPhone() {
             $state.go('add-dentist-phone', {edit: true})
+        }
+
+        function share() {
+            $ionicPlatform.ready(function () {
+                var message = 'You can install this application using the following links: https://play.google.com/store/apps/details...';
+                $cordovaSocialSharing
+                    .share(message, null, null, null) // Share via native share sheet
+                    .then(function (result) {
+                        // Success!
+                    }, function (err) {
+                        // An error occured. Show a message to the user
+                    });
+            });
         }
     }
 })();
