@@ -23,7 +23,7 @@
         vm.reviewArr = [
             {
                 id: 1,
-                date: '12 03 1093',
+                date: '12.03.1993',
                 rating: 4,
                 name: 'Vasylyi',
                 text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfjvnksdjnvdfvkjnkjdfvn sd'

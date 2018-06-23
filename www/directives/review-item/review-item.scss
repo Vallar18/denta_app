@@ -1,9 +1,10 @@
 .review-item {
   .date-rating-wrap{
-    padding: 0 0 7px;
+    padding: 0;
 
     .date-block {
       color: $filters-color;
+      font-size: .8rem;
     }
     .rating-block {
       text-align: right;
@@ -11,7 +12,8 @@
   }
   .name-block {
     color: $text-default-color;
-    padding-bottom: 7px;
+    padding-bottom: 0;
+    font-family: 'Microsoft JhengHei', sans-serif;
   }
   .text-block {
     white-space: normal;
