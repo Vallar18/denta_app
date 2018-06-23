@@ -49,8 +49,10 @@
             storageBucket: "denta-app-testing.appspot.com",
             messagingSenderId: "117305701018"
         };
-        firebase.initializeApp(config);
 
+        if(window.firebase){
+            window.firebase.initializeApp(config);
+        }
 
         // exit.buttonExit($state.current.url);
         // $ionicPlatform.registerBackButtonAction(function() {
