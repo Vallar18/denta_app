@@ -29,6 +29,9 @@
             success: {
                 test: 'Test',
                 sendPatientEmergency: 'A notification was sent to the patient'
+            },
+            warning: {
+               checkCodePhone: 'Check the entered phone and code'
             }
         };
 

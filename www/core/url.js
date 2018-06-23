@@ -59,7 +59,8 @@
             },
             user_role: {
                 update: baseUrl + 'user-role/update'
-            }
+            },
+            subscribe: baseUrl + 'subscribe'
 
         };
     }

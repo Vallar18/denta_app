@@ -45,8 +45,6 @@
       "cordova-plugin-file": {},
       "cordova-plugin-fcm": {}
     },
-    "platforms": [
-      "ios"
-    ]
+    "platforms": []
   }
 }

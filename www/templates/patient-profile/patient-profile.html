@@ -23,13 +23,16 @@
         </div>
         <ion-content class="patient-profile__main">
             <div class="patient-profile__content">
-                <div class="patient-profile__address">
-                    Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+                <div class="patient-profile__address" ng-if="vm.pat_den_binding">
+                     <p>{{vm.home_dentist.name + '' + vm.home_dentist.lastname}}</p>
+                     {{vm.user.clinic.address}}
+                    <span><a ng-click="vm.editDentistPhone()">Change</a></span>
                 </div>
-                <p><a ng-click="vm.editDentistPhone()">Change</a></p>
-                <button class="gray-btn invite-dentist-btn">Invite your dentist</button>
+                <button class="gray-btn invite-dentist-btn"
+                        ng-click='vm.invite()' ng-if="!vm.pat_den_binding">
+                    Invite your dentist
+                </button>
                 <div class="patient-profile__items">
-                    <!--<i class="icon ion-document"></i>-->
                     <img src="content/img/doc-icon.png" alt="">
                     <ul>
                         <li ui-sref="about">About</li>
@@ -38,6 +41,9 @@
                     </ul>
                 </div>
                 <button class="gray-btn become-dentist-btn">Become a dentist</button>
+                <button class="button share-btn" ng-click="vm.share()">
+                    <img src="content/img/share-icon.png" alt="">
+                </button>
             </div>
         </ion-content>
     </ion-pane>

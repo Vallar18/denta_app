@@ -40,7 +40,7 @@
                 <div class="dentist-profile__address">
                     {{vm.profile.clinic.address}}
                 </div>
-                <div class="dentist-profile__navigate" ng-click="vm.changeSizeDescr()">
+                <div class="dentist-profile__navigate" ng-click="vm.changeSizeDescr()" ng-if="vm.show_navigate">
                     <span>Navigate</span>
                 </div>
                 <div class="dentist-profile__description"
