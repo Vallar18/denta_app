@@ -152,6 +152,7 @@ a {
         left: 50%;
         transform: translate(-50%, -50%);
         border-radius: 50%;
+        background: $second-color-light;
         border: 1px solid $second-color-light;
         -webkit-box-shadow: 0 -2px 0 1px $second-color-light;
         -moz-box-shadow: 0 -2px 0 1px $second-color-light;
@@ -271,6 +272,15 @@ a {
         color: $input-text;
       }
     }
+  }
+  .select-block {
+    border: 1px solid $input-border;
+    color: $input-text;
+    background: none;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
   }
 }
 

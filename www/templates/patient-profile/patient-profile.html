@@ -7,28 +7,37 @@
             <div class="header-simple__subtitle">
                 {{vm.profile.name + ' '+ vm.profile.last_name}}
             </div>
-            <button class="header-simple__right-btn"
+            <button class="header-simple__right-btn header-simple__btn"
                     ng-click="vm.logout()">
-                <i class="icon ion-android-exit"></i>
+                <img src="content/img/logout-icon.png" alt="">
             </button>
-            <button class="header-simple__left-btn" ng-click="vm.editPatient()">
-                <i class="icon ion-edit"></i>
+            <button class="header-simple__left-btn header-simple__btn" ng-click="vm.editPatient()">
+                <img src="content/img/edit-profile-icon.png" alt="">
             </button>
             <div class="header-simple__border">
                 <img src="content/img/border.svg">
             </div>
+            <div class="patient-profile__home-dentist text-center">
+                home dentist
+            </div>
         </div>
         <ion-content class="patient-profile__main">
             <div class="patient-profile__content">
+                <div class="patient-profile__address">
+                    Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+                </div>
+                <p><a ng-click="vm.editDentistPhone()">Change</a></p>
+                <button class="gray-btn invite-dentist-btn">Invite your dentist</button>
                 <div class="patient-profile__items">
-                    <p><a ng-click="vm.editDentistPhone()">Change</a></p>
-                    <i class="icon ion-document"></i>
+                    <!--<i class="icon ion-document"></i>-->
+                    <img src="content/img/doc-icon.png" alt="">
                     <ul>
                         <li ui-sref="about">About</li>
                         <li ui-sref="terms">Term of use</li>
                         <li ui-sref="privacy">Privacy policy</li>
                     </ul>
                 </div>
+                <button class="gray-btn become-dentist-btn">Become a dentist</button>
             </div>
         </ion-content>
     </ion-pane>

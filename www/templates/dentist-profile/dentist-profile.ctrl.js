@@ -9,32 +9,51 @@
 
     function DentistProfileCtrl(userSvc) {
         var vm = this;
+        vm.isExpandDescr = false;
         vm.country = 'Israel';
         vm.profile = userSvc.getUser();
-        vm.test = [ {name: 'tdddd est'}, {name: 'tefg dfg st'},{name: 'tdf v dfv fdv est'}, {name: 'gdfgdfgdfgdfg '},{name: 'test'}, {name: 'test'},{name: 'test'}, {name: 'test'}];
+        vm.test = [{name: 'tdddd est'}, {name: 'tefg dfg st'}, {name: 'tdf vfdv est'}, {name: 'gdfgdfgdfgdfg '}, {name: 'test'}, {name: 'test'}, {name: 'test'}, {name: 'test'}];
 
         vm.reviewArr = [
             {
-                id:1,
+                id: 1,
                 date: '12 03 1093',
                 rating: 4,
                 name: 'Vasylyi',
                 text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
             },
             {
-                id:2,
+                id: 2,
                 date: '12 03 1093',
                 rating: 4,
                 name: 'Vasylyi',
                 text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
             },
             {
-                id:3,
+                id: 3,
                 date: '12 03 1093',
                 rating: 4,
                 name: 'Vasylyi',
                 text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
             },
         ];
+
+        $(document).ready(function () {
+            function changeHeight() {
+
+                setTimeout(function () {
+                        var body_height = $('.dentist-profile').height(),
+                            footer_height = $('.tab-nav').height(),
+                            header_height = $('.dentist-profile-header-wrap').height(),
+                            height_calc = body_height - footer_height - header_height;
+                        $('.dentist-profile__main').height(height_calc);
+                    }
+                    , 500);
+            }
+
+            changeHeight();
+
+        });
+
     }
 })();
