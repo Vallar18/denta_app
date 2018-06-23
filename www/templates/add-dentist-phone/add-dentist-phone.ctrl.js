@@ -35,7 +35,13 @@
         function pickContactUsingNativeUI() {
             $ionicPlatform.ready(function () {
                 $cordovaContacts.pickContact().then(function (contactPicked) {
-                    vm.phone = +contactPicked.phoneNumbers[0].value;
+                    if(contactPicked && contactPicked.phoneNumbers && contactPicked.phoneNumbers.length){
+                        if(contactPicked.phoneNumbers.length > 1){
+                            showSelectPhonePopup();
+                        } else {
+                            vm.phone = +contactPicked.phoneNumbers[0].value;
+                        }
+                    }
                     $scope.$evalAsync();
                 }, function (error) {
                     toastr.error(messagesSvc.error.notGetContact);

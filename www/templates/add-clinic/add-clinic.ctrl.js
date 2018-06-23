@@ -155,10 +155,9 @@
                             userSvc.setUser(res.user);
                             $state.go('add-specialities', {edit: true});
                         });
-                        return
+                    } else {
+                        $state.go('add-specialities');
                     }
-                    $state.go('add-specialities');
-
                 } else {
                     if (data.message) {
                         toastr.error(data.message)

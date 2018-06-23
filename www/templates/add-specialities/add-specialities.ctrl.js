@@ -55,56 +55,64 @@
         function send() {
             if(validation()){
                 if (vm.edit){
-                    vm.dentist.currency_id = vm.select_currency.id;
-                    specSvc.updateSpeciality(vm.dentist).then(function (data) {
-                        if(data.success) {
-                            userSvc.getUserInfo().then(function (res) {
-                                userSvc.setUser(res.user);
-                                $state.go('tabs.dentist-profile');
-                            });
-                        } else {
-                            if(data.message) {
-                                toastr.error(data.message);
-                            }
-                        }
-                    }, function (err) {
-                        let err_text = '';
-                        angular.forEach(err, function (val, key) {
-                            if (angular.isArray(val)){
-                                err_text += val.reduce(function (acc, current) {
-                                    return acc + '\n' + current;
-                                }, '');
-                            }
-                        });
-                        if(err_text.length){
-                            toastr.error(err_text);
-                        }
-                    });
-                    return
+                    editProcess();
+                } else {
+                    addSpecProcess();
                 }
-                specSvc.addSpeciality(vm.dentist).then(function (data) {
-                    if(data.success) {
-                        userSvc.setUser(data.data);
-                        $state.go('share');
-                    } else {
-                        if(data.message) {
-                            toastr.error(data.message);
-                        }
-                    }
-                }, function (err) {
-                    let err_text = '';
-                    angular.forEach(err, function (val, key) {
-                        if (angular.isArray(val)){
-                            err_text += val.reduce(function (acc, current) {
-                                return acc + '\n' + current;
-                            }, '');
-                        }
+            }
+        }
+
+        function editProcess(){
+            vm.dentist.currency_id = vm.select_currency.id;
+            specSvc.updateSpeciality(vm.dentist).then(function (data) {
+                if(data.success) {
+                    userSvc.getUserInfo().then(function (res) {
+                        userSvc.setUser(res.user);
+                        $state.go('tabs.dentist-profile');
                     });
-                    if(err_text.length){
-                        toastr.error(err_text);
+                } else {
+                    if(data.message) {
+                        toastr.error(data.message);
+                    }
+                }
+            }, function (err) {
+                let err_text = '';
+                angular.forEach(err, function (val, key) {
+                    if (angular.isArray(val)){
+                        err_text += val.reduce(function (acc, current) {
+                            return acc + '\n' + current;
+                        }, '');
                     }
                 });
-            }
+                if(err_text.length){
+                    toastr.error(err_text);
+                }
+            });
+        }
+
+        function addSpecProcess(){
+            specSvc.addSpeciality(vm.dentist).then(function (data) {
+                if(data.success) {
+                    userSvc.setUser(data.data);
+                    $state.go('share');
+                } else {
+                    if(data.message) {
+                        toastr.error(data.message);
+                    }
+                }
+            }, function (err) {
+                let err_text = '';
+                angular.forEach(err, function (val, key) {
+                    if (angular.isArray(val)){
+                        err_text += val.reduce(function (acc, current) {
+                            return acc + '\n' + current;
+                        }, '');
+                    }
+                });
+                if(err_text.length){
+                    toastr.error(err_text);
+                }
+            });
         }
 
         $ionicModal.fromTemplateUrl('components/speciality-select/speciality-select.html', {
@@ -117,15 +125,17 @@
         function getSpeciality() {
             $scope.modal.show();
         }
+
         function selectItem(spec) {
             if(spec.checked === true){
                 vm.dentist.specialty_id.push(spec.id);
             } else if(spec.checked === false){
-                let spec_id = vm.dentist.specialty_id.indexOf(spec.id)
+                let spec_id = vm.dentist.specialty_id.indexOf(spec.id);
                 vm.dentist.specialty_id.splice(spec_id, 1);
             }
             vm.len_spec = vm.dentist.specialty_id.length
         }
+
         function saveModal() {
             if (vm.dentist.specialty_id && vm.len_spec){
                 $scope.modal.hide();
@@ -133,6 +143,7 @@
                 toastr.error(messagesSvc.error.emptySpec);
             }
         }
+
         function validation() {
             if (vm.dentist.price === '' || vm.dentist.description === ''){
                 toastr.error(messagesSvc.error.emptyField);
@@ -144,6 +155,7 @@
                 return true;
             }
         }
+
         function getSelectCurrency() {
             $scope.data = {};
             vm.currencyPopup = $ionicPopup.show({
@@ -152,6 +164,7 @@
                 cssClass: 'select-currency-popup'
             });
         }
+
         function selectCurrency(currency) {
             vm.select_currency = currency;
             vm.currencyPopup.close();
