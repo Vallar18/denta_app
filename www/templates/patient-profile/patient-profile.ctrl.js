@@ -5,28 +5,31 @@
         .module('app')
         .controller('PatientProfileCtrl', PatientProfileCtrl);
 
-    PatientProfileCtrl.$inject = ['$state', 'userSvc', 'authSvc', '$ionicPlatform', '$cordovaSocialSharing'];
+    PatientProfileCtrl.$inject = ['$state', 'userSvc', 'authSvc', '$ionicPlatform'];
 
-    function PatientProfileCtrl($state, userSvc, authSvc, $ionicPlatform, $cordovaSocialSharing) {
+    function PatientProfileCtrl($state, userSvc, authSvc, $ionicPlatform) {
         var vm = this;
         vm.editPatient = editPatient;
-        vm.editDentistPhone = editDentistPhone;
+        vm.editDentistPhone= editDentistPhone;
         vm.share = share;
         vm.invite = invite;
         vm.user = userSvc.getUser();
         vm.logout = authSvc.logout;
-        vm.pat_den_binding = userSvc.isPatientDentistBinding();
+        vm.have_den = userSvc.isHaveDentist();
 
-        if (userSvc.getPatientDentistBinding() && userSvc.getPatientDentistBinding()[0]) {
-            vm.home_dentist = userSvc.getPatientDentistBinding()[0].user;
+        authSvc.addBackBehave(false);
+        if(userSvc.getPatientDentist() && userSvc.getPatientDentist()[0]){
+            vm.home_dentist = userSvc.getPatientDentist()[0];
         }
 
         function editPatient() {
-            $state.go('registration-patient', {edit: true})
+            $state.go('registration-patient', {edit: true});
+            authSvc.addBackBehave(true);
         }
 
         function editDentistPhone() {
-            $state.go('add-dentist-phone', {edit: true})
+            $state.go('add-dentist-phone', {edit: true});
+            authSvc.addBackBehave(true);
         }
 
         function invite() {

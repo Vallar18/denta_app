@@ -47,6 +47,7 @@
                     } else if(userSvc.isPat()){
                         $state.go('tabs.patient-profile');
                     }
+                    vm.code = '';
                 } else {
                     authSvc.setCode(vm.verify.code);
                     authSvc.setKey(data.authKey);

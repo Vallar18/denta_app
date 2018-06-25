@@ -3,9 +3,9 @@
 
     angular.module('service.authSvc', []).factory('authSvc', authSvc);
 
-    authSvc.$inject = ['userSvc', '$localStorage', '$state'];
+    authSvc.$inject = ['userSvc', '$localStorage', '$state', '$ionicPlatform', '$ionicPopup'];
 
-    function authSvc(userSvc, $localStorage, $state) {
+    function authSvc(userSvc, $localStorage, $state, $ionicPlatform, $ionicPopup) {
         var model = {
             setCode: setCode,
             getCode: getCode,
@@ -19,6 +19,7 @@
             getCountryId: getCountryId,
             setCountryId: setCountryId,
             processAutoLogin: processAutoLogin,
+            addBackBehave: addBackBehave
         };
         return model;
 
@@ -113,5 +114,67 @@
                 return $localStorage.phone;
             }
         }
+
+        function addBackBehave(edit) {
+            $ionicPlatform.registerBackButtonAction(function() {
+                if (!edit && ($state.is('add-dentist-phone') || $state.is('add-clinic') || $state.is('add-specialities') || $state.is('share'))){
+                        showBackPopup();
+                }else if(edit){
+                    switch ($state.current.url){
+                        case '/registration-dentist':
+                            $state.go('tabs.dentist-profile');
+                            break;
+                        case '/add-clinic':
+                            $state.go('registration-dentist', {edit: true});
+                            break;
+                        case '/add-specialities':
+                            $state.go('add-clinic', {edit: true});
+                            break;
+                        default: window.history.back();
+                    }
+                } else if($state.is('tabs.patient-profile') || $state.is('tabs.dentist-profile')){
+                    return false;
+                } else {
+                    window.history.back();
+                }
+            }, 100);
+        }
+
+        // function removeBackBehave() {
+        //     $ionicPlatform.registerBackButtonAction(function() {
+        //         if(window.history.length){
+        //             window.history.back()
+        //         }else {
+        //             let confirmPopup = $ionicPopup.confirm({
+        //                 title: 'Confirm Exit',
+        //                 template: "Are you sure you want to close Gett Dent?"
+        //             });
+        //             confirmPopup.then(function (close) {
+        //                 if (close) {
+        //                     // there is no back view, so close the app instead
+        //                     ionic.Platform.exitApp();
+        //                 } // otherwise do nothing
+        //                 console.log("User canceled exit.");
+        //             });
+        //         }
+        //     },100);
+        // }
+
+        function showBackPopup() {
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'You have not completed registration, would you like to go back to adding a phone?',
+                cancelText: 'No',
+                okText: 'Yes'
+            });
+            confirmPopup.then(function(res) {
+                if (res) {
+                    $state.go('add-phone')
+                }
+            });
+        }
+
+
+
+
     }
 })();

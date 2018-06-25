@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddSpecialitiesCtrl', AddSpecialitiesCtrl);
 
-    AddSpecialitiesCtrl.$inject = ['$scope', '$state', '$stateParams', 'utilsSvc', 'specSvc', 'toastr', 'userSvc', 'messagesSvc', '$ionicModal', 'spec', 'currencies', '$ionicPopup', 'currencySvc'];
+    AddSpecialitiesCtrl.$inject = ['$scope', '$state', '$stateParams', 'utilsSvc', 'authSvc', 'specSvc', 'toastr', 'userSvc', 'messagesSvc', '$ionicModal', 'spec', 'currencies', '$ionicPopup', 'currencySvc'];
 
-    function AddSpecialitiesCtrl($scope, $state, $stateParams, utilsSvc, specSvc, toastr, userSvc, messagesSvc, $ionicModal, spec, currencies, $ionicPopup, currencySvc) {
+    function AddSpecialitiesCtrl($scope, $state, $stateParams, utilsSvc, authSvc, specSvc, toastr, userSvc, messagesSvc, $ionicModal, spec, currencies, $ionicPopup, currencySvc) {
         const vm = this;
         vm.send = send;
         vm.getSpeciality = getSpeciality;
@@ -36,14 +36,13 @@
                    val.checked = true;
                }
             });
-
-
         }else {
             vm.dentist = {
                 user_id: vm.user.id, role: vm.role, currency_id: vm.select_currency.id,
                 price: '', description: '', specialty_id: [],
             };
         }
+        authSvc.addBackBehave(vm.edit);
 
         function prepareSpec() {
             vm.specById = utilsSvc.createObjByArrayIds(vm.user.dentist.specialties);
