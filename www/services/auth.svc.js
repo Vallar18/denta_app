@@ -124,9 +124,6 @@
                         case '/registration-dentist':
                             $state.go('tabs.dentist-profile');
                             break;
-                        case '/add-dentist-phone':
-                            $state.go('registration-patient', {edit: true});
-                            break;
                         case '/add-clinic':
                             $state.go('registration-dentist', {edit: true});
                             break;

@@ -17,16 +17,19 @@
         vm.logout = authSvc.logout;
         vm.have_den = userSvc.isHaveDentist();
 
+        authSvc.addBackBehave(false);
         if(userSvc.getPatientDentist() && userSvc.getPatientDentist()[0]){
             vm.home_dentist = userSvc.getPatientDentist()[0];
         }
 
         function editPatient() {
-            $state.go('registration-patient', {edit: true})
+            $state.go('registration-patient', {edit: true});
+            authSvc.addBackBehave(true);
         }
 
         function editDentistPhone() {
-            $state.go('add-dentist-phone', {edit: true})
+            $state.go('add-dentist-phone', {edit: true});
+            authSvc.addBackBehave(true);
         }
 
         function invite() {
