@@ -118,5 +118,5 @@
     <plugin name="cordova-plugin-fcm" spec="^2.1.2" />
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
     <engine name="ios" spec="4.5.4" />
-    <engine name="android" spec="6.4.0" />
+    <engine name="android" spec="^6.4.0" />
 </widget>

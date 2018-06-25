@@ -5,9 +5,9 @@
         .module('app')
         .controller('PatientItemCtrl', PatientItemCtrl);
 
-    PatientItemCtrl.$inject = ['$scope', '$ionicPopup'];
+    PatientItemCtrl.$inject = ['$scope', '$ionicPopup', 'emergenciesSvc'];
 
-    function PatientItemCtrl($scope, $ionicPopup) {
+    function PatientItemCtrl($scope, $ionicPopup, emergenciesSvc) {
         let vm = this;
         vm.photoItems = $scope.piPhotos || [];
         vm.emergencyItem = $scope.piItem;
@@ -20,6 +20,15 @@
                 scope: $scope,
                 buttons: getButtonForListPopup()
             });
+            if (vm.emergencyItem && vm.emergencyItem.id && vm.emergencyItem.new && +vm.emergencyItem.new === 1) {
+                emergenciesSvc.changeToViewed({
+                    emergency_id: vm.emergencyItem.id
+                }).then(function(res){
+                    if(res && res.success){
+                        vm.emergencyItem.new = 0;
+                    }
+                });
+            }
         };
 
         function getButtonForListPopup() {
