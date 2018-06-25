@@ -17,18 +17,13 @@
         if (vm.edit) {
             let user = userSvc.getUser();
             vm.user = {
-                user_id: user.id,
-                name: user.name,
-                lastname: user.lastname,
-                email: user.email
+                user_id: user.id, name: user.name,
+                lastname: user.lastname, email: user.email
             };
         } else {
             vm.user = {
-                name: '',
-                lastname: '',
-                email: '',
-                phone: vm.phone,
-                key: vm.key,
+                name: '', lastname: '', email: '',
+                phone: vm.phone, key: vm.key,
             };
         }
 

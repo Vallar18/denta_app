@@ -22,9 +22,26 @@
             isDoc: isDoc,
             isPat: isPat,
             resetData: resetData,
-            roleConst: roleConst
+            roleConst: roleConst,
+            setShowStart: setShowStart,
+            isShowStart: isShowStart,
+            isPatientDentistBinding: isPatientDentistBinding,
+            getPatientDentistBinding: getPatientDentistBinding
         };
         return model;
+
+        function setShowStart(isShow){
+            if(angular.isDefined(isShow)){
+                $localStorage.isShowStartPage = isShow;
+            }
+        }
+
+        function isShowStart(){
+            if(angular.isDefined($localStorage.isShowStartPage)){
+                return $localStorage.isShowStartPage;
+            }
+            return true;
+        }
 
         function getUser(){
             if($localStorage.user && $localStorage.user.id){
@@ -50,7 +67,6 @@
         }
 
         function updateUser(data) {
-            console.log(data);
             return http.post(url.user.update, data);
         }
 
@@ -102,6 +118,23 @@
             return {
                 doctor: DOCTOR,
                 patient: PATIENT
+            }
+        }
+        
+        function isPatientDentistBinding() {
+            if ($localStorage.user.patient){
+                if($localStorage.user.patient.dentists && $localStorage.user.patient.dentists.length) {
+                    return true;
+                }
+            } else{
+                return false;
+            }
+        }
+        function getPatientDentistBinding() {
+            if ($localStorage.user.patient){
+                if($localStorage.user.patient.dentists) {
+                    return $localStorage.user.patient.dentists;
+                }
             }
         }
     }

@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddPhoneCtrl', AddPhoneCtrl);
 
-    AddPhoneCtrl.$inject = ['$scope', '$state', '$localStorage', 'regSvc', 'authSvc', 'toastr', 'messagesSvc', '$ionicPopup', 'codes', 'phoneSvc'];
+    AddPhoneCtrl.$inject = ['$scope', '$state', 'userSvc', 'regSvc', 'authSvc', 'toastr', 'messagesSvc', '$ionicPopup', 'codes', 'phoneSvc'];
 
-    function AddPhoneCtrl($scope, $state, $localStorage, regSvc, authSvc, toastr, messagesSvc, $ionicPopup, codes, phoneSvc) {
+    function AddPhoneCtrl($scope, $state, userSvc, regSvc, authSvc, toastr, messagesSvc, $ionicPopup, codes, phoneSvc) {
         const vm = this;
         vm.send = send;
         vm.getSelectCode = getSelectCode;
@@ -43,46 +43,31 @@
 
         function send() {
             authSvc.setCountryId(selectedCountry.id);
-            if (!validPhone()) {
+            let phone = phoneSvc.preparePhone(vm.select_code, vm.phone);
+            if (!phoneSvc.validatePhone(phone)) {
                 toastr.error(messagesSvc.error.invalidPhone);
                 return
             }
-            let send = {
-                phone: vm.sum_phone
-            };
-            regSvc.sendPhone(send).then(function (data) {
+            regSvc.sendPhone({
+                phone: phone
+            }).then(function (data) {
                 if (data.success) {
                     console.log(data.data);
                     toastr.success(data.data, null, {
                         timeOut: 20000,
                         tapToDismiss: true
                     });
-                    $state.go('add-code');
-                    $localStorage.valView = false;
-                    authSvc.setPhone(vm.sum_phone);
+                    userSvc.setShowStart(false);
+                    authSvc.setPhone(phone);
                     vm.phone = '';
-                } else {
-                    if (data.message) {
-                        toastr.error(data.message);
-                    }
+                    $state.go('add-code');
+                } else if (data.message) {
+                    toastr.error(data.message);
                 }
             });
         }
 
-        function validPhone() {
-            if (vm.phone !== '') {
-                vm.sum_phone = vm.select_code + vm.phone;
-                vm.len_phone = vm.sum_phone.toString().length;
-                if (vm.len_phone > 8 && vm.len_phone < 20) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }
-
         function getSelectCode() {
-            $scope.data = {};
             vm.codePopup = phoneSvc.showSelect($scope);
         }
 
@@ -93,5 +78,4 @@
         }
     }
 
-})
-();
+})();

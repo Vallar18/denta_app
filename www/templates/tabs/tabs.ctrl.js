@@ -5,9 +5,9 @@
         .module('app')
         .controller('TabsController', TabsController);
 
-    TabsController.$inject = ['$state', '$localStorage', 'userSvc', '$cordovaSocialSharing', '$ionicPlatform', 'tabsSvc'];
+    TabsController.$inject = ['$state', '$localStorage', 'userSvc', '$cordovaSocialSharing', '$ionicPlatform', 'tabsSvc','authSvc'];
 
-    function TabsController($state, $localStorage, userSvc, $cordovaSocialSharing, $ionicPlatform, tabsSvc) {
+    function TabsController($state, $localStorage, userSvc, $cordovaSocialSharing, $ionicPlatform, tabsSvc, authSvc) {
 
         var vm = this;
         vm.toggleMenu = toggleMenu;
@@ -44,7 +44,7 @@
                         share();
                         break;
                     case 'logout':
-                        console.log('logout');
+                        authSvc.logout();
                         break;
                 }
             }

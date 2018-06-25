@@ -4,17 +4,29 @@
             <div class="header-simple__title">
                 My patient
             </div>
-            <button class="button back-btn" ng-click="vm.back()">
-                <!--<i class="icon ion-ios-arrow-thin-left"></i>-->
-                <img src="content/img/back.png" alt="">
-            </button>
             <div class="header-simple__border">
                 <img src="content/img/border.svg">
             </div>
         </div>
         <ion-content class="my-patient__main">
             <div class="my-patient__content">
-                <div></div>
+                <div class="my-patient__text">
+                    Insert your patient number to get all<br>
+                        the information about him
+                </div>
+                <div class="block-content">
+                    <div class="input-block">
+                        <button class="button select-button" ng-click="vm.getSelectCode()">
+                            {{vm.select_code}}
+                        </button>
+                        <label class="item item-input">
+                            <input type="number" placeholder="Enter patient phone"
+                                   ng-model="vm.phone" input-change-color="#000">
+                        </label>
+                    </div>
+                    <p>{{vm.content.val1}}</p>
+                    <button class="send-button" ng-click="vm.send()">Submit</button>
+                </div>
             </div>
         </ion-content>
 

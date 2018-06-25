@@ -1,7 +1,7 @@
 {
-  "name": "Denta",
+  "name": "Dent",
   "version": "0.0.1",
-  "description": "An Ionic project",
+  "description": "Get Dent App",
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-clean-css": "^3.9.4",
@@ -9,6 +9,7 @@
     "gulp-sass": "^3.1.0"
   },
   "dependencies": {
+    "chalk": "^2.4.1",
     "cordova-android": "7.0.0",
     "cordova-ios": "4.5.4",
     "cordova-plugin-camera": "^4.0.3",

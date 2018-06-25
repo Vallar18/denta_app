@@ -23,7 +23,6 @@ $ionicons-font-path: "../../lib/ionic/fonts" !default;
 @import "../www/styles/variables";
 @import "../www/styles/global";
 //Templates
-@import "../www/templates/login/login";
 @import "../www/templates/tabs/tabs";
 @import "../www/templates/view/view";
 @import "../www/templates/add-phone/add-phone";
@@ -45,6 +44,8 @@ $ionicons-font-path: "../../lib/ionic/fonts" !default;
 @import "../www/templates/send-review/send-review";
 @import "../www/templates/my-patient/my-patient";
 @import "../www/templates/history/history";
+@import "../www/templates/history-patients/history-patients";
+@import "../www/templates/history-emergencies/history-emergencies";
 //Components
 @import "../www/components/select-subscription/select-subscription";
 @import "../www/components/speciality-select/speciality-select";

@@ -10,4 +10,12 @@
     font-size: 0.9rem;
     padding:0 5% 5% 5%;
   }
+
+  &__text {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 100;
+    color: $second-color-dark4;
+    padding: 9vw 0 9vw 0;
+  }
 }

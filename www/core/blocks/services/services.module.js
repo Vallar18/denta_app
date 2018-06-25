@@ -19,6 +19,7 @@
         'service.utilsSvc',
         'service.historySvc',
         'service.patientSvc',
-        'service.dentistSvc'
+        'service.dentistSvc',
+        'service.emergenciesSvc'
     ]);
 })();

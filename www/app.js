@@ -3,7 +3,7 @@
 
     angular
         .module('app',
-            [   'factory.request',
+            ['factory.request',
                 'factory.url',
                 'app.core',
                 'app.services',
@@ -11,34 +11,34 @@
                 'app.directives',
             ])
         .run(runBlock);
-    runBlock.$inject = ['$ionicPlatform', '$localStorage', '$state', 'utilsSvc'];
+    runBlock.$inject = ['$ionicPlatform', '$state', 'utilsSvc', 'authSvc','userSvc'];
 
-    function runBlock($ionicPlatform, $localStorage, $state, utilsSvc) {
+    function runBlock($ionicPlatform, $state, utilsSvc, authSvc, userSvc) {
         utilsSvc.initializePolyfill();
-        $ionicPlatform.ready(function() {
+        $ionicPlatform.ready(function () {
             // $state.go('add-clinic');
             window.addEventListener('keyboardDidShow', (event) => {
                 let popup = document.querySelector('.popup');
-                if (popup != null){
+                if (popup != null) {
                     popup.classList.add('popup-bottom')
                 }
             });
             window.addEventListener('keyboardDidHide', () => {
                 let popup = document.querySelector('.popup');
-                if(popup != null){
+                if (popup != null) {
                     popup.classList.remove('popup-bottom')
                 }
             });
-            let showView = true;
-            if(window.StatusBar) {
+
+            if (window.StatusBar) {
                 StatusBar.styleDefault();
             }
-            if(angular.isDefined($localStorage.valView)){
-                showView = $localStorage.valView;
-            }
-            if(showView === true){
+            if (authSvc.isLogined()) {
+                authSvc.processAutoLogin();
+            } else if (userSvc.isShowStart()) {
                 $state.go('view');
             }
+
         });
         // exit.buttonExit($state.current.url);
         // $ionicPlatform.registerBackButtonAction(function() {

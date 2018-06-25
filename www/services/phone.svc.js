@@ -3,9 +3,9 @@
 
     angular.module('service.phoneSvc', []).factory('phoneSvc', phoneSvc);
 
-    phoneSvc.$inject = ['$ionicPopup','http','url', '$timeout'];
+    phoneSvc.$inject = ['$ionicPopup','http','url', '$timeout','$q'];
 
-    function phoneSvc($ionicPopup,http,url,$timeout) {
+    function phoneSvc($ionicPopup,http,url,$timeout,$q) {
         let DEFAULT_PHONE_CODE = '+380';
         let cache = [];
         let model = {
@@ -13,23 +13,37 @@
             getCodes: getCodes,
             getIndexByName: getIndexByName,
             getDefaultIndex: getDefaultIndex,
-            setDefaultCode: setDefaultCode
+            setDefaultCode: setDefaultCode,
+            validatePhone: validatePhone,
+            preparePhone: preparePhone,
+            cutNumberCode: cutNumberCode
         };
         return model;
 
+        function preparePhone(code,phone){
+            return (code || '+0') + ((phone || '') + '');
+        }
+
+        function validatePhone(phone){
+            if(angular.isDefined(phone)){
+                return (phone.length > 8 && phone.length < 20);
+            }
+            return false;
+        }
+
         function getCodes() {
-            // if (cache.length) {
-            //     return $q.defer(function (resolve, reject) {
-            //         $timeout(function(){
-            //             resolve(cache);
-            //         },150);
-            //     });
-            // } else {
+            if (cache.length) {
+                return $q(function (resolve, reject) {
+                    $timeout(function(){
+                        resolve(cache);
+                    },250);
+                });
+            } else {
                 return http.get(url.codes).then(function (res) {
                     cache = res;
                     return res;
                 });
-            // }
+            }
         }
 
         function getIndexByName(codeName,array){
@@ -59,6 +73,15 @@
                 scope: $scope,
                 cssClass: 'select-code'
             });
+        }
+
+        function cutNumberCode(number, codes) {
+            if(number){
+                let prepare_number = number.replace(/\s/g, '');
+                if (prepare_number.length){
+                    return +prepare_number;
+                }
+            }
         }
     }
 })();

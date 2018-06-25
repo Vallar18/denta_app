@@ -1,0 +1,65 @@
+<ion-view>
+    <ion-pane class="history-patients">
+        <div class="header-simple">
+            <div class="header-simple__title">
+                History
+                <div class="history-patients__title">
+                    My patients
+                </div>
+            </div>
+            <button class="button back-btn" ui-sref="tabs.history-emergencies">
+                <!--<i class="icon ion-ios-arrow-thin-left"></i>-->
+                <img src="content/img/emergencies-icon.png" alt="">
+            </button>
+            <div class="header-simple__border">
+                <img src="content/img/border.svg">
+            </div>
+        </div>
+        <ion-content class="history-patients__main">
+            <div class="history-patients__content">
+                <ion-list>
+                    <!--<ion-item ng-repeat="item in vm.historyItems track by item.id">-->
+                    <!--<patient-item>-->
+                    <!--</patient-item>-->
+                    <!--</ion-item>-->
+                    <ion-item>
+                        <patient-item
+                                pi-country="'Israel'"
+                                pi-date="'12 04 2043'"
+                                pi-doctor="'Dr House'"
+                                pi-patient="'house Patient'"
+                                pi-alarm="true">
+                        </patient-item>
+                    </ion-item>
+                    <ion-item>
+                        <patient-item
+                                pi-country="'Israel'"
+                                pi-date="'12 04 2043'"
+                                pi-doctor="'Dr House'"
+                                pi-patient="'house Patient'"
+                                pi-alarm="false">
+                        </patient-item>
+                    </ion-item>
+                    <ion-item>
+                        <patient-item
+                                pi-country="'Israel'"
+                                pi-date="'12 04 2043'"
+                                pi-doctor="'Dr House'"
+                                pi-patient="'house Patient'"
+                                pi-alarm="true">
+                        </patient-item>
+                    </ion-item>
+                    <ion-item>
+                        <patient-item
+                                pi-country="'Israel'"
+                                pi-date="'12 04 2043'"
+                                pi-doctor="'Dr House'"
+                                pi-patient="'house Patient'"
+                                pi-alarm="false">
+                        </patient-item>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </ion-content>
+    </ion-pane>
+</ion-view>

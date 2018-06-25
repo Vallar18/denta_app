@@ -3,7 +3,7 @@
         <div class="dentist-profile-header-wrap">
             <div class="header-simple">
                 <div class="header-simple__title">
-                    {{vm.profile.name}}
+                    <!--{{::vm.profile.name + ' '+ vm.profile.lastname}}-->
                 </div>
                 <div class="dentist-profile__rating">
                     <star-rating
@@ -15,11 +15,12 @@
                     </star-rating>
                 </div>
                 <div class="header-simple__subtitle">
-                    <div class="text-center">{{::vm.country}}</div>
+                    {{::vm.profile.name + ' '+ vm.profile.lastname}}
+                    <div class="text-center subtitle-country">{{::vm.country}}</div>
                 </div>
 
                 <button class="header-simple__right-btn"
-                        ng-click="vm.logout()">
+                        ng-click="vm.editDentist()">
                     <img src="content/img/edit-profile-icon.png" alt="">
                 </button>
                 <button class="header-simple__left-btn">
@@ -33,14 +34,13 @@
                     <a href="tel:{{vm.profile.phone}}">{{vm.profile.phone}}</a>
                 </div>
             </div>
-
-            <div class="dentist-profile__flex">
-                <div class="dentist-profile__address">
-                    {{vm.profile.clinic.address}}
-                </div>
-                <div class="dentist-profile__navigate" ng-click="vm.changeSizeDescr()">
-                    <span>Navigate</span>
-                </div>
+        </div>
+        <div class="dentist-profile__main">
+            <div class="dentist-profile__address">
+                {{vm.profile.clinic.address}}
+            </div>
+            <div class="dentist-profile__navigate" ng-click="vm.changeSizeDescr()">
+                <span>Navigate</span>
             </div>
             <div class="dentist-profile__description"
                  ng-click="vm.isExpandDescr = !vm.isExpandDescr"
@@ -52,24 +52,17 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div>
-            <div style="position: relative;">
-                <div class="dentist-profile__main">
-                    <div class="dentist-profile__content">
-                        <div class="text-center" style="padding-top:20px; padding-bottom:20px;">REVIEWS</div>
-                        <ion-list>
-                            <ion-item ng-repeat="item in vm.reviewArr track by $index">
-                                <review-item ri-date="item.date"
-                                             ri-rating="item.rating"
-                                             ri-name="item.name"
-                                             ri-text="item.text"></review-item>
-                            </ion-item>
-                        </ion-list>
-                    </div>
-                </div>
+            <div class="dentist-profile__content">
+                <div class="text-center dentist-profile__content-title">REVIEWS</div>
+                <ion-list>
+                    <ion-item ng-repeat="item in vm.reviewArr track by $index">
+                        <review-item ri-date="item.date"
+                                     ri-rating="item.rating"
+                                     ri-name="item.name"
+                                     ri-text="item.text"></review-item>
+                    </ion-item>
+                </ion-list>
             </div>
-
         </div>
     </ion-pane>
 </ion-view>

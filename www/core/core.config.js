@@ -41,12 +41,6 @@
                 controller: 'GeoCtrl',
                 controllerAs: 'vm'
             })
-            .state('login', {
-                url: '/login',
-                templateUrl: 'templates/login/login.html',
-                controller: 'LoginCtrl',
-                controllerAs: 'vm'
-            })
             .state('view', {
                 url: '/view',
                 templateUrl: 'templates/view/view.html',
@@ -82,7 +76,8 @@
                 url: '/registration-dentist',
                 templateUrl: 'templates/reg-doc/reg-doc.html',
                 controller: 'RegDocCtrl',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                params: {edit: null}
             })
             .state('registration-patient', {
                 url: '/registration-patient',
@@ -96,6 +91,7 @@
                 templateUrl: 'templates/add-clinic/add-clinic.html',
                 controller: 'AddClinicCtrl',
                 controllerAs: 'vm',
+                params: {edit: null},
                 resolve: {
                     codes: function (phoneSvc) {
                         return phoneSvc.getCodes().then(function (res) {
@@ -109,6 +105,7 @@
                 templateUrl: 'templates/add-specialities/add-specialities.html',
                 controller: 'AddSpecialitiesCtrl',
                 controllerAs: 'vm',
+                params: {edit: null},
                 resolve: {
                     spec: function (specSvc) {
                             return specSvc.getSpeciality().then(function (res) {
@@ -150,7 +147,17 @@
                 url: '/history',
                 templateUrl: 'templates/history/history.html',
                 controller: 'HistoryCtrl',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: {
+                    emergItems: function(userSvc,historySvc){
+                        return historySvc.patient().then(function(res){
+                            if(!res.success){
+                                return [];
+                            }
+                            return res;
+                        });
+                    }
+                }
 
             })
             .state('tabs.help', {
@@ -176,6 +183,25 @@
                 url: '/my-patient',
                 templateUrl: 'templates/my-patient/my-patient.html',
                 controller: 'MyPatientCtrl',
+                controllerAs: 'vm',
+                resolve: {
+                    codeItems: function (phoneSvc) {
+                        return phoneSvc.getCodes().then(function (res) {
+                            return res;
+                        });
+                    }
+                }
+            })
+            .state('tabs.history-emergencies', {
+                url: '/history-emergencies',
+                templateUrl: 'templates/history-emergencies/history-emergencies.html',
+                controller: 'HistoryEmergenciesCtlr',
+                controllerAs: 'vm'
+            })
+            .state('tabs.history-patients', {
+                url: '/history-patients',
+                templateUrl: 'templates/history-patients/history-patients.html',
+                controller: 'HistoryPatientsCtlr',
                 controllerAs: 'vm'
             })
             .state('about', {

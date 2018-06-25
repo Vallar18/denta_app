@@ -12,6 +12,7 @@
         model.sendUser = sendUser;
         model.sendClinicPhone = sendClinicPhone;
         model.createClinic = createClinic;
+        model.changeClinic = changeClinic;
         model.addRolePatient = addRolePatient;
         return model;
 
@@ -29,6 +30,9 @@
         }
         function createClinic (data) {
             return http.post(url.clinic.create, data);
+        }
+        function changeClinic (data) {
+            return http.post(url.clinic.change, data);
         }
         function addRolePatient(data) {
             return http.post(url.register.user_role, data);

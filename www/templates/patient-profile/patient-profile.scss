@@ -1,7 +1,32 @@
 .patient-profile {
   background-color: $second-color-light;
+  &__dentist-name {
+    margin: 0;
+  }
+  &__address {
+    padding: 0 9px 9px;
+    border-bottom: 1px solid $role-btn-border;
+  }
   .header-simple {
     height: 30vh;
+    &__btn {
+      padding: 0;
+      width: auto;
+      border: none;
+      background: none;
+      img {
+        width: 12vw;
+      }
+    }
+  }
+  &__home-dentist {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%,0);
+    color: $input-text;
+    text-transform: uppercase;
+    font-size: 0.8rem;
   }
   &__main {
     margin-top: 30vh;
@@ -10,21 +35,67 @@
   &__content {
     background-color: $background-color;
     font-size: 0.9rem;
-    padding:0 5% 5% 5%;
+    padding: 0 5% 70px 5%;
+    .gray-btn {
+      display: block;
+      margin: 0 auto;
+      &.invite-dentist-btn {
+        &:before {
+          background: url(../img/send-icon.png);
+          content: '';
+          display: block;
+          position: absolute;
+          background-position: center;
+          background-size: auto 73%;
+          background-repeat: no-repeat;
+          top: 39%;
+          left: 0;
+          transform: translateY(-34%);
+          width: 20%;
+          height: 84%;
+        }
+      }
+      &.become-dentist-btn {
+        &:before {
+          background: url(../img/redcross-icon.png);
+          content: '';
+          display: block;
+          position: absolute;
+          background-position: center;
+          background-size: auto 73%;
+          background-repeat: no-repeat;
+          top: 39%;
+          left: 0;
+          transform: translateY(-34%);
+          width: 20%;
+          height: 84%;
+        }
+      }
+    }
+    p {
+      /*text-align: center;*/
+    }
+    .share-btn {
+      margin-top: 1rem;
+    }
   }
   &__items {
-    padding-top:20vw;
+    padding-top: 8vw;
     text-align: center;
+    img {
+      width: 6vw;
+    }
     i {
       font-size: 35px;
       color: $input-text;
     }
     ul {
-      padding-top:1.5rem;
+      padding-top: 1rem;
     }
     li {
-      font-size:16px;
-      padding-bottom:1.5rem;
+      font-size: 14px;
+      padding-bottom: 1rem;
+      line-height: normal;
       text-decoration: underline;
       color: $input-text;
     }
