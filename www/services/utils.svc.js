@@ -8,17 +8,13 @@
     function utilsSvc() {
         var model = {
             initializePolyfill: initializePolyfill,
-            initializePolyfill: initializePolyfill,
-            createObjByArrayIds: createObjByArrayIds
+            createObjByArrayIds: createObjByArrayIds,
         };
         return model;
-
-
 
         function initializePolyfill(){
             findIndex();
         }
-
 
         function findIndex(){
             if (!Array.prototype.findIndex) {

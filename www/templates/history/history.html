@@ -14,25 +14,28 @@
         </div>
         <ion-content class="history-view__main">
             <div class="history-view__content">
-
+                <div ng-if="!vm.historyItems.length" class="history-view__empty">
+                    List is empty
+                </div>
+                <ion-list ng-if="vm.historyItems.length">
+                    <ion-item ng-repeat="item in vm.historyItems track by item.id">
+                        <treatment-item
+                                ti-item="item"
+                                ti-price="item.review && item.review.price? item.review.price: null"
+                                ti-notify="vm.notify(item)"
+                                ti-is-files="item.emergency_photos && item.emergency_photos.length"
+                                ti-is-notified="!!item.status"
+                                ti-can-notify="item.emergency_photos.length && item.review"
+                                ti-need-review="!item.review"
+                                ti-files="item.emergency_photos"
+                                ti-review="vm.goReview(item)"
+                                ti-country="item.country"
+                                ti-date="item.created_at"
+                                ti-have-home-doctor=""
+                                ti-dentist="{{item.dentist_name}}"></treatment-item>
+                    </ion-item>
+                </ion-list>
             </div>
         </ion-content>
-
-        <ion-list>
-            <ion-item ng-repeat="item in vm.historyItems track by item.id">
-                <treatment-item
-                        ti-price="item.price"
-                        ti-notify="vm.notify(item)"
-                        ti-is-files="item.isFiles"
-                        ti-is-notified="item.isNotified"
-                        ti-can-notify="item.canNotify"
-                        ti-need-review="item.needReview"
-                        ti-files=""
-                        ti-review="vm.goReview()"
-                        ti-country="item.country"
-                        ti-date="item.date"
-                        ti-dentist="item.dentist"></treatment-item>
-            </ion-item>
-        </ion-list>
     </ion-pane>
 </ion-view>

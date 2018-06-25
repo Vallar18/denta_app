@@ -23,7 +23,9 @@
   }
 
   &__address {
-    padding: 0 25px;
+    padding: 0 16px;
+    color: $text-default-color;
+    font-family: 'Microsoft JhengHei', sans-serif;
   }
 
   &__description {
@@ -31,7 +33,7 @@
     font-weight: 300;
     position: relative;
     /*max-height: 50%;*/
-    padding: 25px;
+    padding: 16px;
     border-top: 1px solid $role-btn-border;
     border-bottom: 1px solid $role-btn-border;
     &:after {
@@ -97,13 +99,19 @@
       font-weight: 700;
     }
     &__subtitle {
-      font-weight: 400;
+      top: 25%;
+      font-weight: 700;
+      .subtitle-country {
+        font-weight: 400;
+      }
+
     }
     &__right-btn {
       padding: 0;
       width: auto;
       border: none;
       background: none;
+      right: 16px;
       img {
         width: 12vw;
       }
@@ -113,6 +121,7 @@
       height: 18vw;
       border-radius: 50%;
       padding: 0;
+      left: 16px;
       background: $filters-color;
       border: 1px solid $filters-color;
       -webkit-box-shadow: 0 -0.3vh 0 0.2vh $filters-color;
@@ -126,25 +135,10 @@
     }
   }
   &__main {
-   /* margin-top: 30vh;*/
     background-color: $background-color;
     overflow-y: scroll;
     overflow-x: hidden;
-  }
-  /*&__flex {
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -webkit-align-items: flex-start;
-    -ms-flex-align: start;
-    align-items: flex-start;
-  }*/
-  &__address {
-    color: $text-default-color;
-    padding: 0 25px 10px;
+    position: relative;
   }
   &__navigate {
     padding: 10px 0;
@@ -159,10 +153,21 @@
     background-color: $background-color;
     font-size: 0.9rem;
     /*padding:0 5% 5% 5%;*/
+    &-title {
+      font-size: .8rem;
+      color: #76869f;
+      font-weight: 700;
+      padding: 8px 0;
+    }
     .item {
       border-left: none;
       border-right: none;
       border-color: $role-btn-border;
+      padding-bottom: 0;
+      &:first-child {
+        border: none;
+        padding-top: 0;
+      }
     }
   }
   &__items {

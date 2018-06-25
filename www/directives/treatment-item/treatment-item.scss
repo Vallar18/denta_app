@@ -1,31 +1,39 @@
 .treatment-item {
-    font-size: 0.95rem;
-    padding: 5px;
-    &__date {
+  font-size: 0.95rem;
+  padding: 5px;
+
+  &__no-home-doctor {
+    color: $text-default-color;
+  }
+
+  &__date {
+    color: $second-color;
+    font-size: 0.8rem;
+  }
+
+  &__photo {
+    &--disabled {
+      opacity: 0.4;
+    }
+    img {
+      height: 10vw;
+    }
+  }
+  &__price {
+    color: $first-color;
+  }
+  &__review {
+    color: $first-color;
+    text-decoration: underline;
+  }
+
+  &__notify {
+    color: $first-color;
+    text-decoration: underline;
+    &--disabled {
       color: $second-color;
-      font-size: 0.8rem;
+      opacity: 0.7;
     }
-
-    &__photo {
-      &--disabled {
-        opacity: 0.4;
-      }
-    }
-    &__price {
-       color: $first-color;
-    }
-    &__review {
-       color: $first-color;
-       text-decoration: underline;
-    }
-
-    &__notify {
-      color: $first-color;
-      text-decoration: underline;
-      &--disabled {
-        color: $second-color;
-        opacity: 0.7;
-      }
-    }
+  }
 
 }

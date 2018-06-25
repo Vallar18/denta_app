@@ -1,16 +1,22 @@
 .share-view {
   &__subtitle {
     text-transform: uppercase;
-    font-size:16px;
+    font-size:.8rem;
+    font-weight: 700;
     color: $text-gray-color2;
   }
   &__share-text {
-    padding-top:18vw;
-    color:$text-gray-color3;
-    padding-bottom:5%;
+    padding-top: 18vw;
+    color: $text-gray-color3;
+    padding-bottom: 5%;
+    font-weight: 300;
   }
   &__finish-btn {
     position: fixed;
     bottom: 5vh;
+  }
+
+  .block-content {
+    margin: 0;
   }
 }

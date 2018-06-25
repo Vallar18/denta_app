@@ -4,6 +4,13 @@
     padding: 5vw 5vw 2px 5vw;
   }
 
+  &__photo {
+    text-align: center;
+    img {
+      width: 6vw;
+    }
+  }
+
   &--alarm {
     border-bottom: 2px solid $first-color;
   }

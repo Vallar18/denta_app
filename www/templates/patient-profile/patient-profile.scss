@@ -1,7 +1,11 @@
 .patient-profile {
   background-color: $second-color-light;
+  &__dentist-name {
+    margin: 0;
+  }
   &__address {
-    padding: 0 9px;
+    padding: 0 9px 9px;
+    border-bottom: 1px solid $role-btn-border;
   }
   .header-simple {
     height: 30vh;
@@ -22,6 +26,7 @@
     transform: translate(-50%,0);
     color: $input-text;
     text-transform: uppercase;
+    font-size: 0.8rem;
   }
   &__main {
     margin-top: 30vh;
@@ -68,25 +73,29 @@
       }
     }
     p {
-      text-align: center;
+      /*text-align: center;*/
+    }
+    .share-btn {
+      margin-top: 1rem;
     }
   }
   &__items {
     padding-top: 8vw;
     text-align: center;
     img {
-      width: 8vw;
+      width: 6vw;
     }
     i {
       font-size: 35px;
       color: $input-text;
     }
     ul {
-      padding-top: 1.5rem;
+      padding-top: 1rem;
     }
     li {
-      font-size: 4vw;
-      padding-bottom: 1.5rem;
+      font-size: 14px;
+      padding-bottom: 1rem;
+      line-height: normal;
       text-decoration: underline;
       color: $input-text;
     }

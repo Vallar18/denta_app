@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.denta.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Gett Dent</name>
-    <description>Get Dent App</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Get Dent App</author>
+    <description>Gett Dent App</description>
+    <author email="hi@ionicframework" href="http://ionicframework.com/">Gett Dent App</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="*" />
@@ -24,7 +24,7 @@
     <preference name="FadeSplashScreenDuration" value="300" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
-    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashScreenDelay" value="2550" />
     <platform name="android">
         <preference name="AndroidPersistentFileLocation" value="Internal" />
         <feature name="SocialSharing">
@@ -117,4 +117,5 @@
     <allow-navigation href="http://192.168.0.105:8100" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <plugin name="cordova-plugin-fcm" spec="^2.1.2" />
+    <engine name="ios" spec="4.5.4" />
 </widget>

@@ -7,7 +7,7 @@
 
     RegDocCtrl.$inject = ['$scope', '$ionicPlatform','$state', '$stateParams', 'regSvc', 'toastr', 'authSvc', 'messagesSvc', '$ionicPopup', 'IonicClosePopupService', '$cordovaCamera','userSvc'];
 
-    function RegDocCtrl($scope, $ionicPlatform, $state, $stateParams, regSvc, toastr, authSvc, messagesSvc, $ionicPopup, IonicClosePopupService, $cordovaCamera,userSvc) {
+    function RegDocCtrl($scope, $ionicPlatform, $state, $stateParams, regSvc, toastr, authSvc, messagesSvc, $ionicPopup, IonicClosePopupService, $cordovaCamera, userSvc) {
         const vm = this;
         vm.send = send;
         vm.phone = authSvc.getPhone();
@@ -27,7 +27,7 @@
                 name: '', lastname: '', email: '',
                 phone: vm.phone, key: vm.key, avatar: ''
             }
-        };
+        }
 
         function send() {
             if(!validation()){
