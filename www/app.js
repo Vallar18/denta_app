@@ -40,6 +40,20 @@
             }
 
         });
+
+        let config = {
+            apiKey: "AIzaSyAWpF6pDuItLrxcA1GAf6pb7ZE1-ccm-DU",
+            authDomain: "denta-app-testing.firebaseapp.com",
+            databaseURL: "https://denta-app-testing.firebaseio.com",
+            projectId: "denta-app-testing",
+            storageBucket: "denta-app-testing.appspot.com",
+            messagingSenderId: "117305701018"
+        };
+
+        if(window.firebase){
+            window.firebase.initializeApp(config);
+        }
+
         // exit.buttonExit($state.current.url);
         // $ionicPlatform.registerBackButtonAction(function() {
         //     if($state.current.url === '/home'){

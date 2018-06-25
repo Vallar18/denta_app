@@ -15,7 +15,8 @@
             getDefaultIndex: getDefaultIndex,
             setDefaultCode: setDefaultCode,
             validatePhone: validatePhone,
-            preparePhone: preparePhone
+            preparePhone: preparePhone,
+            cutNumberCode: cutNumberCode
         };
         return model;
 
@@ -72,6 +73,15 @@
                 scope: $scope,
                 cssClass: 'select-code'
             });
+        }
+
+        function cutNumberCode(number, codes) {
+            if(number){
+                let prepare_number = number.replace(/\s/g, '');
+                if (prepare_number.length){
+                    return +prepare_number;
+                }
+            }
         }
     }
 })();

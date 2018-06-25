@@ -17,13 +17,15 @@
             <a ng-if="tiNeedReview" class="treatment-item__review"
                ng-click="tiReview && tiReview()">Give a review</a>
 
-            <div ng-if="!tiIsNotified" class="treatment-item__notify"
+            <div ng-if="!tiIsNotified && tiHaveHomeDoctor" class="treatment-item__notify"
                  ng-click="tiNotify && tiCanNotify && tiNotify()"
                  ng-class="{'treatment-item__notify--disabled':!tiCanNotify}">
                 Notify H.D.
             </div>
 
             <div ng-if="tiIsNotified" class="treatment-item--notified">H.D notified</div>
+
+            <div ng-if="tiHaveHomeDoctor" class="treatment-item__no-home-doctor">No home doctor</div>
         </div>
     </div>
 </div>

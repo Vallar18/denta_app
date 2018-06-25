@@ -21,6 +21,8 @@
         'service.patientSvc',
         'service.dentistSvc',
         'service.emergenciesSvc',
-        'service.questionSvc'
+        'service.questionSvc',
+        'service.notificationSvc',
+        'service.fcmSvc'
     ]);
 })();
