@@ -1,15 +1,27 @@
 .help-item {
+  .help-item-wrap {
+    -webkit-align-items: flex-end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+  }
   .distance-block {
+    color: $text-default-color;
+    font-size: 14px;
     img {
-      height: 59%;
+      width: 24px;
     }
   }
   .doctor-block {
+    color: $text-default-color;
     text-align: center;
+    white-space: normal;
   }
   .rating-block {
     text-align: right;
     .price-block {
+      color: $text-default-color;
+      font-size: 14px;
+      white-space: normal;
       span {
         color: $red-text;
       }
@@ -36,6 +48,7 @@
     }
     .time-block {
       color: $filters-color;
+      font-size: 14px;
       img {
         height: 6vw;
       }
@@ -46,9 +59,11 @@
     .price-block {
       color: $filters-color;
       text-align: right;
+      font-size: 14px;
       span {
         color: $red-text;
         font-weight: 700;
+        font-size: 16px;
       }
     }
   }
