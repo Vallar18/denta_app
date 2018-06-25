@@ -18,7 +18,7 @@
         vm.have_den = userSvc.isHaveDentist();
 
         if(userSvc.getPatientDentist() && userSvc.getPatientDentist()[0]){
-            vm.home_dentist = userSvc.getPatientDentist()[0].user;
+            vm.home_dentist = userSvc.getPatientDentist()[0];
         }
 
         function editPatient() {

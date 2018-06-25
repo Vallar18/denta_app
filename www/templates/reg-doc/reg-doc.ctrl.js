@@ -29,6 +29,9 @@
             }
         }
 
+
+        authSvc.addBackBehave(vm.edit);
+
         function send() {
             if(!validation()){
 

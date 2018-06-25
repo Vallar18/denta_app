@@ -122,8 +122,8 @@
         }
         
         function isHaveDentist() {
-            if ($localStorage.user.patient){
-                if($localStorage.user.patient.dentists && $localStorage.user.patient.dentists.length) {
+            if ($localStorage.user){
+                if($localStorage.user.dentists && $localStorage.user.dentists.length) {
                     return true;
                 }
             } else{
@@ -132,9 +132,9 @@
         }
 
         function getPatientDentist() {
-            if ($localStorage.user.patient){
-                if($localStorage.user.patient.dentists) {
-                    return $localStorage.user.patient.dentists;
+            if ($localStorage.user){
+                if($localStorage.user.dentists) {
+                    return $localStorage.user.dentists;
                 }
             }
         }

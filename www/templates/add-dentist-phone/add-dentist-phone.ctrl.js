@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddDentistPhoneCtrl', AddDentistPhoneCtrl);
 
-    AddDentistPhoneCtrl.$inject = ['$scope', '$state', '$stateParams', 'regSvc', 'phoneSvc', 'codes', 'toastr', 'messagesSvc', '$ionicPlatform', '$cordovaContacts', 'userSvc','$ionicPopup','dentistSvc'];
+    AddDentistPhoneCtrl.$inject = ['$scope', '$state', '$stateParams', 'authSvc', 'regSvc', 'phoneSvc', 'codes', 'toastr', 'messagesSvc', '$ionicPlatform', '$cordovaContacts', 'userSvc','$ionicPopup','dentistSvc'];
 
-    function AddDentistPhoneCtrl($scope, $state, $stateParams, regSvc, phoneSvc, codes, toastr, messagesSvc, $ionicPlatform, $cordovaContacts, userSvc, $ionicPopup, dentistSvc) {
+    function AddDentistPhoneCtrl($scope, $state, $stateParams, authSvc, regSvc, phoneSvc, codes, toastr, messagesSvc, $ionicPlatform, $cordovaContacts, userSvc, $ionicPopup, dentistSvc) {
         const vm = this;
         vm.send = send;
         vm.skip = skip;
@@ -28,6 +28,7 @@
         vm.contactList = [];
         init();
         function init() {
+            authSvc.addBackBehave(vm.edit);
             if(vm.edit || vm.c_invite){
                 hideOverlay();
             }
@@ -73,7 +74,7 @@
                         dentist_phone: vm.sum_phone,
                         role: vm.role
                     };
-                    if(vm.edit){
+                    if(vm.edit || vm.c_invite){
                         updateRoleProcess(data);
                     } else{
                         addRoleProcess(data);
@@ -144,7 +145,7 @@
                     user_id: vm.user.id,
                     role: vm.role
                 };
-                if(vm.edit){
+                if(vm.edit || vm.c_invite){
                     updateRoleProcess(data);
                 } else{
                     addRoleProcess(data);

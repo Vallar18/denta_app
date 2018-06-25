@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddClinicCtrl', AddClinicCtrl);
 
-    AddClinicCtrl.$inject = ['$scope', '$state', '$stateParams', 'regSvc', 'phoneSvc', 'toastr', 'messagesSvc', 'dentistSvc', 'codes', '$ionicPopup', 'geoSvc', '$ionicLoading', 'userSvc'];
+    AddClinicCtrl.$inject = ['$scope', '$state', '$stateParams', 'regSvc', 'phoneSvc', 'authSvc','toastr', 'messagesSvc', 'dentistSvc', 'codes', '$ionicPopup', 'geoSvc', '$ionicLoading', 'userSvc'];
 
-    function AddClinicCtrl($scope, $state, $stateParams, regSvc, phoneSvc, toastr, messagesSvc, dentistSvc, codes, $ionicPopup, geoSvc, $ionicLoading, userSvc) {
+    function AddClinicCtrl($scope, $state, $stateParams, regSvc, phoneSvc, authSvc, toastr, messagesSvc, dentistSvc, codes, $ionicPopup, geoSvc, $ionicLoading, userSvc) {
         const vm = this;
         vm.checkClinicPhone = checkClinicPhone;
         vm.send = send;
@@ -21,7 +21,7 @@
         vm.codes = codes;
         vm.select_code = vm.codes[phoneSvc.getDefaultIndex()].code;
         vm.user = userSvc.getUser();
-        let clinic = userSvc.getUser().clinic
+        let clinic = userSvc.getUser().clinic;
         vm.phone = '';
         if (vm.edit){
             vm.btn_text = 'Update';
@@ -35,7 +35,7 @@
             user_id: vm.user.id, name: '', phone: '',
             longitude: null, latitude: null
         };
-        
+        authSvc.addBackBehave(vm.edit);
         /*$scope.listClinic = [
             {name: "Nacccccme"},
             {name: "Namcccccccccccccfffffffffffffffffffffffffffffffffffffffdhdhe"},
