@@ -22,16 +22,13 @@
             </div>
         </div>
         <ion-content class="patient-profile__main">
+            <div class="patient-profile__address" ng-if="vm.have_den">
+                <p class="patient-profile__dentist-name">{{vm.home_dentist.name + ' ' + vm.home_dentist.lastname + ','}}</p>
+                <p>{{vm.user.clinic.address}}</p>
+                <div class="text-center"><a ng-click="vm.editDentistPhone()">Change</a></div>
+            </div>
             <div class="patient-profile__content">
-                <div class="patient-profile__address" ng-if="vm.pat_den_binding">
-                     <p>{{vm.home_dentist.name + '' + vm.home_dentist.lastname}}</p>
-                     {{vm.user.clinic.address}}
-                    <span><a ng-click="vm.editDentistPhone()">Change</a></span>
-                </div>
-                <button class="gray-btn invite-dentist-btn"
-                        ng-click='vm.invite()' ng-if="!vm.pat_den_binding">
-                    Invite your dentist
-                </button>
+                <button class="gray-btn invite-dentist-btn" ng-if="!vm.have_den" ng-click='vm.invite()'>Invite your dentist</button>
                 <div class="patient-profile__items">
                     <img src="content/img/doc-icon.png" alt="">
                     <ul>
@@ -41,9 +38,11 @@
                     </ul>
                 </div>
                 <button class="gray-btn become-dentist-btn">Become a dentist</button>
-                <button class="button share-btn" ng-click="vm.share()">
-                    <img src="content/img/share-icon.png" alt="">
-                </button>
+                <div class="text-center">
+                    <button class="button share-btn" ng-click="vm.share()">
+                        <img src="content/img/share-icon.png" alt="">
+                    </button>
+                </div>
             </div>
         </ion-content>
     </ion-pane>

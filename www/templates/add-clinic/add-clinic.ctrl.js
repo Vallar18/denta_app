@@ -101,6 +101,7 @@
         function newClinic() {
             if(vm.edit){
                 vm.edit = false;
+                vm.edit_spec = true;
                 vm.btn_text = 'Send';
                 vm.clinic = {
                     user_id: vm.user.id, name: '', phone: '',
@@ -181,7 +182,14 @@
         function createClinic(data) {
             regSvc.createClinic(data).then(function (data) {
                 if (data.success) {
-                    $state.go('add-specialities');
+                    if(vm.edit_spec){
+                        userSvc.getUserInfo().then(function (res) {
+                            userSvc.setUser(res.user);
+                            $state.go('add-specialities', {edit: true});
+                        });
+                    } else {
+                        $state.go('add-specialities');
+                    }
                 } else {
                     if (data.message) {
                         toastr.error(data.message)

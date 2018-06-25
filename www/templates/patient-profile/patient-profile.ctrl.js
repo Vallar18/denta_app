@@ -15,10 +15,10 @@
         vm.invite = invite;
         vm.user = userSvc.getUser();
         vm.logout = authSvc.logout;
-        vm.pat_den_binding = userSvc.isPatientDentistBinding();
+        vm.have_den = userSvc.isHaveDentist();
 
-        if(userSvc.getPatientDentistBinding()){
-            vm.home_dentist = userSvc.getPatientDentistBinding()[0].user;
+        if(userSvc.getPatientDentist() && userSvc.getPatientDentist()[0]){
+            vm.home_dentist = userSvc.getPatientDentist()[0].user;
         }
 
         function editPatient() {
