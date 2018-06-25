@@ -124,7 +124,7 @@
                 templateUrl: 'templates/add-dentist-phone/add-dentist-phone.html',
                 controller: 'AddDentistPhoneCtrl',
                 controllerAs: 'vm',
-                params: {edit: null},
+                params: {edit: null, c_invite: null},
                 resolve: {
                     codes: function (phoneSvc) {
                         return phoneSvc.getCodes().then(function (res) {
@@ -154,7 +154,7 @@
                             if(!res.success){
                                 return [];
                             }
-                            return res;
+                            return res.data;
                         });
                     }
                 }
@@ -196,13 +196,27 @@
                 url: '/history-emergencies',
                 templateUrl: 'templates/history-emergencies/history-emergencies.html',
                 controller: 'HistoryEmergenciesCtlr',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: {
+                    emergItems: function(historySvc){
+                        return historySvc.dentistOwners().then(function(res){
+                            return res;
+                        })
+                    }
+                }
             })
             .state('tabs.history-patients', {
                 url: '/history-patients',
                 templateUrl: 'templates/history-patients/history-patients.html',
                 controller: 'HistoryPatientsCtlr',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: {
+                    patientsItems: function(historySvc){
+                        return historySvc.dentist().then(function(res){
+                            return res;
+                        })
+                    }
+                }
             })
             .state('about', {
                 url: '/about',
@@ -246,7 +260,17 @@
                 templateUrl: 'templates/send-review/send-review.html',
                 controller: 'SendReviewCtrl',
                 controllerAs: 'vm',
+                params: {emergencyId: null},
                 resolve: {
+                    questionItems: function(questionSvc){
+                        return questionSvc.getAll().then(function(res){
+                            if(res && res.length){
+                                return res;
+                            } else {
+                                return [];
+                            }
+                        });
+                    },
                     currencieItems: function (currencySvc) {
                         return currencySvc.getCurrency().then(function (res) {
                             return res;

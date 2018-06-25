@@ -130,6 +130,7 @@
                 return false;
             }
         }
+
         function getPatientDentistBinding() {
             if ($localStorage.user.patient){
                 if($localStorage.user.patient.dentists) {

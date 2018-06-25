@@ -2,7 +2,15 @@
   background-color: $second-color-light;
 
   ion-item {
-    padding:5px;
+    //padding:5px;
+    padding: 0px;
+    border-top: none;
+  }
+
+  &__empty {
+    text-align: center;
+    font-size: 16px;
+    padding: 20px;
   }
   &__main {
     margin-top: 20vh;
@@ -11,6 +19,6 @@
   &__content {
     background-color: $background-color;
     font-size: 0.9rem;
-    padding:0 5% 5% 5%;
+    //padding:0 5% 5% 5%;
   }
 }

@@ -12,10 +12,14 @@
         vm.editPatient = editPatient;
         vm.editDentistPhone= editDentistPhone;
         vm.share = share;
+        vm.invite = invite;
         vm.user = userSvc.getUser();
         vm.logout = authSvc.logout;
         vm.pat_den_binding = userSvc.isPatientDentistBinding();
-        vm.home_dentist = userSvc.getPatientDentistBinding()[0].user;
+
+        if(userSvc.getPatientDentistBinding() && userSvc.getPatientDentistBinding()[0]){
+            vm.home_dentist = userSvc.getPatientDentistBinding()[0].user;
+        }
 
         function editPatient() {
             $state.go('registration-patient', {edit: true})
@@ -23,6 +27,10 @@
 
         function editDentistPhone() {
             $state.go('add-dentist-phone', {edit: true})
+        }
+
+        function invite() {
+            $state.go('add-dentist-phone', {c_invite: true})
         }
 
         function share() {

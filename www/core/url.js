@@ -13,6 +13,9 @@
         var baseUrl = 'http://denta.grassbusinesslabs.tk/api/';
 
         return {
+            question: {
+                getAll: baseUrl + 'question'
+            },
             emergencies: {
                 create: baseUrl + 'emergency/create',
                 addPhotos: baseUrl + 'emergency/photos',
@@ -56,7 +59,8 @@
             },
             user_role: {
                 update: baseUrl + 'user-role/update'
-            }
+            },
+            subscribe: baseUrl + 'subscribe'
 
         };
     }

@@ -35,8 +35,14 @@
         //     console.log(place);
         // }
 
-        function initMap() {
-            var options = {timeout: 30000, enableHighAccuracy: true};
+        function initMap(isAccuracy) {
+            $ionicLoading.show({
+                template: 'Initialize map <br> Getting position...'
+            });
+            let options = {timeout: 20000, enableHighAccuracy: true};
+            if(angular.isDefined(isAccuracy)){
+                options.enableHighAccuracy = isAccuracy;
+            }
             $cordovaGeolocation.getCurrentPosition(options)
                 .then(function (position) {
                     var latLng = new window.google.maps.LatLng(position.coords.latitude,
@@ -55,6 +61,7 @@
                         map: map,
                         draggable: true,
                     });
+                    $ionicLoading.hide();
                     // addSearch();
                     window.google.maps.event.addListenerOnce(map, 'idle', function () {
                         window.google.maps.event.addListener(map, 'dragend', function () {
@@ -65,7 +72,8 @@
                         enableMap();
                     });
                 }, function (error) {
-                    initMap();
+                    $ionicLoading.hide();
+                    initMap(false);
                     console.log("Could not get location");
                 });
         }

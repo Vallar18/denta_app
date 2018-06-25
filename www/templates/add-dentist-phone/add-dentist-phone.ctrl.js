@@ -17,6 +17,7 @@
         vm.pickContactUsingNativeUI = pickContactUsingNativeUI;
         vm.selectOneContact = selectOneContact;
         vm.edit = $stateParams.edit;
+        vm.c_invite = $stateParams.c_invite;
         vm.codes = codes;
         vm.select_code = vm.codes[phoneSvc.getDefaultIndex()].code;
         vm.user = userSvc.getUser();
@@ -25,10 +26,9 @@
         vm.overlay = true;
         vm.phoneFromContact = '';
         vm.contactList = [];
-
         init();
         function init() {
-            if(vm.edit){
+            if(vm.edit || vm.c_invite){
                 hideOverlay();
             }
         }
@@ -86,7 +86,10 @@
             if(angular.isUndefined(data)){ return; }
             regSvc.addRolePatient(data).then(function (data) {
                 if (data.success) {
-                    $state.go('share');
+                    userSvc.getUserInfo().then(function (res) {
+                        userSvc.setUser(res.user);
+                        $state.go('share');
+                    })
                 } else {
                    showAskDentist();
                 }
