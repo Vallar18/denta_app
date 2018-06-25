@@ -29,7 +29,7 @@
                     type: 'button-default',
                 }
             ];
-            if(vm.emergencyItem.status && vm.emergencyItem.status === 0){
+            if(angular.isDefined(vm.emergencyItem.status) && vm.emergencyItem.status === 0){
                 arrBtn.push({
                     text: 'Add',
                     type: 'button-positive',
@@ -60,7 +60,6 @@
                             path: res.data[0].path
                         })
                     }
-
                 });
             }
         };

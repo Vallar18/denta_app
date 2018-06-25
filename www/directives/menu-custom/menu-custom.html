@@ -1,9 +1,10 @@
 <div class="menu-custom">
     <ul ng-if="items && items.length">
         <li ng-repeat="item in items | orderBy:'id' track by $index"
-            ng-class="{'menu-custom--active': item === model}"
+
             ng-click="selectItem(item)">
             {{item.name}}
         </li>
+        <!--ng-class="{'menu-custom&#45;&#45;active': item === model}"-->
     </ul>
 </div>
