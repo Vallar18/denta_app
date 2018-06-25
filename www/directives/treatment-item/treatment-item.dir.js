@@ -20,7 +20,8 @@
                 tiNotify: '&',
                 tiIsNotified: '=',
                 tiIsFiles: '=',
-                tiCanNotify: '='
+                tiCanNotify: '=',
+                tiHaveHomeDoctor: '='
             },
             controller: 'TreatmentItemCtrl',
             controllerAs: 'vm',
