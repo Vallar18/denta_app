@@ -21,10 +21,15 @@
                     List is empty
                 </div>
                 <ion-list ng-if="vm.historyItems.length">
-                    <!--<ion-item ng-repeat="item in vm.historyItems track by item.id">-->
-                    <!--<patient-item>-->
-                    <!--</patient-item>-->
-                    <!--</ion-item>-->
+                    <ion-item ng-repeat="item in vm.historyItems track by item.id">
+                        <patient-item
+                                pi-alarm="false"
+                                pi-doctor="''"
+                                pi-country="item.country"
+                                pi-patient="item.dentist_name"
+                                pi-date="item.created_at">
+                        </patient-item>
+                    </ion-item>
                 </ion-list>
             </div>
         </ion-content>

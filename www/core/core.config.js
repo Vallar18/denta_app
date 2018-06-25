@@ -52,6 +52,7 @@
                 templateUrl: 'templates/add-phone/add-phone.html',
                 controller: 'AddPhoneCtrl',
                 controllerAs: 'vm',
+                cache: false,
                 resolve: {
                     codes: function (phoneSvc) {
                         return phoneSvc.getCodes().then(function (res) {
@@ -64,19 +65,22 @@
                 url: '/add-code',
                 templateUrl: 'templates/add-code/add-code.html',
                 controller: 'AddCodeCtrl',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                cache: false,
             })
             .state('select-role', {
                 url: '/select-role',
                 templateUrl: 'templates/select-role/select-role.html',
                 controller: 'SelectRoleCtrl',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                cache: false,
             })
             .state('registration-dentist', {
                 url: '/registration-dentist',
                 templateUrl: 'templates/reg-doc/reg-doc.html',
                 controller: 'RegDocCtrl',
                 controllerAs: 'vm',
+                cache: false,
                 params: {edit: null}
             })
             .state('registration-patient', {
@@ -84,6 +88,7 @@
                 templateUrl: 'templates/reg-pat/reg-pat.html',
                 controller: 'RegPatCtrl',
                 controllerAs: 'vm',
+                cache: false,
                 params: {edit: null}
             })
             .state('add-clinic', {
@@ -91,6 +96,7 @@
                 templateUrl: 'templates/add-clinic/add-clinic.html',
                 controller: 'AddClinicCtrl',
                 controllerAs: 'vm',
+                cache: false,
                 params: {edit: null},
                 resolve: {
                     codes: function (phoneSvc) {
@@ -105,6 +111,7 @@
                 templateUrl: 'templates/add-specialities/add-specialities.html',
                 controller: 'AddSpecialitiesCtrl',
                 controllerAs: 'vm',
+                cache: false,
                 params: {edit: null},
                 resolve: {
                     spec: function (specSvc) {
@@ -124,6 +131,7 @@
                 templateUrl: 'templates/add-dentist-phone/add-dentist-phone.html',
                 controller: 'AddDentistPhoneCtrl',
                 controllerAs: 'vm',
+                cache: false,
                 params: {edit: null, c_invite: null},
                 resolve: {
                     codes: function (phoneSvc) {
@@ -199,8 +207,12 @@
                 controllerAs: 'vm',
                 resolve: {
                     emergItems: function(historySvc){
-                        return historySvc.dentistOwners().then(function(res){
-                            return res;
+                        return historySvc.dentist().then(function(res){
+                            if(res && res.success && res.data){
+                                return res.data;
+                            } else {
+                                return [];
+                            }
                         })
                     }
                 }
@@ -212,8 +224,12 @@
                 controllerAs: 'vm',
                 resolve: {
                     patientsItems: function(historySvc){
-                        return historySvc.dentist().then(function(res){
-                            return res;
+                        return historySvc.dentistOwners().then(function(res){
+                            if(res && res.success && res.data){
+                                return res.data;
+                            } else {
+                                return [];
+                            }
                         })
                     }
                 }

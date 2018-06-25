@@ -39,7 +39,7 @@
             $ionicLoading.show({
                 template: 'Initialize map <br> Getting position...'
             });
-            let options = {timeout: 20000, enableHighAccuracy: true};
+            let options = {timeout: 30000, enableHighAccuracy: true};
             if(angular.isDefined(isAccuracy)){
                 options.enableHighAccuracy = isAccuracy;
             }
@@ -73,7 +73,7 @@
                     });
                 }, function (error) {
                     $ionicLoading.hide();
-                    initMap(false);
+                    initMap();
                     console.log("Could not get location");
                 });
         }

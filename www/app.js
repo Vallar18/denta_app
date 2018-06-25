@@ -56,6 +56,7 @@
 
         // exit.buttonExit($state.current.url);
         // $ionicPlatform.registerBackButtonAction(function() {
+
         //     if($state.current.url === '/home'){
         //         var confirmPopup = $ionicPopup.confirm({
         //             title: $translate.instant('ExitApp'),
@@ -67,7 +68,6 @@
         //             if (res) {
         //                 event.preventDefault();
         //                 navigator.app.exitApp();
-        //
         //             }
         //         });
         //     } else {

@@ -55,7 +55,10 @@
                 }
             } else {
                 if(data.message){
-                    toastr.error(data.message)
+                    toastr.error(data.message);
+                }
+                if(data.success === false){
+                    $state.go('add-phone');
                 }
             }
         }

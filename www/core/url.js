@@ -25,7 +25,7 @@
             },
             history: {
               patient:  baseUrl + 'patient/history',
-              dentistOwners:  baseUrl + 'dentist/owners/history',
+              dentistOwners:  baseUrl + 'dentists/owners/history',
               dentist:  baseUrl + 'dentist/history',
             },
             review: {
