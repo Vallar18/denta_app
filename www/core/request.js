@@ -4,9 +4,9 @@
         .module('factory.request', ['ngStorage'])
         .factory('http', http);
 
-    http.$inject = ['$rootScope', '$http', '$q', '$sessionStorage', '$localStorage', 'toastr', '$state','$ionicLoading'];
+    http.$inject = ['$rootScope', '$http', '$q', '$sessionStorage', '$localStorage', 'toastr', '$state', '$ionicLoading'];
 
-    function http($rootScope, $http, $q, $sessionStorage, $localStorage, toastr, $state,$ionicLoading) {
+    function http($rootScope, $http, $q, $sessionStorage, $localStorage, toastr, $state, $ionicLoading) {
         let request = function (method, url, data) {
             $rootScope.loading = true;
             let config = {
@@ -42,7 +42,7 @@
             $ionicLoading.show({
                 template: '<ion-spinner></ion-spinner> <br>Loading...',
             });
-            return $http(config).then( requestSuccess, requestError);
+            return $http(config).then(requestSuccess, requestError);
         };
 
         function requestSuccess(response) {
@@ -58,8 +58,10 @@
             }
             return defer.promise;
         }
+
         function requestError(response) {
             let defer = $q.defer();
+            $ionicLoading.hide();
             if (response.status === 200) {
                 toastr.error('Server Error: ' + response.data);
             }
@@ -80,7 +82,6 @@
                 // toastr.error('Server Error: ' + response.status + ' ' + response.data.message);
                 toastr.error(response.data.message);
             }
-            $ionicLoading.hide();
             defer.reject(response.data);
             return defer.promise;
         }
