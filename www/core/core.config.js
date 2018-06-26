@@ -132,7 +132,7 @@
                 controller: 'AddDentistPhoneCtrl',
                 controllerAs: 'vm',
                 cache: false,
-                params: {edit: null, c_invite: null},
+                params: {edit: null, c_invite: null, invite_for_den: null},
                 resolve: {
                     codes: function (phoneSvc) {
                         return phoneSvc.getCodes().then(function (res) {

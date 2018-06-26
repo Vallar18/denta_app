@@ -14,9 +14,9 @@
 
         function finishReg() {
             if (userSvc.isDoc()) {
-                $state.go('tabs.dentist-profile');
+                $state.go('tabs.my-patient');
             } else if (userSvc.isPat()) {
-                $state.go('tabs.patient-profile');
+                $state.go('tabs.help');
             }
         }
 

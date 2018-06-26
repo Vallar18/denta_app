@@ -91,6 +91,7 @@
         }
 
         function addSpecProcess(){
+            vm.dentist.currency_id = vm.select_currency.id;
             specSvc.addSpeciality(vm.dentist).then(function (data) {
                 if(data.success) {
                     userSvc.setUser(data.data);

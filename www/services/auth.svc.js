@@ -3,9 +3,9 @@
 
     angular.module('service.authSvc', []).factory('authSvc', authSvc);
 
-    authSvc.$inject = ['userSvc', '$localStorage', '$state', '$ionicPlatform', '$ionicPopup'];
+    authSvc.$inject = ['userSvc', '$localStorage', '$state', '$ionicPlatform', '$ionicPopup', 'toastr'];
 
-    function authSvc(userSvc, $localStorage, $state, $ionicPlatform, $ionicPopup) {
+    function authSvc(userSvc, $localStorage, $state, $ionicPlatform, $ionicPopup, toastr) {
         const CODE_LENGTH = 4;
         let model = {
             setCode: setCode,
@@ -122,6 +122,7 @@
         }
 
         function addBackBehave(edit) {
+            let cl = 0;
             $ionicPlatform.registerBackButtonAction(function () {
                 if (!edit && ($state.is('add-dentist-phone') || $state.is('add-clinic') || $state.is('add-specialities') || $state.is('share'))) {
                     showBackPopup();
@@ -139,10 +140,23 @@
                         default:
                             window.history.back();
                     }
-                } else if ($state.is('tabs.patient-profile') || $state.is('tabs.dentist-profile')) {
+                } else if ($state.is('tabs.my-patient') || $state.is('tabs.help')) {
                     return false;
                 } else {
-                    window.history.back();
+                    switch ($state.current.url) {
+                        case '/add-phone':
+                            event.preventDefault();
+                            navigator.app.exitApp();
+                            break;
+                        case '/patient-profile':
+                            $state.go('help');
+                            break;
+                        case '/dentist-profile':
+                            $state.go('tabs.my-patient');
+                            break;
+                        default:
+                            window.history.back();
+                    }
                 }
             }, 100);
         }

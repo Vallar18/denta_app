@@ -42,45 +42,45 @@
 
         function refreshToken(callback) {
             if (angular.isDefined(FCMPlugin)) {
-                FCMPlugin.onTokenRefresh(function (token) {
-                    if (angular.isFunction(callback) && token) {
-                        callback(token);
-                    }
-                });
+                // FCMPlugin.onTokenRefresh(function (token) {
+                //     if (angular.isFunction(callback) && token) {
+                //         callback(token);
+                //     }
+                // });
             }
         }
 
         function getToken(callback) {
-            if (angular.isDefined(FCMPlugin)) {
-                FCMPlugin.getToken(function (token) {
-                    if (angular.isFunction(callback) && token) {
-                        callback(token);
-                    }
-                });
-            }
+            // if (angular.isDefined(FCMPlugin)) {
+                // FCMPlugin.getToken(function (token) {
+                //     if (angular.isFunction(callback) && token) {
+                //         callback(token);
+                //     }
+                // });
+            // }
         }
 
         function subscribe() {
-            if (angular.isDefined(FCMPlugin)) {
-                FCMPlugin.onNotification(function (data) {
-                    console.log(data);
-                    toastr.success(data);
-                    // if (data.type == 'log' && data.status == 'emergency') {
-                    //     let kids = angular.copy(userService.getKids());
-                    //     for (let i = 0; i < kids.length; i++) {
-                    //         if (kids[i].id == data.kid_id) {
-                    //             $localStorage.log_index = i;
-                    //             break;
-                    //         }
-                    //     }
-                    //     toastr.error(String(data.message));     //red
-                    //     $state.go('logs')
-                    // } else if (data.type == 'log' && data.status == 'normal') {
-                    //     toastr.success(String(data.message));   //green
-                    //     // toastr.info(String(data.message));   //blue
-                    // }
-                });
-            }
+            // if (angular.isDefined(FCMPlugin)) {
+                // FCMPlugin.onNotification(function (data) {
+                //     console.log(data);
+                //     toastr.success(data);
+                //     // if (data.type == 'log' && data.status == 'emergency') {
+                //     //     let kids = angular.copy(userService.getKids());
+                //     //     for (let i = 0; i < kids.length; i++) {
+                //     //         if (kids[i].id == data.kid_id) {
+                //     //             $localStorage.log_index = i;
+                //     //             break;
+                //     //         }
+                //     //     }
+                //     //     toastr.error(String(data.message));     //red
+                //     //     $state.go('logs')
+                //     // } else if (data.type == 'log' && data.status == 'normal') {
+                //     //     toastr.success(String(data.message));   //green
+                //     //     // toastr.info(String(data.message));   //blue
+                //     // }
+                // });
+            // }
         }
 
         return model;
