@@ -11,19 +11,21 @@
                 'app.directives',
             ])
         .run(runBlock);
-    runBlock.$inject = ['$ionicPlatform', '$state', 'utilsSvc', 'authSvc', 'userSvc', 'fcmSvc'];
+    runBlock.$inject = ['$ionicPlatform', '$state', 'utilsSvc', 'authSvc', 'userSvc', 'fcmSvc','$rootScope'];
 
-    function runBlock($ionicPlatform, $state, utilsSvc, authSvc, userSvc, fcmSvc) {
+    function runBlock($ionicPlatform, $state, utilsSvc, authSvc, userSvc, fcmSvc,$rootScope) {
         utilsSvc.initializePolyfill();
 
         if (authSvc.isLogined()) {
-            // authSvc.processAutoLogin();
-            $state.go('tabs.my-patient');
+            authSvc.processAutoLogin();
         }
         if (userSvc.isShowStart()) {
             $state.go('view');
         }
 
+        // $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+        //         event.preventDefault();
+        // });
         $ionicPlatform.ready(function () {
             fcmSvc.initialize();
             if (window.StatusBar) {

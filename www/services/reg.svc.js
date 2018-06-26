@@ -17,16 +17,16 @@
         return model;
 
         function sendPhone (phone) {
-            return http.post(url.code.send, phone)
+            return http.post(url.code.send, phone);
         }
         function sendVerify (verify) {
-            return http.post(url.code.verify, verify)
+            return http.post(url.code.verify, verify);
         }
         function sendUser (user) {
-            return http.post(url.register.user, user)
+            return http.post(url.register.user, user);
         }
         function sendClinicPhone (phone) {
-            return http.post(url.clinic.check, phone)
+            return http.post(url.clinic.check, phone);
         }
         function createClinic (data) {
             return http.post(url.clinic.create, data);

@@ -13,8 +13,11 @@
         var baseUrl = 'http://denta.grassbusinesslabs.tk/api/';
 
         return {
+            help: {
+                getItems: baseUrl + 'help'
+            },
             question: {
-                getAll: baseUrl + 'question'
+                all: baseUrl + 'question'
             },
             logout: {
               logout: baseUrl + 'logout'
@@ -48,7 +51,8 @@
                 check: baseUrl + 'clinic/check',
                 change: baseUrl + 'clinic/change',
                 create: baseUrl + 'clinic/create',
-                update: baseUrl + 'clinic/update'
+                update: baseUrl + 'clinic/update',
+                getAll: baseUrl + 'clinics'
             },
             specialties: baseUrl + 'specialties',
             currencies: baseUrl + 'currencies',

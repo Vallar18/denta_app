@@ -66,14 +66,20 @@
         }
 
         function logout() {
-            http.post(url.logout.logout, {
-                device_id: userSvc.getDeviceID()
-            }).then(function (res) {
+            if (userSvc.getDeviceID()) {
+                http.post(url.logout.logout, {
+                    device_id: userSvc.getDeviceID()
+                }).then(function (res) {
+                    clearAuthData();
+                    userSvc.resetData();
+                    $state.go('add-phone');
+                });
+            } else {
                 clearAuthData();
                 userSvc.resetData();
-                // ionic.Platform.exitApp();
                 $state.go('add-phone');
-            });
+            }
+            // ionic.Platform.exitApp();
         }
 
 

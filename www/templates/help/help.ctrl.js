@@ -13,6 +13,8 @@
             $scope.picFile = null;
             $scope.slideOpen = false;
 
+
+
             vm.helpArr = [
                 {
                     id: 1,
