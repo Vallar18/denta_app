@@ -12,6 +12,7 @@
         };
         return model;
 
+
         function getMenuItems(type) {
             if (angular.isUndefined(type) || type === userSvc.roleConst().doctor) {
                 return [{
@@ -62,7 +63,7 @@
                         title: 'History',
                         view: 'tabs.history-patients'
                     }
-                ]
+                ];
             } else if (type === userSvc.roleConst().patient) {
                 return [
                     {
@@ -78,8 +79,8 @@
                         title: 'History',
                         view: 'tabs.history'
                     }
-                ]
+                ];
             }
         }
-    }
-})();
+    }})
+();

@@ -11,47 +11,39 @@
                 'app.directives',
             ])
         .run(runBlock);
-    runBlock.$inject = ['$ionicPlatform', '$state', 'utilsSvc', 'authSvc','userSvc'];
+    runBlock.$inject = ['$ionicPlatform', '$state', 'utilsSvc', 'authSvc','userSvc','fcmSvc'];
 
-    function runBlock($ionicPlatform, $state, utilsSvc, authSvc, userSvc) {
+    function runBlock($ionicPlatform, $state, utilsSvc, authSvc, userSvc,fcmSvc) {
         utilsSvc.initializePolyfill();
         $ionicPlatform.ready(function () {
-            // $state.go('add-clinic');
+            fcmSvc.initialize();
+            fcmSvc.getToken(function(){
+                fcmSvc.subscribe();
+            });
+            if (window.StatusBar) {
+                window.styleDefault();
+            }
+            addBehaverForKeyboard();
+        });
+        if (authSvc.isLogined()) {
+            authSvc.processAutoLogin();
+        } else if (userSvc.isShowStart()) {
+            $state.go('view');
+        }
+
+        function addBehaverForKeyboard(){
             window.addEventListener('keyboardDidShow', (event) => {
                 let popup = document.querySelector('.popup');
                 if (popup != null) {
-                    popup.classList.add('popup-bottom')
+                    popup.classList.add('popup-bottom');
                 }
             });
             window.addEventListener('keyboardDidHide', () => {
                 let popup = document.querySelector('.popup');
                 if (popup != null) {
-                    popup.classList.remove('popup-bottom')
+                    popup.classList.remove('popup-bottom');
                 }
             });
-
-            if (window.StatusBar) {
-                StatusBar.styleDefault();
-            }
-            if (authSvc.isLogined()) {
-                authSvc.processAutoLogin();
-            } else if (userSvc.isShowStart()) {
-                $state.go('view');
-            }
-
-        });
-
-        let config = {
-            apiKey: "AIzaSyAWpF6pDuItLrxcA1GAf6pb7ZE1-ccm-DU",
-            authDomain: "denta-app-testing.firebaseapp.com",
-            databaseURL: "https://denta-app-testing.firebaseio.com",
-            projectId: "denta-app-testing",
-            storageBucket: "denta-app-testing.appspot.com",
-            messagingSenderId: "117305701018"
-        };
-
-        if(window.firebase){
-            window.firebase.initializeApp(config);
         }
 
         // exit.buttonExit($state.current.url);

@@ -23,6 +23,7 @@
         'service.emergenciesSvc',
         'service.questionSvc',
         'service.notificationSvc',
-        'service.fcmSvc'
+        'service.fcmSvc',
+        'service.textSvc'
     ]);
 })();

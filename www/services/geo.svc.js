@@ -8,8 +8,9 @@
 
     function geoSvc($cordovaGeolocation, $ionicLoading,
                     $rootScope, $cordovaNetwork, networkMonitorSvc) {
+        var watcherPosition;
         let vm = this;
-        let apiKey = 'AIzaSyD6o8M_KOerds2uacnudjI62elbLTMyBaY';
+        let API_KEY = 'AIzaSyD6o8M_KOerds2uacnudjI62elbLTMyBaY';
         let map = null;
         let counterTryGetPosition = 0;
         var autocomplete;
@@ -40,14 +41,14 @@
                 template: 'Initialize map <br> Getting position...'
             });
             let options = {timeout: 30000, enableHighAccuracy: true};
-            if(angular.isDefined(isAccuracy)){
+            if (angular.isDefined(isAccuracy)) {
                 options.enableHighAccuracy = isAccuracy;
             }
             $cordovaGeolocation.getCurrentPosition(options)
                 .then(function (position) {
-                    var latLng = new window.google.maps.LatLng(position.coords.latitude,
+                    let latLng = new window.google.maps.LatLng(position.coords.latitude,
                         position.coords.longitude);
-                    var mapOptions = {
+                    let mapOptions = {
                         center: latLng,
                         zoom: 14,
                         disableDefaultUI: true,
@@ -98,8 +99,8 @@
             var script = document.createElement("script");
             script.setAttribute("type", "text/javascript");
             script.id = "googleMaps";
-            if (apiKey) {
-                script.src = 'https://maps.googleapis.com/maps/api/js?key=' + apiKey
+            if (API_KEY) {
+                script.src = 'https://maps.googleapis.com/maps/api/js?key=' + API_KEY
                     + '&libraries=drawing,geometry,places&callback=mapInit';
             }
             else {
@@ -117,7 +118,7 @@
         }
 
         function addConnectivityListeners() {
-            if (ionic.Platform.isWebView()) {
+            if (window.ionic.Platform.isWebView()) {
                 $rootScope.$on('$cordovaNetwork:online', function (event, networkState) {
                     checkLoaded();
                 });
@@ -155,17 +156,41 @@
             });
         }
 
+
+        function clearWatchPosition(){
+            if(watcherPosition && watcherPosition.clearWatch){
+                watcherPosition.clearWatch();
+            }
+        }
+
+        function watchPosition() {
+            let watchOptions = {
+                timeout: 30000,
+                enableHighAccuracy: true // may cause errors if true
+            };
+            if(watcherPosition && watcherPosition.clearWatch){
+                watcherPosition.clearWatch();
+            }
+            watcherPosition = $cordovaGeolocation.watchPosition(watchOptions).then(null,function (errRes) {
+                console.log(errRes);
+            }, function (position) {
+                console.log(position);
+            });
+        }
+
         return {
+            watchPosition: watchPosition,
+            clearWatchPosition: clearWatchPosition,
             getMarkerPosition: function () {
                 return {
                     lat: marker.getPosition().lat(),
                     lng: marker.getPosition().lng(),
-                }
+                };
             },
             getAddress: getAddress,
             init: function (key) {
                 if (angular.isDefined(key)) {
-                    apiKey = key;
+                    API_KEY = key;
                 }
                 if (angular.isUndefined(window.google) || angular.isUndefined(window.google.maps)) {
                     console.warn("Google Maps SDK needs to be loaded");

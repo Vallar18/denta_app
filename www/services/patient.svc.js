@@ -9,6 +9,5 @@
         var model = {
         };
         return model;
-
     }
 })();

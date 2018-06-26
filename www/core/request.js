@@ -77,9 +77,9 @@
             }
             else {
                 if (response.status === 401) {
-                    $state.go('app.pages_auth_login');
+                    // $state.go('add-phone');
+                    toastr.error('Server Error: ' + response.status + ' ' + response.data.message);
                 }
-                // toastr.error('Server Error: ' + response.status + ' ' + response.data.message);
                 toastr.error(response.data.message);
             }
             defer.reject(response.data);

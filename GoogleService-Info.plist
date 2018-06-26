@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>117305701018-kkasakjgntbe07i5e61iae0fk5ptll34.apps.googleusercontent.com</string>
+	<string>64881062287-6j8d1qcq3f6btjjhqsaa735ve78o53um.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.117305701018-kkasakjgntbe07i5e61iae0fk5ptll34</string>
+	<string>com.googleusercontent.apps.64881062287-6j8d1qcq3f6btjjhqsaa735ve78o53um</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBVY7DbWpXdluYlYnr4oeNIznVKLVeBIas</string>
+	<string>AIzaSyDJYd35_EwEqDJEI8iRGWp_MzRuW9iIQS0</string>
 	<key>GCM_SENDER_ID</key>
-	<string>117305701018</string>
+	<string>64881062287</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.denta.app</string>
+	<string>com.dent.app</string>
 	<key>PROJECT_ID</key>
-	<string>denta-app-testing</string>
+	<string>my-projectdentte-1528234503301</string>
 	<key>STORAGE_BUCKET</key>
-	<string>denta-app-testing.appspot.com</string>
+	<string>my-projectdentte-1528234503301.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:117305701018:ios:0c54dbfbfd177da1</string>
+	<string>1:64881062287:ios:820646c21230290b</string>
 	<key>DATABASE_URL</key>
-	<string>https://denta-app-testing.firebaseio.com</string>
+	<string>https://my-projectdentte-1528234503301.firebaseio.com</string>
 </dict>
 </plist>

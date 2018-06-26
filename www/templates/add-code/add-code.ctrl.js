@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddCodeCtrl', AddCodeCtrl);
 
-    AddCodeCtrl.$inject = ['$state', 'regSvc', 'authSvc', 'userSvc', 'toastr', 'messagesSvc', 'dentistSvc', '$localStorage', 'fcmSvc'];
+    AddCodeCtrl.$inject = ['$state', 'regSvc', 'authSvc', 'userSvc', 'toastr', 'messagesSvc', 'dentistSvc', 'fcmSvc'];
 
-    function AddCodeCtrl($state, regSvc, authSvc, userSvc, toastr, messagesSvc, dentistSvc, $localStorage, fcmSvc) {
+    function AddCodeCtrl($state, regSvc, authSvc, userSvc, toastr, messagesSvc, dentistSvc, fcmSvc) {
         const vm = this;
         vm.send = send;
         vm.goAddPhone = goAddPhone;
@@ -21,71 +21,67 @@
         };
 
         function send() {
-            if(validCode()){
-                vm.verify = {
+            if (authSvc.isValidCode(vm.code)) {
+                regSvc.sendVerify({
                     phone: vm.phone,
-                    code: "" + vm.code
-                };
-                regSvc.sendVerify(vm.verify).then(function (data) {
+                    code: '' + vm.code
+                }).then(function (data) {
                     progressVerifySuccess(data);
                 }, function (err) {
                     processRegError(err);
                 });
             } else {
-                toastr.error(messagesSvc.error.invalidCode)
+                toastr.error(messagesSvc.error.invalidCode);
             }
         }
+
         function progressVerifySuccess(data) {
-            if(data.success) {
-                if(data.user){
-                    userSvc.setUser(data.user);
-                    userSvc.setRole(data.user.roles[0].name);
-                    userSvc.setToken(data.token);
-                    getDeviceToken();
-                    if(userSvc.isDoc()){
-                        $state.go('tabs.dentist-profile');
-                    } else if(userSvc.isPat()){
-                        $state.go('tabs.patient-profile');
-                    }
-                    vm.code = '';
-                } else {
-                    authSvc.setCode(vm.verify.code);
+            if (data.success) {
+                if (data.user && data.user.roles.length && data.token) {
+                    processUserData(data);
+                } else if(data.authKey) {
+                    authSvc.setCode(vm.code + '');
                     authSvc.setKey(data.authKey);
                     vm.code = '';
                     checkDentistInvite();
                 }
             } else {
-                if(data.message){
+                if (data.message) {
                     toastr.error(data.message);
                 }
-                if(data.success === false){
+                if (data.success === false) {
                     $state.go('add-phone');
                 }
             }
         }
 
-        function getDeviceToken() {
-            let device_id;
-            if (typeof FCMPlugin !== 'undefined') {
-                FCMPlugin.getToken(function (token) {
-                    console.log('token = ', token);
-                    device_id = token;
-                    let sub = fcmSvc.subscribe(device_id);
-                    console.log(sub)
-                    $localStorage.device_id = token;
-                    }, function (res) {
-                        {
-                            console.log(res);
-                        }
-                    })
+        function processUserData(data){
+            userSvc.setUser(data.user);
+            userSvc.setRole(data.user.roles[0].name);
+            userSvc.setToken(data.token);
+            sendFCMToken();
+            if (userSvc.isDoc()) {
+                $state.go('tabs.dentist-profile');
+            } else if (userSvc.isPat()) {
+                $state.go('tabs.patient-profile');
             }
+            vm.code = '';
         }
-        function checkDentistInvite(){
+
+        function sendFCMToken() {
+            fcmSvc.getToken(function (data) {
+                fcmSvc.sendToken(data).then(function () {
+                    fcmSvc.subscribe();
+                });
+            });
+        }
+
+        function checkDentistInvite() {
             dentistSvc.checkDentistInvite({
                 phone: vm.phone
-            }).then(function(res){
-                if(res && angular.isDefined(res.status)){
-                    if(res.status){
+            }).then(function (res) {
+                if (res && angular.isDefined(res.status)) {
+                    if (res.status) {
                         userSvc.setRole(userSvc.roleConst().doctor);
                         $state.go('registration-dentist');
                     } else {
@@ -96,34 +92,24 @@
         }
 
         function processRegError(err) {
-            var err_text = '';
+            let err_text = '';
             angular.forEach(err, function (val, key) {
-                if (angular.isArray(val)){
+                if (angular.isArray(val)) {
                     err_text += val.reduce(function (acc, current) {
                         return acc + '\n' + current;
                     }, '');
                 }
             });
-            if(err_text.length){
+            if (err_text.length) {
                 toastr.error(err_text);
             }
         }
 
-        function validCode() {
-            if (vm.code !== '') {
-                let code_len = vm.code.toString().length;
-                if (code_len === 4) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }
-
         function goAddPhone() {
-            $state.go('add-phone');
             vm.code = '';
+            $state.go('add-phone');
         }
     }
 
-})();
+})
+();
