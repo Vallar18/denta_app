@@ -142,7 +142,6 @@
                 }
             })
             .state('tabs', {
-                cache: false,
                 reload: true,
                 url: '/tab',
                 abstract: true,
@@ -173,7 +172,6 @@
                 templateUrl: 'templates/help/help.html',
                 controller: 'HelpCtrl',
                 controllerAs: 'vm'
-
             })
             .state('tabs.patient-profile', {
                 url: '/patient-profile',

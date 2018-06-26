@@ -52,7 +52,7 @@
                 let codeLower = codeName.toLowerCase();
                 return findArray.findIndex(function(item){
                     return item.code && item.code.toLowerCase() === codeLower;
-                })
+                });
             }
             return 0;
         }

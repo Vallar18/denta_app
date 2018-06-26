@@ -17,7 +17,8 @@
         utilsSvc.initializePolyfill();
 
         if (authSvc.isLogined()) {
-            authSvc.processAutoLogin();
+            // authSvc.processAutoLogin();
+            $state.go('tabs.my-patient');
         }
         if (userSvc.isShowStart()) {
             $state.go('view');
