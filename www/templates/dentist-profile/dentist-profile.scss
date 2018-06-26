@@ -139,6 +139,10 @@
     overflow-y: scroll;
     overflow-x: hidden;
     position: relative;
+    .invite-dentist-btn {
+      display: block;
+      margin: 7% auto 7%;
+    }
   }
   &__navigate {
     padding: 10px 0;
@@ -158,6 +162,7 @@
       color: #76869f;
       font-weight: 700;
       padding: 8px 0;
+      text-transform: uppercase;
     }
     .item {
       border-left: none;
