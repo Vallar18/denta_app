@@ -16,6 +16,9 @@
             question: {
                 getAll: baseUrl + 'question'
             },
+            logout: {
+              logout: baseUrl + 'logout'
+            },
             emergencies: {
                 create: baseUrl + 'emergency/create',
                 addPhotos: baseUrl + 'emergency/photos',

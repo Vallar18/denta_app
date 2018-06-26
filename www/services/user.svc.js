@@ -26,9 +26,24 @@
             setShowStart: setShowStart,
             isShowStart: isShowStart,
             isHaveDentist: isHaveDentist,
-            getPatientDentist: getPatientDentist
+            getPatientDentist: getPatientDentist,
+            getDeviceID: getDeviceID,
+            setDeviceID: setDeviceID
         };
         return model;
+
+
+        function getDeviceID(){
+            if($localStorage.device_id){
+                return $localStorage.device_id;
+            }
+        }
+
+        function setDeviceID(id){
+            if(angular.isDefined(id)){
+                $localStorage.device_id = id;
+            }
+        }
 
         function setShowStart(isShow){
             if(angular.isDefined(isShow)){
@@ -74,9 +89,11 @@
             $localStorage.user = null;
             $localStorage.token = null;
             $localStorage.role = null;
+            $localStorage.device_id = null;
             delete $localStorage.user;
             delete $localStorage.token;
             delete $localStorage.role;
+            delete $localStorage.device_id;
         }
 
         function setToken(token){

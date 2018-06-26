@@ -3,9 +3,9 @@
 
     angular.module('service.authSvc', []).factory('authSvc', authSvc);
 
-    authSvc.$inject = ['userSvc', '$localStorage', '$state', '$ionicPlatform', '$ionicPopup'];
+    authSvc.$inject = ['userSvc', '$localStorage', '$state', '$ionicPlatform', '$ionicPopup','http','url'];
 
-    function authSvc(userSvc, $localStorage, $state, $ionicPlatform, $ionicPopup) {
+    function authSvc(userSvc, $localStorage, $state, $ionicPlatform, $ionicPopup,http, url) {
         const CODE_LENGTH = 4;
         let model = {
             setCode: setCode,
@@ -66,10 +66,14 @@
         }
 
         function logout() {
-            clearAuthData();
-            userSvc.resetData();
-            // ionic.Platform.exitApp();
-            $state.go('add-phone');
+            http.post(url.logout.logout,{
+                device_id: userSvc.getDeviceID()
+            }).then(function(res){
+                clearAuthData();
+                userSvc.resetData();
+                // ionic.Platform.exitApp();
+                $state.go('add-phone');
+            });
         }
 
 

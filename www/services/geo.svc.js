@@ -104,7 +104,7 @@
                     + '&libraries=drawing,geometry,places&callback=mapInit';
             }
             else {
-                script.setAttribute('src', 'https://maps.googleapis.com/maps/api/js?libraries=drawing,geometry,places&callback=mapInit');
+                script.setAttribute('src', 'https://maps.googleapis.com/maps/api/js?language=en&libraries=drawing,geometry,places&callback=mapInit');
             }
             document.body.appendChild(script);
         }

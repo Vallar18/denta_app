@@ -3,9 +3,9 @@
 
     angular.module('service.fcmSvc', []).factory('fcmSvc', fcmSvc);
 
-    fcmSvc.$inject = ['http', 'url', 'toastr', 'messagesSvc'];
+    fcmSvc.$inject = ['http', 'url', 'toastr', 'messagesSvc','userSvc'];
 
-    function fcmSvc(http, url, toastr, messagesSvc) {
+    function fcmSvc(http, url, toastr, messagesSvc, userSvc) {
         let model = {
             subscribe: subscribe,
             unsubscribe: unsubscribe,
@@ -37,11 +37,14 @@
         }
 
         function sendToken(data) {
-            return http.post(url.subscribe, data);
+            if (data) {
+                userSvc.setDeviceID(data);
+                return http.post(url.subscribe, {device_id: data});
+            }
         }
 
         function refreshToken(callback) {
-            if (angular.isDefined(FCMPlugin)) {
+            if (typeof FCMPLugin !== 'undefined') {
                 FCMPlugin.onTokenRefresh(function (token) {
                     if (angular.isFunction(callback) && token) {
                         callback(token);
@@ -51,7 +54,7 @@
         }
 
         function getToken(callback) {
-            if (angular.isDefined(FCMPlugin)) {
+            if (typeof FCMPLugin !== 'undefined') {
                 FCMPlugin.getToken(function (token) {
                     if (angular.isFunction(callback) && token) {
                         callback(token);
@@ -61,7 +64,7 @@
         }
 
         function subscribe() {
-            if (angular.isDefined(FCMPlugin)) {
+            if (typeof FCMPLugin !== 'undefined') {
                 FCMPlugin.onNotification(function (data) {
                     console.log(data);
                     toastr.success(data);

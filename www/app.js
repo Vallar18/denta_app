@@ -25,6 +25,7 @@
             }
             addBehaverForKeyboard();
         });
+
         if (authSvc.isLogined()) {
             authSvc.processAutoLogin();
         } else if (userSvc.isShowStart()) {
@@ -45,6 +46,7 @@
                 }
             });
         }
+
 
         // exit.buttonExit($state.current.url);
         // $ionicPlatform.registerBackButtonAction(function() {
