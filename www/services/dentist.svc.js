@@ -9,7 +9,8 @@
         var model = {
             invite: invite,
             updateClinic: updateClinic,
-            checkDentistInvite: checkDentistInvite
+            checkDentistInvite: checkDentistInvite,
+            addInviteDentist: addInviteDentist
         };
         return model;
 
@@ -23,6 +24,10 @@
 
         function updateClinic(data){
             return http.post(url.clinic.update,data);
+        }
+
+        function addInviteDentist(data) {
+            return http.post(url.relate.dentist, data)
         }
     }
 })();

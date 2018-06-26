@@ -18,6 +18,7 @@
         vm.selectOneContact = selectOneContact;
         vm.edit = $stateParams.edit;
         vm.c_invite = $stateParams.c_invite;
+        vm.invite_for_den = $stateParams.invite_for_den;
         vm.codes = codes;
         vm.select_code = vm.codes[phoneSvc.getDefaultIndex()].code;
         vm.user = userSvc.getUser();
@@ -29,7 +30,7 @@
         init();
         function init() {
             authSvc.addBackBehave(vm.edit);
-            if(vm.edit || vm.c_invite){
+            if(vm.edit || vm.c_invite || vm.invite_for_den){
                 hideOverlay();
             }
         }
@@ -76,7 +77,12 @@
                     };
                     if(vm.edit || vm.c_invite){
                         updateRoleProcess(data);
-                    } else{
+                    } else if(vm.invite_for_den) {
+                        data = {
+                            dentist_phone: vm.sum_phone,
+                        };
+                        inviteForDentist(data);
+                    } else {
                         addRoleProcess(data);
                     }
                 }
@@ -93,6 +99,33 @@
                     })
                 } else {
                    showAskDentist();
+                }
+            }, function (err) {
+                let err_text = '';
+                angular.forEach(err, function (val, key) {
+                    if (angular.isArray(val)) {
+                        err_text += val.reduce(function (acc, current) {
+                            return acc + '\n' + current;
+                        }, '');
+                    }
+                });
+                if (err_text.length) {
+                    toastr.error(err_text);
+                }
+            });
+        }
+
+        function inviteForDentist(data) {
+            if(angular.isUndefined(data)){ return; }
+            dentistSvc.addInviteDentist(data).then(function (data) {
+                if (data.success) {
+                    userSvc.getUserInfo().then(function (res) {
+                        userSvc.setUser(res.user);
+                        $state.go('tabs.dentist-profile');
+                        vm.phone = '';
+                    })
+                } else {
+                    showAskDentist();
                 }
             }, function (err) {
                 let err_text = '';
@@ -147,6 +180,8 @@
                 };
                 if(vm.edit || vm.c_invite){
                     updateRoleProcess(data);
+                } else if(vm.invite_for_den){
+                    $state.go('tabs.dentist-profile');
                 } else{
                     addRoleProcess(data);
                 }

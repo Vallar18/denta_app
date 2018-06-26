@@ -7,14 +7,14 @@
             </div>
         </div>
         <div class="item-block-top">
-            <div layout="row" layout-align="space-around end" class="steps-wrap" ng-if="!vm.edit && !vm.c_invite">
+            <div layout="row" layout-align="space-around end" class="steps-wrap" ng-if="!vm.edit && !vm.c_invite && !vm.invite_for_den">
                 <div class="steps-item"><span>1</span></div>
                 <div class="steps-item active-step"><span>2</span></div>
             </div>
             <div class="img-wrap">
                 <p ng-if="vm.edit">Change dentist</p>
-                <p ng-if="!vm.edit && !vm.c_invite">Thank you</p>
-                <p ng-if="vm.c_invite">Invite Dentist</p>
+                <p ng-if="!vm.edit && !vm.c_invite && !vm.invite_for_den">Thank you</p>
+                <p ng-if="vm.c_invite || vm.invite_for_den">Invite Dentist</p>
                 <div class="img-outer">
                     <img src="content/img/border.svg">
                 </div>

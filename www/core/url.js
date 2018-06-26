@@ -60,6 +60,9 @@
             user_role: {
                 update: baseUrl + 'user-role/update'
             },
+            relate: {
+                dentist: baseUrl + 'relate/dentist'
+            },
             subscribe: baseUrl + 'subscribe'
         };
     }

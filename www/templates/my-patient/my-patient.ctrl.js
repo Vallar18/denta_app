@@ -5,9 +5,9 @@
         .module('app')
         .controller('MyPatientCtrl', MyPatientCtrl);
 
-    MyPatientCtrl.$inject = ['$ionicPopup', '$scope', 'phoneSvc', 'codeItems', '$state', 'toastr', 'messagesSvc','emergenciesSvc','userSvc'];
+    MyPatientCtrl.$inject = ['authSvc', '$scope', 'phoneSvc', 'codeItems', '$state', 'toastr', 'messagesSvc','emergenciesSvc','userSvc'];
 
-    function MyPatientCtrl($ionicPopup, $scope, phoneSvc, codeItems, $state, toastr, messagesSvc, emergenciesSvc, userSvc) {
+    function MyPatientCtrl(authSvc, $scope, phoneSvc, codeItems, $state, toastr, messagesSvc, emergenciesSvc, userSvc) {
         const vm = this;
         vm.send = send;
         vm.getSelectCode = getSelectCode;
@@ -16,6 +16,8 @@
         var selectedCountry = vm.codes[phoneSvc.getDefaultIndex()];
         vm.select_code = selectedCountry.code;
         vm.phone = '';
+
+        authSvc.addBackBehave(false);
 
         function send() {
             let phone = phoneSvc.preparePhone(vm.select_code, vm.phone);
