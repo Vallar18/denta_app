@@ -41,7 +41,7 @@
         }
 
         function refreshToken(callback) {
-            if (angular.isDefined(FCMPlugin)) {
+            if (typeof FCMPlugin !== 'undefined') {
                 FCMPlugin.onTokenRefresh(function (token) {
                     if (angular.isFunction(callback) && token) {
                         callback(token);
@@ -51,7 +51,7 @@
         }
 
         function getToken(callback) {
-            if (angular.isDefined(FCMPlugin)) {
+            if (typeof FCMPlugin !== 'undefined') {
                 FCMPlugin.getToken(function (token) {
                     if (angular.isFunction(callback) && token) {
                         callback(token);
@@ -61,7 +61,7 @@
         }
 
         function subscribe() {
-            if (angular.isDefined(FCMPlugin)) {
+            if (typeof FCMPlugin !== 'undefined') {
                 FCMPlugin.onNotification(function (data) {
                     console.log(data);
                     toastr.success(data);
