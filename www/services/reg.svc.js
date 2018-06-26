@@ -1,12 +1,12 @@
 ;(function () {
     'use strict';
 
-    angular.module('service.regSvc', []).factory('regSvc', regSvc,);
+    angular.module('service.regSvc', []).factory('regSvc', regSvc);
 
     regSvc.$inject = ['url', 'http'];
 
     function regSvc(url, http) {
-        var model = {};
+        let model = {};
         model.sendPhone = sendPhone;
         model.sendVerify = sendVerify;
         model.sendUser = sendUser;

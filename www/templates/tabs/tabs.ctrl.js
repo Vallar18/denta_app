@@ -5,10 +5,9 @@
         .module('app')
         .controller('TabsController', TabsController);
 
-    TabsController.$inject = ['$state', '$localStorage', 'userSvc', '$cordovaSocialSharing', '$ionicPlatform', 'tabsSvc','authSvc'];
+    TabsController.$inject = ['$state', '$localStorage', 'userSvc', 'tabsSvc','authSvc','textSvc','geoSvc'];
 
-    function TabsController($state, $localStorage, userSvc, $cordovaSocialSharing, $ionicPlatform, tabsSvc, authSvc) {
-
+    function TabsController($state, $localStorage, userSvc,tabsSvc, authSvc,textSvc,geoSvc) {
         var vm = this;
         vm.toggleMenu = toggleMenu;
         vm.selectingItem = selectingItem;
@@ -27,6 +26,7 @@
         function init() {
             vm.menuModel.items = tabsSvc.getMenuItems(currentUserType);
             vm.tabsModel.items = tabsSvc.getTabItems(currentUserType);
+            geoSvc.watchPosition();
         }
 
         function toggleMenu() {
@@ -51,17 +51,9 @@
             vm.menuModel.model = null;
         }
 
-        function share() {
-            $ionicPlatform.ready(function () {
-                var message = 'Test messages';
-                $cordovaSocialSharing
-                    .share(message, null, null, null) // Share via native share sheet
-                    .then(function (result) {
-                        // Success!
-                    }, function (err) {
-                        // An error occured. Show a message to the user
-                    });
-            });
+        function share(){
+            textSvc.share();
         }
+
     }
 })();

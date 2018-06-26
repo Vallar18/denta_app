@@ -24,7 +24,8 @@
                 emptyReview: 'Please write review text',
                 emptyAddress: 'Address not found, enter manually',
                 notGetContact: 'It is not possible to access the phone book',
-                checkClinickOnMap: 'Check that you have indicated the location of the clinic on the map'
+                checkClinickOnMap: 'Check that you have indicated the location of the clinic on the map',
+                fcm: 'Error with Firebase. Please, check the Internet connection and restart the application'
             },
             success: {
                 test: 'Test',

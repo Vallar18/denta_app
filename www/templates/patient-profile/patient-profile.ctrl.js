@@ -5,9 +5,9 @@
         .module('app')
         .controller('PatientProfileCtrl', PatientProfileCtrl);
 
-    PatientProfileCtrl.$inject = ['$state', 'userSvc', 'authSvc', '$ionicPlatform'];
+    PatientProfileCtrl.$inject = ['$state', 'userSvc', 'authSvc', 'textSvc'];
 
-    function PatientProfileCtrl($state, userSvc, authSvc, $ionicPlatform) {
+    function PatientProfileCtrl($state, userSvc, authSvc, textSvc) {
         var vm = this;
         vm.editPatient = editPatient;
         vm.editDentistPhone= editDentistPhone;
@@ -15,35 +15,29 @@
         vm.invite = invite;
         vm.user = userSvc.getUser();
         vm.logout = authSvc.logout;
-        vm.pat_den_binding = userSvc.isPatientDentistBinding();
+        vm.have_den = userSvc.isHaveDentist();
 
-        if(userSvc.getPatientDentistBinding() && userSvc.getPatientDentistBinding()[0]){
-            vm.home_dentist = userSvc.getPatientDentistBinding()[0].user;
+        authSvc.addBackBehave(false);
+        if(userSvc.getPatientDentist() && userSvc.getPatientDentist()[0]){
+            vm.home_dentist = userSvc.getPatientDentist()[0];
         }
 
         function editPatient() {
-            $state.go('registration-patient', {edit: true})
+            $state.go('registration-patient', {edit: true});
+            authSvc.addBackBehave(true);
         }
 
         function editDentistPhone() {
-            $state.go('add-dentist-phone', {edit: true})
+            $state.go('add-dentist-phone', {edit: true});
+            authSvc.addBackBehave(true);
         }
 
         function invite() {
-            $state.go('add-dentist-phone', {c_invite: true})
+            $state.go('add-dentist-phone', {c_invite: true});
         }
 
         function share() {
-            $ionicPlatform.ready(function () {
-                var message = 'You can install this application using the following links: https://play.google.com/store/apps/details...';
-                $cordovaSocialSharing
-                    .share(message, null, null, null) // Share via native share sheet
-                    .then(function (result) {
-                        // Success!
-                    }, function (err) {
-                        // An error occured. Show a message to the user
-                    });
-            });
+            textSvc.share();
         }
     }
 })();

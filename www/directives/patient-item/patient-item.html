@@ -8,7 +8,9 @@
                 <div class="patient-item__doctor" ng-if="piDoctor">{{::piDoctor}}</div>
             </div>
             <div class="col-20 col-bottom patient-item__photo">
-                <img src="content/img/view-docs-icon.png">
+                <img src="content/img/view-docs-icon.png"
+                     ng-click="vm.openPopupList()"
+                     ng-if="piPhotos && piPhotos.length">
             </div>
             <div class="col-40 col-bottom text-align-right patient-item__info-two">
                 <i ng-if="piAlarm" class="icon ion-ios-bell"></i>

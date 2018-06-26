@@ -25,8 +25,8 @@
             roleConst: roleConst,
             setShowStart: setShowStart,
             isShowStart: isShowStart,
-            isPatientDentistBinding: isPatientDentistBinding,
-            getPatientDentistBinding: getPatientDentistBinding
+            isHaveDentist: isHaveDentist,
+            getPatientDentist: getPatientDentist
         };
         return model;
 
@@ -121,9 +121,9 @@
             }
         }
         
-        function isPatientDentistBinding() {
-            if ($localStorage.user.patient){
-                if($localStorage.user.patient.dentists && $localStorage.user.patient.dentists.length) {
+        function isHaveDentist() {
+            if ($localStorage.user){
+                if($localStorage.user.dentists && $localStorage.user.dentists.length) {
                     return true;
                 }
             } else{
@@ -131,10 +131,10 @@
             }
         }
 
-        function getPatientDentistBinding() {
-            if ($localStorage.user.patient){
-                if($localStorage.user.patient.dentists) {
-                    return $localStorage.user.patient.dentists;
+        function getPatientDentist() {
+            if ($localStorage.user){
+                if($localStorage.user.dentists) {
+                    return $localStorage.user.dentists;
                 }
             }
         }

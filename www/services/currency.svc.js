@@ -3,30 +3,50 @@
 
     angular.module('service.currencySvc', []).factory('currencySvc', currencySvc);
 
-    currencySvc.$inject = ['url', 'http', '$timeout', '$q','$ionicPopup'];
+    currencySvc.$inject = ['url', 'http', '$timeout', '$q', '$ionicPopup', 'utilsSvc'];
 
-    function currencySvc(url, http, $timeout, $q,$ionicPopup) {
+    function currencySvc(url, http, $timeout, $q, $ionicPopup, utilsSvc) {
         let DEFAULT_CURR_NAME = 'USD';
         let cache = [];
+        let search_cache = {};
         let model = {
             getCurrency: getCurrency,
             showSelect: showSelect,
             getIndexByName: getIndexByName,
             getDefaultIndex: getDefaultIndex,
-            setDefaultName: setDefaultName
+            setDefaultName: setDefaultName,
+            getById: getById,
+            createCacheSearch: createCacheSearch
         };
         return model;
+
+        function createCacheSearch() {
+            if (cache.length) {
+                search_cache = utilsSvc.createObjByArrayIds(cache);
+            } else {
+                return getCurrency();
+            }
+        }
+
+        function getById(id) {
+            if (angular.isDefined(id)) {
+                if (search_cache[id]) {
+                    return search_cache[id];
+                }
+            }
+        }
 
         function getCurrency() {
             if (cache.length) {
                 return $q(function (resolve, reject) {
-                    $timeout(function(){
+                    $timeout(function () {
                         resolve(cache);
-                    },250);
+                    }, 250);
                 });
             } else {
-                return http.get(url.currencies).then(function(res){
+                return http.get(url.currencies).then(function (res) {
                     cache = res;
+                    createCacheSearch();
                     return res;
                 });
             }
@@ -38,23 +58,23 @@
          * @param array - optional, array of currency if need, by default use cache array
          * @returns {number}
          */
-        function getIndexByName(currencyName,array){
-            if(currencyName){
+        function getIndexByName(currencyName, array) {
+            if (currencyName) {
                 let findArray = angular.isArray(array) ? array : cache;
                 let currNameLwr = currencyName.toLowerCase();
-                return findArray.findIndex(function(item){
+                return findArray.findIndex(function (item) {
                     return item.abr && item.abr.toLowerCase() === currNameLwr;
-                })
+                });
             }
             return 0;
         }
 
-        function getDefaultIndex(){
+        function getDefaultIndex() {
             return getIndexByName(DEFAULT_CURR_NAME);
         }
 
-        function setDefaultName(name){
-            if(name){
+        function setDefaultName(name) {
+            if (name) {
                 DEFAULT_CURR_NAME = name;
             }
         }

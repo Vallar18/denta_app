@@ -13,7 +13,7 @@
         vm.getSelectCode = getSelectCode;
         vm.selectCode = selectCode;
         vm.codes = codes;
-        var selectedCountry = vm.codes[phoneSvc.getDefaultIndex()];
+        let selectedCountry = vm.codes[phoneSvc.getDefaultIndex()];
         vm.select_code = selectedCountry.code;
         vm.phone = '';
         vm.content = {
@@ -45,14 +45,14 @@
             let phone = phoneSvc.preparePhone(vm.select_code, vm.phone);
             if (!phoneSvc.validatePhone(phone)) {
                 toastr.error(messagesSvc.error.invalidPhone);
-                return
+                return;
             }
             regSvc.sendPhone({
                 phone: phone
-            }).then(function (data) {
-                if (data.success) {
-                    console.log(data.data);
-                    toastr.success(data.data, null, {
+            }).then(function (res) {
+                if (res.success && res.data) {
+                    console.log(res.data);
+                    toastr.success(res.data, null, {
                         timeOut: 20000,
                         tapToDismiss: true
                     });
@@ -60,8 +60,8 @@
                     authSvc.setPhone(phone);
                     vm.phone = '';
                     $state.go('add-code');
-                } else if (data.message) {
-                    toastr.error(data.message);
+                } else if (res.message) {
+                    toastr.error(res.message);
                 }
             });
         }

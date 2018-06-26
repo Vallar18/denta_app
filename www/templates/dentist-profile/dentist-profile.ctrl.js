@@ -5,9 +5,9 @@
         .module('app')
         .controller('DentistProfileCtrl', DentistProfileCtrl);
 
-    DentistProfileCtrl.$inject = ['userSvc', '$state'];
+    DentistProfileCtrl.$inject = ['userSvc', '$state', 'authSvc'];
 
-    function DentistProfileCtrl(userSvc, $state) {
+    function DentistProfileCtrl(userSvc, $state, authSvc) {
         var vm = this;
         vm.isExpandDescr = false;
         vm.country = 'Israel';
@@ -15,8 +15,10 @@
         vm.test = [{name: 'tdddd est'}, {name: 'tefg dfg st'}, {name: 'tdf vfdv est'}, {name: 'gdfgdfgdfgdfg '}, {name: 'test'}, {name: 'test'}, {name: 'test'}, {name: 'test'}];
         vm.editDentist = editDentist;
 
+        authSvc.addBackBehave(false);
         function editDentist() {
             $state.go('registration-dentist', {edit: true})
+            authSvc.addBackBehave(true);
         }
 
         if(userSvc.isDoc()){

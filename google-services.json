@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "117305701018",
-    "firebase_url": "https://denta-app-testing.firebaseio.com",
-    "project_id": "denta-app-testing",
-    "storage_bucket": "denta-app-testing.appspot.com"
+    "project_number": "64881062287",
+    "firebase_url": "https://my-projectdentte-1528234503301.firebaseio.com",
+    "project_id": "my-projectdentte-1528234503301",
+    "storage_bucket": "my-projectdentte-1528234503301.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:117305701018:android:0c54dbfbfd177da1",
+        "mobilesdk_app_id": "1:64881062287:android:820646c21230290b",
         "android_client_info": {
-          "package_name": "com.denta.app"
+          "package_name": "com.dent.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "117305701018-5lne3oel5m57kj56t7pfni8eqie8qt2p.apps.googleusercontent.com",
+          "client_id": "64881062287-ga0qa4tfsbpo9ddjpa7ji75gnh4hemkj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDNzAUPXn2zXe_1K6Or2TpfulpGCxmVxS8"
+          "current_key": "AIzaSyBA7OBLk2igJyerbNmUqAKYEbC75SvlxMw"
         }
       ],
       "services": {
