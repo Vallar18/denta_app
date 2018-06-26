@@ -111,7 +111,6 @@
                     user_id: vm.user.id, name: '', phone: '',
                     longitude: null, latitude: null
                 };
-                $state.reload();
             }
         }
 

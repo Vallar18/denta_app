@@ -111,7 +111,6 @@
                 templateUrl: 'templates/add-specialities/add-specialities.html',
                 controller: 'AddSpecialitiesCtrl',
                 controllerAs: 'vm',
-                cache: false,
                 params: {edit: null, become_den: null},
                 resolve: {
                     spec: function (specSvc) {
