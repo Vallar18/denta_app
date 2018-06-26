@@ -5,9 +5,9 @@
         .module('app')
         .controller('TabsController', TabsController);
 
-    TabsController.$inject = ['$state', '$localStorage', 'userSvc', 'tabsSvc', 'authSvc', 'textSvc', 'geoSvc', 'fcmSvc'];
+    TabsController.$inject = ['$state', 'userSvc', 'tabsSvc', 'authSvc', 'textSvc', 'geoSvc', 'fcmSvc'];
 
-    function TabsController($state, $localStorage, userSvc, tabsSvc, authSvc, textSvc, geoSvc, fcmSvc) {
+    function TabsController($state, userSvc, tabsSvc, authSvc, textSvc, geoSvc, fcmSvc) {
         var vm = this;
         vm.toggleMenu = toggleMenu;
         vm.selectingItem = selectingItem;
@@ -27,7 +27,7 @@
         function init() {
             vm.menuModel.items = tabsSvc.getMenuItems(currentUserType);
             vm.tabsModel.items = tabsSvc.getTabItems(currentUserType);
-            geoSvc.watchPosition();
+            // geoSvc.watchPosition();
             sendFCMToken();
         }
 

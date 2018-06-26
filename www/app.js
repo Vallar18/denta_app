@@ -11,28 +11,27 @@
                 'app.directives',
             ])
         .run(runBlock);
-    runBlock.$inject = ['$ionicPlatform', '$state', 'utilsSvc', 'authSvc','userSvc','fcmSvc'];
+    runBlock.$inject = ['$ionicPlatform', '$state', 'utilsSvc', 'authSvc', 'userSvc', 'fcmSvc'];
 
-    function runBlock($ionicPlatform, $state, utilsSvc, authSvc, userSvc,fcmSvc) {
+    function runBlock($ionicPlatform, $state, utilsSvc, authSvc, userSvc, fcmSvc) {
         utilsSvc.initializePolyfill();
+
+        if (authSvc.isLogined()) {
+            authSvc.processAutoLogin();
+        }
+        if (userSvc.isShowStart()) {
+            $state.go('view');
+        }
+
         $ionicPlatform.ready(function () {
             fcmSvc.initialize();
-            fcmSvc.getToken(function(){
-                fcmSvc.subscribe();
-            });
             if (window.StatusBar) {
                 window.styleDefault();
             }
             addBehaverForKeyboard();
         });
 
-        if (authSvc.isLogined()) {
-            authSvc.processAutoLogin();
-        } else if (userSvc.isShowStart()) {
-            $state.go('view');
-        }
-
-        function addBehaverForKeyboard(){
+        function addBehaverForKeyboard() {
             window.addEventListener('keyboardDidShow', (event) => {
                 let popup = document.querySelector('.popup');
                 if (popup != null) {
