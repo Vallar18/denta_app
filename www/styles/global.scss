@@ -574,6 +574,12 @@ textarea {
               position: absolute;
               border: 2px solid $filters-color;
               left: 0;
+              top: 50%;
+              -webkit-transform: translateY(-50%);
+              -moz-transform: translateY(-50%);
+              -ms-transform: translateY(-50%);
+              -o-transform: translateY(-50%);
+              transform: translateY(-50%);
             }
             &:after {
               content: "";
@@ -582,7 +588,12 @@ textarea {
               position: absolute;
               left: 4px;
               border-radius: 50%;
-              top: 4px;
+              top: 50%;
+              -webkit-transform: translateY(-50%);
+              -moz-transform: translateY(-50%);
+              -ms-transform: translateY(-50%);
+              -o-transform: translateY(-50%);
+              transform: translateY(-50%);
               opacity: 0;
               background-color: $filters-color;
             }
