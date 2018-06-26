@@ -13,6 +13,7 @@
         vm.editDentistPhone= editDentistPhone;
         vm.share = share;
         vm.invite = invite;
+        vm.becomeDentist = becomeDentist;
         vm.user = userSvc.getUser();
         vm.logout = authSvc.logout;
         vm.have_den = userSvc.isHaveDentist();
@@ -38,6 +39,10 @@
 
         function share() {
             textSvc.share();
+        }
+
+        function becomeDentist() {
+            $state.go('registration-dentist', {become_den: true});
         }
     }
 })();

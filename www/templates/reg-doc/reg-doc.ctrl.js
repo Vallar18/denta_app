@@ -13,15 +13,19 @@
         vm.phone = authSvc.getPhone();
         vm.key = authSvc.getKey();
         vm.edit = $stateParams.edit;
-        vm.btn_text = 'Send';
+        vm.become_den = $stateParams.become_den;
         vm.croppedDataUrl = '';
-        if(vm.edit){
+        if(vm.edit || vm.become_den){
             let user = userSvc.getUser();
-            vm.btn_text = 'Update';
             vm.user = {
                 name: user.name, lastname: user.lastname, email: user.email,
-                user_id: user.id, avatar: user.avatar
+                user_id: user.id, avatar: ''
             };
+            if(vm.edit){
+                vm.user.avatar = user.avatar;
+            }else{
+                vm.user.avatar = ''
+            }
         } else{
             vm.user = {
                 name: '', lastname: '', email: '',
@@ -34,15 +38,19 @@
 
         function send() {
             if(!validation()){
-
+                return
             }
             vm.user.country_id = authSvc.getCountryId();
-            if (vm.edit) {
+            if (vm.edit || vm.become_den) {
                 userSvc.updateUser(vm.user).then(function (data) {
                     if (data.success) {
                         userSvc.getUserInfo().then(function (res) {
                             userSvc.setUser(res.user);
-                            $state.go('add-clinic', {edit: true});
+                            if(vm.edit){
+                                $state.go('add-clinic', {edit: true, become_den: false});
+                            } else {
+                                $state.go('add-clinic', {edit: true, become_den: true});
+                            }
                         })
                     } else {
                         toastr.error(data.message);

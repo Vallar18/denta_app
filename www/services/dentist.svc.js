@@ -3,14 +3,18 @@
 
     angular.module('service.dentistSvc', []).factory('dentistSvc', dentistSvc);
 
-    dentistSvc.$inject = ['http','url'];
+    dentistSvc.$inject = ['http','url','$localStorage'];
 
-    function dentistSvc(http, url) {
+    function dentistSvc(http, url,$localStorage) {
         var model = {
             invite: invite,
             updateClinic: updateClinic,
             checkDentistInvite: checkDentistInvite,
-            addInviteDentist: addInviteDentist
+            addInviteDentist: addInviteDentist,
+            // saveBecomeDenClinic: saveBecomeDenClinic,
+            // getBecomeDenClinic: sgetBecomeDenClinic,
+            sendBecomeDen: sendBecomeDen,
+
         };
         return model;
 
@@ -28,6 +32,17 @@
 
         function addInviteDentist(data) {
             return http.post(url.relate.dentist, data)
+        }
+
+        // function saveBecomeDenClinic(clinic) {
+        //     $localStorage.become_dentist_clinic = clinic;
+        // }
+
+        // function getBecomeDenClinic() {
+        //     return $localStorage.become_dentist_clinic;
+        // }
+        function sendBecomeDen(data){
+            return http.post(url.user.become_dentist, data);
         }
     }
 })();

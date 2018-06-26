@@ -81,7 +81,7 @@
                 controller: 'RegDocCtrl',
                 controllerAs: 'vm',
                 cache: false,
-                params: {edit: null}
+                params: {edit: null, become_den: null}
             })
             .state('registration-patient', {
                 url: '/registration-patient',
@@ -97,7 +97,7 @@
                 controller: 'AddClinicCtrl',
                 controllerAs: 'vm',
                 cache: false,
-                params: {edit: null},
+                params: {edit: null, become_den: null},
                 resolve: {
                     codes: function (phoneSvc) {
                         return phoneSvc.getCodes().then(function (res) {
@@ -112,7 +112,7 @@
                 controller: 'AddSpecialitiesCtrl',
                 controllerAs: 'vm',
                 cache: false,
-                params: {edit: null},
+                params: {edit: null, become_den: null},
                 resolve: {
                     spec: function (specSvc) {
                             return specSvc.getSpeciality().then(function (res) {

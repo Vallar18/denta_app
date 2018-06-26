@@ -16,13 +16,17 @@
         vm.validPhone = validPhone;
         vm.openMapPopup = openMapPopup;
         vm.newClinic = newClinic;
-        vm.btn_text = 'Send';
         vm.edit = $stateParams.edit;
+        vm.become_den = $stateParams.become_den;
         vm.codes = codes;
         vm.select_code = vm.codes[phoneSvc.getDefaultIndex()].code;
         vm.user = userSvc.getUser();
         let clinic = userSvc.getUser().clinic;
         vm.phone = '';
+        vm.btn_text = 'Send';
+        if(vm.become_den){
+            vm.edit = false;
+        }
         if (vm.edit){
             vm.btn_text = 'Update';
             vm.clinic = {
@@ -117,9 +121,14 @@
             }
             if(vm.edit){
                 updateClinic(vm.clinic);
-            } else if(vm.showSelect){
+            } else if(vm.showSelect && !vm.become_den){
                 changeClinic(vm.change_clinic)
-            } else{
+            } else if(vm.become_den){
+                vm.change_clinic = {
+                    user_id: vm.user.id, clinic_id: vm.select_clinic.id
+                };
+                createClinic(vm.change_clinic);
+            }else{
                 createClinic(vm.clinic)
             }
         }
@@ -182,10 +191,14 @@
         function createClinic(data) {
             regSvc.createClinic(data).then(function (data) {
                 if (data.success) {
-                    if(vm.edit_spec){
+                    if(vm.edit_spec || vm.become_den){
                         userSvc.getUserInfo().then(function (res) {
                             userSvc.setUser(res.user);
-                            $state.go('add-specialities', {edit: true});
+                            if(vm.become_den){
+                                $state.go('add-specialities', {edit: false, become_den: true});
+                            } else{
+                                $state.go('add-specialities', {edit: true});
+                            }
                         });
                     } else {
                         $state.go('add-specialities');

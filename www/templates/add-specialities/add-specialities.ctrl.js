@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddSpecialitiesCtrl', AddSpecialitiesCtrl);
 
-    AddSpecialitiesCtrl.$inject = ['$scope', '$state', '$stateParams', 'utilsSvc', 'authSvc', 'specSvc', 'toastr', 'userSvc', 'messagesSvc', '$ionicModal', 'spec', 'currencies', '$ionicPopup', 'currencySvc'];
+    AddSpecialitiesCtrl.$inject = ['$scope', '$state', '$stateParams', 'utilsSvc', 'dentistSvc', 'authSvc', 'specSvc', 'toastr', 'userSvc', 'messagesSvc', '$ionicModal', 'spec', 'currencies', '$ionicPopup', 'currencySvc'];
 
-    function AddSpecialitiesCtrl($scope, $state, $stateParams, utilsSvc, authSvc, specSvc, toastr, userSvc, messagesSvc, $ionicModal, spec, currencies, $ionicPopup, currencySvc) {
+    function AddSpecialitiesCtrl($scope, $state, $stateParams, utilsSvc, dentistSvc, authSvc, specSvc, toastr, userSvc, messagesSvc, $ionicModal, spec, currencies, $ionicPopup, currencySvc) {
         const vm = this;
         vm.send = send;
         vm.getSpeciality = getSpeciality;
@@ -15,14 +15,16 @@
         vm.selectItem = selectItem;
         vm.getSelectCurrency = getSelectCurrency;
         vm.selectCurrency = selectCurrency;
+        vm.sendBecomeDentist = sendBecomeDentist;
         vm.edit = $stateParams.edit;
+        vm.become_den = $stateParams.become_den;
         vm.btn_text = 'Send';
         vm.user = userSvc.getUser();
         vm.role = userSvc.getRole();
         vm.specialities = spec;
         vm.currencies = currencies;
         vm.select_currency = vm.currencies[currencySvc.getDefaultIndex()];
-        if (vm.edit){
+        if (vm.edit && !vm.become_den){
             vm.btn_text = 'Update';
             vm.select_currency = vm.user.dentist.currency;
             vm.dentist = {
@@ -56,10 +58,48 @@
             if(validation()){
                 if (vm.edit){
                     editProcess();
+                }else if(vm.become_den){
+                    getBecomeDenClinic();
                 } else {
                     addSpecProcess();
                 }
             }
+        }
+
+        function sendBecomeDentist() {
+            vm.become_dentist = {
+              user_id: vm.user.id,
+              avatar: vm.user.avatar,
+              specialty_id: vm.dentist.specialty_id,
+              description: vm.dentist.description,
+              price: vm.dentist.price
+            };
+            vm.become_dentist.currency_id = vm.select_currency.id;
+            dentistSvc.sendBecomeDen(vm.become_dentist).then(function (data) {
+                if(data.success) {
+                    userSvc.getUserInfo().then(function (res) {
+                        userSvc.setUser(res.user);
+                        userSvc.setRole(res.user.roles[0].name);
+                        $state.go('tabs.my-patient');
+                    });
+                } else {
+                    if(data.message) {
+                        toastr.error(data.message);
+                    }
+                }
+            }, function (err) {
+                let err_text = '';
+                angular.forEach(err, function (val, key) {
+                    if (angular.isArray(val)){
+                        err_text += val.reduce(function (acc, current) {
+                            return acc + '\n' + current;
+                        }, '');
+                    }
+                });
+                if(err_text.length){
+                    toastr.error(err_text);
+                }
+            });
         }
 
         function editProcess(){

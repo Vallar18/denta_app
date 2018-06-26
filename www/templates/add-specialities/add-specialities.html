@@ -31,7 +31,8 @@
                      <textarea rows="4" ng-model="vm.dentist.description" maxlength="250" placeholder="Write about the clinic.."></textarea>
                      <span>{{(vm.dentist.description.length ? vm.dentist.description.length: 0)+'/'+250 }}</span>
                 </div>
-                <button class="send-button" ng-click="vm.send()">{{vm.btn_text}}</button>
+                <button class="send-button" ng-if="!vm.become_den" ng-click="vm.send()">{{vm.btn_text}}</button>
+                <button class="send-button" ng-if="vm.become_den" ng-click="vm.sendBecomeDentist()">{{vm.btn_text}}</button>
             </div>
         </div>
     </ion-content>

@@ -30,7 +30,8 @@
                     <input class="text-center" type="email" placeholder="Email"
                            ng-model="vm.user.email" input-change-color="#000">
                 </label>
-                <button class="send-button" ng-click="vm.send()">{{vm.btn_text}}</button>
+                <button class="send-button" ng-if="!vm.edit" ng-click="vm.send()">Send</button>
+                <button class="send-button" ng-if="vm.edit" ng-click="vm.send()">Update</button>
             </form>
         </div>
     </ion-content>

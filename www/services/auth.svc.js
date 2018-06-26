@@ -122,7 +122,6 @@
         }
 
         function addBackBehave(edit) {
-            let cl = 0;
             $ionicPlatform.registerBackButtonAction(function () {
                 if (!edit && ($state.is('add-dentist-phone') || $state.is('add-clinic') || $state.is('add-specialities') || $state.is('share'))) {
                     showBackPopup();
