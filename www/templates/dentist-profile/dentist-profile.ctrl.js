@@ -5,9 +5,9 @@
         .module('app')
         .controller('DentistProfileCtrl', DentistProfileCtrl);
 
-    DentistProfileCtrl.$inject = ['userSvc', '$state', 'authSvc'];
+    DentistProfileCtrl.$inject = ['userSvc', '$state', 'authSvc','dentistProfile','$stateParams','reviewItems'];
 
-    function DentistProfileCtrl(userSvc, $state, authSvc) {
+    function DentistProfileCtrl(userSvc, $state, authSvc, dentistProfile, $stateParams, reviewItems) {
         var vm = this;
         vm.isExpandDescr = false;
         vm.country = 'Israel';
@@ -17,14 +17,12 @@
         vm.addDentist = addDentist;
         vm.editDentistPhone = editDentistPhone;
         vm.have_den = userSvc.isHaveDentist();
-        vm.rating = 0;
         if(vm.profile){
-            if(vm.profile.rating  !== null) {
-                vm.rating = vm.profile.rating;
+            if(!vm.profile.rating) {
+                vm.profile.rating = 0;
             }
-        } else {
-            vm.rating = 0;
         }
+        vm.isViewMode = $stateParams.id ? true: false;
 
         authSvc.addBackBehave(false);
 
@@ -36,7 +34,7 @@
         }
 
         function editDentist() {
-            $state.go('registration-dentist', {edit: true})
+            $state.go('registration-dentist', {edit: true});
             authSvc.addBackBehave(true);
         }
 
@@ -46,38 +44,38 @@
         }
 
         function addDentist() {
-            $state.go('add-dentist-phone', {invite_for_den: true})
+            $state.go('add-dentist-phone', {invite_for_den: true});
         }
 
         if(userSvc.isDoc()){
             vm.show_navigate = false;
         } else{
-            vm.show_navigate = true
+            vm.show_navigate = true;
         }
 
-        vm.reviewArr = [
-            {
-                id: 1,
-                date: '12.03.1993',
-                rating: 4,
-                name: 'Vasylyi',
-                text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
-            },
-            {
-                id: 2,
-                date: '12 03 1093',
-                rating: 4,
-                name: 'Vasylyi',
-                text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
-            },
-            {
-                id: 3,
-                date: '12 03 1093',
-                rating: 4,
-                name: 'Vasylyi',
-                text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
-            },
-        ];
+        // vm.reviewArr = [
+        //     {
+        //         id: 1,
+        //         date: '12.03.1993',
+        //         rating: 4,
+        //         name: 'Vasylyi',
+        //         text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
+        //     },
+        //     {
+        //         id: 2,
+        //         date: '12 03 1093',
+        //         rating: 4,
+        //         name: 'Vasylyi',
+        //         text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
+        //     },
+        //     {
+        //         id: 3,
+        //         date: '12 03 1093',
+        //         rating: 4,
+        //         name: 'Vasylyi',
+        //         text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
+        //     },
+        // ];
 
         $(document).ready(function () {
             function changeHeight() {

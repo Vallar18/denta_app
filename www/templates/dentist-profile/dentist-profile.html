@@ -10,7 +10,7 @@
                             sr-enable="false"
                             sr-count="5"
                             sr-size="14px"
-                            sr-model="vm.rating"
+                            sr-model="vm.profile.rating"
                             sr-color="#000">
                     </star-rating>
                 </div>
@@ -21,7 +21,8 @@
 
                 <button class="header-simple__right-btn"
                         ng-click="vm.editDentist()">
-                    <img src="content/img/edit-profile-icon.png" alt="">
+                    <img src="content/img/edit-profile-icon.png" alt="" ng-if="!vm.isViewMode">
+                    <img src="content/img/back.png" alt="" ng-if="vm.isViewMode">
                 </button>
                 <button class="header-simple__left-btn">
                     <img ng-src="{{vm.profile.avatar}}">
@@ -61,9 +62,12 @@
             <button class="gray-btn invite-dentist-btn" ng-if="!vm.have_den" ng-click='vm.addDentist()'>Invite dentist</button>
             <div class="dentist-profile__content">
                 <div class="text-center dentist-profile__content-title">REVIEWS</div>
-                <ion-list>
+                <div class="dentist-profile__empty text-center"  ng-if="!vm.reviewArr.length">
+                    List is empty
+                </div>
+                <ion-list ng-if="vm.reviewArr.length">
                     <ion-item ng-repeat="item in vm.reviewArr track by $index">
-                        <review-item ri-date="item.date"
+                        <review-item ri-date="item.created_at"
                                      ri-rating="item.rating"
                                      ri-name="item.name"
                                      ri-text="item.text"></review-item>

@@ -4,10 +4,10 @@
     angular.module('service.geoSvc', []).factory('geoSvc', geoSvc);
 
     geoSvc.$inject = ['$cordovaGeolocation', '$ionicLoading',
-        '$rootScope', '$cordovaNetwork', 'networkMonitorSvc', '$q'];
+        '$rootScope', '$cordovaNetwork', 'networkMonitorSvc', '$q', '$ionicPopup'];
 
     function geoSvc($cordovaGeolocation, $ionicLoading,
-                    $rootScope, $cordovaNetwork, networkMonitorSvc, $q) {
+                    $rootScope, $cordovaNetwork, networkMonitorSvc, $q, $ionicPopup) {
         let watcherPosition;
         let vm = this;
         let API_KEY = 'AIzaSyD6o8M_KOerds2uacnudjI62elbLTMyBaY';
@@ -21,6 +21,14 @@
             zoom: 14,
             disableDefaultUI: true,
         };
+
+
+        function errorInetOrGPS() {
+            return $ionicPopup.confirm({
+                title: 'Some error',
+                template: 'Please check the Internet, and if geolocation (GPS) is enabled on your device'
+            });
+        }
 
         function addSearch() {
             var input = document.getElementById('searchMapTextField');
@@ -77,7 +85,11 @@
                 });
             }, function (error) {
                 $ionicLoading.hide();
-                initMap();
+                errorInetOrGPS().then(function (res) {
+                    if (res) {
+                        initMap();
+                    }
+                });
                 console.log("Could not get location");
             });
         }

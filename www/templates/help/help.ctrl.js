@@ -5,14 +5,20 @@
             .module('app')
             .controller('HelpCtrl', HelpCtrl);
 
-        HelpCtrl.$inject = ['$scope', 'currencySvc', '$filter', 'geoSvc', 'clinicItems'];
+        HelpCtrl.$inject = ['$scope', 'currencySvc', '$filter', 'geoSvc', 'clinicItems', 'reviewSvc', 'userSvc', 'helpSvc'];
 
-        function HelpCtrl($scope, currencySvc, $filter, geoSvc, clinicItems) {
+        function HelpCtrl($scope, currencySvc, $filter, geoSvc, clinicItems, reviewSvc, userSvc, helpSvc) {
             var vm = this;
             $scope.textModel = 'fffffffffffffffff';
             $scope.picFile = null;
             $scope.slideOpen = false;
 
+            helpSvc.getByPos({
+                longitude: 34.5538410,
+                latitude: 49.5890900
+            }).then(function (res) {
+                console.log(res);
+            });
 
             geoSvc.initGoogleMaps(function () {
                 console.log('map is ready!');
@@ -21,6 +27,19 @@
                     calculateDistance(res.coords);
                 });
             });
+
+            reviewSvc.getItems({
+                user_id: userSvc.getUser().id,
+                dentist_id: 2,
+                role_id: 2
+            }).then(function (res) {
+                console.log(res);
+            });
+
+            userSvc.getUserInfoById(2).then(function (res) {
+                    console.log(res);
+                }
+            );
 
             function calculateDistance(currentPos) {
                 clinicItems.forEach(function (val) {

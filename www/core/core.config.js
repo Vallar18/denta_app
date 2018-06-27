@@ -212,11 +212,49 @@
                             role_id: 1 //if i am dentist and view my review - need set role 1
                         };
                         if($stateParams.id){
-                            // config.dentist_id = $stateParams.id;
+                            config.dentist_id = $stateParams.id;
                         }
                         return reviewSvc.getItems(config).then(function(res){
                            return res;
                         });
+                    },
+                    dentistProfile: function(userSvc,$stateParams){
+                        if($stateParams.id){
+                            return userSvc.getUserInfoById($stateParams.id).then(function(res){
+                                if(res.user){return res.user;}
+                            });
+                        }
+                    }
+                }
+            })
+            .state('tabs.view-dentist-profile', {
+                reload: true,
+                cache:false,
+                url: '/view-dentist-profile',
+                templateUrl: 'templates/dentist-profile/dentist-profile.html',
+                controller: 'DentistProfileCtrl',
+                controllerAs: 'vm',
+                params: {id : null},
+                resolve: {
+                    reviewItems: function(reviewSvc,userSvc,$stateParams){
+                        let config = {
+                            user_id: userSvc.getUser().id,
+                            // dentist_id: userSvc.getUser().dentist.id,
+                            role_id: 1 //if i am dentist and view my review - need set role 1
+                        };
+                        if($stateParams.id){
+                            config.dentist_id = $stateParams.id;
+                        }
+                        return reviewSvc.getItems(config).then(function(res){
+                            return res;
+                        });
+                    },
+                    dentistProfile: function(userSvc,$stateParams){
+                        if($stateParams.id){
+                            return userSvc.getUserInfoById($stateParams.id).then(function(res){
+                                if(res.user){return res.user;}
+                            });
+                        }
                     }
                 }
             })
