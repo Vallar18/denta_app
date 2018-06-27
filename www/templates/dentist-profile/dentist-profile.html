@@ -54,6 +54,9 @@
                 </div>
             </div>
             <div class="patient-profile__address" ng-if="vm.have_den">
+                <div class="dentist-profile__content-title text-center">
+                    home dentist
+                </div>
                 <p class="patient-profile__dentist-name">{{vm.home_dentist.name + ' ' + vm.home_dentist.lastname + ','}}</p>
                 <p>{{vm.home_dentist_clinic.address}}</p>
                 <div class="text-center"><a ng-click="vm.editDentistPhone()">Change</a></div>

@@ -1,5 +1,5 @@
 <div class="help-item">
-    <div ng-if="!hiType || hiType  === 'simple' " class="row">
+    <div ng-if="!hiType || hiType  === 'simple' " class="row help-item-wrap">
         <div class="col-33 distance-block">
             <img src="content/img/gray-marker.png" alt="">
             <span>{{::(hiDistance + ' km')}}</span>
@@ -13,7 +13,7 @@
                          sr-model="hiRating"
                          sr-size="12px"
                          sr-color="#ffc600"></star-rating>
-            <div class="price-block">Price: <span>{{::hiPrice}}</span></div>
+            <div class="price-block">price: <span>{{::hiPrice}}</span></div>
         </div>
     </div>
 
@@ -44,7 +44,7 @@
                 <a ng-click="angular.isFunction(hiClickInfo) && hiClickInfo(hiDoctor.id)">Get info</a>
             </div>
             <div class="col-25 price-block">
-                Price: <span>{{::hiPrice}}</span>
+                price: <span>{{::hiPrice}}</span>
             </div>
         </div>
         <!--<div class="col-20">

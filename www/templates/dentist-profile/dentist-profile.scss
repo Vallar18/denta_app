@@ -139,6 +139,24 @@
     overflow-y: scroll;
     overflow-x: hidden;
     position: relative;
+    .invite-dentist-btn {
+      display: block;
+      margin: 7% auto 7%;
+      &:before {
+        background: url(../img/send-icon.png);
+        content: '';
+        display: block;
+        position: absolute;
+        background-position: center;
+        background-size: auto 73%;
+        background-repeat: no-repeat;
+        top: 39%;
+        left: 0;
+        transform: translateY(-34%);
+        width: 20%;
+        height: 84%;
+      }
+    }
   }
   &__navigate {
     padding: 10px 0;
@@ -158,6 +176,7 @@
       color: #76869f;
       font-weight: 700;
       padding: 8px 0;
+      text-transform: uppercase;
     }
     .item {
       border-left: none;
