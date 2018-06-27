@@ -16,16 +16,20 @@
         vm.validPhone = validPhone;
         vm.openMapPopup = openMapPopup;
         vm.newClinic = newClinic;
+        vm.selectClinic = selectClinic;
         vm.edit = $stateParams.edit;
         vm.become_den = $stateParams.become_den;
         vm.codes = codes;
-        vm.select_code = vm.codes[phoneSvc.getDefaultIndex()].code;
+        vm.selected_country = vm.codes[phoneSvc.getDefaultIndex()];
+        vm.select_code = vm.selected_country.code;
         vm.user = userSvc.getUser();
+        authSvc.addBackBehave(vm.edit);
         let clinic = userSvc.getUser().clinic;
         vm.phone = '';
         vm.btn_text = 'Send';
         if(vm.become_den){
             vm.edit = false;
+            authSvc.addBackBehave(vm.edit);
         }
         if (vm.edit){
             vm.btn_text = 'Update';
@@ -39,7 +43,7 @@
             user_id: vm.user.id, name: '', phone: '',
             longitude: null, latitude: null
         };
-        authSvc.addBackBehave(vm.edit);
+
         /*$scope.listClinic = [
             {name: "Nacccccme"},
             {name: "Namcccccccccccccfffffffffffffffffffffffffffffffffffffffdhdhe"},
@@ -102,6 +106,10 @@
             }
         }
 
+        function selectClinic() {
+            vm.clinic.address = vm.select_clinic.address;
+        }
+
         function newClinic() {
             if(vm.edit){
                 vm.edit = false;
@@ -120,22 +128,28 @@
             }
             if(vm.edit){
                 updateClinic(vm.clinic);
-            } else if(vm.showSelect && !vm.become_den){
+            } else if(vm.showSelect){
                 changeClinic(vm.change_clinic)
-            } else if(vm.become_den){
-                vm.change_clinic = {
-                    user_id: vm.user.id, clinic_id: vm.select_clinic.id
-                };
-                createClinic(vm.change_clinic);
+            // }
+            // else if(vm.become_den){
+            //     vm.change_clinic = {
+            //         user_id: vm.user.id, clinic_id: vm.select_clinic.id
+            //     };
+            //     createClinic(vm.change_clinic);
             }else{
                 createClinic(vm.clinic)
             }
         }
 
         function updateClinic(data) {
+            vm.clinic.country_id = vm.selected_country.id;
             dentistSvc.updateClinic(data).then(function (data) {
                 if (data.success) {
-                    $state.go('add-specialities', {edit: true});
+                    if(vm.become_den){
+                        $state.go('add-specialities', {edit: false, become_den: true});
+                    } else{
+                        $state.go('add-specialities', {edit: true});
+                    }
                 } else {
                     if (data.message) {
                         toastr.error(data.message)
@@ -159,10 +173,14 @@
         function changeClinic(data) {
             regSvc.changeClinic(data).then(function (data) {
                 if (data.success) {
-                    if(vm.edit){
+                    if(vm.edit || vm.become_den){
                         userSvc.getUserInfo().then(function (res) {
                             userSvc.setUser(res.user);
-                            $state.go('add-specialities', {edit: true});
+                            if(vm.become_den){
+                                $state.go('add-specialities', {edit: false, become_den: true});
+                            } else{
+                                $state.go('add-specialities', {edit: true});
+                            }
                         });
                     } else {
                         $state.go('add-specialities');
@@ -188,6 +206,7 @@
         }
 
         function createClinic(data) {
+            vm.clinic.country_id = vm.selected_country.id;
             regSvc.createClinic(data).then(function (data) {
                 if (data.success) {
                     if(vm.edit_spec || vm.become_den){
@@ -265,6 +284,7 @@
 
         function selectCode(code) {
             vm.select_code = code.code;
+            vm.selected_country = code;
             vm.codePopup.close();
         }
 

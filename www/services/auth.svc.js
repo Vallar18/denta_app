@@ -88,7 +88,6 @@
         function clearAuthData() {
             $localStorage.country_id = null;
             $localStorage.code = null;
-            $localStorage.country_id = null;
             $localStorage.key = null;
             $localStorage.phone = null;
             delete $localStorage.country_id;
