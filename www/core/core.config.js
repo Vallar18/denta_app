@@ -29,33 +29,28 @@
         $ionicConfigProvider.tabs.position('bottom'); // other values: top
 
         $stateProvider
-        // .state('home', {
-        //     url: '/home',
-        //     templateUrl: 'templates/homepage/homepage.html',
-        //     controller: 'HomepageController',
-        //     controllerAs: 'vm'
-        // })
             .state('geolocation', {
                 reload: true,
                 url: '/geo',
+                cache:false,
                 templateUrl: 'templates/geolocation/geo.html',
                 controller: 'GeoCtrl',
                 controllerAs: 'vm'
             })
             .state('view', {
-                reload: true,
                 url: '/view',
                 templateUrl: 'templates/view/view.html',
                 controller: 'ViewCtrl',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                cache: false
             })
             .state('add-phone', {
-                reload: true,
                 url: '/add-phone',
                 templateUrl: 'templates/add-phone/add-phone.html',
                 controller: 'AddPhoneCtrl',
                 controllerAs: 'vm',
                 cache: false,
+                reload: true,
                 resolve: {
                     codes: function (phoneSvc) {
                         return phoneSvc.getCodes().then(function (res) {
@@ -152,8 +147,8 @@
                 }
             })
             .state('tabs', {
-                reload: true,
                 url: '/tab',
+                cache:false,
                 abstract: true,
                 controller: 'TabsController',
                 controllerAs: 'vm',
@@ -162,6 +157,7 @@
 
             .state('tabs.history', {
                 reload: true,
+                cache:false,
                 url: '/history',
                 templateUrl: 'templates/history/history.html',
                 controller: 'HistoryCtrl',
@@ -180,6 +176,7 @@
             })
             .state('tabs.help', {
                 reload: true,
+                cache:false,
                 url: '/help',
                 templateUrl: 'templates/help/help.html',
                 controller: 'HelpCtrl',
@@ -194,6 +191,7 @@
             })
             .state('tabs.patient-profile', {
                 reload: true,
+                cache:false,
                 url: '/patient-profile',
                 templateUrl: 'templates/patient-profile/patient-profile.html',
                 controller: 'PatientProfileCtrl',
@@ -201,6 +199,7 @@
             })
             .state('tabs.dentist-profile', {
                 reload: true,
+                cache:false,
                 url: '/dentist-profile',
                 templateUrl: 'templates/dentist-profile/dentist-profile.html',
                 controller: 'DentistProfileCtrl',
@@ -228,6 +227,7 @@
                 templateUrl: 'templates/my-patient/my-patient.html',
                 controller: 'MyPatientCtrl',
                 controllerAs: 'vm',
+                cache:false,
                 resolve: {
                     codeItems: function (phoneSvc) {
                         return phoneSvc.getCodes().then(function (res) {
@@ -242,6 +242,7 @@
                 templateUrl: 'templates/history-emergencies/history-emergencies.html',
                 controller: 'HistoryEmergenciesCtlr',
                 controllerAs: 'vm',
+                cache:false,
                 resolve: {
                     emergItems: function (historySvc) {
                         return historySvc.dentist().then(function (res) {
@@ -260,6 +261,7 @@
                 templateUrl: 'templates/history-patients/history-patients.html',
                 controller: 'HistoryPatientsCtlr',
                 controllerAs: 'vm',
+                cache:false,
                 resolve: {
                     patientsItems: function (historySvc) {
                         return historySvc.dentistOwners().then(function (res) {
@@ -274,6 +276,7 @@
             })
             .state('about', {
                 reload: true,
+                cache:false,
                 url: '/about',
                 templateUrl: 'templates/about/about.html',
                 controller: 'AboutCtrl',
@@ -281,6 +284,7 @@
             })
             .state('privacy', {
                 reload: true,
+                cache:false,
                 url: '/privacy',
                 templateUrl: 'templates/privacy/privacy.html',
                 controller: 'PrivacyCtrl',
@@ -288,6 +292,7 @@
             })
             .state('terms', {
                 reload: true,
+                cache:false,
                 url: '/terms',
                 templateUrl: 'templates/terms/terms.html',
                 controller: 'TermsCtrl',
@@ -295,6 +300,7 @@
             })
             .state('share', {
                 reload: true,
+                cache:false,
                 url: '/share',
                 templateUrl: 'templates/share/share.html',
                 controller: 'ShareCtrl',
@@ -302,6 +308,7 @@
             })
             .state('my-treatments', {
                 reload: true,
+                cache:false,
                 url: '/my-treatments',
                 templateUrl: 'templates/my-treatments/my-treatments.html',
                 controller: 'MyTreatmentsCtrl',
@@ -309,6 +316,7 @@
             })
             .state('need-dentist', {
                 reload: true,
+                cache:false,
                 url: '/need-dentist',
                 templateUrl: 'templates/need-dentist/need-dentist.html',
                 controller: 'NeedDentistCtrl',
@@ -317,6 +325,7 @@
 
             .state('send-review', {
                 reload: true,
+                cache:false,
                 url: '/send-review',
                 templateUrl: 'templates/send-review/send-review.html',
                 controller: 'SendReviewCtrl',
@@ -339,14 +348,12 @@
                     }
                 }
             })
-
             .state('home', {
                 reload: true,
                 url: '/home',
                 templateUrl: 'templates/homepage/homepage.html',
                 controller: 'HomepageCtrl',
                 controllerAs: 'vm'
-            })
-        //
+            });
     }
 })();

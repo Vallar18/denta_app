@@ -22,6 +22,10 @@
             valBtn: 'Send'
         };
 
+        // if (authSvc.isLogined()) {
+        //     authSvc.processAutoLogin();
+        // }
+
         // vm.test = function () {
         //     $ionicPopup.show({
         //         templateUrl: 'components/select-subscription/select-subscription.html',

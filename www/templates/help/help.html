@@ -1,52 +1,5 @@
 <ion-view>
     <ion-content class="help-content">
-        <!--<h2>help hhh</h2>-->
-        <!--<star-rating    sr-count="5"-->
-        <!--sr-model="4"-->
-        <!--sr-size=""-->
-        <!--sr-color="black"-->
-        <!--sr-enable="false"></star-rating>-->
-
-
-        <!--its me-->
-        <!--<star-rating sr-count="5"
-                     sr-model="model"
-                     sr-size="48px"
-                     sr-color="#FEC515"
-                     sr-enable="true"></star-rating>
-        Model:{{model}}
-
-        <button ng-click="vm.pickContactUsingNativeUI()">
-            Test get contact
-        </button>
-        <div>
-            <pre>
-                {{vm.phoneNumbers | json}}
-            </pre>
-        </div>
-
-        <button ng-click="vm.vm.getPic()">
-            Get photo
-        </button>
-
-        <input type="file">
-
-        <button ng-click="vm.selectAvatar()">Test select avatar</button>
-
-        <a href="tel:+380664421273">Phone</a>-->
-
-        <!--example of counter-->
-        <!--<div style="position:relative;">
-            <textarea rows="4" ng-init="textModel = { text :'', maxLength: 250 }"
-                      ng-model="textModel.text"
-                      maxlength="{{textModel.maxLength+1}}"
-                      style="width:100%; border:1px solid black; display:block;"></textarea>
-            <span style="position:absolute;bottom:1%;right:1%; color: #ddd;">
-                {{(textModel.text.length ? textModel.text.length: 0)+'/'+textModel.maxLength }}
-            </span>
-        </div>-->
-        <!---------------------->
-
         <div layout="row" layout-align="space-between center" class="white-header">
             <div class="radio-outer">
                 <div layout="row" layout-align="space-between center" class="radio-wrap" ng-class="{'show': slideOpen}">
@@ -66,11 +19,14 @@
                          ng-click="slideOpen = !slideOpen" alt="">
                 </div>
             </div>
-            <button class="geolocation-btn">
+            <button class="geolocation-btn" ui-sref="geolocation">
                 <img src="content/img/geolocation-icon.png" alt="">
             </button>
         </div>
-        <ion-list>
+        <div ng-if="!vm.helpArr.length">
+            List is empty
+        </div>
+        <ion-list ng-if="vm.helpArr.length">
             <ion-item ng-repeat="item in vm.helpArr track by item.id">
                 <help-item hi-distance="item.distance"
                            hi-doctor="item.doctor"
@@ -80,15 +36,6 @@
                            hi-rating="item.rating"></help-item>
             </ion-item>
         </ion-list>
-
-        <!--<ion-list>
-            <ion-item ng-repeat="item in vm.reviewArr track by $index">
-                <review-item ri-date="item.date"
-                            ri-rating="item.rating"
-                            ri-name="item.name"
-                            ri-text="item.text"></review-item>
-            </ion-item>
-        </ion-list>-->
     </ion-content>
 </ion-view>
 

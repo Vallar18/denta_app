@@ -1,8 +1,7 @@
 ;(function () {
     'use strict';
 
-    angular
-        .module('app',
+    angular.module('app',
             ['factory.request',
                 'factory.url',
                 'app.core',
@@ -11,21 +10,20 @@
                 'app.directives',
             ])
         .run(runBlock);
-    runBlock.$inject = ['$ionicPlatform', '$state', 'utilsSvc', 'authSvc', 'userSvc', 'fcmSvc','$rootScope'];
+    runBlock.$inject = ['$ionicPlatform', '$state', 'utilsSvc', 'authSvc', 'userSvc', 'fcmSvc','$timeout'];
 
-    function runBlock($ionicPlatform, $state, utilsSvc, authSvc, userSvc, fcmSvc,$rootScope) {
+    function runBlock($ionicPlatform, $state, utilsSvc, authSvc, userSvc, fcmSvc, $timeout) {
         utilsSvc.initializePolyfill();
 
-        if (authSvc.isLogined()) {
-            authSvc.processAutoLogin();
-        }
-        if (userSvc.isShowStart()) {
-            $state.go('view');
-        }
+        $timeout(function(){
+            if (authSvc.isLogined()) {
+                authSvc.processAutoLogin();
+            } else if (userSvc.isShowStart()) {
+                $state.go('view');
+            }
+        });
 
-        // $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-        //         event.preventDefault();
-        // });
+
         $ionicPlatform.ready(function () {
             fcmSvc.initialize();
             if (window.StatusBar) {

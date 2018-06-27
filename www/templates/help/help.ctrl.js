@@ -5,15 +5,37 @@
             .module('app')
             .controller('HelpCtrl', HelpCtrl);
 
-        HelpCtrl.$inject = ['$scope', '$ionicModal', '$cordovaContacts', '$ionicPlatform', '$cordovaCamera', '$ionicPopup','currencySvc','$filter'];
+        HelpCtrl.$inject = ['$scope', 'currencySvc', '$filter', 'geoSvc', 'clinicItems'];
 
-        function HelpCtrl($scope, $ionicModal, $cordovaContacts, $ionicPlatform, $cordovaCamera, $ionicPopup,currencySvc,$filter) {
+        function HelpCtrl($scope, currencySvc, $filter, geoSvc, clinicItems) {
             var vm = this;
             $scope.textModel = 'fffffffffffffffff';
             $scope.picFile = null;
             $scope.slideOpen = false;
 
 
+            geoSvc.initGoogleMaps(function () {
+                console.log('map is ready!');
+                geoSvc.getPosition().then(function (res) {
+                    console.log(res);
+                    calculateDistance(res.coords);
+                });
+            });
+
+            function calculateDistance(currentPos) {
+                clinicItems.forEach(function (val) {
+                    val.distance = +geoSvc.calcDistance(
+                        {
+                            lng: val.longitude,
+                            lat: val.latitude
+                        },
+                        {
+                            lng: currentPos.longitude,
+                            lat: currentPos.latitude
+                        });
+                });
+                console.log(clinicItems);
+            }
 
             vm.helpArr = [
                 {
@@ -58,69 +80,36 @@
                 }
             ];
 
-            $scope.$watch(function(){
+            $scope.$watch(function () {
                 return vm.sort;
-            },function(newV,oldV){
-                if(newV !== oldV){
+            }, function (newV, oldV) {
+                if (newV !== oldV) {
                     sortItem();
                 }
             });
 
-            function sortItem(){
+            function sortItem() {
                 var isReverse = false;
                 switch (vm.sort) {
-                    case 'rating':isReverse = true;break;
-                    case 'price':isReverse = false;break;
-                    case 'distance':isReverse = true;break;
+                    case 'rating':
+                        isReverse = true;
+                        break;
+                    case 'price':
+                        isReverse = false;
+                        break;
+                    case 'distance':
+                        isReverse = true;
+                        break;
                 }
-                vm.helpArr =  $filter('orderBy')(vm.helpArr,vm.sort,isReverse);
+                vm.helpArr = $filter('orderBy')(vm.helpArr, vm.sort, isReverse);
             }
 
             init();
-            function init(){
+
+            function init() {
                 vm.sort = 'rating';
                 sortItem();
             }
-
-
-
-            vm.reviewArr = [
-                {
-                   id:1,
-                    date: '12 03 1093',
-                    rating: 4,
-                    name: 'Vasylyi',
-                    text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
-                },
-                {
-                    id:2,
-                    date: '12 03 1093',
-                    rating: 4,
-                    name: 'Vasylyi',
-                    text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
-                },
-                {
-                    id:3,
-                    date: '12 03 1093',
-                    rating: 4,
-                    name: 'Vasylyi',
-                    text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
-                },
-            ];
-
-            vm.pickContactUsingNativeUI = function () {
-                $ionicPlatform.ready(function () {
-                $cordovaContacts.pickContact().then(function (contactPicked) {
-                    vm.phoneNumbers = contactPicked.phoneNumbers;
-                }, function (error) {
-
-                })
-            });
-        };
-
-
-
-            //-----------------------------------------------------------------
         }
     }
 )();
