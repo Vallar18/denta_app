@@ -3,9 +3,9 @@
 
     angular.module('service.authSvc', []).factory('authSvc', authSvc);
 
-    authSvc.$inject = ['userSvc', '$localStorage', '$state', '$ionicPlatform', '$ionicPopup', 'toastr'];
+    authSvc.$inject = ['userSvc', '$localStorage', '$state', '$ionicPlatform', '$ionicPopup', 'http', 'url', 'toastr'];
 
-    function authSvc(userSvc, $localStorage, $state, $ionicPlatform, $ionicPopup, toastr) {
+    function authSvc(userSvc, $localStorage, $state, $ionicPlatform, $ionicPopup, http, url, toastr) {
         const CODE_LENGTH = 4;
         let model = {
             setCode: setCode,
@@ -34,9 +34,11 @@
                 switch (userSvc.getRole()) {
                     case userSvc.roleConst().doctor:
                         $state.go('tabs.my-patient');
+                        return;
                         break;
                     case userSvc.roleConst().patient:
                         $state.go('tabs.help');
+                        return;
                         break;
                 }
             }
@@ -66,10 +68,20 @@
         }
 
         function logout() {
-            clearAuthData();
-            userSvc.resetData();
+            if (userSvc.getDeviceID()) {
+                http.post(url.logout.logout, {
+                    device_id: userSvc.getDeviceID()
+                }).then(function (res) {
+                    clearAuthData();
+                    userSvc.resetData();
+                    $state.go('add-phone');
+                });
+            } else {
+                clearAuthData();
+                userSvc.resetData();
+                $state.go('add-phone');
+            }
             // ionic.Platform.exitApp();
-            $state.go('add-phone');
         }
 
 
@@ -188,7 +200,7 @@
             });
             confirmPopup.then(function (res) {
                 if (res) {
-                    $state.go('add-phone')
+                    $state.go('add-phone');
                 }
             });
         }

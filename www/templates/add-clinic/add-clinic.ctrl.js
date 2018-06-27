@@ -291,7 +291,7 @@
                     }
                 ]
             });
-            geoSvc.init();
+            geoSvc.mapWithMarker();
         }
 
         function processMapPopupOK(){
