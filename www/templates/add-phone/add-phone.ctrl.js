@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddPhoneCtrl', AddPhoneCtrl);
 
-    AddPhoneCtrl.$inject = ['$scope', '$state', 'userSvc', 'fcmSvc', 'regSvc', 'authSvc', 'toastr', 'messagesSvc', '$localStorage', 'codes', 'phoneSvc'];
+    AddPhoneCtrl.$inject = ['$scope', '$state', 'userSvc', 'fcmSvc', 'regSvc', 'authSvc', 'toastr', 'messagesSvc', 'codes', 'phoneSvc'];
 
-    function AddPhoneCtrl($scope, $state, userSvc, fcmSvc, regSvc, authSvc, toastr, messagesSvc, $localStorage, codes, phoneSvc) {
+    function AddPhoneCtrl($scope, $state, userSvc, fcmSvc, regSvc, authSvc, toastr, messagesSvc, codes, phoneSvc) {
         const vm = this;
         vm.send = send;
         vm.getSelectCode = getSelectCode;
@@ -21,6 +21,10 @@
             val3: 'get me in',
             valBtn: 'Send'
         };
+
+        // if (authSvc.isLogined()) {
+        //     authSvc.processAutoLogin();
+        // }
 
         // vm.test = function () {
         //     $ionicPopup.show({

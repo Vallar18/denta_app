@@ -4,18 +4,23 @@
     angular.module('service.geoSvc', []).factory('geoSvc', geoSvc);
 
     geoSvc.$inject = ['$cordovaGeolocation', '$ionicLoading',
-        '$rootScope', '$cordovaNetwork', 'networkMonitorSvc'];
+        '$rootScope', '$cordovaNetwork', 'networkMonitorSvc', '$q'];
 
     function geoSvc($cordovaGeolocation, $ionicLoading,
-                    $rootScope, $cordovaNetwork, networkMonitorSvc) {
-        var watcherPosition;
+                    $rootScope, $cordovaNetwork, networkMonitorSvc, $q) {
+        let watcherPosition;
         let vm = this;
         let API_KEY = 'AIzaSyD6o8M_KOerds2uacnudjI62elbLTMyBaY';
         let map = null;
-        let counterTryGetPosition = 0;
-        var autocomplete;
-        var marker;
-        var geocoder;
+        let autocomplete;
+        let marker;
+        let geocoder;
+        let googleReadyCallback;
+        let distance_service;
+        let BASE_CONFIG_MAP = {
+            zoom: 14,
+            disableDefaultUI: true,
+        };
 
         function addSearch() {
             var input = document.getElementById('searchMapTextField');
@@ -36,47 +41,45 @@
         //     console.log(place);
         // }
 
-        function initMap(isAccuracy) {
+        function mapByOptions(options) {
+            return new window.google.maps.Map(document.getElementById("map"), options);
+        }
+
+        function createPos(lat, lng) {
+            return new window.google.maps.LatLng(lat, lng);
+        }
+
+        function createMarker(config) {
+            return new window.google.maps.Marker(config);
+        }
+
+        function initMap() {
             $ionicLoading.show({
                 template: 'Initialize map <br> Getting position...'
             });
-            let options = {timeout: 30000, enableHighAccuracy: true};
-            if (angular.isDefined(isAccuracy)) {
-                options.enableHighAccuracy = isAccuracy;
-            }
-            $cordovaGeolocation.getCurrentPosition(options)
-                .then(function (position) {
-                    let latLng = new window.google.maps.LatLng(position.coords.latitude,
-                        position.coords.longitude);
-                    let mapOptions = {
-                        center: latLng,
-                        zoom: 14,
-                        disableDefaultUI: true,
-                        mapTypeId: window.google.maps.MapTypeId.ROADMAP
-                    };
-                    geocoder = new window.google.maps.Geocoder;
-                    map = new window.google.maps.Map(document.getElementById("map"),
-                        mapOptions);
-                    marker = new google.maps.Marker({
-                        position: latLng,
-                        map: map,
-                        draggable: true,
-                    });
-                    $ionicLoading.hide();
-                    // addSearch();
-                    window.google.maps.event.addListenerOnce(map, 'idle', function () {
-                        window.google.maps.event.addListener(map, 'dragend', function () {
-                        });
-                        window.google.maps.event.addListener(map, 'zoom_changed', function () {
-                            console.log("zoomed!");
-                        });
-                        enableMap();
-                    });
-                }, function (error) {
-                    $ionicLoading.hide();
-                    initMap();
-                    console.log("Could not get location");
+            getPosition().then(function (pos) {
+                let latLng = createPos(pos.coords.latitude, pos.coords.longitude);
+                let mapOptions = angular.extend({}, BASE_CONFIG_MAP, {
+                    center: latLng,
+                    mapTypeId: window.google.maps.MapTypeId.ROADMAP
                 });
+                map = mapByOptions(mapOptions);
+                marker = createMarker({
+                    position: latLng,
+                    map: map,
+                    draggable: true,
+                });
+                window.google.maps.event.addListenerOnce(map, 'idle', function () {
+                    window.google.maps.event.addListener(map, 'click', function (event) {
+                        marker.setPosition(event.latLng);
+                    });
+                    enableMap();
+                });
+            }, function (error) {
+                $ionicLoading.hide();
+                initMap();
+                console.log("Could not get location");
+            });
         }
 
         function enableMap() {
@@ -85,8 +88,17 @@
 
         function disableMap() {
             $ionicLoading.show({
-                template: 'You must be connected to the Internet to view this map.'
+                template: 'You must be connected to the Internet to use Google Maps API.'
             });
+        }
+
+        function readyMap() {
+            distance_service = new google.maps.DistanceMatrixService;
+            geocoder = new window.google.maps.Geocoder;
+            $ionicLoading.hide();
+            if (angular.isFunction(googleReadyCallback)) {
+                googleReadyCallback();
+            }
         }
 
         function loadGoogleMaps() {
@@ -94,17 +106,13 @@
                 template: 'Loading Google Maps'
             });
             window.mapInit = function () {
-                initMap();
+                readyMap();
             };
-            var script = document.createElement("script");
+            let script = document.createElement("script");
             script.setAttribute("type", "text/javascript");
             script.id = "googleMaps";
             if (API_KEY) {
-                script.src = 'https://maps.googleapis.com/maps/api/js?key=' + API_KEY
-                    + '&libraries=drawing,geometry,places&callback=mapInit';
-            }
-            else {
-                script.setAttribute('src', 'https://maps.googleapis.com/maps/api/js?libraries=drawing,geometry,places&callback=mapInit');
+                script.src = 'https://maps.googleapis.com/maps/api/js?key=' + API_KEY + '&language=en&libraries=drawing,geometry,places&callback=mapInit';
             }
             document.body.appendChild(script);
         }
@@ -136,8 +144,18 @@
             }
         }
 
+        function calcDistance(p1, p2) {
+            if (p1 && p1.lat && p1.lng && p2 && p2.lat && p2.lng) {
+                let point1 = createPos(p1.lat, p1.lng);
+                let point2 = createPos(p2.lat, p2.lng);
+                return (window.google.maps.geometry.spherical.computeDistanceBetween(point1, point2) / 1000).toFixed(2);
+            }
+            return 0;
+        }
+
+
         function getAddress(latlng, callback) {
-            var addressObj = {
+            let addressObj = {
                 lat: latlng.lat,
                 lng: latlng.lng,
                 address: ''
@@ -157,59 +175,118 @@
         }
 
 
-        function clearWatchPosition(){
-            if(watcherPosition && watcherPosition.clearWatch){
+        function clearWatchPosition() {
+            if (watcherPosition && watcherPosition.clearWatch) {
                 watcherPosition.clearWatch();
             }
         }
 
-        function watchPosition() {
+        function watchPosition(callback, accuracy) {
             let watchOptions = {
                 timeout: 30000,
-                enableHighAccuracy: true // may cause errors if true
+                enableHighAccuracy: angular.isDefined(accuracy) ? accuracy : true // may cause errors if true
             };
-            if(watcherPosition && watcherPosition.clearWatch){
+            if (watcherPosition && watcherPosition.clearWatch) {
                 watcherPosition.clearWatch();
             }
-            watcherPosition = $cordovaGeolocation.watchPosition(watchOptions).then(null,function (errRes) {
+            watcherPosition = $cordovaGeolocation.watchPosition(watchOptions).then(null, function (errRes) {
                 console.log(errRes);
             }, function (position) {
+                if (callback) {
+                    callback(position);
+                }
                 console.log(position);
             });
         }
 
-        return {
-            watchPosition: watchPosition,
-            clearWatchPosition: clearWatchPosition,
-            getMarkerPosition: function () {
-                return {
-                    lat: marker.getPosition().lat(),
-                    lng: marker.getPosition().lng(),
-                };
-            },
-            getAddress: getAddress,
-            init: function (key) {
-                if (angular.isDefined(key)) {
-                    API_KEY = key;
+        function init() {
+            if (angular.isUndefined(window.google) || angular.isUndefined(window.google.maps)) {
+                console.warn("Google Maps SDK needs to be loaded");
+                disableMap();
+                if (networkMonitorSvc.isOnline()) {
+                    loadGoogleMaps();
                 }
-                if (angular.isUndefined(window.google) || angular.isUndefined(window.google.maps)) {
-                    console.warn("Google Maps SDK needs to be loaded");
+            }
+            else {
+                if (networkMonitorSvc.isOnline()) {
+                    enableMap();
+                    readyMap();
+                } else {
                     disableMap();
-                    if (networkMonitorSvc.isOnline()) {
-                        loadGoogleMaps();
-                    }
                 }
-                else {
-                    if (networkMonitorSvc.isOnline()) {
-                        initMap();
+            }
+            addConnectivityListeners();
+        }
+
+        function getMarkerPosition() {
+            return {
+                lat: marker.getPosition().lat(),
+                lng: marker.getPosition().lng(),
+            };
+        }
+
+        function getPosition(accuracy) {
+            let options = {
+                timeout: 30000,
+                enableHighAccuracy: angular.isDefined(accuracy) ? accuracy : true
+            };
+            return $cordovaGeolocation.getCurrentPosition(options);
+        }
+
+        function mapWithMarker() {
+            googleReadyCallback = function () {
+                initMap();
+            };
+            init();
+        }
+
+        function initGoogleMaps(callback) {
+            if (angular.isFunction(callback)) {
+                googleReadyCallback = function () {
+                    callback();
+                };
+            }
+            init();
+        }
+
+        function showOnMap(pos) {
+            if (pos && pos.lat && pos.lng) {
+                googleReadyCallback = function () {
+                    $ionicLoading.show({
+                        template: 'Initialize map <br> Getting position...'
+                    });
+                    let latLng = createPos(pos.lat, pos.lng);
+                    let mapOptions = angular.extend({}, BASE_CONFIG_MAP,
+                        {
+                            center: latLng,
+                            mapTypeId: window.google.maps.MapTypeId.ROADMAP
+                        });
+                    map = mapByOptions(mapOptions);
+                    marker = createMarker({
+                        position: latLng,
+                        map: map,
+                        draggable: false,
+                    });
+                    window.google.maps.event.addListenerOnce(map, 'idle', function () {
                         enableMap();
-                    } else {
-                        disableMap();
-                    }
-                }
-                addConnectivityListeners();
+                    });
+                };
+                init();
             }
         }
+
+        return {
+            showOnMap: showOnMap,
+            initGoogleMaps: initGoogleMaps,
+            mapWithMarker: mapWithMarker,
+            getPosition: getPosition,
+            calcDistance: calcDistance,
+            watchPosition: watchPosition,
+            clearWatchPosition: clearWatchPosition,
+            getMarkerPosition: getMarkerPosition,
+            getAddress: getAddress,
+            init: init
+        };
 
     }
 })();

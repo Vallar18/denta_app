@@ -1,8 +1,7 @@
 ;(function () {
     'use strict';
 
-    angular
-        .module('app',
+    angular.module('app',
             ['factory.request',
                 'factory.url',
                 'app.core',
@@ -11,27 +10,29 @@
                 'app.directives',
             ])
         .run(runBlock);
-    runBlock.$inject = ['$ionicPlatform', '$state', 'utilsSvc', 'authSvc','userSvc','fcmSvc'];
+    runBlock.$inject = ['$ionicPlatform', '$state', 'utilsSvc', 'authSvc', 'userSvc', 'fcmSvc','$timeout'];
 
-    function runBlock($ionicPlatform, $state, utilsSvc, authSvc, userSvc,fcmSvc) {
+    function runBlock($ionicPlatform, $state, utilsSvc, authSvc, userSvc, fcmSvc, $timeout) {
         utilsSvc.initializePolyfill();
+
+        $timeout(function(){
+            if (authSvc.isLogined()) {
+                authSvc.processAutoLogin();
+            } else if (userSvc.isShowStart()) {
+                $state.go('view');
+            }
+        });
+
+
         $ionicPlatform.ready(function () {
             fcmSvc.initialize();
-            fcmSvc.getToken(function(){
-                fcmSvc.subscribe();
-            });
             if (window.StatusBar) {
                 window.styleDefault();
             }
             addBehaverForKeyboard();
         });
-        if (authSvc.isLogined()) {
-            authSvc.processAutoLogin();
-        } else if (userSvc.isShowStart()) {
-            $state.go('view');
-        }
 
-        function addBehaverForKeyboard(){
+        function addBehaverForKeyboard() {
             window.addEventListener('keyboardDidShow', (event) => {
                 let popup = document.querySelector('.popup');
                 if (popup != null) {
@@ -45,6 +46,7 @@
                 }
             });
         }
+
 
         // exit.buttonExit($state.current.url);
         // $ionicPlatform.registerBackButtonAction(function() {

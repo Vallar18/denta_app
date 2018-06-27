@@ -119,5 +119,5 @@
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
     <plugin name="cordova-plugin-x-socialsharing" spec="https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
     <engine name="ios" spec="4.5.4" />
-    <engine name="android" spec="^6.4.0" />
+    <engine name="android" spec="6.4.0" />
 </widget>
