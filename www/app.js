@@ -10,9 +10,9 @@
                 'app.directives',
             ])
         .run(runBlock);
-    runBlock.$inject = ['$ionicPlatform', '$state', 'utilsSvc', 'authSvc', 'userSvc', 'fcmSvc','$timeout'];
+    runBlock.$inject = ['$ionicPlatform', '$state', 'utilsSvc', 'authSvc', 'userSvc', 'fcmSvc','$timeout', '$ionicTabsDelegate'];
 
-    function runBlock($ionicPlatform, $state, utilsSvc, authSvc, userSvc, fcmSvc, $timeout) {
+    function runBlock($ionicPlatform, $state, utilsSvc, authSvc, userSvc, fcmSvc, $timeout, $ionicTabsDelegate) {
         utilsSvc.initializePolyfill();
 
         $timeout(function(){
@@ -38,12 +38,14 @@
                 if (popup != null) {
                     popup.classList.add('popup-bottom');
                 }
+                $ionicTabsDelegate.showBar(false);
             });
             window.addEventListener('keyboardDidHide', () => {
                 let popup = document.querySelector('.popup');
                 if (popup != null) {
                     popup.classList.remove('popup-bottom');
                 }
+                $ionicTabsDelegate.showBar(true);
             });
         }
 

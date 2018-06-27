@@ -5,16 +5,17 @@
         .module('app')
         .controller('AddPhoneCtrl', AddPhoneCtrl);
 
-    AddPhoneCtrl.$inject = ['$scope', '$state', 'userSvc', 'fcmSvc', 'regSvc', 'authSvc', 'toastr', 'messagesSvc', 'codes', 'phoneSvc'];
+    AddPhoneCtrl.$inject = ['$scope', '$state', 'userSvc', 'authSvc', 'regSvc', 'toastr', 'messagesSvc', 'codes', 'phoneSvc'];
 
-    function AddPhoneCtrl($scope, $state, userSvc, fcmSvc, regSvc, authSvc, toastr, messagesSvc, codes, phoneSvc) {
+    function AddPhoneCtrl($scope, $state, userSvc, authSvc, regSvc, toastr, messagesSvc, codes, phoneSvc) {
         const vm = this;
         vm.send = send;
         vm.getSelectCode = getSelectCode;
         vm.selectCode = selectCode;
+        authSvc.logout();
         vm.codes = codes;
-        let selectedCountry = vm.codes[phoneSvc.getDefaultIndex()];
-        vm.select_code = selectedCountry.code;
+        let selected_country = vm.codes[phoneSvc.getDefaultIndex()];
+        vm.select_code = selected_country.code;
         vm.phone = '';
         vm.content = {
             val1: 'You will receive sms with code',
@@ -45,7 +46,7 @@
         // };
 
         function send() {
-            authSvc.setCountryId(selectedCountry.id);
+            authSvc.setCountryId(selected_country.id);
             let phone = phoneSvc.preparePhone(vm.select_code, vm.phone);
             if (!phoneSvc.validatePhone(phone)) {
                 toastr.error(messagesSvc.error.invalidPhone);
@@ -76,7 +77,7 @@
 
         function selectCode(code) {
             vm.select_code = code.code;
-            selectedCountry = code;
+            selected_country = code;
             vm.codePopup.close();
         }
     }

@@ -37,7 +37,7 @@
                                ng-model="vm.clinic.name" input-change-color="#000">
                     </label>
                     <select class="text-center select-block" ng-if="vm.listClinic && vm.showSelect" ng-model="vm.select_clinic"
-                            ng-options="item as item.name for item in vm.listClinic track by item.id">
+                            ng-change="vm.selectClinic()" ng-value="item" ng-options="item as item.name for item in vm.listClinic track by item.id">
                     </select>
                     <div class="item item-input" ng-click="vm.openMapPopup()">
                         <button class="map-marker">

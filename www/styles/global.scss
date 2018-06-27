@@ -497,11 +497,17 @@ a {
 
 .selected-counter {
   color: $red-text;
+  font-weight: 300;
 }
 
 textarea {
-  color: $input-text;
+  color: $text-default-color;
   padding: 5px;
+  font-weight: 300;
+  font-family: 'Microsoft JhengHei', sans-serif;
+  &::-webkit-input-placeholder {
+    color: $input-text;
+  }
 }
 
 .select-code, .select-currency-popup {
@@ -550,12 +556,6 @@ textarea {
           width: 0;
           height: auto;
           transition: ease 0.5s;
-          /* -webkit-transition: ease 0.5s;
-           -moz-transition: ease 0.5s;
-           -ms-transition: ease 0.5s;
-           -o-transition: ease 0.5s;
-           transition: ease 0.5s;*/
-
           input[type="radio"] {
             opacity: 0;
             position: absolute;
@@ -568,21 +568,32 @@ textarea {
             line-height: 2;
             &:before {
               content: "";
-              width: 5vw;
-              height: 5vw;
+              width: 18px;
+              height: 18px;
               border-radius: 50%;
               position: absolute;
               border: 2px solid $filters-color;
               left: 0;
+              top: 50%;
+              -webkit-transform: translateY(-50%);
+              -moz-transform: translateY(-50%);
+              -ms-transform: translateY(-50%);
+              -o-transform: translateY(-50%);
+              transform: translateY(-50%);
             }
             &:after {
               content: "";
-              width: 3vw;
-              height: 3vw;
+              width: 10px;
+              height: 10px;
               position: absolute;
-              left: 1vw;
+              left: 4px;
               border-radius: 50%;
-              top: 1vw;
+              top: 50%;
+              -webkit-transform: translateY(-50%);
+              -moz-transform: translateY(-50%);
+              -ms-transform: translateY(-50%);
+              -o-transform: translateY(-50%);
+              transform: translateY(-50%);
               opacity: 0;
               background-color: $filters-color;
             }

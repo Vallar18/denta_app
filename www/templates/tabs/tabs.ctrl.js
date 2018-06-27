@@ -25,6 +25,9 @@
         init();
 
         function init() {
+            if(!authSvc.isLogined()){
+                authSvc.logout();
+            }
             vm.menuModel.items = tabsSvc.getMenuItems(currentUserType);
             vm.tabsModel.items = tabsSvc.getTabItems(currentUserType);
             // geoSvc.watchPosition();

@@ -25,7 +25,8 @@
                         <span>{{vm.select_currency.abr}}</span>
                     </button>
                 </div>
-                 <button class="gray-btn" ng-click="vm.getSpeciality()">Edit specialties</button>
+                 <button class="gray-btn" ng-click="vm.getSpeciality()" ng-if="!vm.len_spec && !vm.edit">Add specialties</button>
+                 <button class="gray-btn" ng-click="vm.getSpeciality()" ng-if="vm.len_spec || vm.edit">Edit specialties</button>
                 <p ng-if="vm.len_spec" class="selected-counter">{{vm.len_spec}} selected</p>
                 <div class="description">
                      <textarea rows="4" ng-model="vm.dentist.description" maxlength="250" placeholder="Write about the clinic.."></textarea>
