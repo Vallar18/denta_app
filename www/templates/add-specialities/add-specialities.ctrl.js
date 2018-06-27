@@ -26,7 +26,7 @@
         vm.select_currency = vm.currencies[currencySvc.getDefaultIndex()];
         init()
         function init() {
-            if (vm.edit && !vm.become_den){
+            if (vm.edit){
                 vm.btn_text = 'Update';
                 vm.select_currency = vm.user.dentist.currency;
                 vm.dentist = {
