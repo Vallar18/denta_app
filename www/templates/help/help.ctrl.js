@@ -13,18 +13,6 @@
             vm.dentistItems = [];
             vm.activeText = 'Loading...';
 
-            reviewSvc.getItems({
-                user_id: userSvc.getUser().id,
-                dentist_id: 2,
-                role_id: 2
-            }).then(function (res) {
-                console.log(res);
-            });
-
-            userSvc.getUserInfoById(2).then(function (res) {
-                    console.log(res);
-                }
-            );
 
             init();
             function init() {
@@ -44,9 +32,7 @@
             function getDentistByCurrentPos(lat, lng) {
                 if (lat && lng) {
                     helpSvc.getByPos({
-                        // longitude: 34.5538410,
                         longitude: lng,
-                        // latitude: 49.5890900
                         latitude: lat
                     }).then(function (res) {
                         if (res.length) {
