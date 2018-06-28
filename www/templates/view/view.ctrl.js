@@ -5,39 +5,37 @@
         .module('app')
         .controller('ViewCtrl', ViewCtrl);
 
-    ViewCtrl.$inject = ['$state', '$timeout'];
+    ViewCtrl.$inject = ['$state', '$timeout', 'textSvc'];
 
-    function ViewCtrl($state, $timeout) {
+    function ViewCtrl($state, $timeout, textSvc) {
         var vm = this;
         vm.shangeScreen = shangeScreen;
         var titleBlock = document.querySelector('.title-block');
         var backEmpty = document.querySelector('.background-empty');
-        vm.item = {
-            title: 'Emergency all over the world ',
-            show: 0,
-            description: ''
-        };
+        vm.text_view = '';
+        vm.change_view = 0;
 
         $timeout(function(){
             vm.shangeScreen();
         },1500);
 
         function shangeScreen() {
-            if(vm.item.show === 0){
+            if(vm.change_view === 0){
                 backEmpty.classList.add('mov-down');
                 $timeout(function () {
                     titleBlock.classList.add('mov-up');
                 }, 1000);
                 $timeout(function () {
-                    vm.item = {
-                        title: 'Welcome aboard',
-                        show: 1,
-                        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam venenatis gravida risus, vitae semper libero malesuada nec. Duis sagittis purus suscipit odio scelerisque viverra. Etiam consectetur imperdiet dui vitae pulvinar. Curabitur sit amet risus ut justo bibendum ullamcorper. Donec erat ante, vulputate quis augue id, rhoncus venenatis lacus. Cras quis vestibulum arcu.Maecenas faucibus nisl in massa malesuada, id vestibulum mi pellentesque. In in libero ut nulla viverra vestibulum at nec nunc. Aliquam porttitor metus vel pulvinar imperdiet. Suspendisse urna est, tristique facilisis gravida at, porta sed lacus. Vestibulum faucibus nisi quis erat molestie viverra sed non enim. Etiam faucibus, massa eget porta porttitor, quam mi blandit urna, pretium tincidunt enim augue ut nisi. Donec aliquet justo nec justo facilisis, eget tincidunt nisi ultrices. Mauris dignissim orci eget felis Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam venenatis gravida risus, vitae semper libero malesuada nec. Duis sagittis purus suscipit odio scelerisque viverra. Etiam consectetur imperdiet dui vitae pulvinar. Curabitur sit amet risus ut justo bibendum ullamcorper. Donec erat ante, vulputate quis augue id, rhoncus venenatis lacus. Cras quis vestibulum arcu.Maecenas faucibus nisl in massa malesuada, id vestibulum mi pellentesque. In in libero ut nulla viverra vestibulum at nec nunc. Aliquam porttitor metus vel pulvinar imperdiet. Suspendisse urna est, tristique facilisis gravida at, porta sed lacus. Vestibulum faucibus nisi quis erat molestie viverra sed non enim. Etiam faucibus, massa eget porta porttitor, quam mi blandit urna, pretium tincidunt enim augue ut nisi. Donec aliquet justo nec justo facilisis, eget tincidunt nisi ultrices. Mauris dignissim orci eget felis '
-                    };
+                    textSvc.getStartPage().then(function (res) {
+                        if(res){
+                            vm.text_view = res.description;
+                        }
+                    });
+                    vm.change_view =  1;
                     backEmpty.classList.remove('mov-down');
                     backEmpty.classList.add('background-content');
                 }, 2300);
-            } else if(vm.item.show === 1){
+            } else if(vm.change_view === 1){
                 $state.go('add-phone');
             }
         }

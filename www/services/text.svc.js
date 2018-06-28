@@ -3,46 +3,46 @@
 
     angular.module('service.textSvc', []).factory('textSvc', textSvc);
 
-    textSvc.$inject = ['$ionicPlatform','$cordovaSocialSharing','$q'];
+    textSvc.$inject = ['$ionicPlatform','$cordovaSocialSharing', '$q', 'http', 'url'];
 
-    function textSvc($ionicPlatform,$cordovaSocialSharing, $q) {
+    function textSvc($ionicPlatform,$cordovaSocialSharing, $q, http, url) {
         var model = {
             getShare: getShare,
             getPrivacy: getPrivacy,
             getAbout: getAbout,
+            getTerms: getTerms,
             getStartPage: getStartPage,
             share: share
         };
 
-        function share(){
-            let defered = $q.defer();
-            let message = 'Test messages for sharing';
-            $ionicPlatform.ready(function () {
-                $cordovaSocialSharing
-                    .share(message, null, null, null) // Share via native share sheet
-                    .then(function (result) {
-                        defered.resolve(result);
-                    }, function (err) {
-                        defered.reject();
-                    });
+        function share(text){
+            return $cordovaSocialSharing.share(text, null, null, null);
+        }
+
+        function getShare(data){
+            return http.get(url.static.share, data).then(function (res) {
+                if(res){
+                    return share(res.description)
+                }
             });
-            return defered.promise;
         }
 
-        function getShare(){
-            // return http.get();
-        }
-
-        function getPrivacy(){
-
+        function getPrivacy(data){
+            return http.get(url.static.privacy, data);
+            // return 'getPrivacy'
         }
 
         function getAbout(){
-
+            return http.get(url.static.about);
         }
 
-        function getStartPage(){
+        function getTerms(){
+            return http.get(url.static.terms);
+        }
 
+        function getStartPage(data){
+            return http.get(url.static.start_page, data);
+            // return 'getStartPage'
         }
 
         return model;

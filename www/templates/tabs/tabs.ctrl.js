@@ -65,7 +65,7 @@
         }
 
         function share() {
-            textSvc.share();
+            textSvc.getShare();
         }
 
     }

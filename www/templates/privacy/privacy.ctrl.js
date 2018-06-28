@@ -5,10 +5,20 @@
         .module('app')
         .controller('PrivacyCtrl', PrivacyCtrl);
 
-    PrivacyCtrl.$inject = ['$ionicHistory'];
+    PrivacyCtrl.$inject = ['$ionicHistory', 'textSvc'];
 
-    function PrivacyCtrl($ionicHistory) {
+    function PrivacyCtrl($ionicHistory, textSvc) {
         const vm = this;
+        init();
+
+        function init() {
+            textSvc.getPrivacy().then(function (res) {
+                if(res){
+                    vm.text_privacy = res.description;
+                }
+            });
+        }
+
         vm.back = function () {
             $ionicHistory.goBack();
         };
