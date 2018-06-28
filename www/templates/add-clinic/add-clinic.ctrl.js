@@ -91,14 +91,9 @@
         function getListClinic() {
             if (vm.listClinic && vm.listClinic.length) {
                 vm.select_clinic = vm.listClinic[0];
-                vm.clinic = {
-                    name: vm.select_clinic.name,
-                    address: vm.select_clinic.address,
-                    latitude: vm.select_clinic.latitude,
-                    longitude: vm.select_clinic.longitude
-                };
+                vm.clinic = vm.select_clinic;
                 vm.change_clinic = {
-                    user_id: vm.user.id, clinic_id: vm.select_clinic.id
+                    user_id: vm.user.id, clinic_id: vm.clinic.id
                 };
                 vm.showSelect = true;
             } else {
@@ -107,7 +102,10 @@
         }
 
         function selectClinic() {
-            vm.clinic.address = vm.select_clinic.address;
+            vm.clinic = vm.select_clinic;
+            vm.change_clinic = {
+                user_id: vm.user.id, clinic_id: vm.clinic.id
+            };
         }
 
         function newClinic() {
@@ -130,12 +128,6 @@
                 updateClinic(vm.clinic);
             } else if(vm.showSelect){
                 changeClinic(vm.change_clinic)
-            // }
-            // else if(vm.become_den){
-            //     vm.change_clinic = {
-            //         user_id: vm.user.id, clinic_id: vm.select_clinic.id
-            //     };
-            //     createClinic(vm.change_clinic);
             }else{
                 createClinic(vm.clinic)
             }
@@ -173,7 +165,7 @@
         function changeClinic(data) {
             regSvc.changeClinic(data).then(function (data) {
                 if (data.success) {
-                    if(vm.edit || vm.become_den){
+                    if(vm.edit || vm.edit_spec || vm.become_den){
                         userSvc.getUserInfo().then(function (res) {
                             userSvc.setUser(res.user);
                             if(vm.become_den){

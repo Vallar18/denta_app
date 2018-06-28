@@ -33,7 +33,6 @@
                     vm.home_dentist_clinic = vm.home_dentist.clinic;
                 }
             }
-            vm.show_navigate = userSvc.isDoc();
         }
 
         function editDentist() {
