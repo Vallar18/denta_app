@@ -55,7 +55,7 @@
                     </div>
                 </div>
             </div>
-            <div class="patient-profile__address" ng-if="vm.have_den">
+            <div class="patient-profile__address" ng-if="!vm.isViewMode && vm.have_den">
                 <div class="dentist-profile__content-title text-center">home dentist</div>
                 <p class="patient-profile__dentist-name">{{vm.home_dentist.name + ' ' + vm.home_dentist.lastname + ','}}</p>
                 <p>{{vm.home_dentist_clinic.address}}</p>

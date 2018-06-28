@@ -3,16 +3,20 @@
 
     angular.module('app').controller('GeoCtrl', GeoCtrl);
 
-    GeoCtrl.$inject = ['$state', 'geoSvc', 'helpSvc', '$stateParams','clinicSvc'];
+    GeoCtrl.$inject = ['$state', 'geoSvc', 'helpSvc', '$stateParams', 'clinicSvc', '$ionicLoading'];
 
-    function GeoCtrl($state, geoSvc, helpSvc, $stateParams, clinicSvc) {
+    function GeoCtrl($state, geoSvc, helpSvc, $stateParams, clinicSvc, $ionicLoading) {
         let vm = this;
         vm.clinicItems = [];
         vm.dentistItems = [];
         vm.currentPos = {};
 
         init();
+
         function init() {
+            $ionicLoading.show({
+                template: 'Loading...'
+            });
             getCurrentPosition();
         }
 
@@ -22,8 +26,8 @@
                 geoSvc.getPosition().then(function (res) {
                     vm.currentPos.latitude = res.coords.latitude;
                     vm.currentPos.longitude = res.coords.longitude;
-                    if($stateParams.clinic_id){
-                       getClinicById($stateParams.clinic_id, res.coords.latitude, res.coords.longitude);
+                    if ($stateParams.clinic_id) {
+                        getClinicById($stateParams.clinic_id, res.coords.latitude, res.coords.longitude);
                     } else {
                         getDentistByCurrentPos(res.coords.latitude, res.coords.longitude);
                     }
@@ -31,8 +35,9 @@
             });
         }
 
-        function getClinicById(id, lat, lng){
-            clinicSvc.getOne(id).then(function(res){
+        function getClinicById(id, lat, lng) {
+            clinicSvc.getOne(id).then(function (res) {
+                $ionicLoading.hide();
                 if (res) {
                     vm.clinicItems = [res];
                 }
@@ -50,6 +55,7 @@
                     longitude: lng,
                     latitude: lat
                 }).then(function (res) {
+                    $ionicLoading.hide();
                     if (res.length) {
                         vm.clinicItems = res.filter(function (v) {
                             return v.users.length;
