@@ -30,7 +30,7 @@
             <ion-item ng-repeat="item in vm.dentistItems track by item.id">
                 <help-item hi-distance="item.distance"
                            hi-item="item"
-                           hi-doctor="{name:item.name,id:item.id}"
+                           hi-doctor="{name:item.name + ' '+item.lastname ,id:item.id}"
                            hi-price="item.dentist.price"
                            hi-type="'simple'"
                            hi-currency="item.dentist.currency_id"
