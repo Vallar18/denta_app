@@ -19,18 +19,19 @@
                          ng-click="slideOpen = !slideOpen" alt="">
                 </div>
             </div>
-            <button class="geolocation-btn" ui-sref="geolocation">
+            <button class="geolocation-btn" ui-sref="tabs.geolocation">
                 <img src="content/img/geolocation-icon.png" alt="">
             </button>
         </div>
-        <div ng-if="!vm.helpArr.length">
-            List is empty
+        <div class="help-content__empty text-center" ng-if="!vm.dentistItems.length">
+            {{vm.activeText}}
         </div>
-        <ion-list ng-if="vm.helpArr.length">
-            <ion-item ng-repeat="item in vm.helpArr track by item.id">
+        <ion-list ng-if="vm.dentistItems.length">
+            <ion-item ng-repeat="item in vm.dentistItems track by item.id">
                 <help-item hi-distance="item.distance"
-                           hi-doctor="item.doctor"
-                           hi-price="item.price"
+                           hi-item="item"
+                           hi-doctor="{name:item.name,id:item.id}"
+                           hi-price="item.dentist.price"
                            hi-type="'simple'"
                            hi-currency="item.currency"
                            hi-rating="item.rating"></help-item>

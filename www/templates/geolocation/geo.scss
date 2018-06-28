@@ -5,8 +5,12 @@
     width: 100vw;
   }
 
-  &__help {
+  &__dentist-list {
     position: absolute;
+    bottom: 0;
+  }
+  &__help {
+    position: fixed;
     width: 13vw;
     right: 16px;
     top: 16px;

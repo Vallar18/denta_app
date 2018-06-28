@@ -5,32 +5,35 @@
         .module('app')
         .controller('DentistProfileCtrl', DentistProfileCtrl);
 
-    DentistProfileCtrl.$inject = ['userSvc', '$state', 'authSvc','dentistProfile','$stateParams','reviewItems'];
-
-    function DentistProfileCtrl(userSvc, $state, authSvc, dentistProfile, $stateParams, reviewItems) {
-        var vm = this;
-        vm.isExpandDescr = false;
-        vm.country = 'Israel';
-        vm.profile = userSvc.getUser();
-        vm.test = [{name: 'tdddd est'}, {name: 'tefg dfg st'}, {name: 'tdf vfdv est'}, {name: 'gdfgdfgdfgdfg '}, {name: 'test'}, {name: 'test'}, {name: 'test'}, {name: 'test'}];
+    DentistProfileCtrl.$inject = ['userSvc', '$state', 'authSvc', '$ionicHistory', 'dentistProfile', '$stateParams', 'reviewItems'];
+    function DentistProfileCtrl(userSvc, $state, authSvc, $ionicHistory, dentistProfile, $stateParams, reviewItems) {
+        let vm = this;
         vm.editDentist = editDentist;
         vm.addDentist = addDentist;
         vm.editDentistPhone = editDentistPhone;
+        vm.isExpandDescr = false;
+        vm.profile = $stateParams.id? dentistProfile: userSvc.getUser();
         vm.have_den = userSvc.isHaveDentist();
-        if(vm.profile){
-            if(!vm.profile.rating) {
-                vm.profile.rating = 0;
+        vm.reviewArr = reviewItems;
+        vm.isViewMode = $stateParams.id ? true : false;
+        vm.back = function () {
+            $ionicHistory.goBack();
+        };
+        init();
+        function init() {
+            authSvc.addBackBehave(false);
+            if (vm.profile) {
+                if (!vm.profile.rating) {
+                    vm.profile.rating = 0;
+                }
             }
-        }
-        vm.isViewMode = $stateParams.id ? true: false;
-
-        authSvc.addBackBehave(false);
-
-        if(userSvc.getPatientDentist() && userSvc.getPatientDentist()[0]){
-            vm.home_dentist = userSvc.getPatientDentist()[0];
-            if(vm.home_dentist.clinic){
-                vm.home_dentist_clinic = vm.home_dentist.clinic;
+            if (userSvc.getPatientDentist() && userSvc.getPatientDentist()[0]) {
+                vm.home_dentist = userSvc.getPatientDentist()[0];
+                if (vm.home_dentist.clinic) {
+                    vm.home_dentist_clinic = vm.home_dentist.clinic;
+                }
             }
+            vm.show_navigate = userSvc.isDoc();
         }
 
         function editDentist() {
@@ -47,51 +50,17 @@
             $state.go('add-dentist-phone', {invite_for_den: true});
         }
 
-        if(userSvc.isDoc()){
-            vm.show_navigate = false;
-        } else{
-            vm.show_navigate = true;
-        }
-
-        // vm.reviewArr = [
-        //     {
-        //         id: 1,
-        //         date: '12.03.1993',
-        //         rating: 4,
-        //         name: 'Vasylyi',
-        //         text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
-        //     },
-        //     {
-        //         id: 2,
-        //         date: '12 03 1093',
-        //         rating: 4,
-        //         name: 'Vasylyi',
-        //         text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
-        //     },
-        //     {
-        //         id: 3,
-        //         date: '12 03 1093',
-        //         rating: 4,
-        //         name: 'Vasylyi',
-        //         text: 'Test test tskjnfkvn dsvknlkdfjvn sdkn vdslfk vndkfjvndknsdfkjvndklfvnskdfjvnksdjnvdfvkjnkjdfvn sd'
-        //     },
-        // ];
-
         $(document).ready(function () {
             function changeHeight() {
-
                 setTimeout(function () {
-                        var body_height = $('.dentist-profile').height(),
-                            footer_height = $('.tab-nav').height(),
-                            header_height = $('.dentist-profile-header-wrap').height(),
-                            height_calc = body_height - footer_height - header_height;
-                        $('.dentist-profile__main').height(height_calc);
-                    }
-                    , 500);
+                    var body_height = $('.dentist-profile').height(),
+                        footer_height = $('.tab-nav').height(),
+                        header_height = $('.dentist-profile-header-wrap').height(),
+                        height_calc = body_height - footer_height - header_height;
+                    $('.dentist-profile__main').height(height_calc);
+                }, 500);
             }
-
             changeHeight();
-
         });
 
     }

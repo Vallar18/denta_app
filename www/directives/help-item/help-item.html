@@ -6,7 +6,7 @@
         </div>
         <div class="col-33 doctor-block">
             <div>{{::hiDoctor.name}}</div>
-            <a ng-click="angular.isFunction(hiClickInfo) && hiClickInfo(hiDoctor.id)">Get info</a>
+            <a ng-click="hiDoctor.id && vm.getInfo(hiDoctor.id)">Get info</a>
         </div>
         <div class="col-33 rating-block">
             <star-rating sr-count="5"
@@ -41,7 +41,7 @@
         </div>
         <div class="row detail-wrap">
             <div class="col-75">
-                <a ng-click="angular.isFunction(hiClickInfo) && hiClickInfo(hiDoctor.id)">Get info</a>
+                <a ng-click="hiDoctor.id && vm.getInfo(hiDoctor.id)">Get info</a>
             </div>
             <div class="col-25 price-block">
                 price: <span>{{::hiPrice}}</span>

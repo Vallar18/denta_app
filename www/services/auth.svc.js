@@ -34,11 +34,9 @@
                 switch (userSvc.getRole()) {
                     case userSvc.roleConst().doctor:
                         $state.go('tabs.my-patient');
-                        return;
                         break;
                     case userSvc.roleConst().patient:
                         $state.go('tabs.help');
-                        return;
                         break;
                 }
             }
@@ -61,7 +59,8 @@
 
         function isLogined() {
             let user = userSvc.getUser();
-            if (angular.isDefined(user) && user.id && userSvc.getToken() && userSvc.getRole()) {
+            if (angular.isDefined(user) && user.id && userSvc.getToken() && userSvc.getRole() &&
+                (user.patient || user.dentist)) {
                 return true;
             }
             return false;
