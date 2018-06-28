@@ -1,5 +1,18 @@
 <ion-view>
- <ion-content class="geo-view">
+    <ion-content class="geo-view">
+        <div class="geo-view__dentist-list">
+            <help-item ng-repeat="item in vm.dentistItems track by $index"
+                       ng-if="vm.dentistItems.length"
+                       hi-address="item.address"
+                       hi-currency="item.dentist.currency"
+                       hi-time="item.time"
+                       hi-doctor="{name:item.name,id:item.id}"
+                       hi-price="item.dentist.price"
+                       hi-rating="item.rating"
+                       hi-type="'detail'"
+                       hi-item="item">
+            </help-item>
+        </div>
         <img class="geo-view__help"
              ui-sref="tabs.help"
              src="content/img/go-simple-cin.png">

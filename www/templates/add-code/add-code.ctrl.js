@@ -57,7 +57,7 @@
 
         function processUserData(data){
             userSvc.setUser(data.user);
-            userSvc.setRole(data.user.roles[0].name);
+            userSvc.setRole(data.user.dentist ? userSvc.roleConst().doctor:userSvc.roleConst().patient);
             userSvc.setToken(data.token);
             sendFCMToken();
             if (userSvc.isDoc()) {

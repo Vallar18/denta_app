@@ -9,6 +9,7 @@
         const DOCTOR = 'Dentist';
         const PATIENT = 'Patient';
         var model = {
+            getUserInfoById: getUserInfoById,
             getUser: getUser,
             getUserInfo: getUserInfo,
             setUser:setUser,
@@ -63,7 +64,11 @@
                 return $localStorage.user;
             }
         }
-        
+
+        function getUserInfoById(id){
+            return http.get(url.user.info + id );
+        }
+
         function getUserInfo() {
             return http.get(url.user.id + '/' + $localStorage.user.id ).then(function(res){
                 return res;
@@ -135,7 +140,7 @@
             return {
                 doctor: DOCTOR,
                 patient: PATIENT
-            }
+            };
         }
         
         function isHaveDentist() {

@@ -63,6 +63,7 @@
             user: {
                 update: baseUrl + 'user/update',
                 id: baseUrl + 'user',
+                info: baseUrl + 'user/',
                 become_dentist: baseUrl + 'user/become-dentist'
             },
             user_role: {

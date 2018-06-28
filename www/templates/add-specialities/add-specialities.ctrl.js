@@ -82,7 +82,7 @@
                 if(data.success) {
                     userSvc.getUserInfo().then(function (res) {
                         userSvc.setUser(res.user);
-                        userSvc.setRole(res.user.roles[0].name);
+                        userSvc.setRole(res.user.dentist ? userSvc.roleConst().doctor:userSvc.roleConst().patient);
                         $state.go('tabs.my-patient');
                     });
                 } else {

@@ -37,7 +37,7 @@
                         e.preventDefault();
                         vm.openPopup();
                     }
-                })
+                });
             }
             return arrBtn;
         }
@@ -58,7 +58,7 @@
                             id: res.data[0].id,
                             name: vm.getNameByUrl(res.data[0].path),
                             path: res.data[0].path
-                        })
+                        });
                     }
                 });
             }
@@ -95,7 +95,7 @@
 
         vm.deletePhoto = function deletePhoto(item, $event) {
             if($event){$event.preventDefault(); $event.stopProgressBar()}
-            var confirmPopup = $ionicPopup.confirm({
+            $ionicPopup.confirm({
                 title: 'Delete photo',
                 template: 'Are you sure you want to delete this photo?'
             }).then(function (res) {
@@ -108,11 +108,11 @@
                         }).then(function (res) {
                             if (res && res.success) {
                                 let indexDelete = vm.photoItems.findIndex(function (val) {
-                                    return val.id === item.id
+                                    return +val.id === +item.id;
                                 });
-                                vm.photoItems.splice(indexDelete);
+                                vm.photoItems.splice(indexDelete,1);
                             }
-                        })
+                        });
                     }
                 }
             });
