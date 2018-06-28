@@ -13,7 +13,7 @@
                          sr-model="hiRating"
                          sr-size="12px"
                          sr-color="#ffc600"></star-rating>
-            <div class="price-block">price: <span>{{::hiPrice}}</span></div>
+            <div class="price-block">price: <span>{{::hiPrice || 0}}</span></div>
         </div>
     </div>
 
@@ -44,7 +44,7 @@
                 <a ng-click="hiDoctor.id && vm.getInfo(hiDoctor.id)">Get info</a>
             </div>
             <div class="col-25 price-block">
-                price: <span>{{::hiPrice}}</span>
+                price: <span>{{::( hiPrice || 0)}}</span>
             </div>
         </div>
         <!--<div class="col-20">

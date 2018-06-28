@@ -27,12 +27,16 @@
                 clinicArr.forEach(function (val) {
                     if (angular.isArray(val.users)) {
                         val.users.forEach(function (user) {
-                                if (typeof user.rating === 'null') {
+                                if (typeof user.rating === null) {
                                     user.rating = 0;
                                 }
                                 user.latitude = +val.latitude;
                                 user.longitude = +val.longitude;
-                                user.price = user.dentist.price;
+                                try {
+                                    user.price = user.dentist.price;
+                                } catch(err){
+                                    user.price = 0;
+                                }
                                 docArr.push(user);
                             }
                         );

@@ -41,8 +41,8 @@
             <div class="dentist-profile__address">
                 {{vm.profile.clinic.address}}
             </div>
-            <div class="dentist-profile__navigate" ng-if="vm.show_navigate">
-                <span>Navigate</span>
+            <div class="dentist-profile__navigate" ng-if="vm.isViewMode">
+                <span ui-sref="tabs.geolocation({clinic_id: vm.profile.clinic.id})">Navigate</span>
             </div>
             <div class="dentist-profile__description"
                  ng-click="vm.isExpandDescr = !vm.isExpandDescr"

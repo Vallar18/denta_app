@@ -161,6 +161,7 @@
                 cache: false,
                 templateUrl: 'templates/geolocation/geo.html',
                 controller: 'GeoCtrl',
+                params: { clinic_id: null },
                 controllerAs: 'vm'
             })
 
