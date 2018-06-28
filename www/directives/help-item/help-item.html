@@ -40,29 +40,12 @@
             </div>
         </div>
         <div class="row detail-wrap">
-            <div class="col-75">
-                <a ng-click="hiDoctor.id && vm.getInfo(hiDoctor.id)">Get info</a>
-            </div>
-            <div class="col-25 price-block">
+            <div class="col-75 price-block">
                 price: <span>{{::( hiPrice || 0)}} {{::(hiCurrency|currency_by_id)}}</span>
             </div>
+            <div class="col-25 help-item__get-info">
+                <a ng-click="hiDoctor.id && vm.getInfo(hiDoctor.id)">Get info</a>
+            </div>
         </div>
-        <!--<div class="col-20">
-            {{::(hiDistance + ' ')}}
-            <a ng-click="angular.isFunction(hiClickInfo) && hiClickInfo(hiDoctor.id)">Get info</a>
-        </div>
-        <div class="col-60">
-            <div>{{::hiDoctor.name}}</div>
-        </div>
-        <div>{{hiAddress}}</div>
-        <div>{{hiTime}}</div>
-        <div class="col-20">
-            <star-rating sr-count="5"
-                         sr-model="hiRating"
-                         sr-size="12px"
-                         sr-color="#ffc600"></star-rating>
-            <div>Price: {{::hiPrice}}</div>
-        </div>-->
     </div>
-
 </div>
