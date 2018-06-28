@@ -50,6 +50,10 @@
             toggleMenu();
             if (item.view) {
                 $state.go(item.view);
+                let tab_active = document.querySelector('.tab-item-active');
+                if(tab_active !== null) {
+                   tab_active.classList.remove('tab-item-active');
+                }
             }
             if (item.act) {
                 switch (item.act) {
@@ -65,7 +69,7 @@
         }
 
         function share() {
-            textSvc.share();
+            textSvc.getShare();
         }
 
     }

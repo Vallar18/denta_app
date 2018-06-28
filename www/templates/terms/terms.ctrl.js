@@ -5,10 +5,19 @@
         .module('app')
         .controller('TermsCtrl', TermsCtrl);
 
-    TermsCtrl.$inject = ['$ionicHistory'];
+    TermsCtrl.$inject = ['$ionicHistory', 'textSvc'];
 
-    function TermsCtrl($ionicHistory) {
+    function TermsCtrl($ionicHistory, textSvc) {
         const vm = this;
+        init();
+
+        function init() {
+            textSvc.getTerms().then(function (res) {
+                if(res){
+                    vm.text_terms = res.description;
+                }
+            });
+        }
         vm.back = function () {
             $ionicHistory.goBack();
         };

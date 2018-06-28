@@ -38,7 +38,7 @@
         }
 
         function share() {
-            textSvc.share();
+            textSvc.getShare();
         }
 
         function becomeDentist() {
