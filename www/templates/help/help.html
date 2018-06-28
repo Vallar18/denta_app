@@ -1,28 +1,28 @@
 <ion-view>
-    <ion-content class="help-content">
-        <div layout="row" layout-align="space-between center" class="white-header">
-            <div class="radio-outer">
-                <div layout="row" layout-align="space-between center" class="radio-wrap" ng-class="{'show': slideOpen}">
-                    <div class="radio-block">
-                        <div layout="row" layout-align="space-around none">
-                            <input type="radio" name="white-header-radio" id="rating" ng-model="vm.sort" value="rating">
-                            <label for="rating">Rating</label>
+    <div layout="row" layout-align="space-between center" class="white-header">
+        <div class="radio-outer">
+            <div layout="row" layout-align="space-between center" class="radio-wrap" ng-class="{'show': slideOpen}">
+                <div class="radio-block">
+                    <div layout="row" layout-align="space-around none">
+                        <input type="radio" name="white-header-radio" id="rating" ng-model="vm.sort" value="rating">
+                        <label for="rating">Rating</label>
 
-                            <input type="radio" name="white-header-radio" id="distance" ng-model="vm.sort" value="distance">
-                            <label for="distance">Distance</label>
+                        <input type="radio" name="white-header-radio" id="distance" ng-model="vm.sort" value="distance">
+                        <label for="distance">Distance</label>
 
-                            <input type="radio" name="white-header-radio" id="price" ng-model="vm.sort" value="price">
-                            <label for="price">Price</label>
-                        </div>
+                        <input type="radio" name="white-header-radio" id="price" ng-model="vm.sort" value="price">
+                        <label for="price">Price</label>
                     </div>
-                    <img src="content/img/options-icon.png"
-                         ng-click="slideOpen = !slideOpen" alt="">
                 </div>
+                <img src="content/img/options-icon.png"
+                     ng-click="slideOpen = !slideOpen" alt="">
             </div>
-            <button class="geolocation-btn" ui-sref="tabs.geolocation">
-                <img src="content/img/geolocation-icon.png" alt="">
-            </button>
         </div>
+        <button class="geolocation-btn" ui-sref="tabs.geolocation">
+            <img src="content/img/geolocation-icon.png" alt="">
+        </button>
+    </div>
+    <ion-content class="help-content">
         <div class="help-content__empty text-center" ng-if="!vm.dentistItems.length">
             {{vm.activeText}}
         </div>

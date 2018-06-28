@@ -30,7 +30,7 @@
         }
 
         function getShare(){
-
+            // return http.get();
         }
 
         function getPrivacy(){
