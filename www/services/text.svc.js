@@ -19,16 +19,16 @@
             return $cordovaSocialSharing.share(text, null, null, null);
         }
 
-        function getShare(data){
-            return http.get(url.static.share, data).then(function (res) {
+        function getShare(){
+            return http.get(url.static.share).then(function (res) {
                 if(res){
                     return share(res.description)
                 }
             });
         }
 
-        function getPrivacy(data){
-            return http.get(url.static.privacy, data);
+        function getPrivacy(){
+            return http.get(url.static.privacy);
             // return 'getPrivacy'
         }
 
@@ -40,8 +40,8 @@
             return http.get(url.static.terms);
         }
 
-        function getStartPage(data){
-            return http.get(url.static.start_page, data);
+        function getStartPage(){
+            return http.get(url.static.start_page);
             // return 'getStartPage'
         }
 

@@ -50,6 +50,8 @@
             toggleMenu();
             if (item.view) {
                 $state.go(item.view);
+                let tab_nav = document.querySelector('.tab-item-active');
+                tab_nav.classList.remove('tab-item-active');
             }
             if (item.act) {
                 switch (item.act) {
