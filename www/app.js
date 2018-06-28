@@ -8,6 +8,7 @@
                 'app.services',
                 'app.factory',
                 'app.directives',
+                'app.filters'
             ])
         .run(runBlock);
     runBlock.$inject = ['$ionicPlatform', '$state', 'utilsSvc', 'authSvc', 'userSvc', 'fcmSvc','$timeout', '$ionicTabsDelegate'];

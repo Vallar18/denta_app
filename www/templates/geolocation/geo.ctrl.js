@@ -24,8 +24,9 @@
                     vm.currentPos.longitude = res.coords.longitude;
                     if($stateParams.clinic_id){
                        getClinicById($stateParams.clinic_id, res.coords.latitude, res.coords.longitude);
+                    } else {
+                        getDentistByCurrentPos(res.coords.latitude, res.coords.longitude);
                     }
-                    getDentistByCurrentPos(res.coords.latitude, res.coords.longitude);
                 });
             });
         }

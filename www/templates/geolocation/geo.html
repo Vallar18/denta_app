@@ -4,7 +4,7 @@
             <help-item ng-repeat="item in vm.dentistItems track by $index"
                        ng-if="vm.dentistItems.length"
                        hi-address="item.address"
-                       hi-currency="item.dentist.currency"
+                       hi-currency="item.dentist.currency_id"
                        hi-time="item.time"
                        hi-doctor="{name:item.name,id:item.id}"
                        hi-price="item.dentist.price"
