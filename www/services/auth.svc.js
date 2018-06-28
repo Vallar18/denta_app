@@ -131,9 +131,11 @@
             }
         }
 
+
         function addBackBehave(edit) {
-            if ($state.is('tabs.my-patient') || $state.is('tabs.help')){
-                var exitApp = false, intval = setInterval(function (){exitApp = false;}, 2000);
+            var exitApp = false;
+            function func() {
+                exitApp = false;
             }
             $ionicPlatform.registerBackButtonAction(function () {
                 if (!edit && ($state.is('add-dentist-phone') || $state.is('add-clinic') || $state.is('add-specialities') || $state.is('share'))) {
@@ -154,16 +156,12 @@
                     }
                 } else if ($state.is('tabs.my-patient') || $state.is('tabs.help')) {
                     if (exitApp) {
-                        clearInterval(intval)
                         (navigator.app && navigator.app.exitApp()) || (device && device.exitApp())
                     }
                     else {
                         exitApp = true;
-                        // setInterval(function () {
-                        //     if(exitApp){
-                        //         toastr.info('Press again to exit')
-                        //     }
-                        // }, 0);
+                        setTimeout(func, 2000);
+                        toastr.info('Press again to exit', {timeOut: 2000});
                         return false;
                     }
                 } else {
