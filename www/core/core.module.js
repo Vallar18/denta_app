@@ -10,7 +10,7 @@
         'toastr',
         'ngStorage',
         'ngAria',
-        // 'ngMaterial',
+        'ngMaterial',
         'pascalprecht.translate',
         'ngFileUpload',
         'ngImgCrop',
