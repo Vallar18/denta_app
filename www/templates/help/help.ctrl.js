@@ -49,12 +49,12 @@
                 vm.dentistItems.forEach(function (val) {
                     val.distance = +geoSvc.calcDistance(
                         {
-                            lng: val.longitude,
-                            lat: val.latitude
+                            longitude: val.longitude,
+                            latitude: val.latitude
                         },
                         {
-                            lng: lng,
-                            lat: lat
+                            longitude: lng,
+                            latitude: lat
                         });
                 });
                 console.log(vm.dentistItems);

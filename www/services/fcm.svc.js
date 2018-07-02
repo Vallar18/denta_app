@@ -3,9 +3,9 @@
 
     angular.module('service.fcmSvc', []).factory('fcmSvc', fcmSvc);
 
-    fcmSvc.$inject = ['http', 'url', 'toastr', 'messagesSvc','userSvc'];
+    fcmSvc.$inject = ['http', 'url', 'toastr', 'messagesSvc', 'userSvc', '$ionicPlatform'];
 
-    function fcmSvc(http, url, toastr, messagesSvc, userSvc) {
+    function fcmSvc(http, url, toastr, messagesSvc, userSvc, $ionicPlatform) {
         let model = {
             subscribe: subscribe,
             unsubscribe: unsubscribe,
@@ -44,7 +44,7 @@
         }
 
         function refreshToken(callback) {
-            if (typeof FCMPLugin !== 'undefined') {
+            if (typeof FCMPlugin !== 'undefined') {
                 FCMPlugin.onTokenRefresh(function (token) {
                     if (angular.isFunction(callback) && token) {
                         callback(token);
@@ -54,35 +54,47 @@
         }
 
         function getToken(callback) {
-            if (typeof FCMPLugin !== 'undefined') {
-                FCMPlugin.getToken(function (token) {
-                    if (angular.isFunction(callback) && token) {
-                        callback(token);
-                    }
-                });
-            }
+                $ionicPlatform.ready(function () {
+                    if (typeof FCMPlugin !== 'undefined') {
+                    FCMPlugin.getToken(function (token) {
+                        if (angular.isFunction(callback) && token) {
+                            callback(token);
+                        }
+                    });
+                }
+            });
         }
 
         function subscribe() {
-            if (typeof FCMPLugin !== 'undefined') {
+            if (typeof FCMPlugin !== 'undefined') {
                 FCMPlugin.onNotification(function (data) {
-                    console.log(data);
-                    toastr.success(data);
-                    // if (data.type == 'log' && data.status == 'emergency') {
-                    //     let kids = angular.copy(userService.getKids());
-                    //     for (let i = 0; i < kids.length; i++) {
-                    //         if (kids[i].id == data.kid_id) {
-                    //             $localStorage.log_index = i;
-                    //             break;
-                    //         }
-                    //     }
-                    //     toastr.error(String(data.message));     //red
-                    //     $state.go('logs')
-                    // } else if (data.type == 'log' && data.status == 'normal') {
-                    //     toastr.success(String(data.message));   //green
-                    //     // toastr.info(String(data.message));   //blue
-                    // }
-                });
+                        console.log(data);
+                        toastr.success(data);
+                        if(data.wasTapped){
+                            //Notification was received on device tray and tapped by the user.
+                           toastr.success( JSON.stringify(data) );
+                        }else{
+                            //Notification was received in foreground. Maybe the user needs to be notified.
+                            toastr.success( JSON.stringify(data) );
+                        }
+                        // if (data.type == 'log' && data.status == 'emergency') {
+                        //     let kids = angular.copy(userService.getKids());
+                        //     for (let i = 0; i < kids.length; i++) {
+                        //         if (kids[i].id == data.kid_id) {
+                        //             $localStorage.log_index = i;
+                        //             break;
+                        //         }
+                        //     }
+                        //     toastr.error(String(data.message));     //red
+                        //     $state.go('logs')
+                        // } else if (data.type == 'log' && data.status == 'normal') {
+                        //     toastr.success(String(data.message));   //green
+                        //     // toastr.info(String(data.message));   //blue
+                        // }
+                    },
+                    function (msg) {
+                        toastr.success(msg);
+                    });
             }
         }
 

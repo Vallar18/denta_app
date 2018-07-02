@@ -23,7 +23,6 @@
             };
             let markersItems = [];
 
-
             function resetMarker(){
                 if(markersItems.length){
                     markersItems.forEach(function(val){
@@ -140,7 +139,7 @@
                 script.setAttribute("type", "text/javascript");
                 script.id = "googleMaps";
                 if (API_KEY) {
-                    script.src = 'https://maps.googleapis.com/maps/api/js?key=' + API_KEY + '&language=en&libraries=drawing,geometry,places&callback=mapInit';
+                    script.src = 'https://maps.googleapis.com/maps/api/js?key=' + API_KEY + '&language=en&libraries=geometry,places&callback=mapInit';
                 }
                 document.body.appendChild(script);
             }
@@ -173,9 +172,9 @@
             }
 
             function calcDistance(p1, p2) {
-                if (p1 && p1.lat && p1.lng && p2 && p2.lat && p2.lng) {
-                    let point1 = createPos(p1.lat, p1.lng);
-                    let point2 = createPos(p2.lat, p2.lng);
+                if (p1 && p1.latitude && p1.longitude && p2 && p2.latitude && p2.longitude) {
+                    let point1 = createPos(p1.latitude, p1.longitude);
+                    let point2 = createPos(p2.latitude, p2.longitude);
                     return (window.google.maps.geometry.spherical.computeDistanceBetween(point1, point2) / 1000).toFixed(2);
                 }
                 return 0;
@@ -356,6 +355,7 @@
                 };
                 init();
             }
+
 
             return {
                 calcTime: calcTime,

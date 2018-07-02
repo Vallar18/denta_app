@@ -12,7 +12,6 @@
         vm.currentPos = {};
 
         init();
-
         function init() {
             $ionicLoading.show({
                 template: 'Loading...'
