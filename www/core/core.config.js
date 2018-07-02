@@ -3,10 +3,11 @@
         .module('app')
         .config(mainConfig);
 
-    mainConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$mdGestureProvider',
+    mainConfig.$inject = ['$stateProvider', '$urlRouterProvider',
         '$ionicConfigProvider', '$translateProvider', 'toastrConfig'];
 
-    function mainConfig($stateProvider, $urlRouterProvider, $mdGestureProvider,
+    // $mdGestureProvider'
+    function mainConfig($stateProvider, $urlRouterProvider,
                         $ionicConfigProvider, $translateProvider, toastrConfig) {
 
         angular.extend(toastrConfig, {
@@ -25,7 +26,7 @@
         $translateProvider.preferredLanguage('en');
         //----------------------------------
         $urlRouterProvider.otherwise('/add-phone');
-        $mdGestureProvider.skipClickHijack();
+        // $mdGestureProvider.skipClickHijack();
         $ionicConfigProvider.tabs.position('bottom'); // other values: top
 
         $stateProvider
