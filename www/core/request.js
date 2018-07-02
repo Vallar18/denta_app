@@ -4,7 +4,7 @@
         .module('factory.request', ['ngStorage'])
         .factory('http', http);
 
-    http.$inject = ['$rootScope', '$http', '$q', '$sessionStorage', '$localStorage', 'toastr', '$state', '$ionicLoading'];
+    http.$inject = ['$rootScope', '$http', '$q', '$sessionStorage', '$localStorage', 'toastr', '$state', '$ionicLoading' ];
 
     function http($rootScope, $http, $q, $sessionStorage, $localStorage, toastr, $state, $ionicLoading) {
         let request = function (method, url, data) {
@@ -79,6 +79,7 @@
                 if (response.status === 401) {
                     // $state.go('add-phone');
                     toastr.error('Server Error: ' + response.status + ' ' + response.data.message);
+                    $rootScope.$broadcast('logout',{});
                 }
                 toastr.error(response.data.message);
             }

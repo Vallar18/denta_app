@@ -48,6 +48,7 @@
                 user_role: baseUrl + 'register/user-role'
             },
             clinic: {
+                getOne: baseUrl + 'clinic/',
                 check: baseUrl + 'clinic/check',
                 change: baseUrl + 'clinic/change',
                 create: baseUrl + 'clinic/create',

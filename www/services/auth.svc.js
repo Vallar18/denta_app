@@ -3,9 +3,9 @@
 
     angular.module('service.authSvc', []).factory('authSvc', authSvc);
 
-    authSvc.$inject = ['userSvc', '$localStorage', '$state', '$ionicPlatform', '$ionicPopup', 'http', 'url', 'toastr'];
+    authSvc.$inject = ['userSvc', '$localStorage', '$state', '$ionicPlatform', '$ionicPopup', 'http', 'url', 'toastr','$rootScope'];
 
-    function authSvc(userSvc, $localStorage, $state, $ionicPlatform, $ionicPopup, http, url, toastr) {
+    function authSvc(userSvc, $localStorage, $state, $ionicPlatform, $ionicPopup, http, url, toastr, $rootScope) {
         const CODE_LENGTH = 4;
         let model = {
             setCode: setCode,
@@ -23,6 +23,11 @@
             addBackBehave: addBackBehave,
             isValidCode: isValidCode
         };
+
+        $rootScope.$on('logout',function(event,data){
+            logout();
+        });
+
         return model;
 
         function isValidCode(code) {

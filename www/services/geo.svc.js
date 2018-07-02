@@ -21,7 +21,20 @@
                 zoom: 14,
                 disableDefaultUI: true,
             };
+            let markersItems = [];
 
+
+            function resetMarker(){
+                if(markersItems.length){
+                    markersItems.forEach(function(val){
+                        val.setMap(null);
+                    });
+                }
+                if(marker){
+                    marker.setMap(null);
+                }
+                markersItems.length = 0;
+            }
 
             function errorInetOrGPS() {
                 return $ionicPopup.confirm({
@@ -108,7 +121,7 @@
             }
 
             function readyMap() {
-                distance_service = new google.maps.DistanceMatrixService();
+                distance_service = new window.google.maps.DistanceMatrixService();
                 geocoder = new window.google.maps.Geocoder;
                 $ionicLoading.hide();
                 if (angular.isFunction(googleReadyCallback)) {
@@ -271,6 +284,7 @@
             }
 
             function mapWithMarker() {
+                resetMarker();
                 googleReadyCallback = function () {
                     initMap();
                 };
@@ -298,6 +312,7 @@
                                 label: {text: '+', color: 'white', fontSize: '25px', fontWeight: '1000'}
                             });
                             tempMarker.clinicObj = val;
+                            markersItems.push(tempMarker);
                             window.google.maps.event.addListener(tempMarker, 'click', function() {
                                 callback(this);
                             });
@@ -315,6 +330,7 @@
                 if (!angular.isArray(arrPosObject) || !center || !center.lat || !center.lng) {
                     return;
                 }
+                resetMarker();
                 googleReadyCallback = function () {
                     $ionicLoading.show({
                         template: 'Initialize map...'

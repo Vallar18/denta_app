@@ -21,7 +21,8 @@
                 tiIsNotified: '=',
                 tiIsFiles: '=',
                 tiCanNotify: '=',
-                tiHaveHomeDoctor: '='
+                tiHaveHomeDoctor: '=',
+                tiCurrency: '='
             },
             controller: 'TreatmentItemCtrl',
             controllerAs: 'vm',

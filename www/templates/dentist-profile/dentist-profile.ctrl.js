@@ -5,14 +5,15 @@
         .module('app')
         .controller('DentistProfileCtrl', DentistProfileCtrl);
 
-    DentistProfileCtrl.$inject = ['userSvc', '$state', 'authSvc', '$ionicHistory', 'dentistProfile', '$stateParams', 'reviewItems'];
+    DentistProfileCtrl.$inject = ['userSvc', '$state', 'authSvc', '$ionicHistory', 'dentistProfile', '$stateParams', 'reviewItems', '$ionicLoading'];
+
     function DentistProfileCtrl(userSvc, $state, authSvc, $ionicHistory, dentistProfile, $stateParams, reviewItems) {
         let vm = this;
         vm.editDentist = editDentist;
         vm.addDentist = addDentist;
         vm.editDentistPhone = editDentistPhone;
         vm.isExpandDescr = false;
-        vm.profile = $stateParams.id? dentistProfile: userSvc.getUser();
+        vm.profile = $stateParams.id ? dentistProfile : userSvc.getUser();
         vm.have_den = userSvc.isHaveDentist();
         vm.reviewArr = reviewItems;
         vm.isViewMode = $stateParams.id ? true : false;
@@ -20,6 +21,7 @@
             $ionicHistory.goBack();
         };
         init();
+
         function init() {
             authSvc.addBackBehave(false);
             if (vm.profile) {
@@ -59,6 +61,7 @@
                     $('.dentist-profile__main').height(height_calc);
                 }, 500);
             }
+
             changeHeight();
         });
 

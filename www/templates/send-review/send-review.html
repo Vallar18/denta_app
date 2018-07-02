@@ -34,7 +34,7 @@
                                ng-model="vm.reviewModel.price"
                                input-change-color="#000">
                         <button type="button" class="select-currency" ng-click="vm.getSelectCurrency()">
-                            {{vm.select_currency.abr}}
+                            {{::(vm.select_currency.id|currency_by_id) }}
                         </button>
                     </div>
                 </div>
