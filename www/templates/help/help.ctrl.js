@@ -5,99 +5,76 @@
             .module('app')
             .controller('HelpCtrl', HelpCtrl);
 
-        HelpCtrl.$inject = ['$scope', 'currencySvc', '$filter', 'geoSvc', 'clinicItems', 'reviewSvc', 'userSvc', 'helpSvc'];
+        HelpCtrl.$inject = ['$scope', 'currencySvc', '$filter', 'geoSvc', 'reviewSvc', 'userSvc', 'helpSvc'];
 
-        function HelpCtrl($scope, currencySvc, $filter, geoSvc, clinicItems, reviewSvc, userSvc, helpSvc) {
-            var vm = this;
-            $scope.textModel = 'fffffffffffffffff';
-            $scope.picFile = null;
+        function HelpCtrl($scope, currencySvc, $filter, geoSvc, reviewSvc, userSvc, helpSvc) {
+            let vm = this;
             $scope.slideOpen = false;
+            vm.dentistItems = [];
+            vm.activeText = 'Loading...';
 
-            helpSvc.getByPos({
-                longitude: 34.5538410,
-                latitude: 49.5890900
-            }).then(function (res) {
-                console.log(res);
-            });
 
-            geoSvc.initGoogleMaps(function () {
-                console.log('map is ready!');
-                geoSvc.getPosition().then(function (res) {
-                    console.log(res);
-                    calculateDistance(res.coords);
+            init();
+            function init() {
+                vm.sort = 'rating';
+                getCurrentPosition();
+            }
+
+            function getCurrentPosition() {
+                geoSvc.initGoogleMaps(function () {
+                    console.log('map is ready!');
+                    geoSvc.getPosition().then(function (res) {
+                        getDentistByCurrentPos(res.coords.latitude, res.coords.longitude);
+                    });
                 });
-            });
+            }
 
-            reviewSvc.getItems({
-                user_id: userSvc.getUser().id,
-                dentist_id: 2,
-                role_id: 2
-            }).then(function (res) {
-                console.log(res);
-            });
-
-            userSvc.getUserInfoById(2).then(function (res) {
-                    console.log(res);
+            function getDentistByCurrentPos(lat, lng) {
+                if (lat && lng) {
+                    helpSvc.getByPos({
+                        longitude: lng,
+                        latitude: lat
+                    }).then(function (res) {
+                        if (res.length) {
+                            vm.dentistItems = helpSvc.prepareDrFromClinic(res);
+                            calculateDistance(lat, lng);
+                            sortItem();
+                            vm.activeText = 'List is empty';
+                        }
+                    });
                 }
-            );
+            }
 
-            function calculateDistance(currentPos) {
-                clinicItems.forEach(function (val) {
+            function calculateDistance(lat,lng) {
+                vm.dentistItems.forEach(function (val) {
                     val.distance = +geoSvc.calcDistance(
                         {
                             lng: val.longitude,
                             lat: val.latitude
                         },
                         {
-                            lng: currentPos.longitude,
-                            lat: currentPos.latitude
+                            lng: lng,
+                            lat: lat
                         });
                 });
-                console.log(clinicItems);
+                console.log(vm.dentistItems);
             }
 
-            vm.helpArr = [
-                {
-                    id: 1,
-                    doctor: {
-                        id: 4,
-                        name: 'Dr House'
-                    },
-                    price: 95.3,
-                    rating: 1.8,
-                    distance: 2.6,
-                },
-                {
-                    id: 2,
-                    doctor: {
-                        id: 6,
-                        name: 'Dr House2'
-                    },
-                    price: 25.6,
-                    rating: 3.8,
-                    distance: 1.0,
-                },
-                {
-                    id: 3,
-                    doctor: {
-                        id: 4,
-                        name: 'Dr House3'
-                    },
-                    price: 8.0,
-                    rating: 1.8,
-                    distance: 1.8,
-                },
-                {
-                    id: 4,
-                    doctor: {
-                        id: 4,
-                        name: 'Dr House3'
-                    },
-                    price: 100.5,
-                    rating: 4.8,
-                    distance: 9.8,
+            function sortItem() {
+                let isReverse = false;
+                switch (vm.sort) {
+                    case 'rating':
+                        isReverse = false;
+                        break;
+                    case 'price':
+                        isReverse = false;
+                        break;
+                    case 'distance':
+                        isReverse = false;
+                        break;
                 }
-            ];
+                vm.dentistItems = $filter('orderBy')(vm.dentistItems, vm.sort, isReverse);
+            }
 
             $scope.$watch(function () {
                 return vm.sort;
@@ -107,28 +84,6 @@
                 }
             });
 
-            function sortItem() {
-                var isReverse = false;
-                switch (vm.sort) {
-                    case 'rating':
-                        isReverse = true;
-                        break;
-                    case 'price':
-                        isReverse = false;
-                        break;
-                    case 'distance':
-                        isReverse = true;
-                        break;
-                }
-                vm.helpArr = $filter('orderBy')(vm.helpArr, vm.sort, isReverse);
-            }
-
-            init();
-
-            function init() {
-                vm.sort = 'rating';
-                sortItem();
-            }
         }
     }
 )();

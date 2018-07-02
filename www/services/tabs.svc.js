@@ -6,7 +6,7 @@
     tabsSvc.$inject = ['userSvc'];
 
     function tabsSvc(userSvc) {
-        var model = {
+        let model = {
             getMenuItems: getMenuItems,
             getTabItems: getTabItems
         };
@@ -34,11 +34,11 @@
                 }, {
                     id: 1,
                     name: 'Need a dentist',
-                    view: 'tabs.help'
+                    view: 'tabs.dentist-help'
                 }, {
                     id: 2,
                     name: 'My treatments',
-                    view: 'tabs.history'
+                    view: 'tabs.dentist-history'
                 }, {
                     id: 3,
                     name: 'Share with friends',

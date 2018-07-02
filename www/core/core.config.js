@@ -29,14 +29,6 @@
         $ionicConfigProvider.tabs.position('bottom'); // other values: top
 
         $stateProvider
-            .state('geolocation', {
-                reload: true,
-                url: '/geo',
-                cache:false,
-                templateUrl: 'templates/geolocation/geo.html',
-                controller: 'GeoCtrl',
-                controllerAs: 'vm'
-            })
             .state('view', {
                 url: '/view',
                 templateUrl: 'templates/view/view.html',
@@ -115,6 +107,7 @@
                 templateUrl: 'templates/add-specialities/add-specialities.html',
                 controller: 'AddSpecialitiesCtrl',
                 controllerAs: 'vm',
+                cache: false,
                 params: {edit: null, become_den: null},
                 resolve: {
                     spec: function (specSvc) {
@@ -147,16 +140,53 @@
             })
             .state('tabs', {
                 url: '/tab',
-                cache:false,
+                cache: false,
                 abstract: true,
                 controller: 'TabsController',
                 controllerAs: 'vm',
-                templateUrl: 'templates/tabs/tabs.html'
+                templateUrl: 'templates/tabs/tabs.html',
+                resolve: {
+                    //this need for generate cache
+                    currencieItems: function (currencySvc) {
+                        return currencySvc.getCurrency().then(function (res) {
+                            return res;
+                        });
+                    }
+                }
+            })
+
+            .state('tabs.geolocation', {
+                reload: true,
+                url: '/tabs/geo',
+                cache: false,
+                templateUrl: 'templates/geolocation/geo.html',
+                controller: 'GeoCtrl',
+                params: { clinic_id: null },
+                controllerAs: 'vm'
             })
 
             .state('tabs.history', {
                 reload: true,
-                cache:false,
+                cache: false,
+                url: '/history',
+                templateUrl: 'templates/history/history.html',
+                controller: 'HistoryCtrl',
+                controllerAs: 'vm',
+                resolve: {
+                    emergItems: function (userSvc, historySvc) {
+                        return historySvc.patient().then(function (res) {
+                            if (!res.success) {
+                                return [];
+                            }
+                            return res.data;
+                        });
+                    }
+                }
+
+            })
+            .state('tabs.dentist-history', {
+                reload: true,
+                cache: false,
                 url: '/history',
                 templateUrl: 'templates/history/history.html',
                 controller: 'HistoryCtrl',
@@ -175,22 +205,23 @@
             })
             .state('tabs.help', {
                 reload: true,
-                cache:false,
+                cache: false,
                 url: '/help',
                 templateUrl: 'templates/help/help.html',
                 controller: 'HelpCtrl',
                 controllerAs: 'vm',
-                resolve: {
-                    clinicItems: function (clinicSvc) {
-                        return clinicSvc.getAll().then(function (res) {
-                            return res;
-                        });
-                    }
-                }
+            })
+            .state('tabs.dentist-help', {
+                reload: true,
+                cache: false,
+                url: '/help',
+                templateUrl: 'templates/help/help.html',
+                controller: 'HelpCtrl',
+                controllerAs: 'vm',
             })
             .state('tabs.patient-profile', {
                 reload: true,
-                cache:false,
+                cache: false,
                 url: '/patient-profile',
                 templateUrl: 'templates/patient-profile/patient-profile.html',
                 controller: 'PatientProfileCtrl',
@@ -198,30 +229,32 @@
             })
             .state('tabs.dentist-profile', {
                 reload: true,
-                cache:false,
+                cache: false,
                 url: '/dentist-profile',
                 templateUrl: 'templates/dentist-profile/dentist-profile.html',
                 controller: 'DentistProfileCtrl',
                 controllerAs: 'vm',
-                params: {id : null},
+                params: {id: null},
                 resolve: {
-                    reviewItems: function(reviewSvc,userSvc,$stateParams){
+                    reviewItems: function (reviewSvc, userSvc, $stateParams) {
                         let config = {
                             user_id: userSvc.getUser().id,
                             // dentist_id: userSvc.getUser().dentist.id,
                             role_id: 1 //if i am dentist and view my review - need set role 1
                         };
-                        if($stateParams.id){
+                        if ($stateParams.id) {
                             config.dentist_id = $stateParams.id;
                         }
-                        return reviewSvc.getItems(config).then(function(res){
-                           return res;
+                        return reviewSvc.getItems(config).then(function (res) {
+                            return res;
                         });
                     },
-                    dentistProfile: function(userSvc,$stateParams){
-                        if($stateParams.id){
-                            return userSvc.getUserInfoById($stateParams.id).then(function(res){
-                                if(res.user){return res.user;}
+                    dentistProfile: function (userSvc, $stateParams) {
+                        if ($stateParams.id) {
+                            return userSvc.getUserInfoById($stateParams.id).then(function (res) {
+                                if (res.user) {
+                                    return res.user;
+                                }
                             });
                         }
                     }
@@ -229,30 +262,31 @@
             })
             .state('tabs.view-dentist-profile', {
                 reload: true,
-                cache:false,
+                cache: false,
                 url: '/view-dentist-profile',
                 templateUrl: 'templates/dentist-profile/dentist-profile.html',
                 controller: 'DentistProfileCtrl',
                 controllerAs: 'vm',
-                params: {id : null},
+                params: {id: null},
                 resolve: {
-                    reviewItems: function(reviewSvc,userSvc,$stateParams){
+                    reviewItems: function (reviewSvc, userSvc, $stateParams) {
                         let config = {
                             user_id: userSvc.getUser().id,
-                            // dentist_id: userSvc.getUser().dentist.id,
-                            role_id: 1 //if i am dentist and view my review - need set role 1
+                            role_id: 2 //if i am patient and view other dentist review - need set role 2
                         };
-                        if($stateParams.id){
+                        if ($stateParams.id) {
                             config.dentist_id = $stateParams.id;
                         }
-                        return reviewSvc.getItems(config).then(function(res){
+                        return reviewSvc.getItems(config).then(function (res) {
                             return res;
                         });
                     },
-                    dentistProfile: function(userSvc,$stateParams){
-                        if($stateParams.id){
-                            return userSvc.getUserInfoById($stateParams.id).then(function(res){
-                                if(res.user){return res.user;}
+                    dentistProfile: function (userSvc, $stateParams) {
+                        if ($stateParams.id) {
+                            return userSvc.getUserInfoById($stateParams.id).then(function (res) {
+                                if (res.user) {
+                                    return res.user;
+                                }
                             });
                         }
                     }
@@ -264,7 +298,7 @@
                 templateUrl: 'templates/my-patient/my-patient.html',
                 controller: 'MyPatientCtrl',
                 controllerAs: 'vm',
-                cache:false,
+                cache: false,
                 resolve: {
                     codeItems: function (phoneSvc) {
                         return phoneSvc.getCodes().then(function (res) {
@@ -279,7 +313,7 @@
                 templateUrl: 'templates/history-emergencies/history-emergencies.html',
                 controller: 'HistoryEmergenciesCtlr',
                 controllerAs: 'vm',
-                cache:false,
+                cache: false,
                 resolve: {
                     emergItems: function (historySvc) {
                         return historySvc.dentist().then(function (res) {
@@ -298,7 +332,7 @@
                 templateUrl: 'templates/history-patients/history-patients.html',
                 controller: 'HistoryPatientsCtlr',
                 controllerAs: 'vm',
-                cache:false,
+                cache: false,
                 resolve: {
                     patientsItems: function (historySvc) {
                         return historySvc.dentistOwners().then(function (res) {
@@ -313,7 +347,7 @@
             })
             .state('about', {
                 reload: true,
-                cache:false,
+                cache: false,
                 url: '/about',
                 templateUrl: 'templates/about/about.html',
                 controller: 'AboutCtrl',
@@ -321,7 +355,7 @@
             })
             .state('privacy', {
                 reload: true,
-                cache:false,
+                cache: false,
                 url: '/privacy',
                 templateUrl: 'templates/privacy/privacy.html',
                 controller: 'PrivacyCtrl',
@@ -329,7 +363,7 @@
             })
             .state('terms', {
                 reload: true,
-                cache:false,
+                cache: false,
                 url: '/terms',
                 templateUrl: 'templates/terms/terms.html',
                 controller: 'TermsCtrl',
@@ -337,7 +371,7 @@
             })
             .state('share', {
                 reload: true,
-                cache:false,
+                cache: false,
                 url: '/share',
                 templateUrl: 'templates/share/share.html',
                 controller: 'ShareCtrl',
@@ -345,7 +379,7 @@
             })
             .state('my-treatments', {
                 reload: true,
-                cache:false,
+                cache: false,
                 url: '/my-treatments',
                 templateUrl: 'templates/my-treatments/my-treatments.html',
                 controller: 'MyTreatmentsCtrl',
@@ -353,7 +387,7 @@
             })
             .state('need-dentist', {
                 reload: true,
-                cache:false,
+                cache: false,
                 url: '/need-dentist',
                 templateUrl: 'templates/need-dentist/need-dentist.html',
                 controller: 'NeedDentistCtrl',
@@ -362,7 +396,7 @@
 
             .state('send-review', {
                 reload: true,
-                cache:false,
+                cache: false,
                 url: '/send-review',
                 templateUrl: 'templates/send-review/send-review.html',
                 controller: 'SendReviewCtrl',

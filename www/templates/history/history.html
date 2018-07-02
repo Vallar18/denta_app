@@ -5,7 +5,6 @@
                 History
             </div>
             <button class="button back-btn" ng-click="vm.back()">
-                <!--<i class="icon ion-ios-arrow-thin-left"></i>-->
                 <img src="content/img/back.png" alt="">
             </button>
             <div class="header-simple__border">
@@ -32,6 +31,7 @@
                                 ti-country="item.country"
                                 ti-date="item.created_at"
                                 ti-have-home-doctor="true"
+                                ti-currency="item.review.currency_id"
                                 ti-dentist="{{item.dentist_name}}"></treatment-item>
                     </ion-item>
                 </ion-list>

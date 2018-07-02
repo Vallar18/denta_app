@@ -19,10 +19,11 @@
                     <div class="text-center subtitle-country">{{vm.profile.country}}</div>
                 </div>
 
-                <button class="header-simple__right-btn"
-                        ng-click="vm.editDentist()">
-                    <img src="content/img/edit-profile-icon.png" alt="" ng-if="!vm.isViewMode">
-                    <img src="content/img/back.png" alt="" ng-if="vm.isViewMode">
+                <button class="header-simple__right-btn">
+                    <img src="content/img/edit-profile-icon.png" alt=""
+                         ng-if="!vm.isViewMode" ng-click="vm.editDentist()">
+                    <img src="content/img/back.png" alt=""
+                         ng-if="vm.isViewMode" ng-click="vm.back()">
                 </button>
                 <button class="header-simple__left-btn">
                     <img ng-src="{{vm.profile.avatar}}">
@@ -40,8 +41,8 @@
             <div class="dentist-profile__address">
                 {{vm.profile.clinic.address}}
             </div>
-            <div class="dentist-profile__navigate" ng-if="vm.show_navigate">
-                <span>Navigate</span>
+            <div class="dentist-profile__navigate" ng-if="vm.isViewMode">
+                <span ui-sref="tabs.geolocation({clinic_id: vm.profile.clinic.id})">Navigate</span>
             </div>
             <div class="dentist-profile__description"
                  ng-click="vm.isExpandDescr = !vm.isExpandDescr"
@@ -54,10 +55,11 @@
                     </div>
                 </div>
             </div>
-            <div class="patient-profile__address" ng-if="vm.have_den">
+            <div class="patient-profile__address" ng-if="!vm.isViewMode && vm.have_den">
+                <div class="dentist-profile__content-title text-center">home dentist</div>
                 <p class="patient-profile__dentist-name">{{vm.home_dentist.name + ' ' + vm.home_dentist.lastname + ','}}</p>
                 <p>{{vm.home_dentist_clinic.address}}</p>
-                <div class="text-center"><a ng-click="vm.editDentistPhone()">Change</a></div>
+                <div class="text-center" ng-if="!vm.isViewMode"><a ng-click="vm.editDentistPhone()">Change</a></div>
             </div>
             <button class="gray-btn invite-dentist-btn" ng-if="!vm.have_den" ng-click='vm.addDentist()'>Invite dentist</button>
             <div class="dentist-profile__content">
@@ -69,8 +71,8 @@
                     <ion-item ng-repeat="item in vm.reviewArr track by $index">
                         <review-item ri-date="item.created_at"
                                      ri-rating="item.rating"
-                                     ri-name="item.name"
-                                     ri-text="item.text"></review-item>
+                                     ri-name="item.patient_name + ' ' +patient_lastname"
+                                     ri-text="item.description"></review-item>
                     </ion-item>
                 </ion-list>
             </div>

@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="col-40 col-bottom text-align-right">
-            <div ng-if="tiPrice && !tiNeedReview" class="treatment-item__price">{{::tiPrice+'$'}}</div>
+            <div ng-if="tiPrice && !tiNeedReview" class="treatment-item__price">{{::tiPrice}} {{::(tiCurrency|currency_by_id)}} </div>
             <a ng-if="tiNeedReview" class="treatment-item__review"
                ng-click="tiReview && tiReview()">Give a review</a>
 

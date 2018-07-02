@@ -3,9 +3,9 @@
 
     angular.module('service.authSvc', []).factory('authSvc', authSvc);
 
-    authSvc.$inject = ['userSvc', '$localStorage', '$state', '$ionicPlatform', '$ionicPopup', 'http', 'url', 'toastr'];
+    authSvc.$inject = ['userSvc', '$localStorage', '$state', '$ionicPlatform', '$ionicPopup', 'http', 'url', 'toastr','$rootScope'];
 
-    function authSvc(userSvc, $localStorage, $state, $ionicPlatform, $ionicPopup, http, url, toastr) {
+    function authSvc(userSvc, $localStorage, $state, $ionicPlatform, $ionicPopup, http, url, toastr, $rootScope) {
         const CODE_LENGTH = 4;
         let model = {
             setCode: setCode,
@@ -23,6 +23,11 @@
             addBackBehave: addBackBehave,
             isValidCode: isValidCode
         };
+
+        $rootScope.$on('logout',function(event,data){
+            logout();
+        });
+
         return model;
 
         function isValidCode(code) {
@@ -34,11 +39,9 @@
                 switch (userSvc.getRole()) {
                     case userSvc.roleConst().doctor:
                         $state.go('tabs.my-patient');
-                        return;
                         break;
                     case userSvc.roleConst().patient:
                         $state.go('tabs.help');
-                        return;
                         break;
                 }
             }
@@ -61,7 +64,8 @@
 
         function isLogined() {
             let user = userSvc.getUser();
-            if (angular.isDefined(user) && user.id && userSvc.getToken() && userSvc.getRole()) {
+            if (angular.isDefined(user) && user.id && userSvc.getToken() && userSvc.getRole() &&
+                (user.patient || user.dentist)) {
                 return true;
             }
             return false;
@@ -88,7 +92,6 @@
         function clearAuthData() {
             $localStorage.country_id = null;
             $localStorage.code = null;
-            $localStorage.country_id = null;
             $localStorage.key = null;
             $localStorage.phone = null;
             delete $localStorage.country_id;
@@ -133,7 +136,12 @@
             }
         }
 
+
         function addBackBehave(edit) {
+            var exitApp = false;
+            function func() {
+                exitApp = false;
+            }
             $ionicPlatform.registerBackButtonAction(function () {
                 if (!edit && ($state.is('add-dentist-phone') || $state.is('add-clinic') || $state.is('add-specialities') || $state.is('share'))) {
                     showBackPopup();
@@ -152,12 +160,19 @@
                             window.history.back();
                     }
                 } else if ($state.is('tabs.my-patient') || $state.is('tabs.help')) {
-                    return false;
+                    if (exitApp) {
+                        (navigator.app && navigator.app.exitApp()) || (device && device.exitApp())
+                    }
+                    else {
+                        exitApp = true;
+                        setTimeout(func, 2000);
+                        toastr.info('Press again to exit', {timeOut: 2000});
+                        return false;
+                    }
                 } else {
                     switch ($state.current.url) {
                         case '/add-phone':
-                            event.preventDefault();
-                            navigator.app.exitApp();
+                            (navigator.app && navigator.app.exitApp()) || (device && device.exitApp())
                             break;
                         case '/patient-profile':
                             $state.go('help');

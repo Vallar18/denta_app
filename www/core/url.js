@@ -48,6 +48,7 @@
                 user_role: baseUrl + 'register/user-role'
             },
             clinic: {
+                getOne: baseUrl + 'clinic/',
                 check: baseUrl + 'clinic/check',
                 change: baseUrl + 'clinic/change',
                 create: baseUrl + 'clinic/create',
@@ -71,6 +72,13 @@
             },
             relate: {
                 dentist: baseUrl + 'relate/dentist'
+            },
+            static : {
+                share: baseUrl + 'static/sharing',
+                start_page: baseUrl + 'static/start',
+                privacy: baseUrl + 'static/privacy',
+                about: baseUrl + 'static/about',
+                terms: baseUrl + 'static/terms'
             },
             subscribe: baseUrl + 'subscribe'
         };

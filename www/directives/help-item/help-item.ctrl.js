@@ -5,9 +5,16 @@
         .module('app')
         .controller('HelpItemCtrl', HelpItemCtrl);
 
-    HelpItemCtrl.$inject = ['$scope'];
+    HelpItemCtrl.$inject = ['$scope','$state'];
 
-    function HelpItemCtrl($scope) {
+    function HelpItemCtrl($scope, $state) {
+        let vm = this;
+
+        vm.getInfo = function(dentistId){
+            if(dentistId){
+                $state.go('tabs.view-dentist-profile',{id: dentistId});
+            }
+        };
     }
 
 })();

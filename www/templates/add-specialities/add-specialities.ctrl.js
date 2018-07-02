@@ -24,25 +24,28 @@
         vm.specialities = spec;
         vm.currencies = currencies;
         vm.select_currency = vm.currencies[currencySvc.getDefaultIndex()];
-        if (vm.edit && !vm.become_den){
-            vm.btn_text = 'Update';
-            vm.select_currency = vm.user.dentist.currency;
-            vm.dentist = {
-                user_id: vm.user.id, role: vm.role, currency_id: vm.select_currency.id,
-                price: vm.user.dentist.price, description: vm.user.dentist.description,
-                specialty_id: [],
-            };
-            prepareSpec();
-            angular.forEach(vm.specialities, function (val) {
-               if (vm.specById[val.id]) {
-                   val.checked = true;
-               }
-            });
-        }else {
-            vm.dentist = {
-                user_id: vm.user.id, role: vm.role, currency_id: vm.select_currency.id,
-                price: '', description: '', specialty_id: [],
-            };
+        init()
+        function init() {
+            if (vm.edit){
+                vm.btn_text = 'Update';
+                vm.select_currency = vm.user.dentist.currency;
+                vm.dentist = {
+                    user_id: vm.user.id, role: vm.role, currency_id: vm.select_currency.id,
+                    price: vm.user.dentist.price, description: vm.user.dentist.description,
+                    specialty_id: [],
+                };
+                prepareSpec();
+                angular.forEach(vm.specialities, function (val) {
+                    if (vm.specById[val.id]) {
+                        val.checked = true;
+                    }
+                });
+            }else {
+                vm.dentist = {
+                    user_id: vm.user.id, role: vm.role, currency_id: vm.select_currency.id,
+                    price: '', description: '', specialty_id: [],
+                };
+            }
         }
         authSvc.addBackBehave(vm.edit);
 
@@ -59,7 +62,7 @@
                 if (vm.edit){
                     editProcess();
                 }else if(vm.become_den){
-                    getBecomeDenClinic();
+                    sendBecomeDentist();
                 } else {
                     addSpecProcess();
                 }

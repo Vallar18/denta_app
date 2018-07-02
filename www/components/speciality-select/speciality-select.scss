@@ -22,10 +22,11 @@
   }
 
   .spec-check {
-    width: 13vw;
-    height: 13vw;
+    width: auto;
+    height: auto;
     img {
-      width: 100%;
+      width: 13vw;
+      height: 13vw;
     }
   }
   //.around {

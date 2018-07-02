@@ -25,6 +25,9 @@
         init();
 
         function init() {
+            if(!authSvc.isLogined()){
+                authSvc.logout();
+            }
             vm.menuModel.items = tabsSvc.getMenuItems(currentUserType);
             vm.tabsModel.items = tabsSvc.getTabItems(currentUserType);
             // geoSvc.watchPosition();
@@ -47,6 +50,10 @@
             toggleMenu();
             if (item.view) {
                 $state.go(item.view);
+                let tab_active = document.querySelector('.tab-item-active');
+                if(tab_active !== null) {
+                   tab_active.classList.remove('tab-item-active');
+                }
             }
             if (item.act) {
                 switch (item.act) {
@@ -62,7 +69,7 @@
         }
 
         function share() {
-            textSvc.share();
+            textSvc.getShare();
         }
 
     }

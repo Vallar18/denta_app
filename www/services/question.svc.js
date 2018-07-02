@@ -12,7 +12,7 @@
         return model;
 
         function getAll(){
-            return http.get(url.question.getAll);
+            return http.get(url.question.all);
         }
 
 
