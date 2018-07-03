@@ -56,7 +56,7 @@
                 reviewSvc.create({
                     user_id: userSvc.getUser().id,
                     emergency_id: $stateParams.emergencyId,
-                    currency_id: vm.reviewModel.currency,
+                    currency_id: vm.select_currency.id,
                     questions: getRatingObj(),
                     description: vm.reviewModel.comment,
                     price: vm.reviewModel.price
