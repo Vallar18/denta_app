@@ -1,0 +1,63 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+For example, you might change some of the default colors:
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../../lib/ionic/fonts" !default;
+
+// Include all of Ionic
+@import "../www/lib/ionic/scss/ionic";
+@import "../www/styles/variables";
+@import "../www/styles/global";
+//Templates
+@import "../www/templates/tabs/tabs";
+@import "../www/templates/view/view";
+@import "../www/templates/add-phone/add-phone";
+@import "../www/templates/add-code/add-code";
+@import "../www/templates/reg-doc/reg-doc";
+@import "../www/templates/add-clinic/add-clinic";
+@import "../www/templates/add-specialities/add-specialities";
+@import "../www/templates/add-dentist-phone/add-dentist-phone";
+@import "../www/templates/geolocation/geo";
+@import "../www/templates/about/about";
+@import "../www/templates/privacy/privacy";
+@import "../www/templates/terms/terms";
+@import "../www/templates/share/share";
+@import "../www/templates/help/help";
+@import "../www/templates/patient-profile/patient-profile";
+@import "../www/templates/my-treatments/my-treatments";
+@import "../www/templates/need-dentist/need-dentist";
+@import "../www/templates/dentist-profile/dentist-profile";
+@import "../www/templates/send-review/send-review";
+@import "../www/templates/my-patient/my-patient";
+@import "../www/templates/history/history";
+@import "../www/templates/history-patients/history-patients";
+@import "../www/templates/history-emergencies/history-emergencies";
+//Components
+@import "../www/components/select-subscription/select-subscription";
+@import "../www/components/speciality-select/speciality-select";
+@import "../www/components/create-avatar/create-avatar";
+@import "../www/components/code-select/code-select";
+@import "../www/components/select-currency/select-currency";
+@import "../www/components/google-maps/google-maps";
+@import "../www/components/photo-emergency/photo-emergency";
+@import "../www/components/photo-viewer/photot-viewer";
+//Directives
+@import "../www/directives/menu-custom/menu-custom";
+@import "../www/directives/star-rating/star-rating";
+@import "../www/directives/help-item/help-item";
+@import "../www/directives/review-item/review-item";
+@import "../www/directives/input-change-color/input-change-color";
+@import "../www/directives/treatment-item/treatment-item";
+@import "../www/directives/patient-item/patient-item";
