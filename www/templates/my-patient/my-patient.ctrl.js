@@ -5,9 +5,9 @@
         .module('app')
         .controller('MyPatientCtrl', MyPatientCtrl);
 
-    MyPatientCtrl.$inject = ['authSvc', '$scope', 'phoneSvc', 'codeItems', '$state', 'toastr', 'messagesSvc','emergenciesSvc','userSvc'];
+    MyPatientCtrl.$inject = ['authSvc', '$scope', 'phoneSvc', 'codeItems', '$ionicPopup', 'toastr', 'messagesSvc','emergenciesSvc','userSvc'];
 
-    function MyPatientCtrl(authSvc, $scope, phoneSvc, codeItems, $state, toastr, messagesSvc, emergenciesSvc, userSvc) {
+    function MyPatientCtrl(authSvc, $scope, phoneSvc, codeItems, $ionicPopup, toastr, messagesSvc, emergenciesSvc, userSvc) {
         const vm = this;
         vm.send = send;
         vm.getSelectCode = getSelectCode;
@@ -40,6 +40,25 @@
             // $state.go('tabs.history-emergencies');
 
         }
+
+        vm.test = function () {
+             let paymentPopup = $ionicPopup.show({
+                templateUrl: 'components/select-subscription/select-subscription.html',
+                cssClass: 'select-subscription',
+                title: '',
+                scope: $scope,
+                buttons: [
+                    {text: 'Cancel'},
+                    {
+                        text: '<b>OK</b>',
+                        type: 'button-positive',
+                        onTap: function (e) {
+                            paymentPopup.close();
+                        }
+                    }
+                ]
+            });
+        };
 
         function getSelectCode() {
             vm.codePopup = phoneSvc.showSelect($scope);

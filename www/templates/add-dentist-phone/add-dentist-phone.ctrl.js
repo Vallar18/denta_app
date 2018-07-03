@@ -29,7 +29,11 @@
         vm.contactList = [];
         init();
         function init() {
-            authSvc.addBackBehave(vm.edit);
+            if(vm.c_invite || vm.invite_for_den){
+                authSvc.addBackBehave(true);
+            } else {
+                authSvc.addBackBehave(vm.edit);
+            }
             if(vm.edit || vm.c_invite || vm.invite_for_den){
                 hideOverlay();
             }

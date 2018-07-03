@@ -27,24 +27,6 @@
         //     authSvc.processAutoLogin();
         // }
 
-        // vm.test = function () {
-        //     $ionicPopup.show({
-        //         templateUrl: 'components/select-subscription/select-subscription.html',
-        //         cssClass: 'select-subscription',
-        //         title: '',
-        //         scope: $scope,
-        //         buttons: [
-        //             {text: 'Cancel'},
-        //             {
-        //                 text: '<b>OK</b>',
-        //                 type: 'button-positive',
-        //                 onTap: function (e) {
-        //                 }
-        //             }
-        //         ]
-        //     });
-        // };
-
         function send() {
             authSvc.setCountryId(selected_country.id);
             let phone = phoneSvc.preparePhone(vm.select_code, vm.phone);
