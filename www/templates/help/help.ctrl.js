@@ -13,7 +13,6 @@
             vm.dentistItems = [];
             vm.activeText = 'Loading...';
 
-
             init();
             function init() {
                 vm.sort = 'rating';
@@ -23,7 +22,7 @@
             function getCurrentPosition() {
                 geoSvc.initGoogleMaps(function () {
                     console.log('map is ready!');
-                    geoSvc.getPosition().then(function (res) {
+                    geoSvc.getPosition(false).then(function (res) {
                         getDentistByCurrentPos(res.coords.latitude, res.coords.longitude);
                     });
                 });
@@ -49,12 +48,12 @@
                 vm.dentistItems.forEach(function (val) {
                     val.distance = +geoSvc.calcDistance(
                         {
-                            lng: val.longitude,
-                            lat: val.latitude
+                            longitude: val.longitude,
+                            latitude: val.latitude
                         },
                         {
-                            lng: lng,
-                            lat: lat
+                            longitude: lng,
+                            latitude: lat
                         });
                 });
                 console.log(vm.dentistItems);

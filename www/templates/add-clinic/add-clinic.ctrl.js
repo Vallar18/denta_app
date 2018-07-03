@@ -31,18 +31,17 @@
             vm.edit = false;
             authSvc.addBackBehave(vm.edit);
         }
+        vm.clinic = {
+            user_id: vm.user.id, name: '', phone: '',
+            longitude: null, latitude: null
+        };
         if (vm.edit){
             vm.btn_text = 'Update';
             vm.clinic = {
                 user_id: vm.user.id, name: clinic.name, phone: clinic.phone, address: clinic.address,
                 longitude: clinic.longitude, latitude: clinic.latitude
-            }
-            return
+            };
         }
-        vm.clinic = {
-            user_id: vm.user.id, name: '', phone: '',
-            longitude: null, latitude: null
-        };
 
         /*$scope.listClinic = [
             {name: "Nacccccme"},
@@ -55,7 +54,7 @@
 
         function checkClinicPhone() {
             if (!validPhone()) {
-                return
+                return;
             }
             let send = {
                 phone: vm.clinic.phone
@@ -286,7 +285,6 @@
             }
             var mapPopup = $ionicPopup.show({
                 templateUrl: 'components/google-maps/google-maps.html',
-                title: 'Google maps',
                 scope: $scope,
                 cssClass: 'google-maps-component',
                 buttons: [
@@ -322,6 +320,24 @@
                 $ionicLoading.hide();
             });
         }
+
+
+        vm.disableTap = function(event) {
+            let input = event.target;
+            // Get the predictions element
+            let container = document.getElementsByClassName('pac-container');
+            container = angular.element(container);
+            // Apply css to ensure the container overlays the other elements, and
+            // events occur on the element not behind it
+            container.css('z-index', '5000');
+            container.css('pointer-events', 'auto');
+            // Disable ionic data tap
+            container.attr('data-tap-disabled', 'true');
+            // Leave the input field if a prediction is chosen
+            container.on('click', function(){
+                input.blur();
+            });
+        };
     }
 
 })();

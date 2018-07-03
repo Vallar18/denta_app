@@ -23,14 +23,14 @@
             };
             let markersItems = [];
 
-
-            function resetMarker(){
-                if(markersItems.length){
-                    markersItems.forEach(function(val){
-                        val.setMap(null);
+            function resetMarker() {
+                if (markersItems.length) {
+                    markersItems.forEach(function (val) {
+                        val.marker.setMap(null);
+                        window.google.maps.event.removeListener(val.event);
                     });
                 }
-                if(marker){
+                if (marker) {
                     marker.setMap(null);
                 }
                 markersItems.length = 0;
@@ -45,17 +45,15 @@
 
             function addSearch() {
                 var input = document.getElementById('searchMapTextField');
-                autocomplete = new window.google.maps.places.Autocomplete(input);
+                autocomplete = new window.google.maps.places.Autocomplete(input,{});
                 window.google.maps.event.addListener(autocomplete, 'place_changed', function () {
-                    var place = autocomplete.getPlace();
-                    console.log(place);
+                    let place = autocomplete.getPlace();
+                    if(place.geometry && place.geometry.location){
+                        let pos = createPos(place.geometry.location.lat(),place.geometry.location.lng());
+                        marker.setPosition(pos);
+                        map.setCenter(pos);
+                    }
                 });
-                // autocomplete = new window.google.maps.places.Autocomplete(input, {});
-                // autocomplete.addListener('place_changed', function() {
-                //     var place = autocomplete.getPlace();
-                //     processSelectedPlace(place);
-                //     console.log(place);
-                // });
             }
 
             // function processSelectedPlace(place) {
@@ -75,10 +73,8 @@
             }
 
             function initMap() {
-                $ionicLoading.show({
-                    template: 'Getting position...'
-                });
-                getPosition().then(function (pos) {
+                getPosition(false).then(function (pos) {
+                    addSearch();
                     $ionicLoading.show({
                         template: 'Loading map...'
                     });
@@ -140,7 +136,7 @@
                 script.setAttribute("type", "text/javascript");
                 script.id = "googleMaps";
                 if (API_KEY) {
-                    script.src = 'https://maps.googleapis.com/maps/api/js?key=' + API_KEY + '&language=en&libraries=drawing,geometry,places&callback=mapInit';
+                    script.src = 'https://maps.googleapis.com/maps/api/js?key=' + API_KEY + '&language=en&libraries=geometry,places&callback=mapInit';
                 }
                 document.body.appendChild(script);
             }
@@ -173,15 +169,18 @@
             }
 
             function calcDistance(p1, p2) {
-                if (p1 && p1.lat && p1.lng && p2 && p2.lat && p2.lng) {
-                    let point1 = createPos(p1.lat, p1.lng);
-                    let point2 = createPos(p2.lat, p2.lng);
+                if (p1 && p1.latitude && p1.longitude && p2 && p2.latitude && p2.longitude) {
+                    let point1 = createPos(p1.latitude, p1.longitude);
+                    let point2 = createPos(p2.latitude, p2.longitude);
                     return (window.google.maps.geometry.spherical.computeDistanceBetween(point1, point2) / 1000).toFixed(2);
                 }
                 return 0;
             }
 
             function calcTime(p1, p2, type) {
+                $ionicLoading.show({
+                    template: 'Getting info about clinic...'
+                });
                 let promise = $q.defer();
                 if (p1 && p1.latitude && p1.longitude && p2 && p2.latitude && p2.longitude) {
                     let pointA = createPos(p1.latitude, p1.longitude);
@@ -197,7 +196,8 @@
                             // avoidHighways: true,
                             // avoidTolls: false,
                         }, function (res, status) {
-                            promise.resolve(res,status);
+                            promise.resolve(res, status);
+                            $ionicLoading.hide();
                         });
                 }
                 return promise.promise;
@@ -206,8 +206,8 @@
 
             function getAddress(latlng, callback) {
                 let addressObj = {
-                    lat: latlng.lat,
-                    lng: latlng.lng,
+                    lat: latlng.lat || latlng.latitude,
+                    lng: latlng.lng || latlng.longitude,
                     address: ''
                 };
                 geocoder.geocode({'location': latlng}, function (results, status) {
@@ -276,11 +276,22 @@
             }
 
             function getPosition(accuracy) {
+                $ionicLoading.show({
+                    template: 'Getting position...'
+                });
+                let defered = $q.defer();
                 let options = {
+                    maximumAge: 60 * 1000,
                     timeout: 30000,
                     enableHighAccuracy: angular.isDefined(accuracy) ? accuracy : true
                 };
-                return $cordovaGeolocation.getCurrentPosition(options);
+                $cordovaGeolocation.getCurrentPosition(options).then(function (res) {
+                    $ionicLoading.hide();
+                    defered.resolve(res);
+                }, function (res) {
+                    defered.reject(res);
+                });
+                return defered.promise;
             }
 
             function mapWithMarker() {
@@ -301,20 +312,24 @@
             }
 
 
-            function createMarkerByArr(arrPosObject, map, callback){
-                if(angular.isArray(arrPosObject) && map){
-                    arrPosObject.forEach(function(val){
-                        if(val.latitude && val.longitude){
+            function createMarkerByArr(arrPosObject, map, callback) {
+                if (angular.isArray(arrPosObject) && map) {
+                    arrPosObject.forEach(function (val) {
+                        if (val.latitude && val.longitude) {
                             let tempMarker = createMarker({
-                                position: createPos(val.latitude,val.longitude),
+                                position: createPos(val.latitude, val.longitude),
                                 map: map,
                                 draggable: false,
-                                label: {text: '+', color: 'white', fontSize: '25px', fontWeight: '1000'}
+                                label: {text: '+', color: 'white', fontSize: '25px', fontWeight: '1000'},
+                                zIndex: 10
                             });
                             tempMarker.clinicObj = val;
-                            markersItems.push(tempMarker);
-                            window.google.maps.event.addListener(tempMarker, 'click', function() {
+                            let tempEvent = window.google.maps.event.addListener(tempMarker, 'click', function () {
                                 callback(this);
+                            });
+                            markersItems.push({
+                                marker: tempMarker,
+                                event: tempEvent
                             });
                         }
                     });
@@ -326,7 +341,7 @@
              * @param arrPosObject (need contain property latitude and longitude)
              * @param center - center of map, center.lat, center.lng
              */
-            function showOnMap(arrPosObject, center, callback) {
+            function showOnMap(arrPosObject, center, callback, isCenterClinic) {
                 if (!angular.isArray(arrPosObject) || !center || !center.lat || !center.lng) {
                     return;
                 }
@@ -335,20 +350,25 @@
                     $ionicLoading.show({
                         template: 'Initialize map...'
                     });
-                    let latLng = createPos(+center.lat, +center.lng);
+                    let latLngUser = createPos(center.lat, center.lng);
+                    let clinicLatLng;
+                    if(isCenterClinic){
+                        clinicLatLng = createPos(arrPosObject[0].latitude, arrPosObject[0].longitude);
+                    }
                     let mapOptions = angular.extend({}, BASE_CONFIG_MAP,
                         {
                             zoom: 12,
-                            center: latLng,
+                            center: isCenterClinic?clinicLatLng:latLngUser,
                             mapTypeId: window.google.maps.MapTypeId.ROADMAP
                         });
                     map = mapByOptions(mapOptions);
-                    createMarkerByArr(arrPosObject,map, callback);
+                    createMarkerByArr(arrPosObject, map, callback);
                     marker = createMarker({
-                        position: latLng,
+                        position: latLngUser,
                         map: map,
                         draggable: false,
-                        icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+                        icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+                        zIndex: 1
                     });
                     window.google.maps.event.addListenerOnce(map, 'idle', function () {
                         enableMap();

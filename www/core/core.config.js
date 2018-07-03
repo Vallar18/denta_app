@@ -4,11 +4,11 @@
         .config(mainConfig);
 
     mainConfig.$inject = ['$stateProvider', '$urlRouterProvider',
-        '$ionicConfigProvider', '$translateProvider', 'toastrConfig'];
+        '$ionicConfigProvider', '$translateProvider', 'toastrConfig', '$mdGestureProvider'];
 
     // $mdGestureProvider'
     function mainConfig($stateProvider, $urlRouterProvider,
-                        $ionicConfigProvider, $translateProvider, toastrConfig) {
+                        $ionicConfigProvider, $translateProvider, toastrConfig, $mdGestureProvider) {
 
         angular.extend(toastrConfig, {
             // preventDuplicates: true,
@@ -26,7 +26,7 @@
         $translateProvider.preferredLanguage('en');
         //----------------------------------
         $urlRouterProvider.otherwise('/add-phone');
-        // $mdGestureProvider.skipClickHijack();
+        $mdGestureProvider.skipClickHijack();
         $ionicConfigProvider.tabs.position('bottom'); // other values: top
 
         $stateProvider
@@ -162,7 +162,7 @@
                 cache: false,
                 templateUrl: 'templates/geolocation/geo.html',
                 controller: 'GeoCtrl',
-                params: { clinic_id: null },
+                params: {clinic_id: null},
                 controllerAs: 'vm'
             })
 
