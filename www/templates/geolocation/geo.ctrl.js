@@ -13,9 +13,6 @@
 
         init();
         function init() {
-            $ionicLoading.show({
-                template: 'Loading...'
-            });
             getCurrentPosition();
         }
 
@@ -44,7 +41,7 @@
                     {
                         lng: lng,
                         lat: lat
-                    }, showDetails);
+                    }, showDetails, true);
             });
         }
 

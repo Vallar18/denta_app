@@ -93,7 +93,7 @@
                         // }
                     },
                     function (msg) {
-                        toastr.success(msg);
+                        // toastr.success(msg);
                     });
             }
         }
