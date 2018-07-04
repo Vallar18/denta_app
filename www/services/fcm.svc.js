@@ -54,8 +54,8 @@
         }
 
         function getToken(callback) {
-                $ionicPlatform.ready(function () {
-                    if (typeof FCMPlugin !== 'undefined') {
+            $ionicPlatform.ready(function () {
+                if (typeof FCMPlugin !== 'undefined') {
                     FCMPlugin.getToken(function (token) {
                         if (angular.isFunction(callback) && token) {
                             callback(token);
@@ -69,13 +69,13 @@
             if (typeof FCMPlugin !== 'undefined') {
                 FCMPlugin.onNotification(function (data) {
                         console.log(data);
-                        toastr.success(data);
-                        if(data.wasTapped){
+                        // toastr.success(data);
+                        if (data.wasTapped) {
                             //Notification was received on device tray and tapped by the user.
-                           toastr.success( JSON.stringify(data) );
-                        }else{
+                            toastr.success(data.body);
+                        } else {
                             //Notification was received in foreground. Maybe the user needs to be notified.
-                            toastr.success( JSON.stringify(data) );
+                            toastr.success(data.body);
                         }
                         // if (data.type == 'log' && data.status == 'emergency') {
                         //     let kids = angular.copy(userService.getKids());
