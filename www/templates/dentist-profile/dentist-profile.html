@@ -61,7 +61,7 @@
                 <p>{{vm.home_dentist_clinic.address}}</p>
                 <div class="text-center" ng-if="!vm.isViewMode"><a ng-click="vm.editDentistPhone()">Change</a></div>
             </div>
-            <button class="gray-btn invite-dentist-btn" ng-if="!vm.have_den" ng-click='vm.addDentist()'>Invite dentist</button>
+            <button class="gray-btn invite-dentist-btn" ng-if="!vm.isViewMode && !vm.have_den" ng-click='vm.addDentist()'>Invite dentist</button>
             <div class="dentist-profile__content">
                 <div class="text-center dentist-profile__content-title">REVIEWS</div>
                 <div class="dentist-profile__empty text-center"  ng-if="!vm.reviewArr.length">
