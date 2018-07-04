@@ -8,7 +8,7 @@
     SelectRoleCtrl.$inject = ['$state', 'userSvc', '$localStorage'];
 
     function SelectRoleCtrl($state, userSvc, $localStorage) {
-        const vm = this;
+        var vm = this;
         vm.select = select;
 
         vm.content = {
@@ -20,7 +20,7 @@
         vm.role = undefined;
 
         function select(type) {
-            let role;
+            var role;
             if (type === 0){
                 role = userSvc.roleConst().doctor;
                 $state.go('registration-dentist');

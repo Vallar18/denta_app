@@ -8,7 +8,7 @@
     AddSpecialitiesCtrl.$inject = ['$scope', '$state', '$stateParams', 'utilsSvc', 'dentistSvc', 'authSvc', 'specSvc', 'toastr', 'userSvc', 'messagesSvc', '$ionicModal', 'spec', 'currencies', '$ionicPopup', 'currencySvc'];
 
     function AddSpecialitiesCtrl($scope, $state, $stateParams, utilsSvc, dentistSvc, authSvc, specSvc, toastr, userSvc, messagesSvc, $ionicModal, spec, currencies, $ionicPopup, currencySvc) {
-        const vm = this;
+        var vm = this;
         vm.send = send;
         vm.getSpeciality = getSpeciality;
         vm.saveModal = saveModal;
@@ -91,7 +91,7 @@
                     }
                 }
             }, function (err) {
-                let err_text = '';
+                var err_text = '';
                 angular.forEach(err, function (val, key) {
                     if (angular.isArray(val)){
                         err_text += val.reduce(function (acc, current) {
@@ -119,7 +119,7 @@
                     }
                 }
             }, function (err) {
-                let err_text = '';
+                var err_text = '';
                 angular.forEach(err, function (val, key) {
                     if (angular.isArray(val)){
                         err_text += val.reduce(function (acc, current) {
@@ -145,7 +145,7 @@
                     }
                 }
             }, function (err) {
-                let err_text = '';
+                var err_text = '';
                 angular.forEach(err, function (val, key) {
                     if (angular.isArray(val)){
                         err_text += val.reduce(function (acc, current) {
@@ -174,7 +174,7 @@
             if(spec.checked === true){
                 vm.dentist.specialty_id.push(spec.id);
             } else if(spec.checked === false){
-                let spec_id = vm.dentist.specialty_id.indexOf(spec.id);
+                var spec_id = vm.dentist.specialty_id.indexOf(spec.id);
                 vm.dentist.specialty_id.splice(spec_id, 1);
             }
             vm.len_spec = vm.dentist.specialty_id.length

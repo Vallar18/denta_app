@@ -6,10 +6,10 @@
     currencySvc.$inject = ['url', 'http', '$timeout', '$q', '$ionicPopup', 'utilsSvc'];
 
     function currencySvc(url, http, $timeout, $q, $ionicPopup, utilsSvc) {
-        let DEFAULT_CURR_NAME = 'USD';
-        let cache = [];
-        let search_cache = {};
-        let model = {
+        var DEFAULT_CURR_NAME = 'USD';
+        var cache = [];
+        var search_cache = {};
+        var model = {
             getCurrency: getCurrency,
             showSelect: showSelect,
             getIndexByName: getIndexByName,
@@ -60,8 +60,8 @@
          */
         function getIndexByName(currencyName, array) {
             if (currencyName) {
-                let findArray = angular.isArray(array) ? array : cache;
-                let currNameLwr = currencyName.toLowerCase();
+                varfindArray = angular.isArray(array) ? array : cache;
+                varcurrNameLwr = currencyName.toLowerCase();
                 return findArray.findIndex(function (item) {
                     return item.abr && item.abr.toLowerCase() === currNameLwr;
                 });

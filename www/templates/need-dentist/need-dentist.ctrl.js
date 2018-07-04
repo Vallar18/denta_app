@@ -8,6 +8,6 @@
     NeedDentistCtrl.$inject = ['$ionicPopup', '$scope', '$ionicHistory'];
 
     function NeedDentistCtrl() {
-        const vm = this;
+        var vm = this;
     }
 })();

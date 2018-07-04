@@ -8,7 +8,7 @@
     HelpItemCtrl.$inject = ['$scope','$state'];
 
     function HelpItemCtrl($scope, $state) {
-        let vm = this;
+        var vm = this;
 
         vm.getInfo = function(dentistId){
             if(dentistId){

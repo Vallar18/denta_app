@@ -8,7 +8,7 @@
     PrivacyCtrl.$inject = ['$ionicHistory', 'textSvc'];
 
     function PrivacyCtrl($ionicHistory, textSvc) {
-        const vm = this;
+        var vm = this;
         init();
 
         function init() {

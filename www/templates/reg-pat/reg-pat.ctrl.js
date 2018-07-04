@@ -8,14 +8,14 @@
     RegPatCtrl.$inject = ['$state', '$stateParams', 'regSvc', 'authSvc', 'toastr', '$localStorage', 'messagesSvc', 'userSvc'];
 
     function RegPatCtrl($state, $stateParams, regSvc, authSvc, toastr, $localStorage, messagesSvc, userSvc) {
-        const vm = this;
+        var vm = this;
         vm.send = send;
         vm.phone = authSvc.getPhone();
         vm.key = authSvc.getKey();
         vm.edit = $stateParams.edit;
         vm.croppedDataUrl = '';
         if (vm.edit) {
-            let user = userSvc.getUser();
+            varuser = userSvc.getUser();
             vm.user = {
                 user_id: user.id, name: user.name,
                 lastname: user.lastname, email: user.email

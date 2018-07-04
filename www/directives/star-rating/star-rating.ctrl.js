@@ -8,14 +8,14 @@
     StarRatingCtrl.$inject = ['$scope'];
 
     function StarRatingCtrl($scope) {
-        const DEFAULT_COUNT = 5;
-        let vm = this;
-        let prev = {
+        var DEFAULT_COUNT = 5;
+        var vm = this;
+        var prev = {
             counts: DEFAULT_COUNT,
             value: 0,
             selectVal: 0
         };
-        let arr = [];
+        var arr = [];
 
         vm.ratingArr = getRatingStar($scope.srCount,$scope.srModel);
 
@@ -34,15 +34,15 @@
         });
 
         function getRatingStar(counts, value) {
-            let count = +counts || DEFAULT_COUNT;
-            let values = !value || +value<0 ? 0 : +value;
+            var count = +counts || DEFAULT_COUNT;
+            var values = !value || +value<0 ? 0 : +value;
             // if (prev.counts === count && prev.value === values && arr.length) {
             //     return arr;
             // }
             prev.counts = count;
             prev.value = values;
             arr = [];
-            let type = 'ion-ios-star';
+            var type = 'ion-ios-star';
             for (var i = 0; i < count; i++) {
                 if (i + 1 <= (+value)) {
                     type = 'ion-ios-star';

@@ -8,7 +8,7 @@
     AddCodeCtrl.$inject = ['$state', 'regSvc', 'authSvc', 'userSvc', 'toastr', 'messagesSvc', 'dentistSvc', 'fcmSvc'];
 
     function AddCodeCtrl($state, regSvc, authSvc, userSvc, toastr, messagesSvc, dentistSvc, fcmSvc) {
-        const vm = this;
+        var vm = this;
         vm.send = send;
         vm.goAddPhone = goAddPhone;
         vm.phone = authSvc.getPhone();
@@ -92,7 +92,7 @@
         }
 
         function processRegError(err) {
-            let err_text = '';
+            var err_text = '';
             angular.forEach(err, function (val, key) {
                 if (angular.isArray(val)) {
                     err_text += val.reduce(function (acc, current) {

@@ -8,7 +8,7 @@
     SendReviewCtrl.$inject = ['$ionicPopup', '$scope', '$ionicHistory', 'toastr', 'messagesSvc', 'currencySvc', 'currencieItems', '$stateParams', 'reviewSvc', 'userSvc','questionItems'];
 
     function SendReviewCtrl($ionicPopup, $scope, $ionicHistory, toastr, messagesSvc, currencySvc, currencieItems, $stateParams, reviewSvc, userSvc,questionItems) {
-        const vm = this;
+        var vm = this;
         vm.currencies = currencieItems;
         vm.select_currency = vm.currencies[currencySvc.getDefaultIndex()];
         vm.sendReview = sendReview;
@@ -42,7 +42,7 @@
         };
 
         function getRatingObj(){
-            let rObj = {};
+            var rObj = {};
             angular.forEach(vm.questionItems,function(val,key){
                 rObj[val.id] = val.rating;
             });

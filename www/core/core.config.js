@@ -238,7 +238,7 @@
                 params: {id: null},
                 resolve: {
                     reviewItems: function (reviewSvc, userSvc, $stateParams) {
-                        let config = {
+                        varconfig = {
                             user_id: userSvc.getUser().id,
                             // dentist_id: userSvc.getUser().dentist.id,
                             role_id: 1 //if i am dentist and view my review - need set role 1
@@ -271,7 +271,7 @@
                 params: {id: null},
                 resolve: {
                     reviewItems: function (reviewSvc, userSvc, $stateParams) {
-                        let config = {
+                        varconfig = {
                             user_id: userSvc.getUser().id,
                             role_id: 2 //if i am patient and view other dentist review - need set role 2
                         };

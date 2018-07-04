@@ -6,7 +6,7 @@
     regSvc.$inject = ['url', 'http'];
 
     function regSvc(url, http) {
-        let model = {};
+        var model = {};
         model.sendPhone = sendPhone;
         model.sendVerify = sendVerify;
         model.sendUser = sendUser;

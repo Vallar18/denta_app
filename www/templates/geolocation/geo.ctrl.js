@@ -6,7 +6,7 @@
     GeoCtrl.$inject = ['$state', 'geoSvc', 'helpSvc', '$stateParams', 'clinicSvc', '$ionicLoading'];
 
     function GeoCtrl($state, geoSvc, helpSvc, $stateParams, clinicSvc, $ionicLoading) {
-        let vm = this;
+        var vm = this;
         vm.clinicItems = [];
         vm.dentistItems = [];
         vm.currentPos = {};
@@ -73,14 +73,14 @@
         function showDetails(item) {
             if (item && item.clinicObj && item.clinicObj.users) {
                 vm.dentistItems = [];
-                let from = vm.currentPos;
-                let to = {
+                var from = vm.currentPos;
+                var to = {
                     latitude: item.clinicObj.latitude,
                     longitude: item.clinicObj.longitude,
                 };
                 geoSvc.calcTime(from, to).then(function (res, status) {
                     item.clinicObj.users.forEach(function (val) {
-                        let tempDentObj = val;
+                        var tempDentObj = val;
                         try {
                             tempDentObj.time = res.rows[0].elements[0].duration.text;
                         } catch (err) {

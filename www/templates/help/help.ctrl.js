@@ -8,7 +8,7 @@
         HelpCtrl.$inject = ['$scope', 'currencySvc', '$filter', 'geoSvc', 'reviewSvc', 'userSvc', 'helpSvc'];
 
         function HelpCtrl($scope, currencySvc, $filter, geoSvc, reviewSvc, userSvc, helpSvc) {
-            let vm = this;
+            var vm = this;
             $scope.slideOpen = false;
             vm.dentistItems = [];
             vm.activeText = 'Loading...';
@@ -60,7 +60,7 @@
             }
 
             function sortItem() {
-                let isReverse = false;
+                var isReverse = false;
                 switch (vm.sort) {
                     case 'rating':
                         isReverse = false;

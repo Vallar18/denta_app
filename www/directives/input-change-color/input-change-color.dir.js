@@ -12,7 +12,7 @@
             },
             controller: 'InputChangeColorCtrl',
             link: function (scope, element, attrs) {
-                let prev;
+                var prev;
                 scope.$watch('inputModel',function(newVal,oldVal){
                     if(attrs.inputChangeColor.length && scope.inputModel){
                         if((''+scope.inputModel).length > 0){

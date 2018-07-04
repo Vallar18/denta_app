@@ -8,7 +8,7 @@
     TreatmentItemCtrl.$inject = ['$scope', '$ionicPopup', '$cordovaCamera', '$ionicPlatform', 'IonicClosePopupService', 'emergenciesSvc', 'userSvc', '$ionicLoading'];
 
     function TreatmentItemCtrl($scope, $ionicPopup, $cordovaCamera, $ionicPlatform, IonicClosePopupService, emergenciesSvc, userSvc, $ionicLoading) {
-        let vm = this;
+        var vm = this;
         vm.photoItems = $scope.tiFiles || [];
         vm.emergencyItem = $scope.tiItem;
         vm.openPopupList = function () {
@@ -23,7 +23,7 @@
         };
 
         function getButtonForListPopup(){
-            let arrBtn = [
+            var arrBtn = [
                 {
                     text: 'Hide',
                     type: 'button-default',
@@ -66,7 +66,7 @@
 
         vm.getNameByUrl = function (url) {
             if (url) {
-                let urlSplit = url.split("/");
+                var urlSplit = url.split("/");
                 if (urlSplit.length) {
                     return urlSplit.pop();
                 }
@@ -107,7 +107,7 @@
                             photos: [+item.id]
                         }).then(function (res) {
                             if (res && res.success) {
-                                let indexDelete = vm.photoItems.findIndex(function (val) {
+                                var indexDelete = vm.photoItems.findIndex(function (val) {
                                     return +val.id === +item.id;
                                 });
                                 vm.photoItems.splice(indexDelete,1);

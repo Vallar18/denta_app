@@ -34,15 +34,15 @@
         });
 
         function addBehaverForKeyboard() {
-            window.addEventListener('keyboardDidShow', (event) => {
-                let popup = document.querySelector('.popup');
+            window.addEventListener('keyboardDidShow', function(event) {
+                var popup = document.querySelector('.popup');
                 if (popup != null) {
                     popup.classList.add('popup-bottom');
                 }
                 $ionicTabsDelegate.showBar(false);
             });
-            window.addEventListener('keyboardDidHide', () => {
-                let popup = document.querySelector('.popup');
+            window.addEventListener('keyboardDidHide', function() {
+                var popup = document.querySelector('.popup');
                 if (popup != null) {
                     popup.classList.remove('popup-bottom');
                 }

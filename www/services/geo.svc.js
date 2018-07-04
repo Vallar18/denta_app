@@ -8,20 +8,20 @@
 
         function geoSvc($cordovaGeolocation, $ionicLoading,
                         $rootScope, $cordovaNetwork, networkMonitorSvc, $q, $ionicPopup) {
-            let watcherPosition;
-            let vm = this;
-            let API_KEY = 'AIzaSyD6o8M_KOerds2uacnudjI62elbLTMyBaY';
-            let map = null;
-            let autocomplete;
-            let marker;
-            let geocoder;
-            let googleReadyCallback;
-            let distance_service;
-            let BASE_CONFIG_MAP = {
+            varwatcherPosition;
+            var vm = this;
+            var API_KEY = 'AIzaSyD6o8M_KOerds2uacnudjI62elbLTMyBaY';
+            var map = null;
+            varautocomplete;
+            varmarker;
+            vargeocoder;
+            vargoogleReadyCallback;
+            vardistance_service;
+            var BASE_CONFIG_MAP = {
                 zoom: 14,
                 disableDefaultUI: true,
             };
-            let markersItems = [];
+            var markersItems = [];
 
             function resetMarker() {
                 if (markersItems.length) {
@@ -45,11 +45,11 @@
 
             function addSearch() {
                 var input = document.getElementById('searchMapTextField');
-                autocomplete = new window.google.maps.places.Autocomplete(input,{});
+                var autocomplete = new window.google.maps.places.Autocomplete(input,{});
                 window.google.maps.event.addListener(autocomplete, 'place_changed', function () {
-                    let place = autocomplete.getPlace();
+                    var place = autocomplete.getPlace();
                     if(place.geometry && place.geometry.location){
-                        let pos = createPos(place.geometry.location.lat(),place.geometry.location.lng());
+                        var pos = createPos(place.geometry.location.lat(),place.geometry.location.lng());
                         marker.setPosition(pos);
                         map.setCenter(pos);
                     }
@@ -78,13 +78,13 @@
                     $ionicLoading.show({
                         template: 'Loading map...'
                     });
-                    let latLng = createPos(pos.coords.latitude, pos.coords.longitude);
-                    let mapOptions = angular.extend({}, BASE_CONFIG_MAP, {
+                    var latLng = createPos(pos.coords.latitude, pos.coords.longitude);
+                    var mapOptions = angular.extend({}, BASE_CONFIG_MAP, {
                         center: latLng,
                         mapTypeId: window.google.maps.MapTypeId.ROADMAP
                     });
                     map = mapByOptions(mapOptions);
-                    marker = createMarker({
+                    var marker = createMarker({
                         position: latLng,
                         map: map,
                         draggable: true,
@@ -132,7 +132,7 @@
                 window.mapInit = function () {
                     readyMap();
                 };
-                let script = document.createElement("script");
+                var script = document.createElement("script");
                 script.setAttribute("type", "text/javascript");
                 script.id = "googleMaps";
                 if (API_KEY) {
@@ -170,8 +170,8 @@
 
             function calcDistance(p1, p2) {
                 if (p1 && p1.latitude && p1.longitude && p2 && p2.latitude && p2.longitude) {
-                    let point1 = createPos(p1.latitude, p1.longitude);
-                    let point2 = createPos(p2.latitude, p2.longitude);
+                    var point1 = createPos(p1.latitude, p1.longitude);
+                    var point2 = createPos(p2.latitude, p2.longitude);
                     return (window.google.maps.geometry.spherical.computeDistanceBetween(point1, point2) / 1000).toFixed(2);
                 }
                 return 0;
@@ -181,10 +181,10 @@
                 $ionicLoading.show({
                     template: 'Getting info about clinic...'
                 });
-                let promise = $q.defer();
+                var promise = $q.defer();
                 if (p1 && p1.latitude && p1.longitude && p2 && p2.latitude && p2.longitude) {
-                    let pointA = createPos(p1.latitude, p1.longitude);
-                    let pointB = createPos(p2.latitude, p2.longitude);
+                    var pointA = createPos(p1.latitude, p1.longitude);
+                    var pointB = createPos(p2.latitude, p2.longitude);
                     distance_service.getDistanceMatrix(
                         {
                             origins: [pointA],
@@ -205,7 +205,7 @@
 
 
             function getAddress(latlng, callback) {
-                let addressObj = {
+                var addressObj = {
                     lat: latlng.lat || latlng.latitude,
                     lng: latlng.lng || latlng.longitude,
                     address: ''
@@ -232,7 +232,7 @@
             }
 
             function watchPosition(callback, accuracy) {
-                let watchOptions = {
+                var watchOptions = {
                     timeout: 30000,
                     enableHighAccuracy: angular.isDefined(accuracy) ? accuracy : true // may cause errors if true
                 };
@@ -279,8 +279,8 @@
                 $ionicLoading.show({
                     template: 'Getting position...'
                 });
-                let defered = $q.defer();
-                let options = {
+                var defered = $q.defer();
+                var options = {
                     maximumAge: 60 * 1000,
                     timeout: 30000,
                     enableHighAccuracy: angular.isDefined(accuracy) ? accuracy : true
@@ -316,7 +316,7 @@
                 if (angular.isArray(arrPosObject) && map) {
                     arrPosObject.forEach(function (val) {
                         if (val.latitude && val.longitude) {
-                            let tempMarker = createMarker({
+                            var tempMarker = createMarker({
                                 position: createPos(val.latitude, val.longitude),
                                 map: map,
                                 draggable: false,
@@ -324,7 +324,7 @@
                                 zIndex: 10
                             });
                             tempMarker.clinicObj = val;
-                            let tempEvent = window.google.maps.event.addListener(tempMarker, 'click', function () {
+                            var tempEvent = window.google.maps.event.addListener(tempMarker, 'click', function () {
                                 callback(this);
                             });
                             markersItems.push({
@@ -350,12 +350,12 @@
                     $ionicLoading.show({
                         template: 'Initialize map...'
                     });
-                    let latLngUser = createPos(center.lat, center.lng);
-                    let clinicLatLng;
+                    var latLngUser = createPos(center.lat, center.lng);
+                    var clinicLatLng;
                     if(isCenterClinic){
                         clinicLatLng = createPos(arrPosObject[0].latitude, arrPosObject[0].longitude);
                     }
-                    let mapOptions = angular.extend({}, BASE_CONFIG_MAP,
+                    var mapOptions = angular.extend({}, BASE_CONFIG_MAP,
                         {
                             zoom: 12,
                             center: isCenterClinic?clinicLatLng:latLngUser,
@@ -363,7 +363,7 @@
                         });
                     map = mapByOptions(mapOptions);
                     createMarkerByArr(arrPosObject, map, callback);
-                    marker = createMarker({
+                     var marker = createMarker({
                         position: latLngUser,
                         map: map,
                         draggable: false,

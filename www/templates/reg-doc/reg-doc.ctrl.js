@@ -8,7 +8,7 @@
     RegDocCtrl.$inject = ['$scope', '$ionicPlatform','$state', '$stateParams', 'regSvc', 'toastr', 'authSvc', 'messagesSvc', '$ionicPopup', 'IonicClosePopupService', '$cordovaCamera','userSvc'];
 
     function RegDocCtrl($scope, $ionicPlatform, $state, $stateParams, regSvc, toastr, authSvc, messagesSvc, $ionicPopup, IonicClosePopupService, $cordovaCamera, userSvc) {
-        const vm = this;
+        var vm = this;
         vm.send = send;
         vm.phone = authSvc.getPhone();
         vm.key = authSvc.getKey();
@@ -17,7 +17,7 @@
         vm.croppedDataUrl = '';
         authSvc.addBackBehave(vm.edit);
         if(vm.edit || vm.become_den){
-            let user = userSvc.getUser();
+            var user = userSvc.getUser();
             vm.user = {
                 name: user.name, lastname: user.lastname, email: user.email,
                 user_id: user.id, avatar: ''

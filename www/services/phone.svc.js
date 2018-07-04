@@ -6,9 +6,9 @@
     phoneSvc.$inject = ['$ionicPopup','http','url', '$timeout','$q'];
 
     function phoneSvc($ionicPopup,http,url,$timeout,$q) {
-        let DEFAULT_PHONE_CODE = '+380';
-        let cache = [];
-        let model = {
+        var DEFAULT_PHONE_CODE = '+380';
+        var cache = [];
+        var model = {
             showSelect: showSelect,
             getCodes: getCodes,
             getIndexByName: getIndexByName,
@@ -48,8 +48,8 @@
 
         function getIndexByName(codeName,array){
             if(codeName){
-                let findArray = angular.isArray(array) ? array : cache;
-                let codeLower = codeName.toLowerCase();
+                var findArray = angular.isArray(array) ? array : cache;
+                var codeLower = codeName.toLowerCase();
                 return findArray.findIndex(function(item){
                     return item.code && item.code.toLowerCase() === codeLower;
                 });
@@ -77,7 +77,7 @@
 
         function cutNumberCode(number, codes) {
             if(number){
-                let prepare_number = number.replace(/\s/g, '');
+                var prepare_number = number.replace(/\s/g, '');
                 if (prepare_number.length){
                     return +prepare_number;
                 }

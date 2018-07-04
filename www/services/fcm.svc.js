@@ -6,7 +6,7 @@
     fcmSvc.$inject = ['http', 'url', 'toastr', 'messagesSvc', 'userSvc', '$ionicPlatform'];
 
     function fcmSvc(http, url, toastr, messagesSvc, userSvc, $ionicPlatform) {
-        let model = {
+        var model = {
             subscribe: subscribe,
             unsubscribe: unsubscribe,
             getToken: getToken,
@@ -15,7 +15,7 @@
             refreshToken: refreshToken
         };
 
-        const FCM_CONFIG = {
+        var FCM_CONFIG = {
             apiKey: "AIzaSyC6K6yHbUGRxDGKz9WmSgnOP4R83K5SSYM",
             authDomain: "my-projectdentte-1528234503301.firebaseapp.com",
             databaseURL: "https://my-projectdentte-1528234503301.firebaseio.com",
@@ -78,8 +78,8 @@
                             toastr.success(data.body);
                         }
                         // if (data.type == 'log' && data.status == 'emergency') {
-                        //     let kids = angular.copy(userService.getKids());
-                        //     for (let i = 0; i < kids.length; i++) {
+                        //     varkids = angular.copy(userService.getKids());
+                        //     for (vari = 0; i < kids.length; i++) {
                         //         if (kids[i].id == data.kid_id) {
                         //             $localStorage.log_index = i;
                         //             break;

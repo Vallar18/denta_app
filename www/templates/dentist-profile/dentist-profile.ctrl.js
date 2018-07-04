@@ -8,7 +8,7 @@
     DentistProfileCtrl.$inject = ['userSvc', '$state', 'authSvc', '$ionicHistory', 'dentistProfile', '$stateParams', 'reviewItems', '$ionicLoading'];
 
     function DentistProfileCtrl(userSvc, $state, authSvc, $ionicHistory, dentistProfile, $stateParams, reviewItems) {
-        let vm = this;
+        var vm = this;
         vm.editDentist = editDentist;
         vm.addDentist = addDentist;
         vm.editDentistPhone = editDentistPhone;

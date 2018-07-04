@@ -22,7 +22,7 @@
          * @returns {Array}
          */
         function prepareDrFromClinic(clinicArr) {
-            let docArr = [];
+            var docArr = [];
             if (angular.isArray(clinicArr)) {
                 clinicArr.forEach(function (val) {
                     if (angular.isArray(val.users)) {

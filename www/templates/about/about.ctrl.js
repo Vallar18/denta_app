@@ -8,7 +8,7 @@
     AboutCtrl.$inject = ['$ionicPopup', '$scope','$ionicHistory', 'textSvc'];
 
     function AboutCtrl($ionicPopup, $scope, $ionicHistory, textSvc) {
-        const vm = this;
+        var vm = this;
         init();
 
         function init() {

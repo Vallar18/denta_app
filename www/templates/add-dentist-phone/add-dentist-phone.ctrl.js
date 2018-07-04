@@ -8,7 +8,7 @@
     AddDentistPhoneCtrl.$inject = ['$scope', '$state', '$stateParams', 'authSvc', 'regSvc', 'phoneSvc', 'codes', 'toastr', 'messagesSvc', '$ionicPlatform', '$cordovaContacts', 'userSvc','$ionicPopup','dentistSvc'];
 
     function AddDentistPhoneCtrl($scope, $state, $stateParams, authSvc, regSvc, phoneSvc, codes, toastr, messagesSvc, $ionicPlatform, $cordovaContacts, userSvc, $ionicPopup, dentistSvc) {
-        const vm = this;
+        var vm = this;
         vm.send = send;
         vm.skip = skip;
         vm.hideOverlay = hideOverlay;
@@ -105,7 +105,7 @@
                    showAskDentist();
                 }
             }, function (err) {
-                let err_text = '';
+                var err_text = '';
                 angular.forEach(err, function (val, key) {
                     if (angular.isArray(val)) {
                         err_text += val.reduce(function (acc, current) {
@@ -132,7 +132,7 @@
                     showAskDentist();
                 }
             }, function (err) {
-                let err_text = '';
+                var err_text = '';
                 angular.forEach(err, function (val, key) {
                     if (angular.isArray(val)) {
                         err_text += val.reduce(function (acc, current) {
@@ -158,7 +158,7 @@
                     showAskDentist();
                 }
             }, function (err) {
-                let err_text = '';
+                var err_text = '';
                 angular.forEach(err, function (val, key) {
                     if (angular.isArray(val)) {
                         err_text += val.reduce(function (acc, current) {

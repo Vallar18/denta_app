@@ -6,7 +6,7 @@
     reviewSvc.$inject = ['http', 'url'];
 
     function reviewSvc(http, url) {
-        let model = {
+        var model = {
             create: create,
             getItems: getItems
         };

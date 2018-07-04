@@ -8,7 +8,7 @@
     TermsCtrl.$inject = ['$ionicHistory', 'textSvc'];
 
     function TermsCtrl($ionicHistory, textSvc) {
-        const vm = this;
+        var vm = this;
         init();
 
         function init() {

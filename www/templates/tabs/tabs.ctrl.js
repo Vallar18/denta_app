@@ -11,7 +11,7 @@
         var vm = this;
         vm.toggleMenu = toggleMenu;
         vm.selectingItem = selectingItem;
-        let currentUserType = userSvc.getRole();
+        var currentUserType = userSvc.getRole();
         vm.menuModel = {
             isShow: false,
             items: [],
@@ -50,7 +50,7 @@
             toggleMenu();
             if (item.view) {
                 $state.go(item.view);
-                let tab_active = document.querySelector('.tab-item-active');
+                var tab_active = document.querySelector('.tab-item-active');
                 if(tab_active !== null) {
                    tab_active.classList.remove('tab-item-active');
                 }

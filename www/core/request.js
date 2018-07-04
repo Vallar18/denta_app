@@ -7,9 +7,9 @@
     http.$inject = ['$rootScope', '$http', '$q', '$sessionStorage', '$localStorage', 'toastr', '$state', '$ionicLoading' ];
 
     function http($rootScope, $http, $q, $sessionStorage, $localStorage, toastr, $state, $ionicLoading) {
-        let request = function (method, url, data) {
+        var  request = function (method, url, data) {
             $rootScope.loading = true;
-            let config = {
+            var config = {
                 dataType: 'json',
                 method: method,
                 headers: {
@@ -47,7 +47,7 @@
 
         function requestSuccess(response) {
             $rootScope.loading = false;
-            let defer = $q.defer();
+            var defer = $q.defer();
             $ionicLoading.hide();
             if (response.data.error) {
                 toastr.error(response.data.error);
@@ -60,7 +60,7 @@
         }
 
         function requestError(response) {
-            let defer = $q.defer();
+            var defer = $q.defer();
             $ionicLoading.hide();
             if (response.status === 200) {
                 toastr.error('Server Error: ' + response.data);
@@ -87,10 +87,10 @@
             return defer.promise;
         }
 
-        let requestFile = function (url, data) {
+        var requestFile = function (url, data) {
             $rootScope.loading = true;
             console.log(data);
-            let config = {
+            var config = {
                 transformRequest: angular.identity,
                 headers: {
                     'Content-Type': undefined
@@ -104,7 +104,7 @@
             return $http.post(url, data, config).then(
                 function (response) {
                     $rootScope.loading = false;
-                    let defer = $q.defer();
+                    var defer = $q.defer();
 
                     // console.info('response', url, response);
                     if (response.data.error) {
@@ -115,7 +115,7 @@
                     return defer.promise;
                 },
                 function (response) {
-                    let defer = $q.defer();
+                    var defer = $q.defer();
                     // console.info('error', url, response);
 
                     if (response.status === 200) {

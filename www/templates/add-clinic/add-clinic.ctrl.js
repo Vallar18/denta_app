@@ -8,7 +8,7 @@
     AddClinicCtrl.$inject = ['$scope', '$state', '$stateParams', 'regSvc', 'phoneSvc', 'authSvc','toastr', 'messagesSvc', 'dentistSvc', 'codes', '$ionicPopup', 'geoSvc', '$ionicLoading', 'userSvc'];
 
     function AddClinicCtrl($scope, $state, $stateParams, regSvc, phoneSvc, authSvc, toastr, messagesSvc, dentistSvc, codes, $ionicPopup, geoSvc, $ionicLoading, userSvc) {
-        const vm = this;
+        var vm = this;
         vm.checkClinicPhone = checkClinicPhone;
         vm.send = send;
         vm.getSelectCode = getSelectCode;
@@ -24,7 +24,7 @@
         vm.select_code = vm.selected_country.code;
         vm.user = userSvc.getUser();
         authSvc.addBackBehave(vm.edit);
-        let clinic = userSvc.getUser().clinic;
+        var clinic = userSvc.getUser().clinic;
         vm.phone = '';
         vm.btn_text = 'Send';
         if(vm.become_den){
@@ -56,7 +56,7 @@
             if (!validPhone()) {
                 return;
             }
-            let send = {
+            varsend = {
                 phone: vm.clinic.phone
             };
             regSvc.sendClinicPhone(send).then(function (data) {
@@ -147,7 +147,7 @@
                     }
                 }
             }, function (err) {
-                let err_text = '';
+                var err_text = '';
                 angular.forEach(err, function (val) {
                     if (angular.isArray(val)) {
                         err_text += val.reduce(function (acc, current) {
@@ -182,7 +182,7 @@
                     }
                 }
             }, function (err) {
-                let err_text = '';
+                var err_text = '';
                 angular.forEach(err, function (val) {
                     if (angular.isArray(val)) {
                         err_text += val.reduce(function (acc, current) {
@@ -218,7 +218,7 @@
                     }
                 }
             }, function (err) {
-                let err_text = '';
+                var err_text = '';
                 angular.forEach(err, function (val) {
                     if (angular.isArray(val)) {
                         err_text += val.reduce(function (acc, current) {
@@ -323,9 +323,9 @@
 
 
         vm.disableTap = function(event) {
-            let input = event.target;
+            var input = event.target;
             // Get the predictions element
-            let container = document.getElementsByClassName('pac-container');
+            var container = document.getElementsByClassName('pac-container');
             container = angular.element(container);
             // Apply css to ensure the container overlays the other elements, and
             // events occur on the element not behind it

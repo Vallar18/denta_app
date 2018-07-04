@@ -6,7 +6,7 @@
     tabsSvc.$inject = ['userSvc'];
 
     function tabsSvc(userSvc) {
-        let model = {
+        var model = {
             getMenuItems: getMenuItems,
             getTabItems: getTabItems
         };

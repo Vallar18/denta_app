@@ -8,7 +8,7 @@
     PatientItemCtrl.$inject = ['$scope', '$ionicPopup', 'emergenciesSvc'];
 
     function PatientItemCtrl($scope, $ionicPopup, emergenciesSvc) {
-        let vm = this;
+        var vm = this;
         vm.photoItems = $scope.piPhotos || [];
         vm.emergencyItem = $scope.piItem;
         vm.openPopupList = function () {
@@ -32,7 +32,7 @@
         };
 
         function getButtonForListPopup() {
-            let arrBtn = [
+            var arrBtn = [
                 {
                     text: 'Hide',
                     type: 'button-default',
@@ -53,7 +53,7 @@
 
         vm.getNameByUrl = function (url) {
             if (url) {
-                let urlSplit = url.split("/");
+                var urlSplit = url.split("/");
                 if (urlSplit.length) {
                     return urlSplit.pop();
                 }

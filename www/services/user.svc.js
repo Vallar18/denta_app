@@ -6,8 +6,8 @@
     userSvc.$inject = ['$localStorage', 'http', 'url'];
 
     function userSvc($localStorage, http, url) {
-        const DOCTOR = 'Dentist';
-        const PATIENT = 'Patient';
+        var DOCTOR = 'Dentist';
+        var PATIENT = 'Patient';
         var model = {
             getUserInfoById: getUserInfoById,
             getUser: getUser,

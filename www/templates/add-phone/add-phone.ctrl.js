@@ -8,13 +8,13 @@
     AddPhoneCtrl.$inject = ['$scope', '$state', 'userSvc', 'authSvc', 'regSvc', 'toastr', 'messagesSvc', 'codes', 'phoneSvc'];
 
     function AddPhoneCtrl($scope, $state, userSvc, authSvc, regSvc, toastr, messagesSvc, codes, phoneSvc) {
-        const vm = this;
+        var vm = this;
         vm.send = send;
         vm.getSelectCode = getSelectCode;
         vm.selectCode = selectCode;
         authSvc.logout();
         vm.codes = codes;
-        let selected_country = vm.codes[phoneSvc.getDefaultIndex()];
+        var selected_country = vm.codes[phoneSvc.getDefaultIndex()];
         vm.select_code = selected_country.code;
         vm.phone = '';
         vm.content = {
@@ -29,7 +29,7 @@
 
         function send() {
             authSvc.setCountryId(selected_country.id);
-            let phone = phoneSvc.preparePhone(vm.select_code, vm.phone);
+            var phone = phoneSvc.preparePhone(vm.select_code, vm.phone);
             if (!phoneSvc.validatePhone(phone)) {
                 toastr.error(messagesSvc.error.invalidPhone);
                 return;

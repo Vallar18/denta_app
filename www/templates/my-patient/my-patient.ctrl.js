@@ -8,7 +8,7 @@
     MyPatientCtrl.$inject = ['authSvc', '$scope', 'phoneSvc', 'codeItems', '$ionicPopup', 'toastr', 'messagesSvc','emergenciesSvc','userSvc'];
 
     function MyPatientCtrl(authSvc, $scope, phoneSvc, codeItems, $ionicPopup, toastr, messagesSvc, emergenciesSvc, userSvc) {
-        const vm = this;
+        var vm = this;
         vm.send = send;
         vm.getSelectCode = getSelectCode;
         vm.selectCode = selectCode;
@@ -20,7 +20,7 @@
         authSvc.addBackBehave(false);
 
         function send() {
-            let phone = phoneSvc.preparePhone(vm.select_code, vm.phone);
+            var phone = phoneSvc.preparePhone(vm.select_code, vm.phone);
             if (!phoneSvc.validatePhone(phone)) {
                 toastr.error(messagesSvc.error.invalidPhone);
                 return;
@@ -42,7 +42,7 @@
         }
 
         vm.test = function () {
-             let paymentPopup = $ionicPopup.show({
+             var paymentPopup = $ionicPopup.show({
                 templateUrl: 'components/select-subscription/select-subscription.html',
                 cssClass: 'select-subscription',
                 title: '',

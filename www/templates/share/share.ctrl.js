@@ -8,7 +8,7 @@
     ShareCtrl.$inject = ['$state', 'userSvc','textSvc'];
 
     function ShareCtrl( $state, userSvc, textSvc) {
-        const vm = this;
+        var vm = this;
         vm.share = share;
         vm.finish = finishReg;
 

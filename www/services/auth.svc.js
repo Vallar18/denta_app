@@ -6,17 +6,17 @@
     authSvc.$inject = ['userSvc', '$localStorage', '$state', '$ionicPlatform', '$ionicPopup', 'http', 'url', 'toastr','$rootScope'];
 
     function authSvc(userSvc, $localStorage, $state, $ionicPlatform, $ionicPopup, http, url, toastr, $rootScope) {
-        const CODE_LENGTH = 4;
-        let model = {
+        var CODE_LENGTH = 4;
+        var model = {
             setCode: setCode,
             getCode: getCode,
             setKey: setKey,
             getKey: getKey,
             setPhone: setPhone,
             getPhone: getPhone,
+            logout: logout,
             clearAuthData: clearAuthData,
             isLogined: isLogined,
-            logout: logout,
             getCountryId: getCountryId,
             setCountryId: setCountryId,
             processAutoLogin: processAutoLogin,
@@ -63,7 +63,7 @@
 
 
         function isLogined() {
-            let user = userSvc.getUser();
+            var user = userSvc.getUser();
             if (angular.isDefined(user) && user.id && userSvc.getToken() && userSvc.getRole() &&
                 (user.patient || user.dentist)) {
                 return true;
