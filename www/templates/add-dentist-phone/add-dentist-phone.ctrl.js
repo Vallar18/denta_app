@@ -5,7 +5,7 @@
         .module('app')
         .controller('AddDentistPhoneCtrl', AddDentistPhoneCtrl);
 
-    AddDentistPhoneCtrl.$inject = ['$scope', '$state', '$stateParams', 'authSvc', 'regSvc', 'phoneSvc', 'codes', 'toastr', 'messagesSvc', '$ionicPlatform', '$cordovaContacts', 'userSvc','$ionicPopup','dentistSvc'];
+    AddDentistPhoneCtrl.$inject = ['$scope', '$state', '$stateParams', 'authSvc', 'regSvc', 'phoneSvc', 'codes', 'toastr', 'messagesSvc', '$ionicPlatform', '$cordovaContacts', 'userSvc', '$ionicPopup', 'dentistSvc'];
 
     function AddDentistPhoneCtrl($scope, $state, $stateParams, authSvc, regSvc, phoneSvc, codes, toastr, messagesSvc, $ionicPlatform, $cordovaContacts, userSvc, $ionicPopup, dentistSvc) {
         const vm = this;
@@ -28,21 +28,23 @@
         vm.phoneFromContact = '';
         vm.contactList = [];
         init();
+
         function init() {
-            if(vm.c_invite || vm.invite_for_den){
+            if (vm.c_invite || vm.invite_for_den) {
                 authSvc.addBackBehave(true);
             } else {
                 authSvc.addBackBehave(vm.edit);
             }
-            if(vm.edit || vm.c_invite || vm.invite_for_den){
+            if (vm.edit || vm.c_invite || vm.invite_for_den) {
                 hideOverlay();
             }
         }
+
         function pickContactUsingNativeUI() {
             $ionicPlatform.ready(function () {
                 $cordovaContacts.pickContact().then(function (contactPicked) {
-                    if(contactPicked && contactPicked.phoneNumbers && contactPicked.phoneNumbers.length){
-                        if(contactPicked.phoneNumbers.length > 1){
+                    if (contactPicked && contactPicked.phoneNumbers && contactPicked.phoneNumbers.length) {
+                        if (contactPicked.phoneNumbers.length > 1) {
                             vm.contactList = contactPicked.phoneNumbers;
                             showSelectPhonePopup();
                         } else {
@@ -79,9 +81,9 @@
                         dentist_phone: vm.sum_phone,
                         role: vm.role
                     };
-                    if(vm.edit || vm.c_invite){
+                    if (vm.edit || vm.c_invite) {
                         updateRoleProcess(data);
-                    } else if(vm.invite_for_den) {
+                    } else if (vm.invite_for_den) {
                         data = {
                             dentist_phone: vm.sum_phone,
                         };
@@ -94,15 +96,19 @@
         }
 
         function addRoleProcess(data) {
-            if(angular.isUndefined(data)){ return; }
-            regSvc.addRolePatient(data).then(function (data) {
-                if (data.success) {
-                    userSvc.getUserInfo().then(function (res) {
-                        userSvc.setUser(res.user);
-                        $state.go('share');
-                    })
+            if (angular.isUndefined(data)) {
+                return;
+            }
+            regSvc.addRolePatient(data).then(function (res) {
+                if (res.success) {
+                    userSvc.getUserInfo().then(function (result) {
+                        if (result.user) {
+                            userSvc.setUser(result.user);
+                            $state.go('share');
+                        }
+                    });
                 } else {
-                   showAskDentist();
+                    showAskDentist();
                 }
             }, function (err) {
                 let err_text = '';
@@ -120,7 +126,9 @@
         }
 
         function inviteForDentist(data) {
-            if(angular.isUndefined(data)){ return; }
+            if (angular.isUndefined(data)) {
+                return;
+            }
             dentistSvc.addInviteDentist(data).then(function (data) {
                 if (data.success) {
                     userSvc.getUserInfo().then(function (res) {
@@ -145,8 +153,11 @@
                 }
             });
         }
+
         function updateRoleProcess(data) {
-            if(angular.isUndefined(data)){ return; }
+            if (angular.isUndefined(data)) {
+                return;
+            }
             userSvc.updateUserRole(data).then(function (data) {
                 if (data.success) {
                     userSvc.getUserInfo().then(function (res) {
@@ -182,11 +193,11 @@
                     user_id: vm.user.id,
                     role: vm.role
                 };
-                if(vm.edit || vm.c_invite){
+                if (vm.edit || vm.c_invite) {
                     updateRoleProcess(data);
-                } else if(vm.invite_for_den){
+                } else if (vm.invite_for_den) {
                     $state.go('tabs.dentist-profile');
-                } else{
+                } else {
                     addRoleProcess(data);
                 }
             }
@@ -216,24 +227,26 @@
         }
 
 
-        function showAskDentist(){
+        function showAskDentist() {
             $ionicPopup.show({
                 template: 'This dentist is not in our database, send him an invitation?',
                 title: 'Send invite',
                 scope: $scope,
                 buttons: [
-                    { text: 'NO',
-                        onTap: function(){
+                    {
+                        text: 'NO',
+                        onTap: function () {
                             skip();
-                        }},
+                        }
+                    },
                     {
                         text: '<b>YES</b>',
                         type: 'button-positive',
-                        onTap: function(e) {
+                        onTap: function (e) {
                             dentistSvc.invite({
                                 dentist_phone: vm.sum_phone,
                                 patient_phone: vm.user.phone
-                            }).then(function(res){
+                            }).then(function (res) {
                                 skip();
                             });
                         }
