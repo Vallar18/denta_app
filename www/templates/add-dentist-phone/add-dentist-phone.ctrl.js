@@ -46,14 +46,14 @@
                             vm.contactList = contactPicked.phoneNumbers;
                             showSelectPhonePopup();
                         } else {
-                            vm.phone = +contactPicked.phoneNumbers[0].value;
-                            toastr.warning(messagesSvc.warning.checkCodePhone)
+                            vm.phone = phoneSvc.clearPhone(contactPicked.phoneNumbers[0].value);
+                            toastr.warning(messagesSvc.warning.checkCodePhone);
                         }
                     }
                     $scope.$evalAsync();
                 }, function (error) {
                     toastr.error(messagesSvc.error.notGetContact);
-                })
+                });
             });
         }
 
@@ -66,9 +66,9 @@
         }
 
         function selectOneContact(c_item) {
-            vm.phone = phoneSvc.cutNumberCode(c_item.value, vm.codes);
+            vm.phone = phoneSvc.clearPhone(c_item.value);
             vm.show_select_phone_popup.close();
-            toastr.warning(messagesSvc.warning.checkCodePhone)
+            toastr.warning(messagesSvc.warning.checkCodePhone);
         }
 
         function send() {
