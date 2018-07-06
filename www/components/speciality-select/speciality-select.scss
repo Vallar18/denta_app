@@ -5,6 +5,22 @@
   bottom: 0;
   left: 0;
   width: 100%;
+
+  .block-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    z-index: 9;
+  }
+
+  .item-block-content {
+    margin-top: 35vh;
+    position: absolute;
+  }
+
   .spec-list {
     width: 100%;
     .list {
@@ -28,6 +44,10 @@
       width: 13vw;
       height: 13vw;
     }
+  }
+
+  .send-button {
+    margin-top: 0
   }
   //.around {
   //  width: 20px;
