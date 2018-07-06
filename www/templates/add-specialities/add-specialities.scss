@@ -15,6 +15,7 @@
       }
     }
     .gray-btn {
+      height: 10vw;
       &:before {
         background-image: url(../img/redcross-icon.png);
       }
@@ -49,7 +50,7 @@
         color: #76869f;
         border-radius: 17vh;
         width: 45%;
-        height: 8vw;
+        height: 7vw;
       }
     }
 }
