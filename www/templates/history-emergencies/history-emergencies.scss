@@ -1,6 +1,10 @@
 .history-emergencies {
   background-color: $second-color-light;
-
+  .header-simple {
+    &__title {
+      text-align: center;
+    }
+  }
   ion-item {
     padding: 0px;
     border-top: none;

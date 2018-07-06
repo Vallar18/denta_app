@@ -1,12 +1,15 @@
 <ion-view>
     <ion-pane class="patient-profile">
         <div class="header-simple">
-            <div class="header-simple__title">
-                My profile
+            <div class="header-simple__inner">
+                <div class="header-simple__title">
+                    My profile
+                </div>
+                <div class="header-simple__subtitle">
+                    {{vm.user.name + ' '+ vm.user.lastname}}
+                </div>
             </div>
-            <div class="header-simple__subtitle">
-                {{vm.user.name + ' '+ vm.user.lastname}}
-            </div>
+
             <button class="header-simple__right-btn header-simple__btn"
                     ng-click="vm.logout()">
                 <img src="content/img/logout-icon.png" alt="">

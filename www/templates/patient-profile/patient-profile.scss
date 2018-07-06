@@ -9,6 +9,28 @@
   }
   .header-simple {
     height: 30vh;
+    &__inner {
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      text-align: center;
+    }
+    &__title {
+      white-space: nowrap;
+      text-align: center;
+      position: static;
+      transform: none;
+    }
+    &__subtitle {
+      white-space: nowrap;
+      position: static;
+      -webkit-transform: none;
+      -moz-transform: none;
+      -ms-transform: none;
+      -o-transform: none;
+      transform: none;
+    }
     &__btn {
       padding: 0;
       //width: auto;
@@ -23,6 +45,8 @@
     position: absolute;
     top: 80%;
     left: 50%;
+    text-align: center;
+    white-space: nowrap;
     transform: translate(-50%,0);
     color: $input-text;
     text-transform: uppercase;

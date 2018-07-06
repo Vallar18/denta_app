@@ -25,6 +25,7 @@
      margin-top: 0;
     .title-block {
       /*width: 80%;*/
+      padding: 0 16px;
       margin: auto;
       text-align: center;
       position: relative;
@@ -44,6 +45,7 @@
     }
     .block-content {
       .input-phone {
+        width: 90%;
         .item-input {
           width: 66%;
         }

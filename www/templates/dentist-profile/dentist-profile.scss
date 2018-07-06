@@ -8,6 +8,7 @@
     top: 80%;
     left: 50%;
     transform: translate(-50%,0);
+    white-space: nowrap;
     img {
       height: 2vh;
       vertical-align: middle;
@@ -90,6 +91,8 @@
     top: 11%;
     left: 50%;
     transform: translate(-50%,0);
+    white-space: nowrap;
+
   }
 
   .header-simple {
@@ -101,6 +104,8 @@
     &__subtitle {
       top: 25%;
       font-weight: 700;
+      white-space: normal;
+      text-align: center;
       .subtitle-country {
         font-weight: 400;
       }

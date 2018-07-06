@@ -356,12 +356,13 @@ a {
     top: 25%;
     left: 50%;
     font-size: 0.8rem;
-    text-align: center;
+    white-space: nowrap;
   }
   &__subtitle {
     position: absolute;
     display: inline-block;
     color: $text-default-color;
+    white-space: nowrap;
     transform: translate(-50%, 0);
     top: 38%;
     left: 50%;
