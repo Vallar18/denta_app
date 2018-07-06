@@ -38,18 +38,18 @@
 
             function errorInetOrGPS() {
                 return $ionicPopup.confirm({
-                    title: 'Some error',
-                    template: 'Please check the Internet, and if geolocation (GPS) is enabled on your device'
+                    title: 'Geolocation error',
+                    template: 'Please check the Internet, and check geolocation (GPS) is enabled on your device'
                 });
             }
 
             function addSearch() {
                 var input = document.getElementById('searchMapTextField');
-                autocomplete = new window.google.maps.places.Autocomplete(input,{});
+                autocomplete = new window.google.maps.places.Autocomplete(input, {});
                 window.google.maps.event.addListener(autocomplete, 'place_changed', function () {
                     let place = autocomplete.getPlace();
-                    if(place.geometry && place.geometry.location){
-                        let pos = createPos(place.geometry.location.lat(),place.geometry.location.lng());
+                    if (place.geometry && place.geometry.location) {
+                        let pos = createPos(place.geometry.location.lat(), place.geometry.location.lng());
                         marker.setPosition(pos);
                         map.setCenter(pos);
                     }
@@ -89,11 +89,11 @@
                         map: map,
                         draggable: true,
                     });
+                    enableMap();
                     window.google.maps.event.addListenerOnce(map, 'idle', function () {
                         window.google.maps.event.addListener(map, 'click', function (event) {
                             marker.setPosition(event.latLng);
                         });
-                        enableMap();
                     });
                 }, function (error) {
                     $ionicLoading.hide();
@@ -277,7 +277,7 @@
 
             function getPosition(accuracy) {
                 $ionicLoading.show({
-                    template: 'Getting position...'
+                    template: '<ion-spinner></ion-spinner> <br> Getting position...'
                 });
                 let defered = $q.defer();
                 let options = {
@@ -289,6 +289,7 @@
                     $ionicLoading.hide();
                     defered.resolve(res);
                 }, function (res) {
+                    $ionicLoading.hide();
                     defered.reject(res);
                 });
                 return defered.promise;
@@ -352,13 +353,13 @@
                     });
                     let latLngUser = createPos(center.lat, center.lng);
                     let clinicLatLng;
-                    if(isCenterClinic){
+                    if (isCenterClinic) {
                         clinicLatLng = createPos(arrPosObject[0].latitude, arrPosObject[0].longitude);
                     }
                     let mapOptions = angular.extend({}, BASE_CONFIG_MAP,
                         {
                             zoom: 12,
-                            center: isCenterClinic?clinicLatLng:latLngUser,
+                            center: isCenterClinic ? clinicLatLng : latLngUser,
                             mapTypeId: window.google.maps.MapTypeId.ROADMAP
                         });
                     map = mapByOptions(mapOptions);
@@ -378,6 +379,7 @@
             }
 
             return {
+                errorInetOrGPS: errorInetOrGPS,
                 calcTime: calcTime,
                 showOnMap: showOnMap,
                 initGoogleMaps: initGoogleMaps,
