@@ -5,6 +5,10 @@
   bottom: 0;
   left: 0;
   width: 100%;
+  .item-block-content{
+    position: absolute;
+    top: 35vh;
+  }
   .spec-list {
     width: 100%;
     .list {
@@ -20,7 +24,11 @@
   .item-spec{
     border: none;
   }
-
+  .block-content{
+    .send-button{
+      margin-bottom: 20px;
+    }
+  }
   .spec-check {
     width: auto;
     height: auto;
@@ -29,11 +37,4 @@
       height: 13vw;
     }
   }
-  //.around {
-  //  width: 20px;
-  //  height: 20px;
-  //  border: 1px solid grey;
-  //  border-radius: 50%;
-  //  margin: 0 20px;
-  //}
 }

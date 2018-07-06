@@ -56,7 +56,7 @@
             if (!validPhone()) {
                 return;
             }
-            varsend = {
+            var send = {
                 phone: vm.clinic.phone
             };
             regSvc.sendClinicPhone(send).then(function (data) {

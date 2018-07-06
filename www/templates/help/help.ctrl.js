@@ -5,9 +5,9 @@
             .module('app')
             .controller('HelpCtrl', HelpCtrl);
 
-        HelpCtrl.$inject = ['$scope', 'currencySvc', '$filter', 'geoSvc', 'reviewSvc', 'userSvc', 'helpSvc'];
+        HelpCtrl.$inject = ['$scope', 'currencySvc', '$filter', 'geoSvc', 'reviewSvc', 'userSvc', 'helpSvc','$ionicLoading'];
 
-        function HelpCtrl($scope, currencySvc, $filter, geoSvc, reviewSvc, userSvc, helpSvc) {
+        function HelpCtrl($scope, currencySvc, $filter, geoSvc, reviewSvc, userSvc, helpSvc, $ionicLoading) {
             var vm = this;
             $scope.slideOpen = false;
             vm.dentistItems = [];
@@ -24,8 +24,15 @@
                     console.log('map is ready!');
                     geoSvc.getPosition(false).then(function (res) {
                         getDentistByCurrentPos(res.coords.latitude, res.coords.longitude);
-                    });
-                });
+                    },function(res){
+                        geoSvc.errorInetOrGPS().then(function (res) {
+                            if (res) {
+                                getCurrentPosition();
+                            } else {
+                                vm.activeText = 'List is empty';
+                            }
+                        });
+                });});
             }
 
             function getDentistByCurrentPos(lat, lng) {

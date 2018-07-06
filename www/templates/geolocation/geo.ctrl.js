@@ -27,6 +27,14 @@
                     } else {
                         getDentistByCurrentPos(res.coords.latitude, res.coords.longitude);
                     }
+                },function(res){
+                    geoSvc.errorInetOrGPS().then(function (res) {
+                        if (res) {
+                            getCurrentPosition();
+                        } else {
+                            $ionicLoading.hide();
+                        }
+                    });
                 });
             });
         }

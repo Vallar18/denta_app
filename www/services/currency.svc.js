@@ -60,8 +60,8 @@
          */
         function getIndexByName(currencyName, array) {
             if (currencyName) {
-                varfindArray = angular.isArray(array) ? array : cache;
-                varcurrNameLwr = currencyName.toLowerCase();
+                var findArray = angular.isArray(array) ? array : cache;
+                var currNameLwr = currencyName.toLowerCase();
                 return findArray.findIndex(function (item) {
                     return item.abr && item.abr.toLowerCase() === currNameLwr;
                 });

@@ -14,7 +14,6 @@
             getStartPage: getStartPage,
             share: share
         };
-        return model;
 
         function share(text){
             return $cordovaSocialSharing.share(text, null, null, null);
@@ -45,5 +44,7 @@
             return http.get(url.static.start_page);
             // return 'getStartPage'
         }
+
+        return model;
     }
 })();

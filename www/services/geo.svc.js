@@ -38,18 +38,18 @@
 
             function errorInetOrGPS() {
                 return $ionicPopup.confirm({
-                    title: 'Some error',
-                    template: 'Please check the Internet, and if geolocation (GPS) is enabled on your device'
+                    title: 'Geolocation error',
+                    template: 'Please check the Internet, and check geolocation (GPS) is enabled on your device'
                 });
             }
 
             function addSearch() {
                 var input = document.getElementById('searchMapTextField');
-                var autocomplete = new window.google.maps.places.Autocomplete(input,{});
+                autocomplete = new window.google.maps.places.Autocomplete(input, {});
                 window.google.maps.event.addListener(autocomplete, 'place_changed', function () {
                     var place = autocomplete.getPlace();
-                    if(place.geometry && place.geometry.location){
-                        var pos = createPos(place.geometry.location.lat(),place.geometry.location.lng());
+                    if (place.geometry && place.geometry.location) {
+                        var pos = createPos(place.geometry.location.lat(), place.geometry.location.lng());
                         marker.setPosition(pos);
                         map.setCenter(pos);
                     }
@@ -84,16 +84,16 @@
                         mapTypeId: window.google.maps.MapTypeId.ROADMAP
                     });
                     map = mapByOptions(mapOptions);
-                    var marker = createMarker({
+                    marker = createMarker({
                         position: latLng,
                         map: map,
                         draggable: true,
                     });
+                    enableMap();
                     window.google.maps.event.addListenerOnce(map, 'idle', function () {
                         window.google.maps.event.addListener(map, 'click', function (event) {
                             marker.setPosition(event.latLng);
                         });
-                        enableMap();
                     });
                 }, function (error) {
                     $ionicLoading.hide();
@@ -277,7 +277,7 @@
 
             function getPosition(accuracy) {
                 $ionicLoading.show({
-                    template: 'Getting position...'
+                    template: '<ion-spinner></ion-spinner> <br> Getting position...'
                 });
                 var defered = $q.defer();
                 var options = {
@@ -289,6 +289,7 @@
                     $ionicLoading.hide();
                     defered.resolve(res);
                 }, function (res) {
+                    $ionicLoading.hide();
                     defered.reject(res);
                 });
                 return defered.promise;
@@ -363,7 +364,7 @@
                         });
                     map = mapByOptions(mapOptions);
                     createMarkerByArr(arrPosObject, map, callback);
-                     var marker = createMarker({
+                    marker = createMarker({
                         position: latLngUser,
                         map: map,
                         draggable: false,
@@ -378,6 +379,7 @@
             }
 
             return {
+                errorInetOrGPS: errorInetOrGPS,
                 calcTime: calcTime,
                 showOnMap: showOnMap,
                 initGoogleMaps: initGoogleMaps,

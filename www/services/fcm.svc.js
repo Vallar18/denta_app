@@ -78,8 +78,8 @@
                             toastr.success(data.body);
                         }
                         // if (data.type == 'log' && data.status == 'emergency') {
-                        //     varkids = angular.copy(userService.getKids());
-                        //     for (vari = 0; i < kids.length; i++) {
+                        //     var kids = angular.copy(userService.getKids());
+                        //     for (var i = 0; i < kids.length; i++) {
                         //         if (kids[i].id == data.kid_id) {
                         //             $localStorage.log_index = i;
                         //             break;

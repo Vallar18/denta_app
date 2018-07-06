@@ -15,7 +15,7 @@
         vm.edit = $stateParams.edit;
         vm.croppedDataUrl = '';
         if (vm.edit) {
-            varuser = userSvc.getUser();
+            var user = userSvc.getUser();
             vm.user = {
                 user_id: user.id, name: user.name,
                 lastname: user.lastname, email: user.email
