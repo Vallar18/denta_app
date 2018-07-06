@@ -8,15 +8,15 @@
 
         function geoSvc($cordovaGeolocation, $ionicLoading,
                         $rootScope, $cordovaNetwork, networkMonitorSvc, $q, $ionicPopup) {
-            varwatcherPosition;
+            var watcherPosition;
             var vm = this;
             var API_KEY = 'AIzaSyD6o8M_KOerds2uacnudjI62elbLTMyBaY';
             var map = null;
-            varautocomplete;
-            varmarker;
-            vargeocoder;
-            vargoogleReadyCallback;
-            vardistance_service;
+            var autocomplete;
+            var marker;
+            var geocoder;
+            var googleReadyCallback;
+            var distance_service;
             var BASE_CONFIG_MAP = {
                 zoom: 14,
                 disableDefaultUI: true,
