@@ -10,6 +10,8 @@
     function mainConfig($stateProvider, $urlRouterProvider,
                         $ionicConfigProvider, $translateProvider, toastrConfig, $mdGestureProvider) {
 
+
+        $ionicConfigProvider.views.swipeBackEnabled(false);
         angular.extend(toastrConfig, {
             // preventDuplicates: true,
             preventOpenDuplicates: true,
