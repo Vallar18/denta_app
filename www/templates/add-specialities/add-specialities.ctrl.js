@@ -212,8 +212,8 @@
                         toastr.error(messagesSvc.error.emptyField);
                         return false;
                     }
-                    return true;
                 }
+                return true;
             }
 
             function getSelectCurrency() {
