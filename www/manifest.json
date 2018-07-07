@@ -7,5 +7,6 @@
     "src": "icon.png",
     "sizes": "512x512",
     "type": "image/png"
-  }]
+  }],
+  "play_store_key":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiovOGeNS2F1+PnoEl6uLTcASNA7oH38XntdFHrVKEyarI53D/HnJO6PkceDxqB6pwMFtjhVZKoJ6GHPAoJQHWt1TIefyWQG7XyRbQxtNWk+mx+Oit7FZ9RX0148ymguT2CdgcxzJxyqn8jMemF1jeOscV9Y23nqo6+FmbbrJV1F0tXyTX95Mgh55XHduSRc6VSJHMsJ3nLPK6o8JEl4g4Cg7qTGOFNJa3kdqx7RnJw6w7YAeOEptIaZvFtboHontDNwwNsJVoLDiVbZS14ZRTyAXAEjuA/vt1vo3G6Hwjf6jAjnkJkdT2f5o2FVJyR/jJ46FJ4I+GsoS/zveYKf4BwIDAQAB"
 }
