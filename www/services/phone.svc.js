@@ -16,9 +16,14 @@
             setDefaultCode: setDefaultCode,
             validatePhone: validatePhone,
             preparePhone: preparePhone,
-            cutNumberCode: cutNumberCode
+            cutNumberCode: cutNumberCode,
+            clearPhone: clearPhone
         };
         return model;
+
+        function clearPhone(phone){
+            return +phone.replace(/\D/g, '');
+        }
 
         function preparePhone(code,phone){
             return (code || '+0') + ((phone || '') + '');

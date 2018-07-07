@@ -3,9 +3,9 @@
 
     angular.module('service.dentistSvc', []).factory('dentistSvc', dentistSvc);
 
-    dentistSvc.$inject = ['http','url','$localStorage'];
+    dentistSvc.$inject = ['http', 'url', '$localStorage', '$ionicLoading', '$ionicPopup'];
 
-    function dentistSvc(http, url,$localStorage) {
+    function dentistSvc(http, url, $localStorage, $ionicLoading, $ionicPopup) {
         var model = {
             invite: invite,
             updateClinic: updateClinic,
@@ -14,20 +14,59 @@
             // saveBecomeDenClinic: saveBecomeDenClinic,
             // getBecomeDenClinic: sgetBecomeDenClinic,
             sendBecomeDen: sendBecomeDen,
-
+            loadProducts: loadProducts,
+            buyProduct: buyProduct
         };
         return model;
 
-        function invite(data){
-            return http.post(url.invite.dentist,data);
+        function getListProductId() {
+
         }
 
-        function checkDentistInvite(data){
-            return http.post(url.invite.checkDentist,data);
+        function loadProducts() {
+            if (window.ionic.Platform.isWebView() && typeof window.inAppPurchase !== 'undefined') {
+                return getListProductId().then(function(res){
+                    return window.inAppPurchase.getProducts(res.productIds);
+                });
+
+            }
         }
 
-        function updateClinic(data){
-            return http.post(url.clinic.update,data);
+        function buyProduct(productId) {
+            if (window.ionic.Platform.isWebView() && typeof window.inAppPurchase !== 'undefined' && productId) {
+                window.inAppPurchase
+                    .buy(productId).then(function (data) {
+                    console.log(JSON.stringify(data));
+                    console.log('consuming transactionId: ' + data.transactionId);
+                    return window.inAppPurchase.consume(data.type, data.receipt, data.signature);
+                }).then(function () {
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Purchase was successful!',
+                        // template: 'Check your console log for the transaction data'
+                    });
+                    console.log('consume done!');
+                    $ionicLoading.hide();
+                }).catch(function (err) {
+                        $ionicLoading.hide();
+                        console.log(err);
+                        $ionicPopup.alert({
+                            title: 'Something went wrong',
+                            template: 'Check your console log for the error details'
+                        });
+                    });
+            }
+        }
+
+        function invite(data) {
+            return http.post(url.invite.dentist, data);
+        }
+
+        function checkDentistInvite(data) {
+            return http.post(url.invite.checkDentist, data);
+        }
+
+        function updateClinic(data) {
+            return http.post(url.clinic.update, data);
         }
 
         function addInviteDentist(data) {
@@ -41,7 +80,7 @@
         // function getBecomeDenClinic() {
         //     return $localStorage.become_dentist_clinic;
         // }
-        function sendBecomeDen(data){
+        function sendBecomeDen(data) {
             return http.post(url.user.become_dentist, data);
         }
     }
