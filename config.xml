@@ -122,4 +122,5 @@
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
     <plugin name="cordova-plugin-fcm" spec="^2.1.2" />
     <plugin name="cordova-plugin-inapppurchase" spec="^1.2.0" />
+    <engine name="android" spec="^6.4.0" />
 </widget>

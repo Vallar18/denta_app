@@ -44,6 +44,7 @@
                 controllerAs: 'vm',
                 cache: false,
                 reload: true,
+                params: { phone: null },
                 resolve: {
                     codes: function (phoneSvc) {
                         return phoneSvc.getCodes().then(function (res) {
@@ -59,6 +60,7 @@
                 controller: 'AddCodeCtrl',
                 controllerAs: 'vm',
                 cache: false,
+                params: { phone: null }
             })
             .state('select-role', {
                 reload: true,

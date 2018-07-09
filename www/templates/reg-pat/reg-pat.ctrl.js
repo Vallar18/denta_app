@@ -40,7 +40,7 @@
                         userSvc.getUserInfo().then(function (res) {
                             userSvc.setUser(res.user);
                             $state.go('tabs.patient-profile');
-                        })
+                        });
                     } else {
                         toastr.error(data.message);
                     }

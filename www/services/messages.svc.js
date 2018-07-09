@@ -22,10 +22,12 @@
                 emptySpec: 'Please choose a specialty',
                 selectClinicName: 'Please choose a clinic',
                 emptyReview: 'Please write review text',
+                correctPrice: 'Please input correct price',
                 emptyAddress: 'Address not found, enter manually',
                 notGetContact: 'It is not possible to access the phone book',
                 checkClinickOnMap: 'Check that you have indicated the location of the clinic on the map',
-                fcm: 'Error with Firebase. Please, check the Internet connection and restart the application'
+                fcm: 'Error with Firebase. Please, check the Internet connection and restart the application',
+                avatar: 'Please adding avatar for profile'
             },
             success: {
                 test: 'Test',
