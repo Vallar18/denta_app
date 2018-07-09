@@ -5,7 +5,7 @@
         .module('app')
         .controller('RegDocCtrl', RegDocCtrl);
 
-    RegDocCtrl.$inject = ['$scope', '$ionicPlatform','$state', '$stateParams', 'regSvc', 'toastr', 'authSvc', 'messagesSvc', '$ionicPopup', 'IonicClosePopupService', '$cordovaCamera','userSvc'];
+    RegDocCtrl.$inject = ['$scope', '$ionicPlatform', '$state', '$stateParams', 'regSvc', 'toastr', 'authSvc', 'messagesSvc', '$ionicPopup', 'IonicClosePopupService', '$cordovaCamera', 'userSvc'];
 
     function RegDocCtrl($scope, $ionicPlatform, $state, $stateParams, regSvc, toastr, authSvc, messagesSvc, $ionicPopup, IonicClosePopupService, $cordovaCamera, userSvc) {
         const vm = this;
@@ -23,17 +23,17 @@
                 name: user.name, lastname: user.lastname, email: user.email,
                 user_id: user.id, avatar: ''
             };
-            if(vm.edit){
+            if (vm.edit) {
                 vm.user.avatar = user.avatar;
-            }else{
+            } else {
                 vm.user.avatar = '';
                 authSvc.addBackBehave(false);
             }
-        } else{
+        } else {
             vm.user = {
                 name: '', lastname: '', email: '',
                 phone: vm.phone, key: vm.key, avatar: ''
-            }
+            };
         }
 
         function back() {
@@ -41,8 +41,8 @@
         }
 
         function send() {
-            if(!validation()){
-                return
+            if (!validation()) {
+                return;
             }
             vm.user.country_id = authSvc.getCountryId();
             if (vm.edit || vm.become_den) {
@@ -50,12 +50,12 @@
                     if (data.success) {
                         userSvc.getUserInfo().then(function (res) {
                             userSvc.setUser(res.user);
-                            if(vm.edit){
+                            if (vm.edit) {
                                 $state.go('add-clinic', {edit: true, become_den: false});
                             } else {
                                 $state.go('add-clinic', {edit: true, become_den: true});
                             }
-                        })
+                        });
                     } else {
                         toastr.error(data.message);
                     }
@@ -66,13 +66,13 @@
                 regSvc.sendUser(vm.user).then(function (data) {
                     processRegSuccess(data);
                 }, function (err) {
-                   processRegError(err);
+                    processRegError(err);
                 });
             }
         }
 
-        function processRegSuccess(data){
-            if(data.success) {
+        function processRegSuccess(data) {
+            if (data.success) {
                 $state.go('add-clinic');
                 userSvc.setUser(data.user);
                 userSvc.setToken(data.token);
@@ -81,28 +81,28 @@
             }
         }
 
-        function processRegError(err){
-            if(err.phone && angular.isArray(err.phone)){
+        function processRegError(err) {
+            if (err.phone && angular.isArray(err.phone)) {
                 toastr.error(err.phone.reduce(function (acc, current) {
                     return acc + '\n' + current;
-                }, ''))
+                }, ''));
             }
         }
 
         function validation() {
-            if(vm.user.email === undefined){
+            if (vm.user.email === undefined) {
                 toastr.error(messagesSvc.error.invalidEmail);
-                return false
+                return false;
             }
-             if (vm.user.name === '' || vm.user.lastname === ''){
-                 toastr.error(messagesSvc.error.emptyField);
-                 return false;
-             }
-             if (!vm.user.avatar.length){
-                 toastr.error(messagesSvc.error.emptyField);
-                 return false;
-             }
-             return true;
+            if (vm.user.name === '' || vm.user.lastname === '') {
+                toastr.error(messagesSvc.error.emptyField);
+                return false;
+            }
+            if (!vm.user.avatar.length) {
+                toastr.error(messagesSvc.error.avatar);
+                return false;
+            }
+            return true;
         }
 
         vm.getPic = function (type, callback) {
@@ -163,6 +163,7 @@
                 showChangeAvatar();
             })
         }
+
         function showChangeAvatar() {
             var changeAvatar = $ionicPopup.show({
                 templateUrl: 'components/create-avatar/create-avatar.html',

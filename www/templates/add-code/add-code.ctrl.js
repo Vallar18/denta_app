@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddCodeCtrl', AddCodeCtrl);
 
-    AddCodeCtrl.$inject = ['$state', 'regSvc', 'authSvc', 'userSvc', 'toastr', 'messagesSvc', 'dentistSvc', 'fcmSvc'];
+    AddCodeCtrl.$inject = ['$state', 'regSvc', 'authSvc', 'userSvc', 'toastr', 'messagesSvc', 'dentistSvc', 'fcmSvc', '$stateParams'];
 
-    function AddCodeCtrl($state, regSvc, authSvc, userSvc, toastr, messagesSvc, dentistSvc, fcmSvc) {
+    function AddCodeCtrl($state, regSvc, authSvc, userSvc, toastr, messagesSvc, dentistSvc, fcmSvc, $stateParams) {
         const vm = this;
         vm.send = send;
         vm.goAddPhone = goAddPhone;
@@ -39,7 +39,7 @@
             if (data.success) {
                 if (data.user && data.user.roles.length && data.token) {
                     processUserData(data);
-                } else if(data.authKey) {
+                } else if (data.authKey) {
                     authSvc.setCode(vm.code + '');
                     authSvc.setKey(data.authKey);
                     vm.code = '';
@@ -50,14 +50,14 @@
                     toastr.error(data.message);
                 }
                 if (data.success === false) {
-                    $state.go('add-phone');
+                    $state.go('add-phone', {phone: $stateParams.phone});
                 }
             }
         }
 
-        function processUserData(data){
+        function processUserData(data) {
             userSvc.setUser(data.user);
-            userSvc.setRole(data.user.dentist ? userSvc.roleConst().doctor:userSvc.roleConst().patient);
+            userSvc.setRole(data.user.dentist ? userSvc.roleConst().doctor : userSvc.roleConst().patient);
             userSvc.setToken(data.token);
             sendFCMToken();
             if (userSvc.isDoc()) {
@@ -107,7 +107,7 @@
 
         function goAddPhone() {
             vm.code = '';
-            $state.go('add-phone');
+            $state.go('add-phone', { phone: $stateParams.phone } );
         }
     }
 

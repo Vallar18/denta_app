@@ -88,7 +88,6 @@
             // ionic.Platform.exitApp();
         }
 
-
         function clearAuthData() {
             $localStorage.country_id = null;
             $localStorage.code = null;
