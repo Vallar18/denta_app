@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "64881062287",
-    "firebase_url": "https://my-projectdentte-1528234503301.firebaseio.com",
-    "project_id": "my-projectdentte-1528234503301",
-    "storage_bucket": "my-projectdentte-1528234503301.appspot.com"
+    "project_number": "233345676904",
+    "firebase_url": "https://gett-dent-second.firebaseio.com",
+    "project_id": "gett-dent-second",
+    "storage_bucket": "gett-dent-second.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:64881062287:android:820646c21230290b",
+        "mobilesdk_app_id": "1:233345676904:android:bfa37243f4309279",
         "android_client_info": {
-          "package_name": "com.dent.app"
+          "package_name": "get.dent"
         }
       },
       "oauth_client": [
         {
-          "client_id": "64881062287-ga0qa4tfsbpo9ddjpa7ji75gnh4hemkj.apps.googleusercontent.com",
+          "client_id": "233345676904-e850um19344rcdb7aoc8t8e21tnk5jel.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBA7OBLk2igJyerbNmUqAKYEbC75SvlxMw"
+          "current_key": "AIzaSyDSjdafrq4qj2aR1U-3ivyxPQVfICnbK38"
         }
       ],
       "services": {
