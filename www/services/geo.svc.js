@@ -9,6 +9,7 @@
         function geoSvc($cordovaGeolocation, $ionicLoading,
                         $rootScope, $cordovaNetwork, networkMonitorSvc, $q, $ionicPopup) {
             let watcherPosition;
+            const TIMEOUT_LOADING_SHOW = 30000;
             let vm = this;
             let API_KEY = 'AIzaSyD6o8M_KOerds2uacnudjI62elbLTMyBaY';
             let map = null;
@@ -76,7 +77,8 @@
                 getPosition(false).then(function (pos) {
                     addSearch();
                     $ionicLoading.show({
-                        template: 'Loading map...'
+                        template: 'Loading map...',
+                        duration: TIMEOUT_LOADING_SHOW
                     });
                     let latLng = createPos(pos.coords.latitude, pos.coords.longitude);
                     let mapOptions = angular.extend({}, BASE_CONFIG_MAP, {
@@ -127,7 +129,8 @@
 
             function loadGoogleMaps() {
                 $ionicLoading.show({
-                    template: 'Loading Google Maps'
+                    template: 'Loading Google Maps',
+                    duration: TIMEOUT_LOADING_SHOW
                 });
                 window.mapInit = function () {
                     readyMap();
