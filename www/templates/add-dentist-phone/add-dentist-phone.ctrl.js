@@ -16,6 +16,7 @@
         vm.selectCode = selectCode;
         vm.pickContactUsingNativeUI = pickContactUsingNativeUI;
         vm.selectOneContact = selectOneContact;
+        vm.back = back;
         vm.edit = $stateParams.edit;
         vm.c_invite = $stateParams.c_invite;
         vm.invite_for_den = $stateParams.invite_for_den;
@@ -32,12 +33,18 @@
         function init() {
             if (vm.c_invite || vm.invite_for_den) {
                 authSvc.addBackBehave(true);
+                vm.show_back = true;
             } else {
                 authSvc.addBackBehave(vm.edit);
+                vm.show_back = false;
             }
             if (vm.edit || vm.c_invite || vm.invite_for_den) {
                 hideOverlay();
             }
+        }
+
+        function back() {
+            window.history.back();
         }
 
         function pickContactUsingNativeUI() {

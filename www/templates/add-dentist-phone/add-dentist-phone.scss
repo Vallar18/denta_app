@@ -1,4 +1,13 @@
 .reg-step2 {
+  button.button.back-btn {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    z-index: 999;
+  }
+  .back-btn img {
+    width: 10vw;
+  }
   .overlay-block {
     position: absolute;
     top: 0;
