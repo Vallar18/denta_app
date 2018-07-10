@@ -21,6 +21,7 @@
     white-space: normal;
   }
   .rating-block {
+    white-space: nowrap;
     text-align: right;
     .price-block {
       color: $text-default-color;
