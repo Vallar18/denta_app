@@ -5,7 +5,7 @@
         .module('app')
         .controller('AddClinicCtrl', AddClinicCtrl);
 
-    AddClinicCtrl.$inject = ['$scope', '$state', '$stateParams', 'regSvc', 'phoneSvc', 'authSvc','toastr', 'messagesSvc', 'dentistSvc', 'codes', '$ionicPopup', 'geoSvc', '$ionicLoading', 'userSvc'];
+    AddClinicCtrl.$inject = ['$scope', '$state', '$stateParams', 'regSvc', 'phoneSvc', 'authSvc', 'toastr', 'messagesSvc', 'dentistSvc', 'codes', '$ionicPopup', 'geoSvc', '$ionicLoading', 'userSvc'];
 
     function AddClinicCtrl($scope, $state, $stateParams, regSvc, phoneSvc, authSvc, toastr, messagesSvc, dentistSvc, codes, $ionicPopup, geoSvc, $ionicLoading, userSvc) {
         const vm = this;
@@ -27,7 +27,7 @@
         let clinic = userSvc.getUser().clinic;
         vm.phone = '';
         vm.btn_text = 'Send';
-        if(vm.become_den){
+        if (vm.become_den) {
             vm.edit = false;
             authSvc.addBackBehave(vm.edit);
         }
@@ -35,22 +35,13 @@
             user_id: vm.user.id, name: '', phone: '',
             longitude: null, latitude: null
         };
-        if (vm.edit){
+        if (vm.edit) {
             vm.btn_text = 'Update';
             vm.clinic = {
                 user_id: vm.user.id, name: clinic.name, phone: clinic.phone, address: clinic.address,
                 longitude: clinic.longitude, latitude: clinic.latitude
             };
         }
-
-        /*$scope.listClinic = [
-            {name: "Nacccccme"},
-            {name: "Namcccccccccccccfffffffffffffffffffffffffffffffffffffffdhdhe"},
-            {name: "Nabfgcme"},
-            {name: "Nambcccccccccce"},
-            {name: "Namcvvbcbcbce"},
-        ]*/
-
 
         function checkClinicPhone() {
             if (!validPhone()) {
@@ -108,7 +99,7 @@
         }
 
         function newClinic() {
-            if(vm.edit){
+            if (vm.edit) {
                 vm.edit = false;
                 vm.edit_spec = true;
                 vm.btn_text = 'Send';
@@ -121,14 +112,14 @@
 
         function send() {
             if (!validation()) {
-                return
+                return;
             }
-            if(vm.edit){
+            if (vm.edit) {
                 updateClinic(vm.clinic);
-            } else if(vm.showSelect){
-                changeClinic(vm.change_clinic)
-            }else{
-                createClinic(vm.clinic)
+            } else if (vm.showSelect) {
+                changeClinic(vm.change_clinic);
+            } else {
+                createClinic(vm.clinic);
             }
         }
 
@@ -136,9 +127,9 @@
             vm.clinic.country_id = vm.selected_country.id;
             dentistSvc.updateClinic(data).then(function (data) {
                 if (data.success) {
-                    if(vm.become_den){
+                    if (vm.become_den) {
                         $state.go('add-specialities', {edit: false, become_den: true});
-                    } else{
+                    } else {
                         $state.go('add-specialities', {edit: true});
                     }
                 } else {
@@ -164,12 +155,12 @@
         function changeClinic(data) {
             regSvc.changeClinic(data).then(function (data) {
                 if (data.success) {
-                    if(vm.edit || vm.edit_spec || vm.become_den){
+                    if (vm.edit || vm.edit_spec || vm.become_den) {
                         userSvc.getUserInfo().then(function (res) {
                             userSvc.setUser(res.user);
-                            if(vm.become_den){
+                            if (vm.become_den) {
                                 $state.go('add-specialities', {edit: false, become_den: true});
-                            } else{
+                            } else {
                                 $state.go('add-specialities', {edit: true});
                             }
                         });
@@ -178,7 +169,7 @@
                     }
                 } else {
                     if (data.message) {
-                        toastr.error(data.message)
+                        toastr.error(data.message);
                     }
                 }
             }, function (err) {
@@ -200,12 +191,12 @@
             vm.clinic.country_id = vm.selected_country.id;
             regSvc.createClinic(data).then(function (data) {
                 if (data.success) {
-                    if(vm.edit_spec || vm.become_den){
+                    if (vm.edit_spec || vm.become_den) {
                         userSvc.getUserInfo().then(function (res) {
                             userSvc.setUser(res.user);
-                            if(vm.become_den){
+                            if (vm.become_den) {
                                 $state.go('add-specialities', {edit: false, become_den: true});
-                            } else{
+                            } else {
                                 $state.go('add-specialities', {edit: true});
                             }
                         });
@@ -244,7 +235,7 @@
                     vm.show_clinic = false;
                     return false;
                 }
-            } else if(vm.clinic.phone){
+            } else if (vm.clinic.phone) {
                 vm.len_phone = vm.clinic.phone.length;
                 if (vm.len_phone > 8 && vm.len_phone < 20) {
                     return true;
@@ -260,7 +251,7 @@
                 if (vm.clinic.name === '' || vm.clinic.address === '') {
                     toastr.error(messagesSvc.error.emptyField);
                     return false;
-                } else if( !vm.clinic.latitude || !vm.clinic.longitude){
+                } else if (!vm.clinic.latitude || !vm.clinic.longitude) {
                     toastr.error(messagesSvc.error.checkClinickOnMap);
                 } else {
                     return true;
@@ -280,7 +271,7 @@
         }
 
         function openMapPopup() {
-            if(vm.showSelect){
+            if (vm.showSelect) {
                 return;
             }
             var mapPopup = $ionicPopup.show({
@@ -304,10 +295,10 @@
             geoSvc.mapWithMarker();
         }
 
-        function processMapPopupOK(){
+        function processMapPopupOK() {
             $ionicLoading.hide();
             $ionicLoading.show({
-                template:'Obtaining an address...'
+                template: 'Obtaining an address...'
             });
             geoSvc.getAddress(geoSvc.getMarkerPosition(), function (res) {
                 if (res.address.length) {
@@ -318,14 +309,14 @@
                     toastr.error(messagesSvc.error.emptyAddress);
                 }
                 $ionicLoading.hide();
-            }, function(){
+            }, function () {
                 toastr.error(messagesSvc.error.emptyAddress);
                 $ionicLoading.hide();
             });
         }
 
 
-        vm.disableTap = function(event) {
+        vm.disableTap = function (event) {
             let input = event.target;
             // Get the predictions element
             let container = document.getElementsByClassName('pac-container');
@@ -337,7 +328,7 @@
             // Disable ionic data tap
             container.attr('data-tap-disabled', 'true');
             // Leave the input field if a prediction is chosen
-            container.on('click', function(){
+            container.on('click', function () {
                 input.blur();
             });
         };
