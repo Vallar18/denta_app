@@ -1,9 +1,9 @@
 <ion-view class="reg-step2" can-swipe-back="false">
     <ion-content>
-        <button ng-if="vm.show_back" class="button back-btn" ng-click="vm.back()">
-            <!--<i class="icon ion-ios-arrow-thin-left"></i>-->
-            <img src="content/img/back.png" alt="">
-        </button>
+        <!--<button ng-if="vm.show_back" class="button back-btn" ng-click="vm.back()">-->
+            <!--&lt;!&ndash;<i class="icon ion-ios-arrow-thin-left"></i>&ndash;&gt;-->
+            <!--<img src="content/img/back.png" alt="">-->
+        <!--</button>-->
         <div class="overlay-block" ng-if="vm.overlay" ng-click="vm.hideOverlay()">
             <div class="overlay-text">
                 <p>Please provide us your home dentist info.</p>
@@ -43,7 +43,10 @@
                     </button>
                 </div>
                 <p ng-if="!vm.edit && !vm.c_invite">Have no dentist <a ng-click="vm.skip()"> skip</a></p>
-                <button class="send-button" ng-click="vm.send()">Submit</button>
+                <div class="form-bottom-block">
+                    <button class="send-button" ng-if="vm.show_back" ng-click="vm.back()">Back</button>
+                    <button class="send-button" ng-click="vm.send()">Submit</button>
+                </div>
             </form>
         </div>
     </ion-content>

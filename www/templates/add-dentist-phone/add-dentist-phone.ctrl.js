@@ -33,12 +33,11 @@
         function init() {
             if (vm.c_invite || vm.invite_for_den) {
                 authSvc.addBackBehave(true);
-                vm.show_back = true;
             } else {
                 authSvc.addBackBehave(vm.edit);
-                vm.show_back = false;
             }
             if (vm.edit || vm.c_invite || vm.invite_for_den) {
+                vm.show_back = true;
                 hideOverlay();
             }
         }
