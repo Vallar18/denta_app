@@ -312,11 +312,14 @@
             geoSvc.getAddress(geoSvc.getMarkerPosition(), function (res) {
                 if (res.address.length) {
                     vm.clinic.address = res.address;
+                    vm.clinic.longitude = res.lng;
+                    vm.clinic.latitude = res.lat;
                 } else {
                     toastr.error(messagesSvc.error.emptyAddress);
                 }
-                vm.clinic.longitude = res.lng;
-                vm.clinic.latitude = res.lat;
+                $ionicLoading.hide();
+            }, function(){
+                toastr.error(messagesSvc.error.emptyAddress);
                 $ionicLoading.hide();
             });
         }
