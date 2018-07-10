@@ -16,7 +16,8 @@
         vm.become_den = $stateParams.become_den;
         vm.croppedDataUrl = '';
         authSvc.addBackBehave(vm.edit);
-        if (vm.edit || vm.become_den) {
+        vm.back = back;
+        if(vm.edit || vm.become_den){
             let user = userSvc.getUser();
             vm.user = {
                 name: user.name, lastname: user.lastname, email: user.email,
@@ -33,6 +34,10 @@
                 name: '', lastname: '', email: '',
                 phone: vm.phone, key: vm.key, avatar: ''
             };
+        }
+
+        function back() {
+            window.history.back();
         }
 
         function send() {

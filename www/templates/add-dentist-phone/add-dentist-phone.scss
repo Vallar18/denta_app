@@ -1,4 +1,13 @@
 .reg-step2 {
+  button.button.back-btn {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    z-index: 999;
+  }
+  .back-btn img {
+    width: 10vw;
+  }
   .overlay-block {
     position: absolute;
     top: 0;
@@ -40,12 +49,13 @@
         color: $text-gray-color2;
         line-height: normal;
         font-weight: 300;
+        padding: 0 5px;
       }
     }
     .block-content {
       .input-phone {
         .item-input {
-          width: 66%;
+          width: 80%;
         }
         .phone-icon {
           //width: 14%;
