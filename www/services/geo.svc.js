@@ -142,7 +142,7 @@
             }
 
             function checkLoaded() {
-                if (angular.isUndefined(window.google) || angular.isUndefined(window.google.maps)) {
+                if (!isMapReady()) {
                     loadGoogleMaps();
                 } else {
                     enableMap();
@@ -204,7 +204,12 @@
             }
 
 
-            function getAddress(latlng, callback) {
+            function getAddress(latlng, callback, errorCallback) {
+                if(!isMapReady()){
+                    errorInetOrGPS().then(function(){
+                        errorCallback();
+                    });
+                }
                 let addressObj = {
                     lat: latlng.lat || latlng.latitude,
                     lng: latlng.lng || latlng.longitude,
@@ -249,8 +254,17 @@
                 });
             }
 
+
+            /**
+             * @description return true if maps defined
+             * @returns {boolean}
+             */
+            function isMapReady(){
+                return (angular.isDefined(window.google) && angular.isDefined(window.google.maps));
+            }
+
             function init() {
-                if (angular.isUndefined(window.google) || angular.isUndefined(window.google.maps)) {
+                if (!isMapReady()) {
                     console.warn("Google Maps SDK needs to be loaded");
                     disableMap();
                     if (networkMonitorSvc.isOnline()) {
@@ -276,10 +290,10 @@
             }
 
             function getPosition(accuracy) {
+                let defered = $q.defer();
                 $ionicLoading.show({
                     template: '<ion-spinner></ion-spinner> <br> Getting position...'
                 });
-                let defered = $q.defer();
                 let options = {
                     maximumAge: 60 * 1000,
                     timeout: 30000,
