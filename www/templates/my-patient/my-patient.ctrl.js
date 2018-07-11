@@ -38,27 +38,7 @@
                 vm.phone = '';
             });
             // $state.go('tabs.history-emergencies');
-
         }
-
-        vm.test = function () {
-             let paymentPopup = $ionicPopup.show({
-                templateUrl: 'components/select-subscription/select-subscription.html',
-                cssClass: 'select-subscription',
-                title: '',
-                scope: $scope,
-                buttons: [
-                    {text: 'Cancel'},
-                    {
-                        text: '<b>OK</b>',
-                        type: 'button-positive',
-                        onTap: function (e) {
-                            paymentPopup.close();
-                        }
-                    }
-                ]
-            });
-        };
 
         function getSelectCode() {
             vm.codePopup = phoneSvc.showSelect($scope);

@@ -46,10 +46,11 @@
     }
 
     .subscript-btn-block {
+      max-height: 50vh;
+      overflow:  auto;
       padding: 6vw 0;
       .gray-btn {
         margin: 0 auto 7%;
-        display: block;
         width: 80%;
         display: flex;
         img {

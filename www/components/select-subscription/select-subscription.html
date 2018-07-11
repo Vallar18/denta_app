@@ -10,8 +10,8 @@
         </div>
     </div>
     <div class="subscript-btn-block">
-        <button ng-click="vm.closePopup()" layout="row" layout-align="space-around center" class="gray-btn"
-            ng-repeat="item in vm.productItems track by $index">
+        <button ng-click="selectPlan(item)" layout="row" layout-align="space-around center" class="gray-btn"
+            ng-repeat="item in productItems track by $index">
             <img src="content/img/redcross-icon.png" alt="">
             <span class="subscript-btn-text">{{item.title}}</span>
             <span class="price-item">{{item.price + ' ' + item.currency}}</span>
