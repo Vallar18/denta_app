@@ -15,27 +15,36 @@
             // getBecomeDenClinic: sgetBecomeDenClinic,
             sendBecomeDen: sendBecomeDen,
             loadProducts: loadProducts,
-            buyProduct: buyProduct
+            buyProduct: buyProduct,
+            getListProductId: getListProductId
         };
         return model;
 
         function getListProductId() {
-
+            return http.get(url.purchase.get).then(function(res){
+                if(angular.isArray(res)){
+                    var productIds = [];
+                    res.forEach(function(val){
+                        if(val.productId){
+                            productIds.push(val.productId);
+                        }
+                    });
+                    return productIds;
+                } else {
+                    return [];
+                }
+            });
         }
 
-        function loadProducts() {
-            if (window.ionic.Platform.isWebView() && typeof window.inAppPurchase !== 'undefined') {
-                return getListProductId().then(function(res){
-                    return window.inAppPurchase.getProducts(res.productIds);
-                });
-
+        function loadProducts(productIds) {
+            if (window.ionic.Platform.isWebView() && typeof window.inAppPurchase !== 'undefined' && angular.isArray(productIds)) {
+                return window.inAppPurchase.getProducts(productIds);
             }
         }
 
         function buyProduct(productId) {
             if (window.ionic.Platform.isWebView() && typeof window.inAppPurchase !== 'undefined' && productId) {
-                window.inAppPurchase
-                    .buy(productId).then(function (data) {
+                window.inAppPurchase.buy(productId).then(function (data) {
                     console.log(JSON.stringify(data));
                     console.log('consuming transactionId: ' + data.transactionId);
                     return window.inAppPurchase.consume(data.type, data.receipt, data.signature);
