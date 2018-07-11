@@ -80,7 +80,12 @@
                 about: baseUrl + 'static/about',
                 terms: baseUrl + 'static/terms'
             },
-            subscribe: baseUrl + 'subscribe'
-        };
+            subscribe: baseUrl + 'subscribe',
+            purchase: {
+                get: baseUrl + 'purchase-plan/get',
+                send: baseUrl + 'purchase'
+            }
+        }
+        ;
     }
 })();

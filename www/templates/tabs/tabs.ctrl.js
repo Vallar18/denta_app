@@ -5,13 +5,21 @@
         .module('app')
         .controller('TabsController', TabsController);
 
-    TabsController.$inject = ['$state', 'userSvc', 'tabsSvc', 'authSvc', 'textSvc', 'geoSvc', 'fcmSvc'];
+    TabsController.$inject = ['$state', 'userSvc', 'tabsSvc', 'authSvc', 'textSvc', 'geoSvc', 'fcmSvc', 'dentistSvc'];
 
-    function TabsController($state, userSvc, tabsSvc, authSvc, textSvc, geoSvc, fcmSvc) {
+    function TabsController($state, userSvc, tabsSvc, authSvc, textSvc, geoSvc, fcmSvc, dentistSvc) {
         var vm = this;
         vm.toggleMenu = toggleMenu;
         vm.selectingItem = selectingItem;
         let currentUserType = userSvc.getRole();
+
+
+        dentistSvc.getListProductId().then(function(res){
+            console.log(res);
+            dentistSvc.loadProducts(res).then(function(res){
+                console.log(res);
+            });
+        });
         vm.menuModel = {
             isShow: false,
             items: [],
