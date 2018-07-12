@@ -7,6 +7,7 @@
 
     function purchaseSvc(http, url, $ionicLoading, $ionicPopup, $rootScope, messagesSvc, $state) {
         var tempProductIds = []; //user for search product ids id for sent to backend
+        var tempSelectedProductData;
         var popupInstance = undefined;
         var callbackBuySuccess;
         var callbackBuyError;
@@ -41,6 +42,7 @@
             if(typeof popupInstance != 'undefined'){
                 return;
             }
+            tempSelectedProductData = null;
             callbackBuySuccess = null;
             var scope = $rootScope.$new(true);
             if (angular.isFunction(successCallback)) {
@@ -97,11 +99,11 @@
             }
         }
 
-        function processSuccessBuy(product) {
-            if (!product) return;
-            var purchaseObj = product;
+        function processSuccessBuy() {
+            if (!tempSelectedProductData) return;
+            var purchaseObj = tempSelectedProductData;
             tempProductIds.forEach(function (val) {
-                if (product.productId === val.productId) {
+                if (tempSelectedProductData.productId === val.productId) {
                     purchaseObj.purchase_plans_id = val.id;
                 }
             });
@@ -111,6 +113,7 @@
                     // template: 'Check your console log for the transaction data'
                 });
                 popupInstance.close();
+                popupInstance = undefined;
                 $ionicLoading.hide();
                 if (angular.isFunction(callbackBuySuccess)) {
                     callbackBuySuccess();
@@ -120,6 +123,7 @@
         }
 
         function buyProduct(product) {
+            tempSelectedProductData = product;
             if (window.ionic.Platform.isWebView() && angular.isDefined(window.inAppPurchase) && product) {
                 window.inAppPurchase.subscribe(product.productId).then(function (data) {
                     console.log(JSON.stringify(data));
@@ -127,6 +131,7 @@
                 }).then(function () {
                     processSuccessBuy(product);
                 }).catch(function (err) {
+                    // processSuccessBuy(product);
                     $ionicLoading.hide();
                     console.log(err);
                     popupInstance.close();
@@ -139,6 +144,8 @@
             $ionicPopup.alert({
                 title: 'Something went wrong',
                 template: messagesSvc.error.buy
+            }).then(function(){
+                popupInstance = undefined;
             });
         }
     }

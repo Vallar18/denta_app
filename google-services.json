@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:233345676904:android:bfa37243f4309279",
+        "mobilesdk_app_id": "1:233345676904:android:820646c21230290b",
         "android_client_info": {
-          "package_name": "get.dent"
+          "package_name": "com.dent.app"
         }
       },
       "oauth_client": [

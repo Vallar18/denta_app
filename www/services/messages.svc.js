@@ -28,7 +28,8 @@
                 checkClinickOnMap: 'Check that you have indicated the location of the clinic on the map',
                 fcm: 'Error with Firebase. Please, check the Internet connection and restart the application',
                 avatar: 'Please adding avatar for profile',
-                buy: 'Please check that you have an authorized google account and have money on your account, also check internet available.'
+                buy: 'Please check that you have an authorized google account and have money on your account, also check internet available.',
+                network: 'Please check your internet connection and try again or reopen application'
             },
             success: {
                 test: 'Test',

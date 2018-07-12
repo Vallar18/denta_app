@@ -4,10 +4,11 @@
         .module('factory.request', ['ngStorage'])
         .factory('http', http);
 
-    http.$inject = ['$rootScope', '$http', '$q', '$sessionStorage', '$localStorage', 'toastr', '$state', '$ionicLoading' ];
+    http.$inject = ['$rootScope', '$http', '$q', '$sessionStorage', '$localStorage', 'toastr', '$state', '$ionicLoading', 'networkMonitorSvc','messagesSvc', '$ionicPopup', '$timeout' ];
 
-    function http($rootScope, $http, $q, $sessionStorage, $localStorage, toastr, $state, $ionicLoading) {
+    function http($rootScope, $http, $q, $sessionStorage, $localStorage, toastr, $state, $ionicLoading, networkMonitorSvc, messagesSvc, $ionicPopup, $timeout) {
         let PAY_PERMISSION_TEXT = 'Insufficient permissions';
+        let errPopupInstance = null;
         let request = function (method, url, data) {
             $rootScope.loading = true;
             let config = {
@@ -40,11 +41,43 @@
             } else {
                 config.url = url;
             }
-            $ionicLoading.show({
-                template: '<ion-spinner></ion-spinner> <br>Loading...',
-            });
-            return $http(config).then(requestSuccess, requestError);
+            // processRequest(config);
+            // $ionicLoading.show({
+            //     template: '<ion-spinner></ion-spinner> <br>Loading...',
+            // });
+            // // return $http(config).then(requestSuccess, requestError);
+            return processRequest(config);
         };
+
+        function processRequest(config){
+            if(networkMonitorSvc.isOnline()){
+                if(errPopupInstance){
+                    errPopupInstance.close();
+                }
+                $ionicLoading.show({
+                    template: '<ion-spinner></ion-spinner> <br>Loading...',
+                });
+                return $http(config).then(requestSuccess, requestError);
+            } else if(networkMonitorSvc.isOffline()){
+                if(!errPopupInstance){
+                    errorPopup();
+                }
+                return $q(function (resolve, reject) {
+                    $timeout(function () {
+                        reject(false);
+                    }, 250);
+                });
+            }
+        }
+
+        function errorPopup() {
+            errPopupInstance = $ionicPopup.alert({
+                title: 'Network error!',
+                template: messagesSvc.error.network
+            }).then(function(){
+                errPopupInstance = null;
+            });
+        }
 
         function requestSuccess(response) {
             $rootScope.loading = false;
@@ -66,6 +99,7 @@
         }
 
         function requestError(response) {
+            debugger
             let defer = $q.defer();
             $ionicLoading.hide();
             if (response.status === 200) {
@@ -89,7 +123,11 @@
                 }
                 toastr.error(response.data.message);
             }
-            defer.reject(response.data);
+            if(response.data){
+                defer.reject(response.data);
+            } else {
+                defer.reject(false);
+            }
             return defer.promise;
         }
 

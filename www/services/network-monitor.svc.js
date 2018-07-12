@@ -15,7 +15,7 @@
                     return navigator.onLine;
                 }
             },
-            ifOffline: function () {
+            isOffline: function () {
                 if (ionic.Platform.isWebView()) {
                     return !$cordovaNetwork.isOnline();
                 } else {
