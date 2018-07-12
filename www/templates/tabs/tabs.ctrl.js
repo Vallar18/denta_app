@@ -13,7 +13,7 @@
         vm.selectingItem = selectingItem;
         let currentUserType = userSvc.getRole();
 
-
+        //for test
         dentistSvc.getListProductId().then(function(res){
             console.log(res);
             dentistSvc.loadProducts(res).then(function(res){
