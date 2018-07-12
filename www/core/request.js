@@ -54,6 +54,11 @@
                 defer.reject(response.data.error);
             }
             else {
+                if(!response.data.success){
+                    if(response.data.message === 'Insufficient permissions'){
+                        $rootScope.$broadcast('update_plan',{});
+                    }
+                }
                 defer.resolve(response.data);
             }
             return defer.promise;

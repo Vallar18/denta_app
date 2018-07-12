@@ -24,6 +24,7 @@
         'service.questionSvc',
         'service.fcmSvc',
         'service.textSvc',
-        'service.clinicSvc'
+        'service.clinicSvc',
+        'service.purchaseSvc'
     ]);
 })();
