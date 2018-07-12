@@ -7,7 +7,7 @@
 
     function purchaseSvc(http, url, $ionicLoading, $ionicPopup, $rootScope, messagesSvc, $state) {
         var tempProductIds = []; //user for search product ids id for sent to backend
-        var popupInstance;
+        var popupInstance = undefined;
         var callbackBuySuccess;
         var callbackBuyError;
         var model = {
@@ -27,6 +27,7 @@
 
         function processClose() {
             popupInstance.close();
+            popupInstance = undefined;
             $state.go('add-phone');
         }
 
@@ -37,6 +38,9 @@
         }
 
         function selectSubcriptionPlan(successCallback) {
+            if(typeof popupInstance != 'undefined'){
+                return;
+            }
             callbackBuySuccess = null;
             var scope = $rootScope.$new(true);
             if (angular.isFunction(successCallback)) {
@@ -101,9 +105,7 @@
                     purchaseObj.purchase_plans_id = val.id;
                 }
             });
-            return http.post(
-                url.purchase.send,
-                purchaseObj).then(function (res) {
+            return http.post(url.purchase.send, purchaseObj).then(function (res) {
                 $ionicPopup.alert({
                     title: 'Purchase was successful!',
                     // template: 'Check your console log for the transaction data'
@@ -113,6 +115,7 @@
                 if (angular.isFunction(callbackBuySuccess)) {
                     callbackBuySuccess();
                 }
+                popupInstance = null;
             });
         }
 
