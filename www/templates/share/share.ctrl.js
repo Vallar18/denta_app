@@ -5,17 +5,18 @@
         .module('app')
         .controller('ShareCtrl', ShareCtrl);
 
-    ShareCtrl.$inject = ['$state', 'userSvc', 'textSvc', 'dentistSvc'];
+    ShareCtrl.$inject = ['$state', 'userSvc', 'textSvc', 'purchaseSvc'];
 
-    function ShareCtrl($state, userSvc, textSvc, dentistSvc) {
+    function ShareCtrl($state, userSvc, textSvc, purchaseSvc) {
         const vm = this;
         vm.share = share;
         vm.finish = finishReg;
 
         function finishReg() {
             if (userSvc.isDoc()) {
-                dentistSvc.selectSubctipitonPlan();
-                $state.go('tabs.my-patient');
+                purchaseSvc.selectSubcriptionPlan(function(){
+                    $state.go('tabs.my-patient');
+                });
             } else if (userSvc.isPat()) {
                 $state.go('tabs.help');
             }

@@ -7,6 +7,7 @@
     http.$inject = ['$rootScope', '$http', '$q', '$sessionStorage', '$localStorage', 'toastr', '$state', '$ionicLoading' ];
 
     function http($rootScope, $http, $q, $sessionStorage, $localStorage, toastr, $state, $ionicLoading) {
+        let PAY_PERMISSION_TEXT = 'Insufficient permissions';
         let request = function (method, url, data) {
             $rootScope.loading = true;
             let config = {
@@ -55,7 +56,7 @@
             }
             else {
                 if(!response.data.success){
-                    if(response.data.message === 'Insufficient permissions'){
+                    if(response.data.message === PAY_PERMISSION_TEXT){
                         $rootScope.$broadcast('update_plan',{});
                     }
                 }

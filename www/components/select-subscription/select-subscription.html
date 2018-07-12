@@ -10,6 +10,10 @@
         </div>
     </div>
     <div class="subscript-btn-block">
+        <div class="text-center" ng-if="!productItems || !productItems.length">
+            List is empty
+            <span class="subscript__logout"><a ng-click="close()">Logout</a></span>
+        </div>
         <button ng-click="selectPlan(item)" layout="row" layout-align="space-around center" class="gray-btn"
             ng-repeat="item in productItems track by $index">
             <img src="content/img/redcross-icon.png" alt="">

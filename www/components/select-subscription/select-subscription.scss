@@ -16,6 +16,10 @@
     }
   }
   .select-subscript {
+    &__logout {
+      display: inline-block;
+      padding: 20px;
+    }
     .header-simple {
       background: #b2c1db;
       height: 46vw;

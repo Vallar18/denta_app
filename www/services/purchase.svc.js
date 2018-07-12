@@ -3,9 +3,9 @@
 
     angular.module('service.purchaseSvc', []).factory('purchaseSvc', purchaseSvc);
 
-    purchaseSvc.$inject = ['http', 'url', '$ionicLoading', '$ionicPopup', '$rootScope', 'messagesSvc'];
+    purchaseSvc.$inject = ['http', 'url', '$ionicLoading', '$ionicPopup', '$rootScope', 'messagesSvc', '$state'];
 
-    function purchaseSvc(http, url, $ionicLoading, $ionicPopup, $rootScope, messagesSvc) {
+    function purchaseSvc(http, url, $ionicLoading, $ionicPopup, $rootScope, messagesSvc, $state) {
         var tempProductIds = []; //user for search product ids id for sent to backend
         var popupInstance;
         var callbackBuySuccess;
@@ -25,15 +25,25 @@
         return model;
 
 
+        function processClose() {
+            popupInstance.close();
+            $state.go('add-phone');
+        }
+
         function selectPlan(item) {
             if (angular.isObject(item) && item.productId) {
                 buyProduct(item);
             }
         }
 
-        function selectSubcriptionPlan() {
+        function selectSubcriptionPlan(successCallback) {
+            callbackBuySuccess = null;
             var scope = $rootScope.$new(true);
+            if (angular.isFunction(successCallback)) {
+                callbackBuySuccess = successCallback;
+            }
             scope.selectPlan = selectPlan;
+            scope.close = processClose;
             getListProductId().then(function (productIds) {
                 // loadProducts(['android.test.purchased']).then(function (result) {
                 if (angular.isArray(productIds)) {
@@ -46,9 +56,17 @@
                                 title: '',
                                 scope: scope,
                             });
+                        } else {
+                            errorPopup();
                         }
+                    }, function () {
+                        errorPopup();
                     });
+                } else {
+                    errorPopup();
                 }
+            }, function () {
+                errorPopup();
             });
         }
 
@@ -92,6 +110,9 @@
                 });
                 popupInstance.close();
                 $ionicLoading.hide();
+                if (angular.isFunction(callbackBuySuccess)) {
+                    callbackBuySuccess();
+                }
             });
         }
 

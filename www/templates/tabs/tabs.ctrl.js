@@ -5,9 +5,9 @@
         .module('app')
         .controller('TabsController', TabsController);
 
-    TabsController.$inject = ['$state', 'userSvc', 'tabsSvc', 'authSvc', 'textSvc', 'geoSvc', 'fcmSvc', 'dentistSvc'];
+    TabsController.$inject = ['$state', 'userSvc', 'tabsSvc', 'authSvc', 'textSvc', 'geoSvc', 'fcmSvc', 'dentistSvc', 'purchaseSvc'];
 
-    function TabsController($state, userSvc, tabsSvc, authSvc, textSvc, geoSvc, fcmSvc, dentistSvc) {
+    function TabsController($state, userSvc, tabsSvc, authSvc, textSvc, geoSvc, fcmSvc, dentistSvc, purchaseSvc) {
         var vm = this;
         vm.toggleMenu = toggleMenu;
         vm.selectingItem = selectingItem;
@@ -26,7 +26,7 @@
         init();
 
         function init() {
-            if(!authSvc.isLogined()){
+            if (!authSvc.isLogined()) {
                 authSvc.logout();
             }
             vm.menuModel.items = tabsSvc.getMenuItems(currentUserType);
@@ -52,8 +52,8 @@
             if (item.view) {
                 $state.go(item.view);
                 let tab_active = document.querySelector('.tab-item-active');
-                if(tab_active !== null) {
-                   tab_active.classList.remove('tab-item-active');
+                if (tab_active !== null) {
+                    tab_active.classList.remove('tab-item-active');
                 }
             }
             if (item.act) {
