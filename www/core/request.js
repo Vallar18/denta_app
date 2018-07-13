@@ -90,7 +90,9 @@
             else {
                 if(!response.data.success){
                     if(response.data.message === PAY_PERMISSION_TEXT){
-                        $rootScope.$broadcast('update_plan',{});
+                        $rootScope.$broadcast('update_plan',{
+                            passedFreeTrial: response.data.passedFreeTrial
+                        });
                     }
                 }
                 defer.resolve(response.data);
@@ -99,7 +101,7 @@
         }
 
         function requestError(response) {
-            debugger
+            debugger;
             let defer = $q.defer();
             $ionicLoading.hide();
             if (response.status === 200) {

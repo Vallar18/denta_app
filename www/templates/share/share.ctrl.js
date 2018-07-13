@@ -14,8 +14,11 @@
 
         function finishReg() {
             if (userSvc.isDoc()) {
-                purchaseSvc.selectSubcriptionPlan(function(){
-                    $state.go('tabs.my-patient');
+                purchaseSvc.selectSubcriptionPlan({
+                    successCallback: function(){
+                        $state.go('tabs.my-patient');
+                    },
+                    passedFreeTrial: false
                 });
             } else if (userSvc.isPat()) {
                 $state.go('tabs.help');

@@ -20,7 +20,7 @@
 
 
         $rootScope.$on('update_plan', function (event, data) {
-            selectSubcriptionPlan();
+                selectSubcriptionPlan(data);
         });
 
         return model;
@@ -38,17 +38,18 @@
             }
         }
 
-        function selectSubcriptionPlan(successCallback) {
+        function selectSubcriptionPlan(params) {
             if(typeof popupInstance != 'undefined'){
                 return;
             }
             tempSelectedProductData = null;
             callbackBuySuccess = null;
             var scope = $rootScope.$new(true);
-            if (angular.isFunction(successCallback)) {
-                callbackBuySuccess = successCallback;
+            if (angular.isDefined(params) && angular.isFunction(params.successCallback)) {
+                callbackBuySuccess = params.successCallback;
             }
             scope.selectPlan = selectPlan;
+            scope.isShowFreeMonth = params && angular.isDefined(params.passedFreeTrial) ? !params.passedFreeTrial: true;
             scope.close = processClose;
             getListProductId().then(function (productIds) {
                 // loadProducts(['android.test.purchased']).then(function (result) {
@@ -131,7 +132,7 @@
                 }).then(function () {
                     processSuccessBuy(product);
                 }).catch(function (err) {
-                    // processSuccessBuy(product);
+                    processSuccessBuy(product);
                     $ionicLoading.hide();
                     console.log(err);
                     popupInstance.close();
