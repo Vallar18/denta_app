@@ -3,9 +3,9 @@
 
     angular.module('service.authSvc', []).factory('authSvc', authSvc);
 
-    authSvc.$inject = ['userSvc', '$localStorage', '$state', '$ionicPlatform', '$ionicPopup', 'http', 'url', 'toastr','$rootScope'];
+    authSvc.$inject = ['userSvc', '$localStorage', '$state', '$ionicPlatform', '$ionicPopup', 'http', 'url', 'toastr','$rootScope','messagesSvc'];
 
-    function authSvc(userSvc, $localStorage, $state, $ionicPlatform, $ionicPopup, http, url, toastr, $rootScope) {
+    function authSvc(userSvc, $localStorage, $state, $ionicPlatform, $ionicPopup, http, url, toastr, $rootScope, messagesSvc) {
         const CODE_LENGTH = 4;
         let model = {
             setCode: setCode,
@@ -188,7 +188,7 @@
 
         function showBackPopup() {
             var confirmPopup = $ionicPopup.confirm({
-                title: 'You have not completed registration, would you like to go back to adding a phone?',
+                title: messagesSvc.quest.backAsk,
                 cancelText: 'No',
                 okText: 'Yes',
                 cssClass: 'back-popup'

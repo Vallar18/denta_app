@@ -6,13 +6,14 @@
         .factory('messagesSvc', messagesSvc);
 
     messagesSvc.$inject = [];
-    function messagesSvc() {
 
-        return {
+    function messagesSvc() {
+        let model = {
             notification: {
                 test: 'Test'
             },
             error: {
+                somthWrong: 'Something went wrong',
                 test: 'Test',
                 emptyCode: 'Please select phone code',
                 invalidPhone: 'The number should be 8 to 20 digits',
@@ -33,12 +34,21 @@
             },
             success: {
                 test: 'Test',
-                sendPatientEmergency: 'A notification was sent to the patient'
+                sendPatientEmergency: 'A notification was sent to the patient',
+                buy: 'Purchase was successful!'
             },
             warning: {
-               checkCodePhone: 'Check the entered phone and code'
+                checkCodePhone: 'Check the entered phone and code',
+            },
+            quest: {
+               clinicPhone: 'The clinic with this phone number has already existed. Would you like to use this data?',
+                backAsk: 'You have not completed registration, would you like to go back to adding a phone?',
+                number: 'Which number of your doctor would you like to choose?',
+                deletePhoto: 'Are you sure you want to delete this photo?',
             }
         };
+
+        return model;
 
     }
 })();

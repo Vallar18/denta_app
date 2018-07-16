@@ -68,7 +68,7 @@
         function showSelectPhonePopup() {
             vm.show_select_phone_popup = $ionicPopup.show({
                 templateUrl: 'components/select-contact/select-contact.html',
-                title: 'Which number of your doctor would you like to choose?',
+                title: messagesSvc.quest.number,
                 scope: $scope,
             });
         }

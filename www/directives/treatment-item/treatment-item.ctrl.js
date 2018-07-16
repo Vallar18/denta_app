@@ -5,9 +5,9 @@
         .module('app')
         .controller('TreatmentItemCtrl', TreatmentItemCtrl);
 
-    TreatmentItemCtrl.$inject = ['$scope', '$ionicPopup', '$cordovaCamera', '$ionicPlatform', 'IonicClosePopupService', 'emergenciesSvc', 'userSvc', '$ionicLoading'];
+    TreatmentItemCtrl.$inject = ['$scope', '$ionicPopup', '$cordovaCamera', '$ionicPlatform', 'IonicClosePopupService', 'emergenciesSvc', 'userSvc', '$ionicLoading', 'messagesSvc'];
 
-    function TreatmentItemCtrl($scope, $ionicPopup, $cordovaCamera, $ionicPlatform, IonicClosePopupService, emergenciesSvc, userSvc, $ionicLoading) {
+    function TreatmentItemCtrl($scope, $ionicPopup, $cordovaCamera, $ionicPlatform, IonicClosePopupService, emergenciesSvc, userSvc, $ionicLoading, messagesSvc) {
         let vm = this;
         vm.photoItems = $scope.tiFiles || [];
         vm.emergencyItem = $scope.tiItem;
@@ -22,14 +22,14 @@
             });
         };
 
-        function getButtonForListPopup(){
+        function getButtonForListPopup() {
             let arrBtn = [
                 {
                     text: 'Hide',
                     type: 'button-default',
                 }
             ];
-            if(angular.isDefined(vm.emergencyItem.status) && vm.emergencyItem.status === 0){
+            if (angular.isDefined(vm.emergencyItem.status) && vm.emergencyItem.status === 0) {
                 arrBtn.push({
                     text: 'Add',
                     type: 'button-positive',
@@ -75,7 +75,7 @@
         };
 
         vm.viewPhoto = function (item) {
-            if(item && item.path){
+            if (item && item.path) {
                 vm.imageSourceForView = item.path;
                 $ionicPopup.show({
                     templateUrl: 'components/photo-viewer/photo-viewer.html',
@@ -94,10 +94,13 @@
         };
 
         vm.deletePhoto = function deletePhoto(item, $event) {
-            if($event){$event.preventDefault(); $event.stopProgressBar()}
+            if ($event) {
+                $event.preventDefault();
+                $event.stopProgressBar();
+            }
             $ionicPopup.confirm({
                 title: 'Delete photo',
-                template: 'Are you sure you want to delete this photo?'
+                template: messagesSvc.quest.deletePhoto
             }).then(function (res) {
                 if (res) {
                     if (item && item.id) {
@@ -110,7 +113,7 @@
                                 let indexDelete = vm.photoItems.findIndex(function (val) {
                                     return +val.id === +item.id;
                                 });
-                                vm.photoItems.splice(indexDelete,1);
+                                vm.photoItems.splice(indexDelete, 1);
                             }
                         });
                     }

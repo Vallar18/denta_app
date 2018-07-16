@@ -64,7 +64,7 @@
 
         function showPopUp() {
             $ionicPopup.show({
-                title: 'The clinic with this phone number has already existed. Would you like to use this data?',
+                title: messagesSvc.quest.clinicPhone,
                 scope: $scope,
                 buttons: [
                     {text: 'No'},
@@ -73,7 +73,6 @@
                         type: 'button-positive',
                         onTap: getListClinic
                     },
-
                 ]
             });
         }
@@ -134,7 +133,7 @@
                     }
                 } else {
                     if (data.message) {
-                        toastr.error(data.message)
+                        toastr.error(data.message);
                     }
                 }
             }, function (err) {
@@ -205,7 +204,7 @@
                     }
                 } else {
                     if (data.message) {
-                        toastr.error(data.message)
+                        toastr.error(data.message);
                     }
                 }
             }, function (err) {

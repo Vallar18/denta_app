@@ -57,12 +57,7 @@
                     loadProducts(productIds).then(function (result) {
                         if (angular.isArray(result)) {
                             scope.productItems = result;
-                            popupInstance = $ionicPopup.show({
-                                templateUrl: 'components/select-subscription/select-subscription.html',
-                                cssClass: 'select-subscription',
-                                title: '',
-                                scope: scope,
-                            });
+                            purchasePopup(scope);
                         } else {
                             errorPopup();
                         }
@@ -74,6 +69,15 @@
                 }
             }, function () {
                 errorPopup();
+            });
+        }
+
+        function purchasePopup(scope){
+            popupInstance = $ionicPopup.show({
+                templateUrl: 'components/select-subscription/select-subscription.html',
+                cssClass: 'select-subscription',
+                title: '',
+                scope: scope,
             });
         }
 
@@ -110,7 +114,7 @@
             });
             return http.post(url.purchase.send, purchaseObj).then(function (res) {
                 $ionicPopup.alert({
-                    title: 'Purchase was successful!',
+                    title: messagesSvc.success.buy,
                     // template: 'Check your console log for the transaction data'
                 });
                 popupInstance.close();
@@ -132,7 +136,7 @@
                 }).then(function () {
                     processSuccessBuy(product);
                 }).catch(function (err) {
-                    processSuccessBuy(product);
+                    // processSuccessBuy(product);
                     $ionicLoading.hide();
                     console.log(err);
                     popupInstance.close();
@@ -143,7 +147,7 @@
 
         function errorPopup() {
             $ionicPopup.alert({
-                title: 'Something went wrong',
+                title:  messagesSvc.error.somthWrong,
                 template: messagesSvc.error.buy
             }).then(function(){
                 popupInstance = undefined;
