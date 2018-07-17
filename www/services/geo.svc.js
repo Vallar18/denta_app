@@ -10,6 +10,8 @@
                         $rootScope, $cordovaNetwork, networkMonitorSvc, $q, $ionicPopup) {
             let watcherPosition;
             const TIMEOUT_LOADING_SHOW = 30000;
+            let counter_get_position  = 0;
+            let is_accurate_position  = false;
             let vm = this;
             let API_KEY = 'AIzaSyD6o8M_KOerds2uacnudjI62elbLTMyBaY';
             let map = null;
@@ -56,10 +58,6 @@
                     }
                 });
             }
-
-            // function processSelectedPlace(place) {
-            //     console.log(place);
-            // }
 
             function mapByOptions(options) {
                 return new window.google.maps.Map(document.getElementById("map"), options);
@@ -292,20 +290,25 @@
                 };
             }
 
-            function getPosition(accuracy) {
+            function getPosition() {
                 let defered = $q.defer();
                 $ionicLoading.show({
                     template: '<ion-spinner></ion-spinner> <br> Getting position...'
                 });
                 let options = {
-                    maximumAge: 60 * 1000,
+                    // maximumAge: 120 * 1000,
                     timeout: 30000,
-                    enableHighAccuracy: angular.isDefined(accuracy) ? accuracy : true
+                    enableHighAccuracy: is_accurate_position
                 };
+                if(counter_get_position > 0){
+                    options.enableHighAccuracy = !is_accurate_position;
+                }
                 $cordovaGeolocation.getCurrentPosition(options).then(function (res) {
                     $ionicLoading.hide();
+                    counter_get_position = 0;
                     defered.resolve(res);
                 }, function (res) {
+                    counter_get_position++;
                     $ionicLoading.hide();
                     defered.reject(res);
                 });
@@ -409,7 +412,6 @@
                 getAddress: getAddress,
                 init: init
             };
-
         }
     }
 

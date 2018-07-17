@@ -7,6 +7,8 @@
 
     function purchaseSvc(http, url, $ionicLoading, $ionicPopup, $rootScope, messagesSvc, $state) {
         var tempProductIds = []; //user for search product ids id for sent to backend
+        var _subscriptions = [];
+        var _receipt = {};
         var tempSelectedProductData;
         var popupInstance = undefined;
         var callbackBuySuccess;
@@ -123,7 +125,6 @@
                 if (angular.isFunction(callbackBuySuccess)) {
                     callbackBuySuccess();
                 }
-                popupInstance = null;
             });
         }
 
@@ -131,11 +132,10 @@
             tempSelectedProductData = product;
             if (window.ionic.Platform.isWebView() && angular.isDefined(window.inAppPurchase) && product) {
                 window.inAppPurchase.subscribe(product.productId).then(function (data) {
-                    console.log(JSON.stringify(data));
-                    return window.inAppPurchase.consume(data.type, data.receipt, data.signature);
-                }).then(function () {
+                    dataPopup(data);
                     processSuccessBuy(product);
                 }).catch(function (err) {
+                    dataPopup(err);
                     // processSuccessBuy(product);
                     $ionicLoading.hide();
                     console.log(err);
@@ -152,6 +152,59 @@
             }).then(function(){
                 popupInstance = undefined;
             });
+        }
+
+        function dataPopup(data) {
+            $ionicPopup.alert({
+                title:  messagesSvc.error.somthWrong,
+                template: '<ion-content><pre>'+JSON.stringify(data)+'</pre></ion-content>'
+            }).then(function(){
+                popupInstance.close();
+                popupInstance = undefined;
+            });
+        }
+
+        function getActiveSubscription() {
+            return restoreSubscription().then(function (subscriptions) {
+                switch (window.device.platform) {
+                    case "iOS":
+                        return subscriptions.purchaseState === 0 && {productId: subscriptions.productId, receipt: subscriptions};
+                        break;
+                    case "Android":
+                        var _activeSubscriptions = _subscriptions.filter(function (subscription) {
+                            return subscription.receipt.purchaseState == 0;
+                        });
+                        return _activeSubscriptions.length && _activeSubscriptions[0];
+                        break;
+                    default:
+                        return false;
+                        break;
+                }
+            });
+        }
+
+        function restoreSubscription() {
+            return window.inAppPurchase
+                .restorePurchases()
+                .then(function (data) {
+                    // iOS provides the receipt isolated from the restore data
+                    if (window.device && window.device.platform === "iOS") {
+                        return window.inAppPurchase.getReceipt().then(function (receipt) {
+                                angular.copy(receipt, _receipt);
+                                return _receipt;
+                            }, function (err) {
+                                //returns _receipt anyway
+                                return _receipt;
+                            });
+                    } else {
+                        // Android provides the receipts with the restore data
+                        angular.copy(data, _subscriptions);
+                        return _subscriptions;
+                    }
+                }, function (err) {
+                    //returns _subscriptions anyway
+                    return _subscriptions;
+                });
         }
     }
 })();

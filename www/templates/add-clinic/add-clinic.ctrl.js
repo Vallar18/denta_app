@@ -5,9 +5,9 @@
         .module('app')
         .controller('AddClinicCtrl', AddClinicCtrl);
 
-    AddClinicCtrl.$inject = ['$scope', '$state', '$stateParams', 'regSvc', 'phoneSvc', 'authSvc', 'toastr', 'messagesSvc', 'dentistSvc', 'codes', '$ionicPopup', 'geoSvc', '$ionicLoading', 'userSvc'];
+    AddClinicCtrl.$inject = ['$scope', '$state', '$stateParams', 'regSvc', 'phoneSvc', 'authSvc', 'toastr', 'messagesSvc', 'dentistSvc', 'codes', '$ionicPopup', 'geoSvc', '$ionicLoading', 'userSvc','clinicSvc'];
 
-    function AddClinicCtrl($scope, $state, $stateParams, regSvc, phoneSvc, authSvc, toastr, messagesSvc, dentistSvc, codes, $ionicPopup, geoSvc, $ionicLoading, userSvc) {
+    function AddClinicCtrl($scope, $state, $stateParams, regSvc, phoneSvc, authSvc, toastr, messagesSvc, dentistSvc, codes, $ionicPopup, geoSvc, $ionicLoading, userSvc, clinicSvc) {
         const vm = this;
         vm.checkClinicPhone = checkClinicPhone;
         vm.send = send;
@@ -273,47 +273,12 @@
             if (vm.showSelect) {
                 return;
             }
-            var mapPopup = $ionicPopup.show({
-                templateUrl: 'components/google-maps/google-maps.html',
-                scope: $scope,
-                cssClass: 'google-maps-component',
-                buttons: [
-                    {
-                        text: 'Cancel',
-                        onTap: function () {
-                            $ionicLoading.hide();
-                        }
-                    },
-                    {
-                        text: '<b>OK</b>',
-                        type: 'button-positive',
-                        onTap: processMapPopupOK
-                    }
-                ]
-            });
-            geoSvc.mapWithMarker();
-        }
-
-        function processMapPopupOK() {
-            $ionicLoading.hide();
-            $ionicLoading.show({
-                template: 'Obtaining an address...'
-            });
-            geoSvc.getAddress(geoSvc.getMarkerPosition(), function (res) {
-                if (res.address.length) {
-                    vm.clinic.address = res.address;
-                    vm.clinic.longitude = res.lng;
-                    vm.clinic.latitude = res.lat;
-                } else {
-                    toastr.error(messagesSvc.error.emptyAddress);
-                }
-                $ionicLoading.hide();
-            }, function () {
-                toastr.error(messagesSvc.error.emptyAddress);
-                $ionicLoading.hide();
+            clinicSvc.getClinicAddress(function(res){
+                vm.clinic.address = res.address;
+                vm.clinic.longitude = res.lng;
+                vm.clinic.latitude = res.lat;
             });
         }
-
 
         vm.disableTap = function (event) {
             let input = event.target;
