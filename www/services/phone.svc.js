@@ -38,11 +38,7 @@
 
         function getCodes() {
             if (cache.length) {
-                return $q(function (resolve, reject) {
-                    $timeout(function(){
-                        resolve(cache);
-                    },250);
-                });
+                return $q.when(cache);
             } else {
                 return http.get(url.codes).then(function (res) {
                     cache = res;

@@ -38,11 +38,7 @@
 
         function getCurrency() {
             if (cache.length) {
-                return $q(function (resolve, reject) {
-                    $timeout(function () {
-                        resolve(cache);
-                    }, 250);
-                });
+                return $q.when(cache);
             } else {
                 return http.get(url.currencies).then(function (res) {
                     cache = res;

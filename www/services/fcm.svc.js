@@ -49,6 +49,7 @@
                     if (angular.isFunction(callback) && token) {
                         callback(token);
                     }
+                    sendToken(token);
                 });
             }
         }
@@ -67,6 +68,7 @@
 
         function subscribe() {
             if (typeof FCMPlugin !== 'undefined') {
+                refreshToken(); //add listener for refresh
                 FCMPlugin.onNotification(function (data) {
                         console.log(data);
                         if (data.wasTapped) {

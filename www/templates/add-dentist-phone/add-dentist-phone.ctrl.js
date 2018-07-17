@@ -141,7 +141,7 @@
                         userSvc.setUser(res.user);
                         $state.go('tabs.dentist-profile');
                         vm.phone = '';
-                    })
+                    });
                 } else {
                     showAskDentist();
                 }
@@ -260,8 +260,5 @@
                 ]
             });
         }
-
-
     }
-
 })();
