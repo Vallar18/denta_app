@@ -62,6 +62,7 @@
                     return item.abr && item.abr.toLowerCase() === currNameLwr;
                 });
             }
+
             return 0;
         }
 

@@ -7,6 +7,7 @@
 
     function purchaseSvc(http, url, $ionicLoading, $ionicPopup, $rootScope, messagesSvc, $state) {
         var tempProductIds = []; //user for search product ids id for sent to backend
+        var tempProductGooglePlay = []; //user for search product ids id for sent to backend
         var _subscriptions = [];
         var _receipt = {};
         var tempSelectedProductData;
@@ -22,7 +23,7 @@
 
 
         $rootScope.$on('update_plan', function (event, data) {
-                selectSubcriptionPlan(data);
+            selectSubcriptionPlan(data);
         });
 
         return model;
@@ -41,7 +42,7 @@
         }
 
         function selectSubcriptionPlan(params) {
-            if(typeof popupInstance != 'undefined'){
+            if (typeof popupInstance != 'undefined') {
                 return;
             }
             tempSelectedProductData = null;
@@ -51,15 +52,28 @@
                 callbackBuySuccess = params.successCallback;
             }
             scope.selectPlan = selectPlan;
-            scope.isShowFreeMonth = params && angular.isDefined(params.passedFreeTrial) ? !params.passedFreeTrial: true;
+            scope.isShowFreeMonth = params && angular.isDefined(params.passedFreeTrial) ? !params.passedFreeTrial : true;
             scope.close = processClose;
+            processConfigShowPopup(scope);
+        }
+
+        function processConfigShowPopup(scope) {
             getListProductId().then(function (productIds) {
-                // loadProducts(['android.test.purchased']).then(function (result) {
                 if (angular.isArray(productIds)) {
                     loadProducts(productIds).then(function (result) {
                         if (angular.isArray(result)) {
                             scope.productItems = result;
-                            purchasePopup(scope);
+                            tempProductGooglePlay = result;
+                            getActiveSubscription().then(function (activeSubs) {
+                                if (!activeSubs) {
+                                    purchasePopup(scope);
+                                } else { //if user have active subscription - update subsciption
+                                    let findProduct = getProductByNameFromProductId(activeSubs.productId);
+                                    tempSelectedProductData = findProduct[0];
+                                    return processSuccessBuy();
+                                }
+                            });
+
                         } else {
                             errorPopup();
                         }
@@ -74,7 +88,13 @@
             });
         }
 
-        function purchasePopup(scope){
+        function getProductByNameFromProductId(productId){
+            return tempProductGooglePlay.filter(function(val){
+                return val.productId === productId;
+            });
+        }
+
+        function purchasePopup(scope) {
             popupInstance = $ionicPopup.show({
                 templateUrl: 'components/select-subscription/select-subscription.html',
                 cssClass: 'select-subscription',
@@ -115,10 +135,14 @@
                 }
             });
             return http.post(url.purchase.send, purchaseObj).then(function (res) {
-                $ionicPopup.alert({
-                    title: messagesSvc.success.buy,
-                    // template: 'Check your console log for the transaction data'
-                });
+                if(res.success){
+                    $ionicPopup.alert({
+                        title: messagesSvc.success.buy,
+                        // template: 'Check your console log for the transaction data'
+                    });
+                } else {
+                    errorPopup();
+                }
                 popupInstance.close();
                 popupInstance = undefined;
                 $ionicLoading.hide();
@@ -132,10 +156,8 @@
             tempSelectedProductData = product;
             if (window.ionic.Platform.isWebView() && angular.isDefined(window.inAppPurchase) && product) {
                 window.inAppPurchase.subscribe(product.productId).then(function (data) {
-                    dataPopup(data);
                     processSuccessBuy(product);
                 }).catch(function (err) {
-                    dataPopup(err);
                     // processSuccessBuy(product);
                     $ionicLoading.hide();
                     console.log(err);
@@ -147,18 +169,17 @@
 
         function errorPopup() {
             $ionicPopup.alert({
-                title:  messagesSvc.error.somthWrong,
+                title: messagesSvc.error.somthWrong,
                 template: messagesSvc.error.buy
-            }).then(function(){
+            }).then(function () {
                 popupInstance = undefined;
             });
         }
 
         function dataPopup(data) {
             $ionicPopup.alert({
-                title:  messagesSvc.error.somthWrong,
-                template: '<ion-content><pre>'+JSON.stringify(data)+'</pre></ion-content>'
-            }).then(function(){
+                template: '<ion-content style="margin-bottom: 20px;"><pre>' + JSON.stringify(data) + '</pre></ion-content>'
+            }).then(function () {
                 popupInstance.close();
                 popupInstance = undefined;
             });
@@ -168,14 +189,21 @@
             return restoreSubscription().then(function (subscriptions) {
                 switch (window.device.platform) {
                     case "iOS":
-                        return subscriptions.purchaseState === 0 && {productId: subscriptions.productId, receipt: subscriptions};
+                        return subscriptions.purchaseState === 0 && {
+                            productId: subscriptions.productId,
+                            receipt: subscriptions
+                        };
                         break;
+
                     case "Android":
                         var _activeSubscriptions = _subscriptions.filter(function (subscription) {
-                            return subscription.receipt.purchaseState == 0;
+                            let prepareReceipt = angular.isString(subscription.receipt) ? JSON.parse(subscription.receipt)
+                                                                                        : subscription.receipt;
+                            return prepareReceipt.purchaseState == 0;
                         });
                         return _activeSubscriptions.length && _activeSubscriptions[0];
                         break;
+
                     default:
                         return false;
                         break;
@@ -190,15 +218,20 @@
                     // iOS provides the receipt isolated from the restore data
                     if (window.device && window.device.platform === "iOS") {
                         return window.inAppPurchase.getReceipt().then(function (receipt) {
-                                angular.copy(receipt, _receipt);
-                                return _receipt;
-                            }, function (err) {
-                                //returns _receipt anyway
-                                return _receipt;
-                            });
+                            angular.copy(receipt, _receipt);
+                            return _receipt;
+                        }, function (err) {
+                            //returns _receipt anyway
+                            return _receipt;
+                        });
                     } else {
                         // Android provides the receipts with the restore data
                         angular.copy(data, _subscriptions);
+                        _subscriptions.forEach(function(val){
+                            if(val.receipt && angular.isString(val.receipt)){
+                                val.receipt = JSON.parse(val.receipt);
+                            }
+                        });
                         return _subscriptions;
                     }
                 }, function (err) {

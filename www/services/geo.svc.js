@@ -361,6 +361,8 @@
              * @description Show point on map based on coordinates in arrPosObject array;
              * @param arrPosObject (need contain property latitude and longitude)
              * @param center - center of map, center.lat, center.lng
+             * @param callback - call function callback when click to marker of clinic
+             * @param isCenterClinic - if true then set clinic position as center map, else set user position as center
              */
             function showOnMap(arrPosObject, center, callback, isCenterClinic) {
                 if (!angular.isArray(arrPosObject) || !center || !center.lat || !center.lng) {
