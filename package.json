@@ -1,6 +1,6 @@
 {
-  "name": "Dent",
-  "version": "0.0.1",
+  "name": "GettDent",
+  "version": "0.0.5",
   "description": "Get Dent App",
   "devDependencies": {
     "gulp": "^3.9.1",
@@ -12,7 +12,6 @@
     "chalk": "^2.4.1",
     "cordova-android": "^6.4.0",
     "cordova-plugin-camera": "^4.0.3",
-    "cordova-plugin-console": "^1.1.0",
     "cordova-plugin-contacts": "^3.0.1",
     "cordova-plugin-device": "^1.1.7",
     "cordova-plugin-fcm": "^2.1.2",
@@ -29,7 +28,6 @@
   },
   "cordova": {
     "plugins": {
-      "cordova-plugin-console": {},
       "cordova-plugin-device": {},
       "cordova-plugin-whitelist": {},
       "cordova-plugin-splashscreen": {},
@@ -40,8 +38,8 @@
       "cordova-plugin-camera": {},
       "cordova-plugin-file": {},
       "cordova-plugin-geolocation": {},
-      "cordova-plugin-fcm": {},
-      "cordova-plugin-inapppurchase": {}
+      "cordova-plugin-inapppurchase": {},
+      "cordova-plugin-fcm": {}
     },
     "platforms": [
       "android"

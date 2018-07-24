@@ -16,12 +16,12 @@
         };
 
         const FCM_CONFIG = {
-            apiKey: "AIzaSyCeg8mDXNt2Gcmrkry8EIqfst35eAH_oZM",
-            authDomain: "gett-dent-second.firebaseapp.com",
-            databaseURL: "https://gett-dent-second.firebaseio.com",
-            projectId: "gett-dent-second",
-            storageBucket: "gett-dent-second.appspot.com",
-            messagingSenderId: "233345676904"
+            apiKey: "AIzaSyCSdTgt5V_AkRbygoam4powbf__GOAveEU",
+            authDomain: "get-dent-app.firebaseapp.com",
+            databaseURL: "https://get-dent-app.firebaseio.com",
+            projectId: "get-dent-app",
+            storageBucket: "get-dent-app.appspot.com",
+            messagingSenderId: "95766529631"
         };
 
         function initialize() {

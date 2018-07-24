@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.dent.app" version="0.0.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="get.dent" version="0.0.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Gett Dent</name>
     <description>Gett Dent App</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Gett Dent App</author>
@@ -109,7 +109,6 @@
     <allow-navigation href="http://192.168.0.195:8100" />
     <allow-navigation href="http://192.168.1.100:8100" />
     <allow-navigation href="http://192.168.0.105:8100" />
-    <plugin name="cordova-plugin-console" spec="^1.1.0" />
     <plugin name="cordova-plugin-device" spec="^1.1.7" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.1.0" />
@@ -120,7 +119,7 @@
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
-    <plugin name="cordova-plugin-fcm" spec="^2.1.2" />
     <plugin name="cordova-plugin-inapppurchase" spec="^1.2.0" />
+    <plugin name="cordova-plugin-fcm" spec="^2.1.2" />
     <engine name="android" spec="^6.4.0" />
 </widget>
