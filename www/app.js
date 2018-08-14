@@ -24,7 +24,6 @@
             }
         });
 
-
         $ionicPlatform.ready(function () {
             fcmSvc.initialize();
             if (window.StatusBar) {

@@ -11,7 +11,7 @@
         var _subscriptions = [];
         var _receipt = {};
         var tempSelectedProductData;
-        var popupInstance = undefined;
+        var popupInstance = null;
         var callbackBuySuccess;
         var callbackBuyError;
         var model = {
@@ -31,7 +31,7 @@
 
         function processClose() {
             popupInstance.close();
-            popupInstance = undefined;
+            popupInstance = null;
             $state.go('add-phone');
         }
 
@@ -42,7 +42,7 @@
         }
 
         function selectSubcriptionPlan(params) {
-            if (typeof popupInstance != 'undefined') {
+            if (popupInstance) {
                 return;
             }
             tempSelectedProductData = null;
@@ -144,7 +144,7 @@
                     errorPopup();
                 }
                 popupInstance.close();
-                popupInstance = undefined;
+                popupInstance = null;
                 $ionicLoading.hide();
                 if (angular.isFunction(callbackBuySuccess)) {
                     callbackBuySuccess();
@@ -172,7 +172,7 @@
                 title: messagesSvc.error.somthWrong,
                 template: messagesSvc.error.buy
             }).then(function () {
-                popupInstance = undefined;
+                popupInstance = null;
             });
         }
 
@@ -181,7 +181,7 @@
                 template: '<ion-content style="margin-bottom: 20px;"><pre>' + JSON.stringify(data) + '</pre></ion-content>'
             }).then(function () {
                 popupInstance.close();
-                popupInstance = undefined;
+                popupInstance = null;
             });
         }
 

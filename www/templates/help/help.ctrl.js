@@ -5,7 +5,7 @@
             .module('app')
             .controller('HelpCtrl', HelpCtrl);
 
-        HelpCtrl.$inject = ['$scope', 'currencySvc', '$filter', 'geoSvc', 'reviewSvc', 'userSvc', 'helpSvc','$ionicLoading'];
+        HelpCtrl.$inject = ['$scope', 'currencySvc', '$filter', 'geoSvc', 'reviewSvc', 'userSvc', 'helpSvc', '$ionicLoading'];
 
         function HelpCtrl($scope, currencySvc, $filter, geoSvc, reviewSvc, userSvc, helpSvc, $ionicLoading) {
             let vm = this;
@@ -14,17 +14,19 @@
             vm.activeText = 'Loading...';
 
             init();
+
             function init() {
                 vm.sort = 'rating';
                 getCurrentPosition();
             }
 
             function getCurrentPosition() {
+                vm.activeText = 'Loading...';
                 geoSvc.initGoogleMaps(function () {
                     console.log('map is ready!');
                     geoSvc.getPosition(false).then(function (res) {
                         getDentistByCurrentPos(res.coords.latitude, res.coords.longitude);
-                    },function(res){
+                    }, function (res) {
                         geoSvc.errorInetOrGPS().then(function (res) {
                             if (res) {
                                 getCurrentPosition();
@@ -32,7 +34,8 @@
                                 vm.activeText = 'List is empty';
                             }
                         });
-                });});
+                    });
+                });
             }
 
             function getDentistByCurrentPos(lat, lng) {
@@ -41,17 +44,18 @@
                         longitude: lng,
                         latitude: lat
                     }).then(function (res) {
-                        if (res.length) {
+                        if (!res || !res.length) {
                             vm.dentistItems = helpSvc.prepareDrFromClinic(res);
                             calculateDistance(lat, lng);
                             sortItem();
+                        } else if (res.length) {
                             vm.activeText = 'List is empty';
                         }
                     });
                 }
             }
 
-            function calculateDistance(lat,lng) {
+            function calculateDistance(lat, lng) {
                 vm.dentistItems.forEach(function (val) {
                     val.distance = +geoSvc.calcDistance(
                         {

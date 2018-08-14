@@ -64,8 +64,8 @@
 
         function isLogined() {
             let user = userSvc.getUser();
-            if (angular.isDefined(user) && user.id && userSvc.getToken() && userSvc.getRole() &&
-                (user.patient || user.dentist)) {
+            if (angular.isDefined(user) && user.id && userSvc.getToken() &&
+                userSvc.getRole() && (user.patient || user.dentist)) {
                 return true;
             }
             return false;

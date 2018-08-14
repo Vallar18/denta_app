@@ -4,7 +4,7 @@
         .module('factory.request', ['ngStorage'])
         .factory('http', http);
 
-    http.$inject = ['$rootScope', '$http', '$q', '$sessionStorage', '$localStorage', 'toastr', '$state', '$ionicLoading', 'networkMonitorSvc','messagesSvc', '$ionicPopup', '$timeout' ];
+    http.$inject = ['$rootScope', '$http', '$q', '$sessionStorage', '$localStorage', 'toastr', '$state', '$ionicLoading', 'networkMonitorSvc', 'messagesSvc', '$ionicPopup', '$timeout'];
 
     function http($rootScope, $http, $q, $sessionStorage, $localStorage, toastr, $state, $ionicLoading, networkMonitorSvc, messagesSvc, $ionicPopup, $timeout) {
         let PAY_PERMISSION_TEXT = 'Insufficient permissions';
@@ -49,17 +49,17 @@
             return processRequest(config);
         };
 
-        function processRequest(config){
-            if(networkMonitorSvc.isOnline()){
-                if(errPopupInstance){
+        function processRequest(config) {
+            if (networkMonitorSvc.isOnline()) {
+                if (errPopupInstance) {
                     errPopupInstance.close();
                 }
                 $ionicLoading.show({
                     template: '<ion-spinner></ion-spinner> <br>Loading...',
                 });
                 return $http(config).then(requestSuccess, requestError);
-            } else if(networkMonitorSvc.isOffline()){
-                if(!errPopupInstance){
+            } else if (networkMonitorSvc.isOffline()) {
+                if (!errPopupInstance) {
                     errorPopup();
                 }
                 return $q(function (resolve, reject) {
@@ -74,7 +74,7 @@
             errPopupInstance = $ionicPopup.alert({
                 title: 'Network error!',
                 template: messagesSvc.error.network
-            }).then(function(){
+            }).then(function () {
                 errPopupInstance = null;
             });
         }
@@ -86,11 +86,10 @@
             if (response.data.error) {
                 toastr.error(response.data.error);
                 defer.reject(response.data.error);
-            }
-            else {
-                if(!response.data.success){
-                    if(response.data.message === PAY_PERMISSION_TEXT){
-                        $rootScope.$broadcast('update_plan',{
+            } else {
+                if (!response.data.success) {
+                    if (response.data.message === PAY_PERMISSION_TEXT) {
+                        $rootScope.$broadcast('update_plan', {
                             passedFreeTrial: response.data.passedFreeTrial
                         });
                     }
@@ -121,11 +120,11 @@
                 if (response.status === 401) {
                     // $state.go('add-phone');
                     toastr.error('Server Error: ' + response.status + ' ' + response.data.message);
-                    $rootScope.$broadcast('logout',{});
+                    $rootScope.$broadcast('logout', {});
                 }
                 toastr.error(response.data.message);
             }
-            if(response.data){
+            if (response.data) {
                 defer.reject(response.data);
             } else {
                 defer.reject(false);
