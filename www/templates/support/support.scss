@@ -1,0 +1,30 @@
+.support-view {
+  background-color: $second-color-light;
+  .description {
+    position: relative;
+    width: 100%;
+    margin: 10px;
+    textarea {
+      width:100%;
+      border: 1px solid $input-border;
+      display: block;
+    }
+  }
+  &__main {
+    margin-top: 20vh;
+    background-color: $background-color;
+  }
+  &__content {
+    background-color: $background-color;
+    font-size: 0.875rem;
+    padding:0 5% 5% 5%;
+    text-align: justify;
+    p {
+      color: #94a4c0;
+      text-align: center;
+    }
+    .block-content .item-input{
+      width:100%;
+    }
+  }
+}

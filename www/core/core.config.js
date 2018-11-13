@@ -364,6 +364,14 @@
                 controller: 'PrivacyCtrl',
                 controllerAs: 'vm'
             })
+            .state('support', {
+                reload: true,
+                cache: false,
+                url: '/support',
+                templateUrl: 'templates/support/support.html',
+                controller: 'SupportCtrl',
+                controllerAs: 'vm'
+            })
             .state('terms', {
                 reload: true,
                 cache: false,

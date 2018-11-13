@@ -28,9 +28,13 @@
                     name: 'About',
                     view: 'about'
                 }, {
-                    id: 7,
+                    id: 8,
                     name: 'Log out',
                     act: 'logout'
+                }, {
+                    id: 7,
+                    name: 'Support',
+                    view: 'support'
                 }, {
                     id: 1,
                     name: 'Need a dentist',

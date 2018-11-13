@@ -1,11 +1,10 @@
 {
   "name": "Gett Dent",
-  "app_id": "",
-  "type": "ionic1",
   "integrations": {
     "gulp": {},
     "cordova": {}
   },
+  "type": "ionic1",
   "watchPatterns": [
     "!www/lib/**/*",
     "!www/**/*.map",
