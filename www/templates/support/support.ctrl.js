@@ -12,18 +12,23 @@
         init();
 
         function init() {
-           vm.user = userSvc.getUser();
-           vm.message = '';
+            vm.user = userSvc.getUser();
+            vm.message = '';
         }
 
         vm.send = () => {
-            if(validation()){
+            if (validation()) {
                 let data = {
                     description: vm.message,
                     email: vm.user.email
                 };
                 questionSvc.create(data).then(function (data) {
-                    toastr.error(data.message);
+                    if (data.success) {
+                        toastr.success(data.message);
+                        vm.message = '';
+                    } else {
+                        toastr.error(data.message);
+                    }
                 });
             }
         };

@@ -13,8 +13,7 @@
             let counter_get_position  = 0;
             let is_accurate_position  = false;
             let vm = this;
-            // let API_KEY = 'AIzaSyD6o8M_KOerds2uacnudjI62elbLTMyBaY';
-            let API_KEY = 'AIzaSyAEQNELXJv07hnUPLQHD6TJ2SvaCmY5Ej4';
+            let API_KEY = 'AIzaSyD6o8M_KOerds2uacnudjI62elbLTMyBaY';
             let map = null;
             let autocomplete;
             let marker;
