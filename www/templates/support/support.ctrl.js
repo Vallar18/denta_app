@@ -5,9 +5,9 @@
         .module('app')
         .controller('SupportCtrl', SupportCtrl);
 
-    SupportCtrl.$inject = ['$ionicHistory', 'userSvc', 'toastr', 'messagesSvc'];
+    SupportCtrl.$inject = ['$ionicHistory', 'userSvc', 'toastr', 'messagesSvc', 'questionSvc'];
 
-    function SupportCtrl($ionicHistory, userSvc, toastr, messagesSvc) {
+    function SupportCtrl($ionicHistory, userSvc, toastr, messagesSvc, questionSvc) {
         const vm = this;
         init();
 
@@ -19,10 +19,12 @@
         vm.send = () => {
             if(validation()){
                 let data = {
-                    message: vm.message,
+                    description: vm.message,
                     email: vm.user.email
                 };
-                console.log('Send message --- ',  data);
+                questionSvc.create(data).then(function (data) {
+                    toastr.error(data.message);
+                });
             }
         };
 

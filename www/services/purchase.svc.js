@@ -21,10 +21,9 @@
             selectSubcriptionPlan: selectSubcriptionPlan
         };
 
-
-        $rootScope.$on('update_plan', function (event, data) {
-            selectSubcriptionPlan(data);
-        });
+        // $rootScope.$on('update_plan', function (event, data) {
+        //     selectSubcriptionPlan(data);
+        // });
 
         return model;
 

@@ -14,7 +14,8 @@
         </div>
         <ion-content class="privacy-view__main">
             <div class="privacy-view__content">
-                {{vm.text_privacy}}
+                <ng-bind-html ng-bind-html="vm.text_privacy">
+                </ng-bind-html>
             </div>
         </ion-content>
 

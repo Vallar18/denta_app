@@ -84,6 +84,9 @@
             purchase: {
                 get: baseUrl + 'purchase-plan/get',
                 send: baseUrl + 'purchase'
+            },
+            support: {
+                create: baseUrl + 'support/create'
             }
         }
         ;

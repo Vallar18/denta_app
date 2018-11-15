@@ -13,7 +13,8 @@
         </div>
         <ion-content class="terms-view__main">
             <div class="terms-view__content">
-                {{vm.text_terms}}
+                <ng-bind-html ng-bind-html="vm.text_terms">
+                </ng-bind-html>
             </div>
         </ion-content>
     </ion-pane>

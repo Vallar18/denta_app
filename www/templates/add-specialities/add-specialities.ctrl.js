@@ -58,7 +58,6 @@
                     vm.dentist.specialty_id.push(val.id);
                     vm.len_spec = vm.dentist.specialty_id.length;
                 });
-
             }
 
             function send() {

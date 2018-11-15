@@ -7,7 +7,8 @@
 
     function questionSvc(url, http) {
         var model = {
-            getAll: getAll
+            getAll: getAll,
+            create: create,
         };
         return model;
 
@@ -15,6 +16,9 @@
             return http.get(url.question.all);
         }
 
+        function create(data){
+            return http.post(url.support.create, data);
+        }
 
     }
 })();

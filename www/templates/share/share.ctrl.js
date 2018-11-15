@@ -14,12 +14,12 @@
 
         function finishReg() {
             if (userSvc.isDoc()) {
-                purchaseSvc.selectSubcriptionPlan({
-                    successCallback: function(){
+                // purchaseSvc.selectSubcriptionPlan({
+                //     successCallback: function(){
                         $state.go('tabs.my-patient');
-                    },
-                    passedFreeTrial: false
-                });
+                //     },
+                //     passedFreeTrial: false
+                // });
             } else if (userSvc.isPat()) {
                 $state.go('tabs.help');
             }

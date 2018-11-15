@@ -7,7 +7,7 @@
     http.$inject = ['$rootScope', '$http', '$q', '$sessionStorage', '$localStorage', 'toastr', '$state', '$ionicLoading', 'networkMonitorSvc', 'messagesSvc', '$ionicPopup', '$timeout'];
 
     function http($rootScope, $http, $q, $sessionStorage, $localStorage, toastr, $state, $ionicLoading, networkMonitorSvc, messagesSvc, $ionicPopup, $timeout) {
-        let PAY_PERMISSION_TEXT = 'Insufficient permissions';
+        // let PAY_PERMISSION_TEXT = 'Insufficient permissions';
         let errPopupInstance = null;
         let request = function (method, url, data) {
             $rootScope.loading = true;
@@ -87,13 +87,13 @@
                 toastr.error(response.data.error);
                 defer.reject(response.data.error);
             } else {
-                if (!response.data.success) {
-                    if (response.data.message === PAY_PERMISSION_TEXT) {
-                        $rootScope.$broadcast('update_plan', {
-                            passedFreeTrial: response.data.passedFreeTrial
-                        });
-                    }
-                }
+                // if (!response.data.success) {
+                //     if (response.data.message === PAY_PERMISSION_TEXT) {
+                //         $rootScope.$broadcast('update_plan', {
+                //             passedFreeTrial: response.data.passedFreeTrial
+                //         });
+                //     }
+                // }
                 defer.resolve(response.data);
             }
             return defer.promise;

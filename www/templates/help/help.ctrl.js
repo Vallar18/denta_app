@@ -44,11 +44,11 @@
                         longitude: lng,
                         latitude: lat
                     }).then(function (res) {
-                        if (!res || !res.length) {
+                        if (res || res.length) {
                             vm.dentistItems = helpSvc.prepareDrFromClinic(res);
                             calculateDistance(lat, lng);
                             sortItem();
-                        } else if (res.length) {
+                        } else if (!res.length) {
                             vm.activeText = 'List is empty';
                         }
                     });
