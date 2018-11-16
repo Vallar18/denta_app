@@ -6,14 +6,15 @@
     phoneSvc.$inject = ['$ionicPopup','http','url', '$timeout','$q'];
 
     function phoneSvc($ionicPopup,http,url,$timeout,$q) {
-        let DEFAULT_PHONE_CODE = '+380';
+        // let DEFAULT_PHONE_CODE = '+1';
+        let DEFAULT_COUNTRY = 'Canada';
         let cache = [];
         let model = {
             showSelect: showSelect,
             getCodes: getCodes,
             getIndexByName: getIndexByName,
             getDefaultIndex: getDefaultIndex,
-            setDefaultCode: setDefaultCode,
+            setDefaultCountry: setDefaultCountry,
             validatePhone: validatePhone,
             preparePhone: preparePhone,
             cutNumberCode: cutNumberCode,
@@ -47,24 +48,39 @@
             }
         }
 
-        function getIndexByName(codeName,array){
-            if(codeName){
+        // function getIndexByName(codeName,array){
+        //     if(codeName){
+        //         let findArray = angular.isArray(array) ? array : cache;
+        //         let codeLower = codeName.toLowerCase();
+        //         return findArray.findIndex(function(item){
+        //             return item.code && item.code.toLowerCase() === codeLower;
+        //         });
+        //     }
+        //     return 0;
+        // }
+        //
+        // function getDefaultIndex(){
+        //     return getIndexByName(DEFAULT_PHONE_CODE);
+        // }
+
+        function getIndexByName(countryName,array){
+            if(countryName){
                 let findArray = angular.isArray(array) ? array : cache;
-                let codeLower = codeName.toLowerCase();
+                let nameLower = countryName.toLowerCase();
                 return findArray.findIndex(function(item){
-                    return item.code && item.code.toLowerCase() === codeLower;
+                    return item.name && item.name.toLowerCase() === nameLower;
                 });
             }
             return 0;
         }
 
         function getDefaultIndex(){
-            return getIndexByName(DEFAULT_PHONE_CODE);
+            return getIndexByName(DEFAULT_COUNTRY);
         }
 
-        function setDefaultCode(code){
-            if(code){
-                DEFAULT_PHONE_CODE = code;
+        function setDefaultCountry(country){
+            if(country){
+                DEFAULT_COUNTRY = country;
             }
         }
 

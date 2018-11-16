@@ -13,10 +13,16 @@
         vm.getSelectCode = getSelectCode;
         vm.selectCode = selectCode;
         vm.codes = codeItems;
-        var selectedCountry = vm.codes[phoneSvc.getDefaultIndex()];
-        vm.select_code = selectedCountry.code;
+        getLoc();
         vm.phone = '';
 
+        function getLoc() {
+            $.getJSON("http://ip-api.com/json/?callback=?", function (data) {
+                phoneSvc.setDefaultCountry(data.country);
+                vm.selectedCountry = vm.codes[phoneSvc.getDefaultIndex()];
+                vm.select_code = vm.selectedCountry.code;
+            });
+        }
         authSvc.addBackBehave(false);
 
         function send() {
@@ -46,7 +52,7 @@
 
         function selectCode(code) {
             vm.select_code = code.code;
-            selectedCountry = code;
+            vm.selectedCountry = code;
             vm.codePopup.close();
         }
     }
