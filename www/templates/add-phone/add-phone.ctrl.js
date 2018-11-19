@@ -46,11 +46,10 @@
                 phone: phone
             }).then(function (res) {
                 if (res.success && res.data) {
-                    console.log(res.data);
-                    toastr.success(res.data, null, {
-                        timeOut: 3000,
-                        tapToDismiss: true
-                    });
+                    // toastr.success(res.data, null, {
+                    //     timeOut: 3000,
+                    //     tapToDismiss: true
+                    // });
                     authSvc.setPhone(phone);
                     $state.go('add-code', {phone: vm.phone});
                     vm.phone = '';
