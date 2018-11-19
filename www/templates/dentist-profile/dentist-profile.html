@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div class="patient-profile__address">
-                <div class="dentist-profile__content-title text-center">home dentist</div>
+                <div class="dentist-profile__content-title text-center" ng-if="!vm.isViewMode">home dentist</div>
                 <button class="gray-btn invite-dentist-btn" ng-if="!vm.isViewMode && !vm.have_den"
                         ng-click='vm.addDentist()'>Invite dentist
                 </button>

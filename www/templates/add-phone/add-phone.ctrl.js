@@ -12,11 +12,11 @@
         vm.send = send;
         vm.getSelectCode = getSelectCode;
         vm.selectCode = selectCode;
+        getLoc();
         authSvc.clearAuthData();
         userSvc.resetData();
+        vm.select_code = '+1';
         vm.codes = codes;
-        let selected_country = vm.codes[phoneSvc.getDefaultIndex()];
-        vm.select_code = selected_country.code;
         vm.phone = $stateParams.phone || '';
         vm.content = {
             val1: 'You will receive sms with code',
@@ -27,9 +27,16 @@
         // if (authSvc.isLogined()) {
         //     authSvc.processAutoLogin();
         // }
+        function getLoc() {
+            $.getJSON("http://ip-api.com/json/?callback=?", function (data) {
+                phoneSvc.setDefaultCountry(data.country);
+                vm.selected_country = vm.codes[phoneSvc.getDefaultIndex()];
+                vm.select_code = vm.selected_country.code;
+            });
+        }
 
         function send() {
-            authSvc.setCountryId(selected_country.id);
+            authSvc.setCountryId(vm.selected_country.id);
             let phone = phoneSvc.preparePhone(vm.select_code, vm.phone);
             if (!phoneSvc.validatePhone(phone)) {
                 toastr.error(messagesSvc.error.invalidPhone);
@@ -41,7 +48,7 @@
                 if (res.success && res.data) {
                     console.log(res.data);
                     toastr.success(res.data, null, {
-                        timeOut: 20000,
+                        timeOut: 3000,
                         tapToDismiss: true
                     });
                     authSvc.setPhone(phone);
@@ -59,7 +66,7 @@
 
         function selectCode(code) {
             vm.select_code = code.code;
-            selected_country = code;
+            vm.selected_country = code;
             vm.codePopup.close();
         }
     }
