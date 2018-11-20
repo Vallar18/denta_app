@@ -38,8 +38,8 @@
         if (vm.edit) {
             vm.btn_text = 'Update';
             vm.clinic = {
-                user_id: vm.user.id, name: clinic.name, phone: clinic.phone, address: clinic.address,
-                longitude: clinic.longitude, latitude: clinic.latitude
+                name: clinic.name, phone: clinic.phone, address: clinic.address,
+                longitude: clinic.longitude, latitude: clinic.latitude, clinic_id: clinic.id
             };
         }
 
