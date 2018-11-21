@@ -15,6 +15,7 @@
         vm.codes = codeItems;
         getLoc();
         vm.phone = '';
+        vm.select_code = '+1';
 
         function getLoc() {
             $.getJSON("http://ip-api.com/json/?callback=?", function (data) {

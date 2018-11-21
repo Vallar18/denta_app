@@ -55,17 +55,17 @@
                     </div>
                 </div>
             </div>
-            <div class="patient-profile__address">
-                <div class="dentist-profile__content-title text-center" ng-if="!vm.isViewMode">home dentist</div>
-                <button class="gray-btn invite-dentist-btn" ng-if="!vm.isViewMode && !vm.have_den"
-                        ng-click='vm.addDentist()'>Invite dentist
-                </button>
-                <div ng-if="!vm.isViewMode && vm.have_den">
-                    <p class="patient-profile__dentist-name">{{vm.home_dentist.name + ' ' + vm.home_dentist.lastname + ','}}</p>
-                    <p>{{vm.home_dentist_clinic.address}}</p>
-                    <div class="text-center" ng-if="!vm.isViewMode"><a ng-click="vm.editDentistPhone()">Change</a></div>
-                </div>
-            </div>
+            <!--<div class="patient-profile__address">-->
+                <!--<div class="dentist-profile__content-title text-center" ng-if="!vm.isViewMode && vm.have_den">home dentist</div>-->
+                <!--<button class="gray-btn invite-dentist-btn" ng-if="!vm.isViewMode && !vm.have_den"-->
+                        <!--ng-click='vm.addDentist()'>Invite dentist-->
+                <!--</button>-->
+                <!--<div ng-if="!vm.isViewMode && vm.have_den">-->
+                    <!--<p class="patient-profile__dentist-name">{{vm.home_dentist.name + ' ' + vm.home_dentist.lastname + ','}}</p>-->
+                    <!--<p>{{vm.home_dentist_clinic.address}}</p>-->
+                    <!--<div class="text-center" ng-if="!vm.isViewMode"><a ng-click="vm.editDentistPhone()">Change</a></div>-->
+                <!--</div>-->
+            <!--</div>-->
 
             <div class="dentist-profile__content">
                 <div class="text-center dentist-profile__content-title">REVIEWS</div>
