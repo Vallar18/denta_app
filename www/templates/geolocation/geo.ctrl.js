@@ -88,6 +88,9 @@
                 };
                 geoSvc.calcTime(from, to).then(function (res, status) {
                     item.clinicObj.users.forEach(function (val) {
+                        if (val.rating === null) {
+                            val.rating = 4;
+                        }
                         let tempDentObj = val;
                         try {
                             tempDentObj.time = res.rows[0].elements[0].duration.text;

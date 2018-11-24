@@ -28,8 +28,8 @@
                     if (angular.isArray(val.users)) {
                         val.users.forEach(function (user) {
                                 if (user.dentist) {
-                                    if (typeof user.rating === null) {
-                                        user.rating = 0;
+                                    if (user.rating === null) {
+                                        user.rating = 4;
                                     }
                                     user.latitude = +val.latitude;
                                     user.longitude = +val.longitude;
