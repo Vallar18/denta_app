@@ -280,22 +280,37 @@
             });
         }
 
-        vm.disableTap = function (event) {
-            let input = event.target;
-            // Get the predictions element
-            let container = document.getElementsByClassName('pac-container');
-            container = angular.element(container);
-            // Apply css to ensure the container overlays the other elements, and
-            // events occur on the element not behind it
-            container.css('z-index', '5000');
-            container.css('pointer-events', 'auto');
-            // Disable ionic data tap
-            container.attr('data-tap-disabled', 'true');
-            // Leave the input field if a prediction is chosen
-            container.on('click', function () {
-                input.blur();
-            });
+        vm.getLocation = (location) => {
+            vm.business.location = location.address;
+            vm.business.longitude = location.lng;
+            vm.business.latitude = location.lat;
         };
+
+        // vm.searchText = 'asdfasd';
+        // vm.search = geoSvc.searchAddress;
+        //
+        // vm.prepSelectedItem = () => {
+        //     if (vm.selected_search_item) {
+        //         geoSvc.prepareSelectedItem(vm.selected_search_item);
+        //     }
+        // }
+
+        // vm.disableTap = function (event) {
+        //     let input = event.target;
+        //     // Get the predictions element
+        //     let container = document.getElementsByClassName('pac-container');
+        //     container = angular.element(container);
+        //     // Apply css to ensure the container overlays the other elements, and
+        //     // events occur on the element not behind it
+        //     container.css('z-index', '5000');
+        //     container.css('pointer-events', 'auto');
+        //     // Disable ionic data tap
+        //     container.attr('data-tap-disabled', 'true');
+        //     // Leave the input field if a prediction is chosen
+        //     container.on('click', function () {
+        //         input.blur();
+        //     });
+        // };
     }
 
 })();

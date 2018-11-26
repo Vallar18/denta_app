@@ -1,0 +1,14 @@
+<div class="location">
+        <md-autocomplete flex required
+                         md-input-name="autocompleteField"
+                         md-no-cache="true"
+                         md-min-length="0"
+                         md-search-text-change="vm.search(vm.searchText, vm.prepSelectedItem)"
+                         md-selected-item="vm.selected_search_item"
+                         md-search-text="vm.searchText"
+                         md-selected-item-change="vm.search(vm.searchText, vm.prepSelectedItem)"
+                         md-items="item in vm.search(vm.searchText, vm.prepSelectedItem)"
+                         md-item-text="item.description"
+                         md-floating-label="">
+        </md-autocomplete>
+</div>

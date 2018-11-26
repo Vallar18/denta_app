@@ -10,11 +10,12 @@
                         $rootScope, $cordovaNetwork, networkMonitorSvc, $q, $ionicPopup) {
             let watcherPosition;
             const TIMEOUT_LOADING_SHOW = 30000;
-            let counter_get_position  = 0;
-            let is_accurate_position  = false;
+            let counter_get_position = 0;
+            let is_accurate_position = false;
             let vm = this;
             let API_KEY = 'AIzaSyD6o8M_KOerds2uacnudjI62elbLTMyBaY';
             let map = null;
+            let gmap = null;
             let autocomplete;
             let marker;
             let geocoder;
@@ -46,13 +47,45 @@
                 });
             }
 
-            function addSearch() {
-                var input = document.getElementById('searchMapTextField');
-                autocomplete = new window.google.maps.places.Autocomplete(input, {});
-                window.google.maps.event.addListener(autocomplete, 'place_changed', function () {
-                    let place = autocomplete.getPlace();
-                    if (place.geometry && place.geometry.location) {
-                        let pos = createPos(place.geometry.location.lat(), place.geometry.location.lng());
+
+            function checkGoogleAutocomplite() {
+                if (!gmap && checkGoogle()) {
+                    gmap = new window.google.maps.places.AutocompleteService();
+                }
+            }
+
+            function checkGoogle() {
+                if (!window.google || !window.google.maps || !window.google.maps.places) {
+                    return false;
+                }
+                return true;
+            }
+            // function addSearch() {
+            function searchAddress(address, callback) {
+                // init();
+                checkGoogleAutocomplite();
+                var deferred = $q.defer();
+                try {
+                    gmap.getPlacePredictions({
+                        input: address,
+                        types: ['(cities)']
+                    }, function (predictions) {
+                        deferred.resolve(predictions && predictions.length ? angular.copy(predictions) : []);
+                        callback();
+                    });
+                } catch (e) {
+                    deferred.reject([]);
+                }
+                return deferred.promise;
+
+                // }
+
+            }
+                function prepareSelectedItem(address) {
+                let geocoder = new google.maps.Geocoder();
+                geocoder.geocode({'address': address.description}, function (results, status) {
+                    if (status === google.maps.GeocoderStatus.OK) {
+                        let pos = createPos(results[0].geometry.location.lat(), results[0].geometry.location.lng());
                         marker.setPosition(pos);
                         map.setCenter(pos);
                     }
@@ -73,7 +106,7 @@
 
             function initMap() {
                 getPosition(false).then(function (pos) {
-                    addSearch();
+                    checkGoogleAutocomplite();
                     $ionicLoading.show({
                         template: 'Loading map...',
                         duration: TIMEOUT_LOADING_SHOW
@@ -206,8 +239,8 @@
 
 
             function getAddress(latlng, callback, errorCallback) {
-                if(!isMapReady()){
-                    errorInetOrGPS().then(function(){
+                if (!isMapReady()) {
+                    errorInetOrGPS().then(function () {
                         errorCallback();
                     });
                 }
@@ -260,7 +293,7 @@
              * @description return true if maps defined
              * @returns {boolean}
              */
-            function isMapReady(){
+            function isMapReady() {
                 return (angular.isDefined(window.google) && angular.isDefined(window.google.maps));
             }
 
@@ -300,7 +333,7 @@
                     timeout: 30000,
                     enableHighAccuracy: is_accurate_position
                 };
-                if(counter_get_position > 0){
+                if (counter_get_position > 0) {
                     options.enableHighAccuracy = !is_accurate_position;
                 }
                 $cordovaGeolocation.getCurrentPosition(options).then(function (res) {
@@ -412,9 +445,9 @@
                 clearWatchPosition: clearWatchPosition,
                 getMarkerPosition: getMarkerPosition,
                 getAddress: getAddress,
-                init: init
+                init: init,
+                searchAddress: searchAddress,
+                prepareSelectedItem: prepareSelectedItem
             };
         }
-    }
-
-)();
+    })();

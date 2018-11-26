@@ -8,5 +8,6 @@
         'directives.inputChangeColor',
         'directives.treatmentItem',
         'directives.patientItem',
+        'directives.location',
     ]);
 })();
