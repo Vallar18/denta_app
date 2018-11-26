@@ -47,6 +47,15 @@
                 }
                 $ionicTabsDelegate.showBar(true);
             });
+
+            window.addEventListener('keyboardDidShow', (event) => {
+                let itemBlockTop = document.querySelector('.registration-item');
+                itemBlockTop.style.paddingTop = 0;
+            });
+            window.addEventListener('keyboardDidHide', () => {
+                let itemBlockTop = document.querySelector('.registration-item');
+                itemBlockTop.style.paddingTop = '19vw';
+            });
         }
 
 

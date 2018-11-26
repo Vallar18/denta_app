@@ -26,7 +26,7 @@
             authSvc.addBackBehave(false);
             if (vm.profile) {
                 if (!vm.profile.rating) {
-                    vm.profile.rating = 0;
+                    vm.profile.rating = 4;
                 }
             }
             if (userSvc.getPatientDentist() && userSvc.getPatientDentist()[0]) {

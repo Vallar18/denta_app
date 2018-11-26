@@ -11,6 +11,7 @@
         const vm = this;
         vm.send = send;
         vm.goAddPhone = goAddPhone;
+        vm.checkKey = checkKey;
         vm.phone = authSvc.getPhone();
         vm.code = '';
         vm.content = {
@@ -32,6 +33,12 @@
                 });
             } else {
                 toastr.error(messagesSvc.error.invalidCode);
+            }
+        }
+
+        function checkKey(event) {
+            if(event.which === 13) {
+                send()
             }
         }
 

@@ -12,6 +12,7 @@
         vm.send = send;
         vm.getSelectCode = getSelectCode;
         vm.selectCode = selectCode;
+        vm.checkKey = checkKey;
         vm.codes = codeItems;
         getLoc();
         vm.phone = '';
@@ -25,7 +26,6 @@
             });
         }
         authSvc.addBackBehave(false);
-
         function send() {
             let phone = phoneSvc.preparePhone(vm.select_code, vm.phone);
             if (!phoneSvc.validatePhone(phone)) {
@@ -45,6 +45,12 @@
                 vm.phone = '';
             });
             // $state.go('tabs.history-emergencies');
+        }
+
+        function checkKey(event) {
+            if(event.which === 13) {
+                send()
+            }
         }
 
         function getSelectCode() {

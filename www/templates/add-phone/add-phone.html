@@ -1,8 +1,8 @@
 <ion-view class="add-phone">
     <ion-content>
-        <div class="item-block-top">
+        <div class="item-block-top registration-item">
             <div class="item-block-top-logo">
-                    <img src="content/img/logos.png">
+                 <img src="content/img/logos.png">
             </div>
             <div class="img-wrap">
                 <p>{{vm.content.val3}}</p>
@@ -20,7 +20,7 @@
                     </button>
                     <label class="item item-input">
                         <input type="number" placeholder="Enter your phone number"
-                               ng-model="vm.phone" input-change-color="#000">
+                               ng-model="vm.phone" input-change-color="#000" ng-keyup="vm.checkKey($event)">
                     </label>
                 </div>
                 <p>{{vm.content.val1}}</p>
