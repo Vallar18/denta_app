@@ -31,7 +31,11 @@
         // }
         function getLoc() {
             $.getJSON("http://ip-api.com/json/?callback=?", function (data) {
-                phoneSvc.setDefaultCountry(data.country);
+                if(data){
+                    phoneSvc.setDefaultCountry(data.country);
+                }else{
+                    phoneSvc.setDefaultCountry('Canada');
+                }
                 vm.selected_country = vm.codes[phoneSvc.getDefaultIndex()];
                 vm.select_code = vm.selected_country.code;
             });

@@ -20,7 +20,11 @@
 
         function getLoc() {
             $.getJSON("http://ip-api.com/json/?callback=?", function (data) {
-                phoneSvc.setDefaultCountry(data.country);
+                if(data){
+                    phoneSvc.setDefaultCountry(data.country);
+                }else{
+                    phoneSvc.setDefaultCountry('Canada');
+                }
                 vm.selectedCountry = vm.codes[phoneSvc.getDefaultIndex()];
                 vm.select_code = vm.selectedCountry.code;
             });
