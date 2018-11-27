@@ -147,6 +147,8 @@
             if ($localStorage.user){
                 if($localStorage.user.dentists && $localStorage.user.dentists.length) {
                     return true;
+                }else{
+                    return false;
                 }
             } else{
                 return false;

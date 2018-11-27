@@ -14,7 +14,7 @@
         vm.getSelectCode = getSelectCode;
         vm.selectCode = selectCode;
         vm.validPhone = validPhone;
-        vm.openMapPopup = openMapPopup;
+        // vm.openMapPopup = openMapPopup;
         vm.newClinic = newClinic;
         vm.selectClinic = selectClinic;
         vm.edit = $stateParams.edit;
@@ -272,16 +272,16 @@
             vm.codePopup.close();
         }
 
-        function openMapPopup() {
-            if (vm.showSelect) {
-                return;
-            }
+        // function openMapPopup() {
+        //     if (vm.showSelect) {
+        //         return;
+        //     }
             // clinicSvc.getClinicAddress(function(res){
             //     vm.clinic.address = res.address;
             //     vm.clinic.longitude = res.lng;
             //     vm.clinic.latitude = res.lat;
             // });
-        }
+        // }
 
         vm.getLocation = (location) => {
             vm.clinic.address = location.address;

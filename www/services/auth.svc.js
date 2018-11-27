@@ -179,6 +179,9 @@
                         case '/dentist-profile':
                             $state.go('tabs.my-patient');
                             break;
+                        case"/tabs/geo":
+                            $state.go('tabs.dentist-help');
+                            break;
                         default:
                             window.history.back();
                     }
