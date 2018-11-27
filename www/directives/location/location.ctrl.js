@@ -9,7 +9,7 @@
 
     function LocationCtrl($scope, $ionicHistory, geoSvc) {
         let vm = this;
-        vm.searchText = '';
+        vm.searchText = $scope.locModel;
         vm.search = geoSvc.searchAddress;
 
         vm.prepSelectedItem = () => {

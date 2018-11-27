@@ -24,6 +24,9 @@
         vm.select_code = vm.selected_country.code;
         vm.user = userSvc.getUser();
         authSvc.addBackBehave(vm.edit);
+
+        geoSvc.initGoogleAutocomplite();
+
         let clinic = userSvc.getUser().clinic;
         vm.phone = '';
         vm.btn_text = 'Send';
@@ -273,18 +276,35 @@
             if (vm.showSelect) {
                 return;
             }
-            clinicSvc.getClinicAddress(function(res){
-                vm.clinic.address = res.address;
-                vm.clinic.longitude = res.lng;
-                vm.clinic.latitude = res.lat;
-            });
+            // clinicSvc.getClinicAddress(function(res){
+            //     vm.clinic.address = res.address;
+            //     vm.clinic.longitude = res.lng;
+            //     vm.clinic.latitude = res.lat;
+            // });
         }
 
         vm.getLocation = (location) => {
-            vm.business.location = location.address;
-            vm.business.longitude = location.lng;
-            vm.business.latitude = location.lat;
+            vm.clinic.address = location.address;
+            vm.clinic.longitude = location.lng;
+            vm.clinic.latitude = location.lat;
         };
+
+        // vm.disableTap = function (event) {
+        //     let input = event.target;
+        //     // Get the predictions element
+        //     let container = document.getElementsByClassName('pac-container');
+        //     container = angular.element(container);
+        //     // Apply css to ensure the container overlays the other elements, and
+        //     // events occur on the element not behind it
+        //     container.css('z-index', '5000');
+        //     container.css('pointer-events', 'auto');
+        //     // Disable ionic data tap
+        //     container.attr('data-tap-disabled', 'true');
+        //     // Leave the input field if a prediction is chosen
+        //     container.on('click', function () {
+        //         input.blur();
+        //     });
+        // };
 
         // vm.searchText = 'asdfasd';
         // vm.search = geoSvc.searchAddress;

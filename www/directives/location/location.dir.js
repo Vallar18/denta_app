@@ -9,7 +9,8 @@
             restrict: 'E',
             templateUrl: 'directives/location/location.html',
             scope: {
-                locGetLocation: '='
+                locGetLocation: '=',
+                locModel: '='
             },
             controller: 'LocationCtrl',
             controllerAs: 'vm',

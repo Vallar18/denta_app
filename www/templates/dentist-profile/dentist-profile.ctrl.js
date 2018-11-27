@@ -61,7 +61,6 @@
                     $('.dentist-profile__main').height(height_calc);
                 }, 500);
             }
-
             changeHeight();
         });
 

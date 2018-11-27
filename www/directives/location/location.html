@@ -10,5 +10,9 @@
                          md-items="item in vm.search(vm.searchText, vm.prepSelectedItem)"
                          md-item-text="item.description"
                          md-floating-label="">
+            <md-item-template>
+            <span md-highlight-text="vm.searchText"
+                  md-highlight-flags="^i">{{item.description}}</span>
+            </md-item-template>
         </md-autocomplete>
 </div>

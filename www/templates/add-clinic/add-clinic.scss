@@ -1,4 +1,7 @@
 .add-clinic{
+  location {
+    width: 100%;
+  }
   .ion-ios-search:before {
     content: "";
     font-size: 30px;
@@ -16,6 +19,9 @@
         padding-left: 10px;
       }
     }
+  }
+  .item.activated{
+    background: #FFF;
   }
   .item-input {
     width: 80%;

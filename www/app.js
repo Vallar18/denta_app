@@ -2,21 +2,21 @@
     'use strict';
 
     angular.module('app',
-            ['factory.request',
-                'factory.url',
-                'app.core',
-                'app.services',
-                'app.factory',
-                'app.directives',
-                'app.filters'
-            ])
+        ['factory.request',
+            'factory.url',
+            'app.core',
+            'app.services',
+            'app.factory',
+            'app.directives',
+            'app.filters'
+        ])
         .run(runBlock);
-    runBlock.$inject = ['$ionicPlatform', '$state', 'utilsSvc', 'authSvc', 'userSvc', 'fcmSvc','$timeout', '$ionicTabsDelegate'];
+    runBlock.$inject = ['$ionicPlatform', '$state', 'utilsSvc', 'authSvc', 'userSvc', 'fcmSvc', '$timeout', '$ionicTabsDelegate'];
 
     function runBlock($ionicPlatform, $state, utilsSvc, authSvc, userSvc, fcmSvc, $timeout, $ionicTabsDelegate) {
         utilsSvc.initializePolyfill();
 
-        $timeout(function(){
+        $timeout(function () {
             if (authSvc.isLogined()) {
                 authSvc.processAutoLogin();
             } else if (userSvc.isShowStart()) {
@@ -50,14 +50,17 @@
 
             window.addEventListener('keyboardDidShow', (event) => {
                 let itemBlockTop = document.querySelector('.registration-item');
-                itemBlockTop.style.paddingTop = 0;
+                if (itemBlockTop && itemBlockTop.style) {
+                    itemBlockTop.style.paddingTop = 0;
+                }
             });
             window.addEventListener('keyboardDidHide', () => {
                 let itemBlockTop = document.querySelector('.registration-item');
-                itemBlockTop.style.paddingTop = '19vw';
+                if (itemBlockTop && itemBlockTop.style) {
+                    itemBlockTop.style.paddingTop = '19vw';
+                }
             });
         }
-
 
         // exit.buttonExit($state.current.url);
         // $ionicPlatform.registerBackButtonAction(function() {
