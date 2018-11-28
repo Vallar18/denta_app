@@ -71,15 +71,6 @@
             }
         }
 
-        window.addEventListener('keyboardDidShow', (event) => {
-            let itemBlockTop = document.querySelector('.item-block-top');
-            itemBlockTop.style.paddingTop = 0;
-        });
-        window.addEventListener('keyboardDidHide', () => {
-            let itemBlockTop = document.querySelector('.item-block-top');
-            itemBlockTop.style.paddingTop = '19vh';
-        });
-
         function getSelectCode() {
             vm.codePopup = phoneSvc.showSelect($scope);
         }
