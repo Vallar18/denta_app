@@ -269,12 +269,14 @@
             let addressObj = {
                 lat: latlng.lat || latlng.latitude,
                 lng: latlng.lng || latlng.longitude,
-                address: ''
+                address: '',
+                results: []
             };
             geocoder.geocode({'location': latlng}, function (results, status) {
                 if (status === 'OK') {
                     if (results[0]) {
                         addressObj.address = results[0].formatted_address;
+                        addressObj.results = results[0].address_components;
                         callback(addressObj);
                     } else {
                         callback(addressObj);

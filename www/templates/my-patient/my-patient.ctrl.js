@@ -14,21 +14,21 @@
         vm.selectCode = selectCode;
         vm.checkKey = checkKey;
         vm.codes = codeItems;
-        getLoc();
+        // getLoc();
         vm.phone = '';
         vm.select_code = '+1';
 
-        function getLoc() {
-            $.getJSON("http://ip-api.com/json/?callback=?", function (data) {
-                if(data){
-                    phoneSvc.setDefaultCountry(data.country);
-                }else{
-                    phoneSvc.setDefaultCountry('Canada');
-                }
+        // function getLoc() {
+        //     $.getJSON("http://ip-api.com/json/?callback=?", function (data) {
+        //         if(data){
+        //             phoneSvc.setDefaultCountry(data.country);
+        //         }else{
+        //             phoneSvc.setDefaultCountry('Canada');
+        //         }
                 vm.selectedCountry = vm.codes[phoneSvc.getDefaultIndex()];
                 vm.select_code = vm.selectedCountry.code;
-            });
-        }
+        //     });
+        // }
         authSvc.addBackBehave(false);
         function send() {
             let phone = phoneSvc.preparePhone(vm.select_code, vm.phone);
