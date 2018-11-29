@@ -30,6 +30,7 @@
                 <div class="send-review__price">
                     <div class="select-price-block">
                         <input type="number" class="input-price"
+                               min="0" inputmode="numeric" pattern="[0-9]*"
                                placeholder="How much did you pay?"
                                ng-model="vm.reviewModel.price"
                                input-change-color="#000">

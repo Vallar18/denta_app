@@ -18,6 +18,9 @@
         width: 12vw;
       }
     }
+    &__title {
+      white-space: nowrap;
+    }
   }
   &__home-dentist {
     position: absolute;

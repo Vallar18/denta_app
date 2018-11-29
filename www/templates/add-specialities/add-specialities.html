@@ -20,6 +20,7 @@
             <div class="block-content">
                 <div class="select-price-block">
                     <input type="number" class="input-price" placeholder="Emergency price"
+                           min="0" inputmode="numeric" pattern="[0-9]*"
                            ng-model="vm.dentist.price" input-change-color="#000">
                     <button type="button" class="select-currency" ng-click="vm.getSelectCurrency()">
                         <span>{{vm.select_currency.abr}}</span>

@@ -124,7 +124,6 @@
         }
 
         function updateUserRole(data) {
-            console.log(data);
             return http.post(url.user_role.update, data);
         }
 

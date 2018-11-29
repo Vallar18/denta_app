@@ -12,14 +12,11 @@
         vm.shangeScreen = shangeScreen;
         var titleBlock = document.querySelector('.title-block');
         var backEmpty = document.querySelector('.background-empty');
-        vm.text_view = '';
+        vm.text_view = 'We are delighted that you have chosen to join GettDent. The only Dental app in the world that connects patient and doctors.\n' +
+            'Travel fearlessly knowing that any dental emergency can be quickly resolved.\n' +
+            'Let’s get started.';
         vm.change_view = 0;
 
-        textSvc.getStartPage().then(function (res) {
-            if (res) {
-                vm.text_view = res.description;
-            }
-        });
         $timeout(function(){
             vm.shangeScreen();
         },1500);

@@ -16,6 +16,7 @@
             <div class="block-content">
                 <label class="item item-input">
                     <input class="text-center" type="number" placeholder="Enter the code"
+                           min="0" inputmode="numeric" pattern="[0-9]*"
                            ng-model="vm.code" input-change-color="#000" ng-keyup="vm.checkKey($event)">
                 </label>
                 <p>{{vm.content.val1}} <a ng-click="vm.goAddPhone()">{{vm.content.val2}}</a></p>

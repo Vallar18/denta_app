@@ -13,9 +13,15 @@
         vm.getSelectCode = getSelectCode;
         vm.selectCode = selectCode;
         vm.checkKey = checkKey;
+        if (authSvc.isLogined()) {
+            authSvc.processAutoLogin();
+        }else if (userSvc.isShowStart()) {
+            $state.go('view');
+        }else{
+            authSvc.clearAuthData();
+            userSvc.resetData();
+        }
         getLoc();
-        authSvc.clearAuthData();
-        userSvc.resetData();
         vm.select_code = '+1';
         vm.codes = codes;
         vm.phone = $stateParams.phone || '';
@@ -31,7 +37,11 @@
         // }
         function getLoc() {
             $.getJSON("http://ip-api.com/json/?callback=?", function (data) {
-                phoneSvc.setDefaultCountry(data.country);
+                if(data){
+                    phoneSvc.setDefaultCountry(data.country);
+                }else{
+                    phoneSvc.setDefaultCountry('Canada');
+                }
                 vm.selected_country = vm.codes[phoneSvc.getDefaultIndex()];
                 vm.select_code = vm.selected_country.code;
             });
@@ -63,18 +73,9 @@
 
         function checkKey(event) {
             if(event.which === 13) {
-                send()
+                send();
             }
         }
-
-        window.addEventListener('keyboardDidShow', (event) => {
-            let itemBlockTop = document.querySelector('.item-block-top');
-            itemBlockTop.style.paddingTop = 0;
-        });
-        window.addEventListener('keyboardDidHide', () => {
-            let itemBlockTop = document.querySelector('.item-block-top');
-            itemBlockTop.style.paddingTop = '19vh';
-        });
 
         function getSelectCode() {
             vm.codePopup = phoneSvc.showSelect($scope);

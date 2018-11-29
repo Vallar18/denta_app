@@ -16,15 +16,13 @@
     function runBlock($ionicPlatform, $state, utilsSvc, authSvc, userSvc, fcmSvc, $timeout, $ionicTabsDelegate) {
         utilsSvc.initializePolyfill();
 
-        $timeout(function () {
+
+        $ionicPlatform.ready(function () {
             if (authSvc.isLogined()) {
                 authSvc.processAutoLogin();
             } else if (userSvc.isShowStart()) {
                 $state.go('view');
             }
-        });
-
-        $ionicPlatform.ready(function () {
             fcmSvc.initialize();
             if (window.StatusBar) {
                 window.styleDefault();
@@ -32,35 +30,41 @@
             addBehaverForKeyboard();
         });
 
-        function addBehaverForKeyboard() {
-            window.addEventListener('keyboardDidShow', (event) => {
-                let popup = document.querySelector('.popup');
-                if (popup != null) {
-                    popup.classList.add('popup-bottom');
-                }
-                $ionicTabsDelegate.showBar(false);
-            });
-            window.addEventListener('keyboardDidHide', () => {
-                let popup = document.querySelector('.popup');
-                if (popup != null) {
-                    popup.classList.remove('popup-bottom');
-                }
-                $ionicTabsDelegate.showBar(true);
-            });
 
-            window.addEventListener('keyboardDidShow', (event) => {
-                let itemBlockTop = document.querySelector('.registration-item');
-                if (itemBlockTop && itemBlockTop.style) {
-                    itemBlockTop.style.paddingTop = 0;
-                }
-            });
-            window.addEventListener('keyboardDidHide', () => {
-                let itemBlockTop = document.querySelector('.registration-item');
-                if (itemBlockTop && itemBlockTop.style) {
-                    itemBlockTop.style.paddingTop = '19vw';
-                }
-            });
-        }
+
+        // function addBehaverForKeyboard() {
+        //     window.addEventListener('keyboardDidShow', (event) => {
+        //         let popup = document.querySelector('.popup');
+        //         if (popup != null) {
+        //             popup.classList.add('popup-bottom');
+        //         }
+        //         $ionicTabsDelegate.showBar(false);
+        //     });
+        //     window.addEventListener('keyboardDidHide', () => {
+        //         let popup = document.querySelector('.popup');
+        //         if (popup != null) {
+        //             popup.classList.remove('popup-bottom');
+        //         }
+        //         $ionicTabsDelegate.showBar(true);
+        //     });
+
+
+
+        // ----  на иос не нада --- //
+
+        // window.addEventListener('keyboardDidShow', (event) => {
+        //     let itemBlockTop = document.querySelector('.registration-item');
+        //     if (itemBlockTop && itemBlockTop.style) {
+        //         itemBlockTop.style.paddingTop = 0;
+        //     }
+        // });
+        // window.addEventListener('keyboardDidHide', () => {
+        //     let itemBlockTop = document.querySelector('.registration-item');
+        //     if (itemBlockTop && itemBlockTop.style) {
+        //         itemBlockTop.style.paddingTop = '19vw';
+        //     }
+        // });
+        // }
 
         // exit.buttonExit($state.current.url);
         // $ionicPlatform.registerBackButtonAction(function() {

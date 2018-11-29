@@ -33,7 +33,7 @@
                 </div>
                 <div class="dentist-profile__number text-center">
                     <img src="content/img/phone-icon.png" alt="">
-                    <a href="tel:{{vm.profile.phone}}">{{vm.profile.phone}}</a>
+                    <a href="tel:{{vm.profile.clinic.phone}}">{{vm.profile.clinic.phone}}</a>
                 </div>
             </div>
         </div>
@@ -44,9 +44,9 @@
             <div class="dentist-profile__navigate" ng-if="vm.isViewMode">
                 <span ui-sref="tabs.geolocation({clinic_id: vm.profile.clinic.id})">Navigate</span>
             </div>
-            <div class="dentist-profile__description"
-                 ng-click="vm.isExpandDescr = !vm.isExpandDescr"
-                 ng-class="{'dentist-profile--expanded':vm.isExpandDescr}">
+            <div class="dentist-profile__description dentist-profile--expanded">
+                 <!--ng-click="vm.isExpandDescr = !vm.isExpandDescr"-->
+                 <!--ng-class="{'dentist-profile&#45;&#45;expanded':vm.isExpandDescr}">-->
                 <p>{{vm.profile.dentist.description}}</p>
                 <div class="dentist-profile-specialities">
                     <div ng-repeat="item in vm.profile.dentist.specialties track by $index"

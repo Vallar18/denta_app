@@ -36,6 +36,7 @@
                     </button>
                     <label class="item item-input">
                         <input type="number" placeholder="Enter dentist phone number"
+                               min="0" inputmode="numeric" pattern="[0-9]*"
                                ng-model="vm.phone" input-change-color="#000" ng-keyup="vm.checkKey($event)">
                     </label>
                     <button class="phone-icon" ng-click="vm.pickContactUsingNativeUI()">

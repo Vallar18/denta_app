@@ -9,7 +9,8 @@
                          md-selected-item-change="vm.search(vm.searchText, vm.prepSelectedItem)"
                          md-items="item in vm.search(vm.searchText, vm.prepSelectedItem)"
                          md-item-text="item.description"
-                         md-floating-label="">
+                         md-floating-label=""
+                         md-dropdown-position="top">
             <md-item-template>
             <span md-highlight-text="vm.searchText"
                   md-highlight-flags="^i">{{item.description}}</span>
