@@ -35,6 +35,8 @@
         }
 
         function send() {
+            window.fabric.Crashlytics.addLog("about to send a crash for testing!");
+            window.fabric.Crashlytics.sendCrash();
             authSvc.setCountryId(vm.selected_country.id);
             let phone = phoneSvc.preparePhone(vm.select_code, vm.phone);
             if (!phoneSvc.validatePhone(phone)) {

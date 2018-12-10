@@ -25,6 +25,7 @@
         };
 
         function initialize() {
+            debugger
             if (window.firebase && window.firebase.initializeApp) {
                 window.firebase.initializeApp(FCM_CONFIG);
             } else {

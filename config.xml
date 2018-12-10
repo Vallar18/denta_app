@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="get.dent" version="0.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Gett Dent</name>
-    <description>Gett Dent App</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Gett Dent App</author>
+<widget id="get.dent" version="0.0.12" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Get Dent</name>
+    <description>Get Dent App</description>
+    <author email="hi@ionicframework" href="http://ionicframework.com/">Get Dent App</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="*" />
@@ -26,10 +26,13 @@
     <preference name="FadeSplashScreenDuration" value="100" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
-    <preference name="SplashScreenDelay" value="2000" />
+    <preference name="SplashScreenDelay" value="3000" />
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="loadUrlTimeoutValue" value="70000" />
+    <preference name="KeyboardResizeMode" value="body" />
+    <preference name="KeyboardResize" value="true" />
     <platform name="android">
+        <preference name="android-windowSoftInputMode" value="adjustResize" />
         <preference name="AndroidPersistentFileLocation" value="Internal" />
         <feature name="SocialSharing">
             <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
@@ -54,19 +57,19 @@
     </platform>
     <platform name="ios">
         <edit-config file="*-Info.plist" mode="merge" target="NSContactsUsageDescription">
-            <string>Need contacts access to search friends or doctors</string>
+            <string>We need contacts access to search friends or doctors</string>
         </edit-config>
         <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
-            <string>need camera access to take pictures</string>
+            <string>We need the camera access to show patients your account</string>
         </edit-config>
         <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryUsageDescription">
-            <string>need photo library access to get pictures from there</string>
+            <string>&gt;We need the camera access to show patients your account</string>
         </edit-config>
         <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
-            <string>need location access to find things nearby</string>
+            <string>We need your location to find you the nearest emergency dentists</string>
         </edit-config>
         <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryAddUsageDescription">
-            <string>need photo library access to save pictures there</string>
+            <string>&gt;We need the camera access to show patients your account</string>
         </edit-config>
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
@@ -121,6 +124,10 @@
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
     <plugin name="cordova-plugin-inapppurchase" spec="^1.2.0" />
+    <plugin name="cordova-fabric-plugin" spec="^1.1.14-dev">
+        <variable name="FABRIC_API_KEY" value="b4d413449bba53af075c9ddd6844b52b18ad8bf9" />
+        <variable name="FABRIC_API_SECRET" value="209206d2eb11b7ec8b730806ab8c8d3ba6d7a525a12210aa1ef4b1ec45659965" />
+    </plugin>
     <plugin name="cordova-plugin-fcm" spec="^2.1.2" />
     <engine name="android" spec="^6.4.0" />
 </widget>
