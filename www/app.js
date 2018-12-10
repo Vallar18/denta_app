@@ -25,6 +25,7 @@
         });
 
         $ionicPlatform.ready(function () {
+            debugger
             fcmSvc.initialize();
             if (window.StatusBar) {
                 window.styleDefault();

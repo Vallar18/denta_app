@@ -41,11 +41,11 @@
       "cordova-plugin-file": {},
       "cordova-plugin-geolocation": {},
       "cordova-plugin-inapppurchase": {},
+      "cordova-plugin-fcm": {},
       "cordova-fabric-plugin": {
         "FABRIC_API_KEY": "b4d413449bba53af075c9ddd6844b52b18ad8bf9",
         "FABRIC_API_SECRET": "209206d2eb11b7ec8b730806ab8c8d3ba6d7a525a12210aa1ef4b1ec45659965"
-      },
-      "cordova-plugin-fcm": {}
+      }
     },
     "platforms": [
       "android"
