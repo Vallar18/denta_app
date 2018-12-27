@@ -14,7 +14,7 @@
         vm.getSelectCode = getSelectCode;
         vm.selectCode = selectCode;
         vm.validPhone = validPhone;
-        vm.openMapPopup = openMapPopup;
+        // vm.openMapPopup = openMapPopup;
         vm.newClinic = newClinic;
         vm.selectClinic = selectClinic;
         vm.edit = $stateParams.edit;
@@ -24,6 +24,9 @@
         vm.select_code = vm.selected_country.code;
         vm.user = userSvc.getUser();
         authSvc.addBackBehave(vm.edit);
+
+        geoSvc.initGoogleAutocomplite();
+
         let clinic = userSvc.getUser().clinic;
         vm.phone = '';
         vm.btn_text = 'Send';
@@ -38,8 +41,8 @@
         if (vm.edit) {
             vm.btn_text = 'Update';
             vm.clinic = {
-                user_id: vm.user.id, name: clinic.name, phone: clinic.phone, address: clinic.address,
-                longitude: clinic.longitude, latitude: clinic.latitude
+                name: clinic.name, phone: clinic.phone, address: clinic.address,
+                longitude: clinic.longitude, latitude: clinic.latitude, clinic_id: clinic.id
             };
         }
 
@@ -269,33 +272,65 @@
             vm.codePopup.close();
         }
 
-        function openMapPopup() {
-            if (vm.showSelect) {
-                return;
-            }
-            clinicSvc.getClinicAddress(function(res){
-                vm.clinic.address = res.address;
-                vm.clinic.longitude = res.lng;
-                vm.clinic.latitude = res.lat;
-            });
-        }
+        // function openMapPopup() {
+        //     if (vm.showSelect) {
+        //         return;
+        //     }
+            // clinicSvc.getClinicAddress(function(res){
+            //     vm.clinic.address = res.address;
+            //     vm.clinic.longitude = res.lng;
+            //     vm.clinic.latitude = res.lat;
+            // });
+        // }
 
-        vm.disableTap = function (event) {
-            let input = event.target;
-            // Get the predictions element
-            let container = document.getElementsByClassName('pac-container');
-            container = angular.element(container);
-            // Apply css to ensure the container overlays the other elements, and
-            // events occur on the element not behind it
-            container.css('z-index', '5000');
-            container.css('pointer-events', 'auto');
-            // Disable ionic data tap
-            container.attr('data-tap-disabled', 'true');
-            // Leave the input field if a prediction is chosen
-            container.on('click', function () {
-                input.blur();
-            });
+        vm.getLocation = (location) => {
+            vm.clinic.address = location.address;
+            vm.clinic.longitude = location.lng;
+            vm.clinic.latitude = location.lat;
         };
+
+        // vm.disableTap = function (event) {
+        //     let input = event.target;
+        //     // Get the predictions element
+        //     let container = document.getElementsByClassName('pac-container');
+        //     container = angular.element(container);
+        //     // Apply css to ensure the container overlays the other elements, and
+        //     // events occur on the element not behind it
+        //     container.css('z-index', '5000');
+        //     container.css('pointer-events', 'auto');
+        //     // Disable ionic data tap
+        //     container.attr('data-tap-disabled', 'true');
+        //     // Leave the input field if a prediction is chosen
+        //     container.on('click', function () {
+        //         input.blur();
+        //     });
+        // };
+
+        // vm.searchText = 'asdfasd';
+        // vm.search = geoSvc.searchAddress;
+        //
+        // vm.prepSelectedItem = () => {
+        //     if (vm.selected_search_item) {
+        //         geoSvc.prepareSelectedItem(vm.selected_search_item);
+        //     }
+        // }
+
+        // vm.disableTap = function (event) {
+        //     let input = event.target;
+        //     // Get the predictions element
+        //     let container = document.getElementsByClassName('pac-container');
+        //     container = angular.element(container);
+        //     // Apply css to ensure the container overlays the other elements, and
+        //     // events occur on the element not behind it
+        //     container.css('z-index', '5000');
+        //     container.css('pointer-events', 'auto');
+        //     // Disable ionic data tap
+        //     container.attr('data-tap-disabled', 'true');
+        //     // Leave the input field if a prediction is chosen
+        //     container.on('click', function () {
+        //         input.blur();
+        //     });
+        // };
     }
 
 })();

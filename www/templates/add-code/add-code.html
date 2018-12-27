@@ -1,8 +1,8 @@
 <ion-view class="add-code">
     <ion-content>
-        <div class="item-block-top">
+        <div class="item-block-top registration-item">
             <div class="item-block-top-logo">
-                <img src="content/img/vector-smart-object.png">
+                <img src="content/img/logos.png">
             </div>
             <div class="img-wrap">
                 <p>{{vm.content.val3}}</p>
@@ -16,7 +16,7 @@
             <div class="block-content">
                 <label class="item item-input">
                     <input class="text-center" type="number" placeholder="Enter the code"
-                           ng-model="vm.code" input-change-color="#000">
+                           ng-model="vm.code" input-change-color="#000" ng-keyup="vm.checkKey($event)">
                 </label>
                 <p>{{vm.content.val1}} <a ng-click="vm.goAddPhone()">{{vm.content.val2}}</a></p>
                 <button class="send-button" ng-click="vm.send()">{{vm.content.valBtn}}</button>

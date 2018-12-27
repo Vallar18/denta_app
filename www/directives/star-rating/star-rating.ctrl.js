@@ -12,7 +12,7 @@
         let vm = this;
         let prev = {
             counts: DEFAULT_COUNT,
-            value: 0,
+            value: 4,
             selectVal: 0
         };
         let arr = [];

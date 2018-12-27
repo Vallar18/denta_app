@@ -16,6 +16,7 @@
         vm.selectCode = selectCode;
         vm.pickContactUsingNativeUI = pickContactUsingNativeUI;
         vm.selectOneContact = selectOneContact;
+        vm.checkKey = checkKey;
         vm.back = back;
         vm.edit = $stateParams.edit;
         vm.c_invite = $stateParams.c_invite;
@@ -29,6 +30,7 @@
         vm.phoneFromContact = '';
         vm.contactList = [];
         init();
+        getLoc();
 
         function init() {
             if (vm.c_invite || vm.invite_for_den) {
@@ -42,8 +44,22 @@
             }
         }
 
+        function getLoc() {
+            $.getJSON("http://ip-api.com/json/?callback=?", function (data) {
+                phoneSvc.setDefaultCountry(data.country);
+                vm.selected_country = vm.codes[phoneSvc.getDefaultIndex()];
+                vm.select_code = vm.selected_country.code;
+            });
+        }
+
         function back() {
             window.history.back();
+        }
+
+        function checkKey(event) {
+            if (event.which === 13) {
+                send()
+            }
         }
 
         function pickContactUsingNativeUI() {
@@ -222,9 +238,13 @@
             }
         }
 
-        function getSelectCode() {
-            $scope.data = {};
-            vm.codePopup = phoneSvc.showSelect($scope);
+        function getSelectCode(event) {
+            if (event.which) {
+                event.preventDefault();
+            } else {
+                $scope.data = {};
+                vm.codePopup = phoneSvc.showSelect($scope);
+            }
         }
 
         function selectCode(code) {

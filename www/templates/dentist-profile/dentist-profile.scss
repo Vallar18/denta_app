@@ -36,18 +36,20 @@
     padding: 16px;
     border-top: 1px solid $role-btn-border;
     border-bottom: 1px solid $role-btn-border;
-    &:after {
-      content: "";
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 10px 10px 0 10px;
-      border-color: $second-color-light transparent transparent transparent;
-      position: absolute;
-      bottom: 9px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
+    //&:after {
+    //  content: "";
+    //  width: 0;
+    //  height: 0;
+    //  border-style: solid;
+
+
+    //  border-width: 10px 10px 0 10px;
+    //  border-color: $second-color-light transparent transparent transparent;
+    //  position: absolute;
+    //  bottom: 9px;
+    //  left: 50%;
+    //  transform: translateX(-50%);
+    //}
     &.dentist-profile--expanded {
       &:after {
         border-width: 0 10px 10px 10px;

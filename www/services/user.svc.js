@@ -124,7 +124,6 @@
         }
 
         function updateUserRole(data) {
-            console.log(data);
             return http.post(url.user_role.update, data);
         }
 
@@ -147,6 +146,8 @@
             if ($localStorage.user){
                 if($localStorage.user.dentists && $localStorage.user.dentists.length) {
                     return true;
+                }else{
+                    return false;
                 }
             } else{
                 return false;

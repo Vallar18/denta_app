@@ -36,15 +36,19 @@
                         <input class="text-center"  type="text" placeholder="Clinic name"
                                ng-model="vm.clinic.name" input-change-color="#000">
                     </label>
-                    <select class="text-center select-block" ng-if="vm.listClinic && vm.showSelect" ng-model="vm.select_clinic"
+                    <select class="text-center select-block" ng-if="vm.showSelect" ng-model="vm.select_clinic"
                             ng-change="vm.selectClinic()" ng-value="item" ng-options="item as item.name for item in vm.listClinic track by item.id">
                     </select>
-                    <div class="item item-input" ng-click="vm.openMapPopup()">
+                    <!--<div class="item item-input" ng-click="vm.openMapPopup()">-->
+                    <!--<div class="item item-input" ng-if="(vm.showSelect && (!vm.edit || !vm.become_den)) || (vm.showSelect && (vm.edit || vm.become_den))">-->
+                    <div class="item item-input">
                         <button class="map-marker">
                             <img src="content/img/marker.png" alt="">
                         </button>
-                        <input class="text-center" type="text" placeholder="Clinic Address"
-                               ng-model="vm.clinic.address" input-change-color="#000" disabled>
+                        <!--<input class="text-center" type="text" placeholder="Clinic Address"-->
+                               <!--ng-model="vm.clinic.address" input-change-color="#000" disabled>-->
+                        <location ng-if="vm.showSelect" loc-get-location="vm.getLocation" loc-model="vm.clinic.address"></location>
+                        <location ng-if="!vm.showSelect" loc-get-location="vm.getLocation" loc-model="vm.clinic.address"></location>
                     </div>
                     <div class="clinic-button-block">
                         <button class="send-button" ng-click="vm.send()">{{vm.btn_text}}</button>

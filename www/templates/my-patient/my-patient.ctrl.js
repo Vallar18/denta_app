@@ -12,19 +12,24 @@
         vm.send = send;
         vm.getSelectCode = getSelectCode;
         vm.selectCode = selectCode;
+        vm.checkKey = checkKey;
         vm.codes = codeItems;
-        getLoc();
+        // getLoc();
         vm.phone = '';
+        vm.select_code = '+1';
 
-        function getLoc() {
-            $.getJSON("http://ip-api.com/json/?callback=?", function (data) {
-                phoneSvc.setDefaultCountry(data.country);
+        // function getLoc() {
+        //     $.getJSON("http://ip-api.com/json/?callback=?", function (data) {
+        //         if(data){
+        //             phoneSvc.setDefaultCountry(data.country);
+        //         }else{
+        //             phoneSvc.setDefaultCountry('Canada');
+        //         }
                 vm.selectedCountry = vm.codes[phoneSvc.getDefaultIndex()];
                 vm.select_code = vm.selectedCountry.code;
-            });
-        }
+        //     });
+        // }
         authSvc.addBackBehave(false);
-
         function send() {
             let phone = phoneSvc.preparePhone(vm.select_code, vm.phone);
             if (!phoneSvc.validatePhone(phone)) {
@@ -44,6 +49,12 @@
                 vm.phone = '';
             });
             // $state.go('tabs.history-emergencies');
+        }
+
+        function checkKey(event) {
+            if(event.which === 13) {
+                send()
+            }
         }
 
         function getSelectCode() {

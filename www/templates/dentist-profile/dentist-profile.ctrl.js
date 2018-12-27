@@ -18,6 +18,7 @@
         vm.reviewArr = reviewItems;
         vm.isViewMode = $stateParams.id ? true : false;
         vm.back = function () {
+
             $ionicHistory.goBack();
         };
         init();
@@ -26,7 +27,7 @@
             authSvc.addBackBehave(false);
             if (vm.profile) {
                 if (!vm.profile.rating) {
-                    vm.profile.rating = 0;
+                    vm.profile.rating = 4;
                 }
             }
             if (userSvc.getPatientDentist() && userSvc.getPatientDentist()[0]) {
@@ -61,7 +62,6 @@
                     $('.dentist-profile__main').height(height_calc);
                 }, 500);
             }
-
             changeHeight();
         });
 
