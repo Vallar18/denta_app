@@ -35,9 +35,15 @@
                     backEmpty.classList.remove('mov-down');
                     backEmpty.classList.add('background-content');
                 }, 2300);
+                $timeout(function () {
+                    userSvc.setShowStart(false);
+                    $state.go('add-phone');
+                }, 7300);
             } else if(vm.change_view === 1){
                 userSvc.setShowStart(false);
-                $state.go('add-phone');
+                $timeout(function () {
+                    $state.go('add-phone');
+                }, 1000);
             }
         }
     }

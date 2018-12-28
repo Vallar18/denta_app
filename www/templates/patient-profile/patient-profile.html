@@ -24,7 +24,7 @@
         <ion-content class="patient-profile__main">
             <div class="patient-profile__address" ng-if="vm.have_den">
                 <p class="patient-profile__dentist-name">{{vm.home_dentist.name + ' ' + vm.home_dentist.lastname + ','}}</p>
-                <p>{{vm.user.clinic.address}}</p>
+                <p>{{vm.clinicAddress}}</p>
                 <div class="text-center"><a ng-click="vm.editDentistPhone()">Change</a></div>
             </div>
             <div class="patient-profile__content">

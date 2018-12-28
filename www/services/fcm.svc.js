@@ -25,7 +25,6 @@
         };
 
         function initialize() {
-            debugger
             if (window.firebase && window.firebase.initializeApp) {
                 window.firebase.initializeApp(FCM_CONFIG);
             } else {
@@ -45,8 +44,8 @@
         }
 
         function refreshToken(callback) {
-            if (typeof window.FirebasePlugin !== 'undefined') {
-                window.FirebasePlugin.onTokenRefresh(function (token) {
+            if (typeof FCMPlugin !== 'undefined') {
+                FCMPlugin.onTokenRefresh(function (token) {
                     if (angular.isFunction(callback) && token) {
                         callback(token);
                     }
@@ -57,8 +56,8 @@
 
         function getToken(callback) {
             $ionicPlatform.ready(function () {
-                if (typeof window.FirebasePlugin !== 'undefined') {
-                    window.FirebasePlugin.getToken(function (token) {
+                if (typeof FCMPlugin !== 'undefined') {
+                    FCMPlugin.getToken(function (token) {
                         if (angular.isFunction(callback) && token) {
                             callback(token);
                         }
@@ -68,9 +67,9 @@
         }
 
         function subscribe() {
-            if (typeof window.FirebasePlugin !== 'undefined') {
+            if (typeof FCMPlugin !== 'undefined') {
                 refreshToken(); //add listener for refresh
-                window.FirebasePlugin.onNotificationOpen(function (data) {
+                FCMPlugin.onNotification(function (data) {
                         console.log(data);
                         if (data.wasTapped) {
                             //Notification was received on device tray and tapped by the user.

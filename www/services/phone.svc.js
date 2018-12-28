@@ -71,7 +71,6 @@
                     return item.name && item.name.toLowerCase() === nameLower;
                 });
             }
-
             return 0;
         }
 
