@@ -29,8 +29,8 @@
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="loadUrlTimeoutValue" value="70000" />
-    <preference name="KeyboardResizeMode" value="body" />
-    <preference name="KeyboardResize" value="true" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#000000" />
     <platform name="android">
         <preference name="android-windowSoftInputMode" value="adjustResize" />
         <preference name="AndroidPersistentFileLocation" value="Internal" />
@@ -132,4 +132,5 @@
     <plugin name="cordova-plugin-settings-hook" spec="^0.2.7" />
     <plugin name="cordova-plugin-console" spec="^1.1.0" />
     <plugin name="cordova-plugin-x-socialsharing" spec="~5.4.1" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
 </widget>

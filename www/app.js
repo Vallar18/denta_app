@@ -52,19 +52,18 @@
 
         // ----  на иос не нада --- //
 
-        // window.addEventListener('keyboardDidShow', (event) => {
-        //     let itemBlockTop = document.querySelector('.registration-item');
-        //     if (itemBlockTop && itemBlockTop.style) {
-        //         itemBlockTop.style.paddingTop = 0;
-        //     }
-        // });
-        // window.addEventListener('keyboardDidHide', () => {
-        //     let itemBlockTop = document.querySelector('.registration-item');
-        //     if (itemBlockTop && itemBlockTop.style) {
-        //         itemBlockTop.style.paddingTop = '19vw';
-        //     }
-        // });
-        // }
+        window.addEventListener('keyboardDidShow', (event) => {
+            let itemBlockTop = document.querySelector('.registration-item');
+            if (itemBlockTop && itemBlockTop.style) {
+                itemBlockTop.style.paddingTop = 0;
+            }
+        });
+        window.addEventListener('keyboardDidHide', () => {
+            let itemBlockTop = document.querySelector('.registration-item');
+            if (itemBlockTop && itemBlockTop.style) {
+                itemBlockTop.style.paddingTop = '19vw';
+            }
+        });
 
         // exit.buttonExit($state.current.url);
         // $ionicPlatform.registerBackButtonAction(function() {
