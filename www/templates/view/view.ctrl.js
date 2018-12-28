@@ -41,9 +41,7 @@
                 }, 7300);
             } else if(vm.change_view === 1){
                 userSvc.setShowStart(false);
-                $timeout(function () {
-                    $state.go('add-phone');
-                }, 1000);
+                $state.go('add-phone');
             }
         }
     }
