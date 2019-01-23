@@ -2,9 +2,9 @@
     <ion-pane class="history-emergencies">
         <div class="header-simple">
             <div class="header-simple__title">
-                History
+                {{::'CONTENT.TEXT_HISTORY_TITLE' | translate}}
                 <div class="history-emergencies__title">
-                    Emergencies
+                    {{::'CONTENT.TEXT_EMERGENCIES' | translate}}
                 </div>
             </div>
             <button class="button back-btn" ui-sref="tabs.history-patients">
@@ -18,7 +18,7 @@
         <ion-content class="history-emergencies__main">
             <div class="history-emergencies__content">
                 <div ng-if="!vm.historyItems.length" class="history-emergencies__empty">
-                    List is empty
+                    {{::'CONTENT.TEXT_LIST_IS_EMPTY' | translate}}
                 </div>
                 <ion-list ng-if="vm.historyItems && vm.historyItems.length">
                     <ion-item ng-repeat="item in vm.historyItems track by $index">

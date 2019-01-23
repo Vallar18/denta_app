@@ -15,13 +15,9 @@
             preventOpenDuplicates: true,
         });
         //example of user translation
-        $translateProvider.translations('en', {
-            'TITLE': 'Hello',
-            'FOO': 'This is a paragraph'
-        });
-        $translateProvider.translations('de', {
-            'TITLE': 'Hallo',
-            'FOO': 'Dies ist ein Absatz'
+        $translateProvider.useStaticFilesLoader({
+            prefix: 'lang/lang-',
+            suffix: '.json'
         });
         $translateProvider.preferredLanguage('en');
         //----------------------------------
@@ -396,15 +392,6 @@
                 controller: 'MyTreatmentsCtrl',
                 controllerAs: 'vm'
             })
-            .state('need-dentist', {
-                reload: true,
-                cache: false,
-                url: '/need-dentist',
-                templateUrl: 'templates/need-dentist/need-dentist.html',
-                controller: 'NeedDentistCtrl',
-                controllerAs: 'vm'
-            })
-
             .state('send-review', {
                 reload: true,
                 cache: false,

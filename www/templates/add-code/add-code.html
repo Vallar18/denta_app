@@ -5,7 +5,7 @@
                 <img src="content/img/logos.png">
             </div>
             <div class="img-wrap">
-                <p>{{vm.content.val3}}</p>
+                <p>{{::'CONTENT.TEXT_GET_ME_IN' | translate}}</p>
                 <div class="img-outer">
                     <img src="content/img/border.svg">
                 </div>
@@ -15,11 +15,11 @@
         <div class="item-block-content">
             <div class="block-content">
                 <label class="item item-input">
-                    <input class="text-center" type="number" placeholder="Enter the code"
+                    <input class="text-center" type="number" placeholder="{{::'CONTENT.TEXT_ADD_CODE_PLACEHOLDER' | translate}}"
                            ng-model="vm.code" input-change-color="#000" ng-keyup="vm.checkKey($event)">
                 </label>
-                <p>{{vm.content.val1}} <a ng-click="vm.goAddPhone()">{{vm.content.val2}}</a></p>
-                <button class="send-button" ng-click="vm.send()">{{vm.content.valBtn}}</button>
+                <p>{{::'CONTENT.TEXT_ADD_CODE_PARAGRAPH' | translate}}<a ng-click="vm.goAddPhone()">{{::'CONTENT.TEXT_ADD_CODE_CLICK_HERE' | translate}}</a></p>
+                <button class="send-button" ng-click="vm.send()">{{::'CONTENT.BTN_SEND' | translate}}</button>
             </div>
         </div>
     </ion-content>

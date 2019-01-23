@@ -18,7 +18,6 @@
             vm.sendBecomeDentist = sendBecomeDentist;
             vm.edit = $stateParams.edit;
             vm.become_den = $stateParams.become_den;
-            vm.btn_text = 'Send';
             vm.user = userSvc.getUser();
             vm.role = userSvc.getRole();
             vm.specialities = spec;
@@ -29,7 +28,6 @@
 
             function init() {
                 if (vm.edit) {
-                    vm.btn_text = 'Update';
                     vm.select_currency = vm.user.dentist.currency;
                     vm.dentist = {
                         user_id: vm.user.id, role: vm.role, currency_id: vm.select_currency.id,

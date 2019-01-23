@@ -10,13 +10,6 @@
     function SelectRoleCtrl($state, userSvc, $localStorage) {
         const vm = this;
         vm.select = select;
-
-        vm.content = {
-            val3: 'get me in',
-            valBtn: 'Send',
-            role1: 'I\'m a dentist',
-            role2: 'I\'m a patient'
-        };
         vm.role = undefined;
 
         function select(type) {

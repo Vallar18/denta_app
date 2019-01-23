@@ -7,7 +7,7 @@
                 <div class="steps-item"><span>3</span></div>
             </div>
             <div class="img-wrap">
-                <p>Let us know you</p>
+                <p>{{::'CONTENT.TEXT_REGISTRATION_TITLE' | translate}}</p>
                 <div class="img-outer">
                     <img src="content/img/border.svg">
                     <div class="top-icon">
@@ -23,17 +23,17 @@
                         {{vm.select_code}}
                     </button>
                     <label class="item item-input">
-                        <input type="number" placeholder="Clinic Phone number"
+                        <input type="number" placeholder="{{::'CONTENT.PLACEHOLDER_CLINIC_PHONE' | translate}}"
                                ng-model="vm.phone" input-change-color="#000">
                     </label>
                 </div>
                 <label class="item item-input" ng-if="vm.edit">
-                    <input type="text" placeholder="Clinic Phone number"
+                    <input type="text" placeholder="{{::'CONTENT.PLACEHOLDER_CLINIC_PHONE' | translate}}"
                            class="text-center" ng-model="vm.clinic.phone" input-change-color="#000">
                 </label>
                 <div class="add-clinic-block" ng-if="vm.show_clinic || vm.edit">
                     <label class="item item-input" ng-if="!vm.showSelect">
-                        <input class="text-center"  type="text" placeholder="Clinic name"
+                        <input class="text-center"  type="text" placeholder="{{::'CONTENT.PLACEHOLDER_CLINIC_NAME' | translate}}"
                                ng-model="vm.clinic.name" input-change-color="#000">
                     </label>
                     <select class="text-center select-block" ng-if="vm.showSelect" ng-model="vm.select_clinic"
@@ -51,11 +51,12 @@
                         <location ng-if="!vm.showSelect" loc-get-location="vm.getLocation" loc-model="vm.clinic.address"></location>
                     </div>
                     <div class="clinic-button-block">
-                        <button class="send-button" ng-click="vm.send()">{{vm.btn_text}}</button>
-                        <button class="send-button" ng-if="vm.edit" ng-click="vm.newClinic()">New clinic</button>
+                        <button class="send-button" ng-if="!vm.edit" ng-click="vm.send()">{{::'CONTENT.BTN_SEND' | translate}}</button>
+                        <button class="send-button" ng-if="vm.edit" ng-click="vm.send()">{{::'CONTENT.BTN_UPDATE' | translate}}</button>
+                        <button class="send-button" ng-if="vm.edit" ng-click="vm.newClinic()">{{::'CONTENT.BTN_NEW_CLINIC' | translate}}</button>
                     </div>
                 </div>
-                <button class="send-button" ng-if="!vm.show_clinic && !vm.edit" ng-click="vm.checkClinicPhone()">Next</button>
+                <button class="send-button" ng-if="!vm.show_clinic && !vm.edit" ng-click="vm.checkClinicPhone()">{{::'CONTENT.BTN_NEXT' | translate}}</button>
             </div>
         </div>
     </ion-content>

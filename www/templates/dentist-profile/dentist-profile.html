@@ -68,9 +68,11 @@
             <!--</div>-->
 
             <div class="dentist-profile__content">
-                <div class="text-center dentist-profile__content-title">REVIEWS</div>
+                <div class="text-center dentist-profile__content-title">
+                    {{::'CONTENT.TEXT_REVIEWS' | translate}}
+                </div>
                 <div class="dentist-profile__empty text-center" ng-if="!vm.reviewArr.length">
-                    List is empty
+                   {{::'CONTENT.TEXT_LIST_IS_EMPTY' | translate}}
                 </div>
                 <ion-list ng-if="vm.reviewArr.length">
                     <ion-item ng-repeat="item in vm.reviewArr track by $index">

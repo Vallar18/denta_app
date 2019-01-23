@@ -7,7 +7,7 @@
                 <div class="steps-item"><span>3</span></div>
             </div>
             <div class="img-wrap">
-                <p>Let us know you</p>
+                <p>{{::'CONTENT.TEXT_REGISTRATION_TITLE' | translate}}</p>
                 <div class="img-outer">
                     <img src="content/img/border.svg">
                     <div class="top-icon" ng-click="vm.selectAvatar()">
@@ -19,21 +19,21 @@
         <div class="item-block-content">
             <form class="block-content">
                 <label class="item item-input">
-                    <input class="text-center" type="text" placeholder="First name" ng-model="vm.user.name"
+                    <input class="text-center" type="text" placeholder="{{::'CONTENT.PLACEHOLDER_FIRST_NAME' | translate}}" ng-model="vm.user.name"
                            minlength="3" maxlength="20" input-change-color="#000">
                 </label>
                 <label class="item item-input">
-                    <input class="text-center" type="text" placeholder="Last name"
+                    <input class="text-center" type="text" placeholder="{{::'CONTENT.PLACEHOLDER_LAST_NAME' | translate}}"
                            ng-model="vm.user.lastname" input-change-color="#000">
                 </label>
                 <label class="item item-input">
-                    <input class="text-center" type="email" placeholder="Email"
+                    <input class="text-center" type="email" placeholder="{{::'CONTENT.PLACEHOLDER_EMAIL' | translate}}"
                            ng-model="vm.user.email" input-change-color="#000">
                 </label>
                 <div class="form-bottom-block">
-                    <button class="send-button" ng-if="vm.edit || vm.become_den" ng-click="vm.back()">Back</button>
-                    <button class="send-button" ng-if="!vm.edit" ng-click="vm.send()">Send</button>
-                    <button class="send-button" ng-if="vm.edit" ng-click="vm.send()">Update</button>
+                    <button class="send-button" ng-if="vm.edit || vm.become_den" ng-click="vm.back()">{{::'CONTENT.BTN_BACK' | translate}}</button>
+                    <button class="send-button" ng-if="!vm.edit" ng-click="vm.send()">{{::'CONTENT.BTN_SEND' | translate}}</button>
+                    <button class="send-button" ng-if="vm.edit" ng-click="vm.send()">{{::'CONTENT.BTN_UPDATE' | translate}}</button>
                 </div>
             </form>
         </div>

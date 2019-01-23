@@ -13,25 +13,21 @@
         vm.getSelectCode = getSelectCode;
         vm.selectCode = selectCode;
         vm.checkKey = checkKey;
-        // getLoc();
         authSvc.clearAuthData();
         userSvc.resetData();
         vm.select_code = '+1';
         vm.codes = codes;
         vm.phone = $stateParams.phone || '';
-        vm.content = {
-            val1: 'You will receive sms with code',
-            val3: 'get me in',
-            valBtn: 'Send'
-        };
         vm.keyShow = false;
 
         // if (authSvc.isLogined()) {
         //     authSvc.processAutoLogin();
         // }
         init();
+
         function init() {
-            getCurrentPosition();
+            getLoc();
+            // getCurrentPosition();
         }
 
         function getCurrentPosition() {
@@ -42,10 +38,10 @@
                         lng: res.coords.longitude,
                     };
                     geoSvc.getAddress(currentPos, getCode, function () {
-                       console.log('--error');
+                        console.log('--error');
                         $ionicLoading.hide();
                     })
-                },function(res){
+                }, function (res) {
                     geoSvc.errorInetOrGPS().then(function (res) {
                         if (res) {
                             getCurrentPosition();
@@ -58,33 +54,34 @@
                 });
             });
         }
-        // function getLoc() {
-        //     $.getJSON("http://ip-api.com/json/?callback=?", function (data) {
-        //         if(data){
-        //             phoneSvc.setDefaultCountry(data.country);
-        //         }else{
-        //             phoneSvc.setDefaultCountry('Canada');
-        //         }
-        //         vm.selected_country = vm.codes[phoneSvc.getDefaultIndex()];
-        //         vm.select_code = vm.selected_country.code;
-        //     });
-        // }
+
+        function getLoc() {
+            $.getJSON("http://ip-api.com/json/?callback=?", function (data) {
+                if (data) {
+                    phoneSvc.setDefaultCountry(data.country);
+                } else {
+                    phoneSvc.setDefaultCountry('Canada');
+                }
+                vm.selected_country = vm.codes[phoneSvc.getDefaultIndex()];
+                vm.select_code = vm.selected_country.code;
+            });
+        }
 
         function getCode(data) {
-            if(data){
-                if(data.results && data.results.length){
+            if (data) {
+                if (data.results && data.results.length) {
                     getCountry(data.results);
                 }
-            }else{
+            } else {
                 phoneSvc.setDefaultCountry('Canada');
             }
             vm.selected_country = vm.codes[phoneSvc.getDefaultIndex()];
             vm.select_code = vm.selected_country.code;
         }
 
-        function getCountry(arr){
-           angular.forEach(arr, function (item) {
-                if(item.types[0] == 'country'){
+        function getCountry(arr) {
+            angular.forEach(arr, function (item) {
+                if (item.types[0] == 'country') {
                     phoneSvc.setDefaultCountry(item.long_name);
                 }
             })
@@ -115,7 +112,7 @@
         }
 
         function checkKey(event) {
-            if(event.which === 13) {
+            if (event.which === 13) {
                 send()
             }
         }

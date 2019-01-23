@@ -1,0 +1,67 @@
+{
+  "CONTENT": {
+    "TEXT_ABOUT_TITLE": "About us",
+    "TEXT_VIEW_TITLE": "Welcome aboard",
+
+    "TEXT_GET_ME_IN": "get me in",
+
+    "TEXT_ADD_PHONE_PLACEHOLDER": "Enter your phone number",
+    "TEXT_ADD_PHONE_PARAGRAPH": "You will receive sms with code",
+
+    "TEXT_ADD_CODE_PLACEHOLDER": "Enter the code",
+    "TEXT_ADD_CODE_PARAGRAPH": "Didn't recived code",
+    "TEXT_ADD_CODE_CLICK_HERE": "click here",
+
+    "TEXT_SELECT_ROLE_DENTIST": "I'm a dentist",
+    "TEXT_SELECT_ROLE_PATIENT": "I'm a patient",
+
+    "TEXT_REGISTRATION_TITLE": "Let us know you",
+    "TEXT_EDIT_PROFILE": "Edit profile",
+    "TEXT_LIST_IS_EMPTY": "List is empty",
+    "TEXT_LOADING": "Loading...",
+    "TEXT_DISTANCE": "Distance",
+    "TEXT_PRICE": "Price",
+    "TEXT_RATING": "Rating",
+    "TEXT_REVIEWS": "REVIEWS",
+
+    "TEXT_ADD_SPECIALITIES_SELECTED": "selected",
+
+    "TEXT_ADD_SPECIALITIES": "Add specialties",
+    "TEXT_EDIT_SPECIALITIES": "Edit specialties",
+
+    "TEXT_MY_PATIENT_TITLE": "My patient",
+    "TEXT_MY_PATIENT_DESCRIPTION": "Insert your patient number to get all the information about him",
+    "TEXT_MY_PATIENTS": "My patients",
+    "TEXT_EMERGENCIES": "Emergencies",
+    "TEXT_HISTORY_TITLE": "History",
+
+
+
+    "PLACEHOLDER_FIRST_NAME": "First name",
+    "PLACEHOLDER_LAST_NAME": "Last name",
+    "PLACEHOLDER_EMAIL": "Email",
+    "PLACEHOLDER_CLINIC_PHONE": "Clinic Phone number",
+    "PLACEHOLDER_PATIENT_PHONE": "Enter patient number",
+    "PLACEHOLDER_CLINIC_NAME": "Clinic name",
+    "PLACEHOLDER_EMERGENCY_PRICE": "Emergency price",
+    "PLACEHOLDER_WRITE_ABOUT_CLINIC": "Write about the clinic..",
+
+
+    "BTN_NEW_CLINIC": "New clinic",
+    "BTN_SEND": "Send",
+    "BTN_SAVE": "Save",
+    "BTN_SUBMIT": "Submit",
+    "BTN_NEXT": "Next",
+    "BTN_UPDATE": "Update",
+    "BTN_BACK": "Back"
+  },
+  "ERROR": {
+    "PHONE": "The number should be 10 digits",
+    "INVALID_EMAIL": "Please enter the correct email",
+    "EMPTY_FIELD": "Please complete all fields",
+    "SOCIAL": "You need to login to facebook to use the app",
+    "NOT_FOUND": "Not found"
+  },
+  "SUCCESS": {
+  }
+}

@@ -29,7 +29,6 @@
 
         let clinic = userSvc.getUser().clinic;
         vm.phone = '';
-        vm.btn_text = 'Send';
         if (vm.become_den) {
             vm.edit = false;
             authSvc.addBackBehave(vm.edit);
@@ -39,7 +38,6 @@
             longitude: null, latitude: null
         };
         if (vm.edit) {
-            vm.btn_text = 'Update';
             vm.clinic = {
                 name: clinic.name, phone: clinic.phone, address: clinic.address,
                 longitude: clinic.longitude, latitude: clinic.latitude, clinic_id: clinic.id

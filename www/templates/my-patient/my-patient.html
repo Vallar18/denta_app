@@ -2,7 +2,7 @@
     <ion-pane class="my-patient">
         <div class="header-simple">
             <div class="header-simple__title">
-                My patient
+                {{::'CONTENT.TEXT_MY_PATIENT_TITLE' | translate}}
             </div>
             <div class="header-simple__border">
                 <img src="content/img/border.svg">
@@ -11,8 +11,7 @@
         <ion-content class="my-patient__main">
             <div class="my-patient__content">
                 <div class="my-patient__text">
-                    Insert your patient number to get all<br>
-                        the information about him
+                    {{::'CONTENT.TEXT_MY_PATIENT_DESCRIPTION' | translate}}
                 </div>
                 <div class="block-content">
                     <!--<button ng-click="vm.test()">-->
@@ -23,12 +22,12 @@
                             {{vm.select_code}}
                         </button>
                         <label class="item item-input">
-                            <input type="number" placeholder="Enter patient phone"
+                            <input type="number" placeholder=" {{::'CONTENT.PLACEHOLDER_PATIENT_PHONE' | translate}}"
                                    ng-model="vm.phone" input-change-color="#000" ng-keyup="vm.checkKey($event)">
                         </label>
                     </div>
                     <p>{{vm.content.val1}}</p>
-                    <button class="send-button" ng-click="vm.send()">Submit</button>
+                    <button class="send-button" ng-click="vm.send()">{{::'CONTENT.BTN_SUBMIT' | translate}}</button>
                 </div>
             </div>
         </ion-content>

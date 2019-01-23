@@ -5,13 +5,12 @@
                 <div class="radio-block">
                     <div layout="row" layout-align="space-around none">
                         <input type="radio" name="white-header-radio" id="rating" ng-model="vm.sort" value="rating">
-                        <label for="rating">Rating</label>
-
+                        <label for="rating">{{::'CONTENT.TEXT_RATING' | translate}}</label>
                         <input type="radio" name="white-header-radio" id="distance" ng-model="vm.sort" value="distance">
-                        <label for="distance">Distance</label>
+                        <label for="distance">{{::'CONTENT.TEXT_DISTANCE' | translate}}</label>
 
                         <input type="radio" name="white-header-radio" id="price" ng-model="vm.sort" value="price">
-                        <label for="price">Price</label>
+                        <label for="price">{{::'CONTENT.TEXT_PRICE' | translate}}</label>
                     </div>
                 </div>
                 <img src="content/img/options-icon.png"
@@ -24,7 +23,8 @@
     </div>
     <ion-content class="help-content">
         <div class="help-content__empty text-center" ng-if="!vm.dentistItems.length">
-            {{vm.activeText}}
+           <div ng-if="!vm.isEmpty">{{::'CONTENT.TEXT_LOADING' | translate}}</div>
+           <div ng-if="vm.isEmpty">{{::'CONTENT.TEXT_LIST_IS_EMPTY' | translate}}</div>
         </div>
         <ion-list ng-if="vm.dentistItems.length">
             <ion-item ng-repeat="item in vm.dentistItems track by item.id">
