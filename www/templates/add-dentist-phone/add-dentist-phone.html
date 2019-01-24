@@ -6,8 +6,8 @@
         <!--</button>-->
         <div class="overlay-block" ng-if="vm.overlay" ng-click="vm.hideOverlay()">
             <div class="overlay-text">
-                <p>Please provide us your home dentist info.</p>
-                <p>He will be notified about any visit out of state.</p>
+                <p>{{::'CONTENT.TEXT_YOUR_HOME_DENTIST_INFO' | translate}}</p>
+                <p>{{::'CONTENT.TEXT_YOUR_HOME_DENTIST_NOTIFIED' | translate}}</p>
             </div>
         </div>
         <div class="item-block-top">
@@ -16,9 +16,9 @@
                 <div class="steps-item active-step"><span>2</span></div>
             </div>
             <div class="img-wrap">
-                <p ng-if="vm.edit">Change dentist</p>
-                <p ng-if="!vm.edit && !vm.c_invite && !vm.invite_for_den">Thank you</p>
-                <p ng-if="vm.c_invite || vm.invite_for_den">Invite Dentist</p>
+                <p ng-if="vm.edit">{{::'CONTENT.TEXT_CHANGE_DENTIST' | translate}}</p>
+                <p ng-if="!vm.edit && !vm.c_invite && !vm.invite_for_den">{{::'CONTENT.TEXT_THANK_YOU' | translate}}</p>
+                <p ng-if="vm.c_invite || vm.invite_for_den">{{::'CONTENT.TEXT_INVITE_DENTIST' | translate}}</p>
                 <div class="img-outer">
                     <img src="content/img/border.svg">
                 </div>
@@ -26,8 +26,8 @@
         </div>
         <div class="item-block-content">
             <div class="title-block" ng-if="!vm.edit">
-                <p class="add-dentist-phone-title">You are now ready to use!</p>
-                <p>Invite your dentist to start using app to be updated withing every medical step you are doing.</p>
+                <p class="add-dentist-phone-title">{{::'CONTENT.TEXT_NOW_READY_TO_USE' | translate}}</p>
+                <p>{{::'CONTENT.TEXT_DENTIST_INVITE_TO_START_USING' | translate}}</p>
             </div>
             <form class="block-content">
                 <div class="input-block input-phone">
@@ -35,17 +35,17 @@
                         {{vm.select_code}}
                     </button>
                     <label class="item item-input">
-                        <input type="number" placeholder="Enter dentist phone number"
+                        <input type="number" placeholder="{{::'CONTENT.PLACEHOLDER_DENTIST_PHONE' | translate}}"
                                ng-model="vm.phone" input-change-color="#000" ng-keyup="vm.checkKey($event)">
                     </label>
                     <button class="phone-icon" ng-click="vm.pickContactUsingNativeUI()">
                         <img src="content/img/phone.png" alt="">
                     </button>
                 </div>
-                <p ng-if="!vm.edit && !vm.c_invite">Have no dentist <a ng-click="vm.skip()"> skip</a></p>
+                <p ng-if="!vm.edit && !vm.c_invite">{{::'CONTENT.TEXT_HAVE_NO_DENTIST' | translate}}<a ng-click="vm.skip()"> {{::'CONTENT.BTN_SKIP' | translate}}</a></p>
                 <div class="form-bottom-block">
-                    <button class="send-button" ng-if="vm.show_back" ng-click="vm.back()">Back</button>
-                    <button class="send-button" ng-click="vm.send()">Submit</button>
+                    <button class="send-button" ng-if="vm.show_back" ng-click="vm.back()">{{::'CONTENT.BTN_BACK' | translate}}</button>
+                    <button class="send-button" ng-click="vm.send()">{{::'CONTENT.BTN_SUBMITZ' | translate}}</button>
                 </div>
             </form>
         </div>

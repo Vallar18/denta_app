@@ -3,9 +3,9 @@
 
     angular.module('service.tabsSvc', []).factory('tabsSvc', tabsSvc);
 
-    tabsSvc.$inject = ['userSvc'];
+    tabsSvc.$inject = ['userSvc', '$translate', '$timeout'];
 
-    function tabsSvc(userSvc) {
+    function tabsSvc(userSvc, $translate, $timeout) {
         let model = {
             getMenuItems: getMenuItems,
             getTabItems: getTabItems
@@ -14,26 +14,27 @@
 
 
         function getMenuItems(type) {
+            console.log($translate.instant('MENU'));
             if (angular.isUndefined(type) || type === userSvc.roleConst().doctor) {
                 return [{
                     id: 5,
-                    name: 'Terms Of Use',
+                    name: 'ASD',
                     view: 'terms'
                 }, {
                     id: 6,
-                    name: 'Privacy Police',
+                    name: 'ASDF',
                     view: 'privacy'
                 }, {
                     id: 4,
-                    name: 'About',
+                    name: 'ASDF',
                     view: 'about'
                 }, {
                     id: 8,
-                    name: 'Log out',
+                    name: 'ASDF',
                     act: 'logout'
                 }, {
                     id: 7,
-                    name: 'Support',
+                    name: 'ASD',
                     view: 'support'
                 }, {
                     id: 1,
@@ -86,5 +87,6 @@
                 ];
             }
         }
-    }})
+    }
+})
 ();

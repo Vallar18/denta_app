@@ -20,6 +20,16 @@
             suffix: '.json'
         });
         $translateProvider.preferredLanguage('en');
+
+
+        // -- change language -- //
+        // vm.changeLanguage = changeLanguage;
+        // function changeLanguage(langKey) {
+        //     $translate.use(langKey);
+        // }
+        // changeLanguage('uk');
+
+
         //----------------------------------
         $urlRouterProvider.otherwise('/add-phone');
         $mdGestureProvider.skipClickHijack();

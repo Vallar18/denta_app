@@ -5,7 +5,7 @@
                 <img src="content/img/logos.png">
             </div>
             <div class="img-wrap">
-                <p>Thank you</p>
+                <p>{{::'CONTENT.TEXT_THANK_YOU' | translate}}</p>
                 <div class="img-outer">
                     <img src="content/img/border.svg">
                 </div>
@@ -14,13 +14,15 @@
         </div>
         <div class="item-block-content">
             <div class="block-content">
-                <div class="share-view__subtitle">You are now ready to use!</div>
-                <div class="share-view__share-text">Feel free to share us with your friends and family</div>
+                <div class="share-view__subtitle">{{::'CONTENT.TEXT_NOW_READY_TO_USE' | translate}}</div>
+                <div class="share-view__share-text">{{::'CONTENT.TEXT_FEEL_TO_SHARE' | translate}}</div>
                 <button class="button share-btn" ng-click="vm.share()">
                     <!--<i class="icon ion-android-share-alt"></i>-->
                     <img src="content/img/share-icon.png" alt="">
                 </button>
-                <button class="send-button share-view__finish-btn" ng-click="vm.finish()">Finish</button>
+                <button class="send-button share-view__finish-btn" ng-click="vm.finish()">
+                    {{::'CONTENT.TEXT_FINISH' | translate}}
+                </button>
             </div>
         </div>
     </ion-content>

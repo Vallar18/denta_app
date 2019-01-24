@@ -1,9 +1,9 @@
 <div class="code-select">
     <ion-pane>
         <div class="header-simple">
-            <div class="title-popup">Select country</div>
+            <div class="title-popup">{{::'CONTENT.TEXT_SELECT_COUNTRY' | translate}}</div>
             <div class="search-block">
-                <input type="search" placeholder="Search" ng-model="name">
+                <input type="search" placeholder="{{::'CONTENT.PLACEHOLDER_SEARCH' | translate}}" ng-model="name">
                 <button name="search" ng-click="vm.searchCode()" class="search-btn">
                     <img src="content/img/search.png" alt="">
                 </button>

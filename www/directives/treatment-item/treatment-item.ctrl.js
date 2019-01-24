@@ -5,16 +5,46 @@
         .module('app')
         .controller('TreatmentItemCtrl', TreatmentItemCtrl);
 
-    TreatmentItemCtrl.$inject = ['$scope', '$ionicPopup', '$cordovaCamera', '$ionicPlatform', 'IonicClosePopupService', 'emergenciesSvc', 'userSvc', '$ionicLoading', 'messagesSvc'];
+    TreatmentItemCtrl.$inject = ['$scope', '$ionicPopup', '$cordovaCamera', '$ionicPlatform', '$translate',
+        'IonicClosePopupService', 'emergenciesSvc', 'userSvc', '$ionicLoading', 'messagesSvc'];
 
-    function TreatmentItemCtrl($scope, $ionicPopup, $cordovaCamera, $ionicPlatform, IonicClosePopupService, emergenciesSvc, userSvc, $ionicLoading, messagesSvc) {
+    function TreatmentItemCtrl($scope, $ionicPopup, $cordovaCamera, $ionicPlatform, $translate,
+                               IonicClosePopupService, emergenciesSvc, userSvc, $ionicLoading, messagesSvc) {
         let vm = this;
         vm.photoItems = $scope.tiFiles || [];
         vm.emergencyItem = $scope.tiItem;
+
+        init();
+
+        function init() {
+            $translate('CONTENT.TEXT_PHOTO_LIST').then(function (text) {
+                $scope.text_list = text;
+            });
+            $translate('CONTENT.BTN_POPUP_HIDE').then(function (text) {
+                $scope.btn_hide = text;
+            });
+            $translate('CONTENT.BTN_POPUP_ADD').then(function (text) {
+                $scope.btn_add = text;
+            });
+            $translate('CONTENT.BTN_POPUP_CLOSE').then(function (text) {
+                $scope.btn_close = text;
+            });
+            $translate('CONTENT.TEXT_PHOTO_SELECT').then(function (text) {
+                $scope.text_photo_select= text;
+            });
+            $translate('CONTENT.TEXT_GALLERY').then(function (text) {
+                $scope.text_gallery = text;
+            });
+            $translate('CONTENT.TEXT_CAMERA').then(function (text) {
+                $scope.text_camera = text;
+            });
+
+        }
+
         vm.openPopupList = function () {
             var popupList = $ionicPopup.show({
                 templateUrl: 'components/photo-emergency/photo-emergency.html',
-                title: 'Photo list',
+                title: $scope.text_list || 'Photo list',
                 cssClass: 'photo-emergency',
                 subTitle: '',
                 scope: $scope,
@@ -25,13 +55,13 @@
         function getButtonForListPopup() {
             let arrBtn = [
                 {
-                    text: 'Hide',
+                    text: $scope.btn_hide || 'Hide',
                     type: 'button-default',
                 }
             ];
             if (angular.isDefined(vm.emergencyItem.status) && vm.emergencyItem.status === 0) {
                 arrBtn.push({
-                    text: 'Add',
+                    text:   $scope.btn_add || 'Add',
                     type: 'button-positive',
                     onTap: function (e) {
                         e.preventDefault();
@@ -83,7 +113,7 @@
                     cssClass: 'photo-viewer',
                     buttons: [
                         {
-                            text: 'Close',
+                            text:  $scope.btn_close || 'Close',
                             type: 'button-default',
                             onTap: function (e) {
                             }
@@ -150,19 +180,19 @@
         vm.openPopup = function () {
             var myPopup = $ionicPopup.show({
                 template: '',
-                title: 'Select photo source',
+                title: $scope.text_select_photo || 'Select photo source',
                 subTitle: '',
                 scope: $scope,
                 buttons: [
                     {
-                        text: 'Gallery',
+                        text: $scope.gallery ||  'Gallery',
                         type: 'button-default',
                         onTap: function (e) {
                             afterSelectImg('open');
                         }
                     },
                     {
-                        text: 'Camera',
+                        text: $scope.text_camera || 'Camera',
                         type: 'button-positive',
                         onTap: function (e) {
                             afterSelectImg('create');

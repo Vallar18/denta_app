@@ -2,7 +2,7 @@
     <ion-pane class="support-view">
         <div class="header-simple">
             <div class="header-simple__title">
-              Support
+              {{::'CONTENT.TEXT_SUPPORT_TITLE' | translate}}
             </div>
             <button class="button back-btn" ng-click="vm.back()">
                 <!--<i class="icon ion-ios-arrow-thin-left"></i>-->
@@ -14,17 +14,20 @@
         </div>
         <ion-content class="support-view__main">
             <div class="support-view__content">
-                <p>You can tell us an error or suggest your idea.</p>
+                <p>{{::'CONTENT.TEXT_SUPPORT_PARAGRAPH' | translate}}</p>
                 <div class="item-block-content">
                     <form class="block-content">
-                        <p>Your email</p>
+                        <p>{{::'CONTENT.TEXT_YOUR_EMAIL' | translate}}</p>
                         <label class="item item-input">
-                            <input class="text-center" type="text" placeholder="Email" ng-model="vm.user.email" input-change-color="#000">
+                            <input class="text-center" type="text" placeholder="{{::'CONTENT.PLACEHOLDER_EMAIL' | translate}}"
+                                   ng-model="vm.user.email" input-change-color="#000">
                         </label>
                         <div class="description">
-                            <textarea rows="4" ng-model="vm.message" maxlength="250" placeholder="Describe your problem or idea"></textarea>
+                            <textarea rows="4" ng-model="vm.message" maxlength="250"
+                                      placeholder="{{::'CONTENT.PLACEHOLDER_YOUR_PROBLEM_OR_IDEA' | translate}}">
+                            </textarea>
                         </div>
-                        <button class="send-button" ng-click="vm.send()">Send</button>
+                        <button class="send-button" ng-click="vm.send()">{{::'CONTENT.BTN_SEND' | translate}}</button>
                     </form>
                 </div>
             </div>

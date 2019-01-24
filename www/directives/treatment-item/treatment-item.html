@@ -15,17 +15,17 @@
         <div class="col-40 col-bottom text-align-right">
             <div ng-if="tiPrice && !tiNeedReview" class="treatment-item__price">{{::tiPrice}} {{::(tiCurrency|currency_by_id)}} </div>
             <a ng-if="tiNeedReview" class="treatment-item__review"
-               ng-click="tiReview && tiReview()">Give a review</a>
+               ng-click="tiReview && tiReview()">{{::'CONTENT.TEXT_GIVE_REVIEW_TITLE' | translate}}</a>
 
             <div ng-if="!tiIsNotified && tiHaveHomeDoctor" class="treatment-item__notify"
                  ng-click="tiNotify && tiCanNotify && tiNotify()"
                  ng-class="{'treatment-item__notify--disabled':!tiCanNotify}">
-                Notify H.D.
+                {{::'CONTENT.TEXT_NOTIFY' | translate}}
             </div>
 
-            <div ng-if="tiIsNotified" class="treatment-item--notified">H.D notified</div>
+            <div ng-if="tiIsNotified" class="treatment-item--notified">{{::'CONTENT.TEXT_NOTIFIED' | translate}}</div>
 
-            <div ng-if="!tiHaveHomeDoctor" class="treatment-item__no-home-doctor">No home doctor</div>
+            <div ng-if="!tiHaveHomeDoctor" class="treatment-item__no-home-doctor">{{::'CONTENT.TEXT_NO_HOME_DOCTOR' | translate}}</div>
         </div>
     </div>
 </div>

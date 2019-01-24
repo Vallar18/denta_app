@@ -4,10 +4,10 @@
     angular.module('service.geoSvc', []).factory('geoSvc', geoSvc);
 
     geoSvc.$inject = ['$cordovaGeolocation', '$ionicLoading',
-        '$rootScope', '$cordovaNetwork', 'networkMonitorSvc', '$q', '$ionicPopup'];
+        '$rootScope', '$cordovaNetwork', 'networkMonitorSvc', '$q', '$ionicPopup', '$translate'];
 
     function geoSvc($cordovaGeolocation, $ionicLoading,
-                    $rootScope, $cordovaNetwork, networkMonitorSvc, $q, $ionicPopup) {
+                    $rootScope, $cordovaNetwork, networkMonitorSvc, $q, $ionicPopup, $translate) {
         let watcherPosition;
         const TIMEOUT_LOADING_SHOW = 30000;
         let counter_get_position = 0;

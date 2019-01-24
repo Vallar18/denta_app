@@ -5,9 +5,11 @@
         .module('app')
         .controller('AddClinicCtrl', AddClinicCtrl);
 
-    AddClinicCtrl.$inject = ['$scope', '$state', '$stateParams', 'regSvc', 'phoneSvc', 'authSvc', 'toastr', 'messagesSvc', 'dentistSvc', 'codes', '$ionicPopup', 'geoSvc', '$ionicLoading', 'userSvc','clinicSvc'];
+    AddClinicCtrl.$inject = ['$scope', '$state', '$stateParams', 'regSvc', 'phoneSvc', 'authSvc', '$translate',
+        'toastr', 'messagesSvc', 'dentistSvc', 'codes', '$ionicPopup', 'geoSvc', '$ionicLoading', 'userSvc'];
 
-    function AddClinicCtrl($scope, $state, $stateParams, regSvc, phoneSvc, authSvc, toastr, messagesSvc, dentistSvc, codes, $ionicPopup, geoSvc, $ionicLoading, userSvc, clinicSvc) {
+    function AddClinicCtrl($scope, $state, $stateParams, regSvc, phoneSvc, authSvc, $translate,
+                           toastr, messagesSvc, dentistSvc, codes, $ionicPopup, geoSvc, $ionicLoading, userSvc) {
         const vm = this;
         vm.checkClinicPhone = checkClinicPhone;
         vm.send = send;
@@ -44,6 +46,13 @@
             };
         }
 
+        $translate('CONTENT.BTN_POPUP_YES').then(function (text) {
+            $scope.btn_yes = text;
+        });
+        $translate('CONTENT.BTN_POPUP_NO').then(function (text) {
+            $scope.btn_no = text;
+        });
+
         function checkClinicPhone() {
             if (!validPhone()) {
                 return;
@@ -68,9 +77,9 @@
                 title: messagesSvc.quest.clinicPhone,
                 scope: $scope,
                 buttons: [
-                    {text: 'No'},
+                    {text: $scope.btn_no || 'No'},
                     {
-                        text: '<b>Yes</b>',
+                        text: '<b>' + $scope.btn_yes + '</b>' || '<b>Yes</b>',
                         type: 'button-positive',
                         onTap: getListClinic
                     },
@@ -102,7 +111,6 @@
             if (vm.edit) {
                 vm.edit = false;
                 vm.edit_spec = true;
-                vm.btn_text = 'Send';
                 vm.clinic = {
                     user_id: vm.user.id, name: '', phone: '',
                     longitude: null, latitude: null
@@ -274,11 +282,11 @@
         //     if (vm.showSelect) {
         //         return;
         //     }
-            // clinicSvc.getClinicAddress(function(res){
-            //     vm.clinic.address = res.address;
-            //     vm.clinic.longitude = res.lng;
-            //     vm.clinic.latitude = res.lat;
-            // });
+        // clinicSvc.getClinicAddress(function(res){
+        //     vm.clinic.address = res.address;
+        //     vm.clinic.longitude = res.lng;
+        //     vm.clinic.latitude = res.lat;
+        // });
         // }
 
         vm.getLocation = (location) => {

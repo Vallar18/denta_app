@@ -5,9 +5,9 @@
         .module('app')
         .controller('TermsCtrl', TermsCtrl);
 
-    TermsCtrl.$inject = ['$ionicHistory', 'textSvc'];
+    TermsCtrl.$inject = ['$ionicHistory', 'textSvc', '$translate'];
 
-    function TermsCtrl($ionicHistory, textSvc) {
+    function TermsCtrl($ionicHistory, textSvc, $translate) {
         const vm = this;
         init();
 

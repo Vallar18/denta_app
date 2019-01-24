@@ -16,16 +16,47 @@
     "TEXT_SELECT_ROLE_PATIENT": "I'm a patient",
 
     "TEXT_REGISTRATION_TITLE": "Let us know you",
+    "TEXT_YOUR_EMAIL": "Your email",
+    "TEXT_PHOTO_LIST": "Photo list",
     "TEXT_EDIT_PROFILE": "Edit profile",
+    "TEXT_CHANGE_DENTIST": "Change dentist",
+    "TEXT_INVITE_DENTIST": "Invite Dentist",
+    "TEXT_INVITE_YOUR_DENTIST": "Invite your dentist",
+    "TEXT_BECOME_DENTIST": "Become a dentist",
+    "TEXT_SEND_INVITE": "Send invite",
+    "TEXT_HAVE_NO_DENTIST": "Have no dentist",
+    "TEXT_THANK_YOU": "Thank you",
+    "TEXT_NOW_READY_TO_USE": "You are now ready to use!",
+    "TEXT_FEEL_TO_SHARE": "Feel free to share us with your friends and family",
     "TEXT_LIST_IS_EMPTY": "List is empty",
+    "TEXT_GET_INFO": "Get info",
     "TEXT_LOADING": "Loading...",
+    "TEXT_FINISH": "Finish",
+    "TEXT_NAVIGATE": "Navigate",
     "TEXT_DISTANCE": "Distance",
     "TEXT_PRICE": "Price",
     "TEXT_RATING": "Rating",
     "TEXT_REVIEWS": "REVIEWS",
+    "TEXT_CHANGE": "Change",
+    "TEXT_NOTIFY": "Notify H.D.",
+    "TEXT_NOTIFIED": "H.D notified",
+    "TEXT_SELECT_COUNTRY": "Select country",
+    "TEXT_SELECT_CURRENCY": "Select currency",
+    "TEXT_SELECT_YOUR": "Select your",
+    "TEXT_SUBSCRIPTION": "subscription",
+
+
+    "TEXT_PHOTO_SELECT": "Select photo source",
+    "TEXT_GALLERY": "Gallery",
+    "TEXT_CAMERA": "Camera",
+
+
+    "TEXT_GIVE_REVIEW_TITLE": " Give a review",
+    "TEXT_GIVE_REVIEW_ASK_SATISFIED": "How satisfied are you with the service?",
+    "TEXT_GIVE_REVIEW_ASK_PRICE": "Was the price fair?",
+    "TEXT_GIVE_REVIEW_ASK_RECOMMEND": "Would you recommend this doctor?",
 
     "TEXT_ADD_SPECIALITIES_SELECTED": "selected",
-
     "TEXT_ADD_SPECIALITIES": "Add specialties",
     "TEXT_EDIT_SPECIALITIES": "Edit specialties",
 
@@ -34,18 +65,52 @@
     "TEXT_MY_PATIENTS": "My patients",
     "TEXT_EMERGENCIES": "Emergencies",
     "TEXT_HISTORY_TITLE": "History",
+    "TEXT_TERMS_OF_USE_TITLE": "terms of use",
+    "TEXT_PRIVACY_POLICY_TITLE": "privacy policy",
 
+    "TEXT_MY_PROFILE": " My profile",
+    "TEXT_HOME_DENTIST": "home dentist",
+    "TEXT_NO_HOME_DOCTOR": "No home doctor",
+
+    "TEXT_SUPPORT_TITLE": "Support",
+    "TEXT_SUPPORT_PARAGRAPH": "You can tell us an error or suggest your idea.",
+
+    "TEXT_YOUR_HOME_DENTIST_INFO": "Please provide us your home dentist info.",
+    "TEXT_SEND_DENTIST_INVITE_TITE": "This dentist is not in our database, send him an invitation?",
+    "TEXT_YOUR_HOME_DENTIST_NOTIFIED": "He will be notified about any visit out of state.",
+    "TEXT_DENTIST_INVITE_TO_START_USING": "Invite your dentist to start using app to be updated withing every medical step you are doing.",
 
 
     "PLACEHOLDER_FIRST_NAME": "First name",
     "PLACEHOLDER_LAST_NAME": "Last name",
     "PLACEHOLDER_EMAIL": "Email",
+    "PLACEHOLDER_SEARCH": "Search",
     "PLACEHOLDER_CLINIC_PHONE": "Clinic Phone number",
     "PLACEHOLDER_PATIENT_PHONE": "Enter patient number",
+    "PLACEHOLDER_DENTIST_PHONE": "Enter dentist phone number",
     "PLACEHOLDER_CLINIC_NAME": "Clinic name",
     "PLACEHOLDER_EMERGENCY_PRICE": "Emergency price",
     "PLACEHOLDER_WRITE_ABOUT_CLINIC": "Write about the clinic..",
+    "PLACEHOLDER_YOUR_PROBLEM_OR_IDEA": "Describe your problem or idea",
+    "PLACEHOLDER_REVIEW_ASK_PAY": "How much did you pay?",
 
+    "TOASTR_HOME_DOCTOR_NOTIFIED": "Your home doctor will be notified",
+    "TOASTR_SUCCESS_SEND_REVIEW": "Success send review!",
+
+
+    "TEXT_MENU_ABOUT": "About",
+    "TEXT_MENU_TERMS": "Term of use",
+    "TEXT_MENU_PRIVACY": "Privacy policy",
+    "TEXT_MENU_SUPPORT": "Support",
+    "TEXT_MENU_LOGOUT": "Log out",
+
+    "MENU": [{
+      "TEXT_MENU_ABOUT": "About",
+      "TEXT_MENU_TERMS": "Term of use",
+      "TEXT_MENU_PRIVACY": "Privacy policy",
+      "TEXT_MENU_SUPPORT": "Support",
+      "TEXT_MENU_LOGOUT": "Log out"
+    }],
 
     "BTN_NEW_CLINIC": "New clinic",
     "BTN_SEND": "Send",
@@ -53,14 +118,17 @@
     "BTN_SUBMIT": "Submit",
     "BTN_NEXT": "Next",
     "BTN_UPDATE": "Update",
-    "BTN_BACK": "Back"
+    "BTN_BACK": "Back",
+    "BTN_SKIP": "Skip",
+
+    "BTN_POPUP_YES": "Yes",
+    "BTN_POPUP_NO": "No",
+    "BTN_POPUP_HIDE": "Hide",
+    "BTN_POPUP_ADD": "Add",
+    "BTN_POPUP_CLOSE": "Close"
   },
   "ERROR": {
-    "PHONE": "The number should be 10 digits",
-    "INVALID_EMAIL": "Please enter the correct email",
-    "EMPTY_FIELD": "Please complete all fields",
-    "SOCIAL": "You need to login to facebook to use the app",
-    "NOT_FOUND": "Not found"
+
   },
   "SUCCESS": {
   }

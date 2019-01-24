@@ -5,9 +5,11 @@
         .module('app')
         .controller('AddDentistPhoneCtrl', AddDentistPhoneCtrl);
 
-    AddDentistPhoneCtrl.$inject = ['$scope', '$state', '$stateParams', 'authSvc', 'regSvc', 'phoneSvc', 'codes', 'toastr', 'messagesSvc', '$ionicPlatform', '$cordovaContacts', 'userSvc', '$ionicPopup', 'dentistSvc'];
+    AddDentistPhoneCtrl.$inject = ['$scope', '$state', '$stateParams', 'authSvc', 'regSvc', 'phoneSvc', 'codes', '$translate',
+        'toastr', 'messagesSvc', '$ionicPlatform', '$cordovaContacts', 'userSvc', '$ionicPopup', 'dentistSvc'];
 
-    function AddDentistPhoneCtrl($scope, $state, $stateParams, authSvc, regSvc, phoneSvc, codes, toastr, messagesSvc, $ionicPlatform, $cordovaContacts, userSvc, $ionicPopup, dentistSvc) {
+    function AddDentistPhoneCtrl($scope, $state, $stateParams, authSvc, regSvc, phoneSvc, codes, $translate,
+                                 toastr, messagesSvc, $ionicPlatform, $cordovaContacts, userSvc, $ionicPopup, dentistSvc) {
         const vm = this;
         vm.send = send;
         vm.skip = skip;
@@ -22,7 +24,8 @@
         vm.c_invite = $stateParams.c_invite;
         vm.invite_for_den = $stateParams.invite_for_den;
         vm.codes = codes;
-        vm.select_code = vm.codes[phoneSvc.getDefaultIndex()].code;
+        vm.selected_country = vm.codes[phoneSvc.getDefaultIndex()];
+        vm.select_code = vm.selected_country.code;
         vm.user = userSvc.getUser();
         vm.role = userSvc.getRole();
         vm.phone = '';
@@ -30,7 +33,7 @@
         vm.phoneFromContact = '';
         vm.contactList = [];
         init();
-        getLoc();
+        // getLoc();
 
         function init() {
             if (vm.c_invite || vm.invite_for_den) {
@@ -42,15 +45,27 @@
                 vm.show_back = true;
                 hideOverlay();
             }
-        }
-
-        function getLoc() {
-            $.getJSON("http://ip-api.com/json/?callback=?", function (data) {
-                phoneSvc.setDefaultCountry(data.country);
-                vm.selected_country = vm.codes[phoneSvc.getDefaultIndex()];
-                vm.select_code = vm.selected_country.code;
+            $translate('CONTENT.BTN_POPUP_YES').then(function (text) {
+                $scope.btn_yes = text;
+            });
+            $translate('CONTENT.BTN_POPUP_NO').then(function (text) {
+                $scope.btn_no = text;
+            });
+            $translate('CONTENT.TEXT_SEND_DENTIST_INVITE_TITE').then(function (text) {
+                $scope.text_title_invite  = text;
+            });
+            $translate('CONTENT.TEXT_SEND_INVITE').then(function (text) {
+                $scope.send_invite = text;
             });
         }
+
+        // function getLoc() {
+        //     $.getJSON("http://ip-api.com/json/?callback=?", function (data) {
+        //         phoneSvc.setDefaultCountry(data.country);
+        //         vm.selected_country = vm.codes[phoneSvc.getDefaultIndex()];
+        //         vm.select_code = vm.selected_country.code;
+        //     });
+        // }
 
         function back() {
             window.history.back();
@@ -255,18 +270,18 @@
 
         function showAskDentist() {
             $ionicPopup.show({
-                template: 'This dentist is not in our database, send him an invitation?',
-                title: 'Send invite',
+                template: $scope.text_title_invite ||  'This dentist is not in our database, send him an invitation?',
+                title:  $scope.send_invite || 'Send invite',
                 scope: $scope,
                 buttons: [
                     {
-                        text: 'NO',
+                        text: $scope.btn_no || 'NO',
                         onTap: function () {
                             skip();
                         }
                     },
                     {
-                        text: '<b>YES</b>',
+                        text: '<b>'+$scope.btn_yes+'</b>' || '<b>YES</b>',
                         type: 'button-positive',
                         onTap: function (e) {
                             dentistSvc.invite({

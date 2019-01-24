@@ -29,7 +29,41 @@
             if (!authSvc.isLogined()) {
                 authSvc.logout();
             }
-            vm.menuModel.items = tabsSvc.getMenuItems(currentUserType);
+            if (angular.isUndefined(type) || type === userSvc.roleConst().doctor) {
+                vm.menuModel.items = [{
+                    id: 5,
+                    name: 'ASD',
+                    view: 'terms'
+                }, {
+                    id: 6,
+                    name: 'ASDF',
+                    view: 'privacy'
+                }, {
+                    id: 4,
+                    name: 'ASDF',
+                    view: 'about'
+                }, {
+                    id: 8,
+                    name: 'ASDF',
+                    act: 'logout'
+                }, {
+                    id: 7,
+                    name: 'ASD',
+                    view: 'support'
+                }, {
+                    id: 1,
+                    name: 'Need a dentist',
+                    view: 'tabs.dentist-help'
+                }, {
+                    id: 2,
+                    name: 'My treatments',
+                    view: 'tabs.dentist-history'
+                }, {
+                    id: 3,
+                    name: 'Share with friends',
+                    act: 'share'
+                }];
+            }
             vm.tabsModel.items = tabsSvc.getTabItems(currentUserType);
             // geoSvc.watchPosition();
             sendFCMToken();
