@@ -28,7 +28,7 @@
             if (window.firebase && window.firebase.initializeApp) {
                 window.firebase.initializeApp(FCM_CONFIG);
             } else {
-                toastr.error(messagesSvc.error.fcm);
+                toastr.error(messagesSvc.error().fcm);
             }
         }
 

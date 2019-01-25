@@ -45,11 +45,9 @@
     "TEXT_SELECT_YOUR": "Select your",
     "TEXT_SUBSCRIPTION": "subscription",
 
-
     "TEXT_PHOTO_SELECT": "Select photo source",
     "TEXT_GALLERY": "Gallery",
     "TEXT_CAMERA": "Camera",
-
 
     "TEXT_GIVE_REVIEW_TITLE": " Give a review",
     "TEXT_GIVE_REVIEW_ASK_SATISFIED": "How satisfied are you with the service?",
@@ -76,7 +74,7 @@
     "TEXT_SUPPORT_PARAGRAPH": "You can tell us an error or suggest your idea.",
 
     "TEXT_YOUR_HOME_DENTIST_INFO": "Please provide us your home dentist info.",
-    "TEXT_SEND_DENTIST_INVITE_TITE": "This dentist is not in our database, send him an invitation?",
+    "TEXT_SEND_DENTIST_INVITE_TITLE": "This dentist is not in our database, send him an invitation?",
     "TEXT_YOUR_HOME_DENTIST_NOTIFIED": "He will be notified about any visit out of state.",
     "TEXT_DENTIST_INVITE_TO_START_USING": "Invite your dentist to start using app to be updated withing every medical step you are doing.",
 
@@ -94,23 +92,18 @@
     "PLACEHOLDER_YOUR_PROBLEM_OR_IDEA": "Describe your problem or idea",
     "PLACEHOLDER_REVIEW_ASK_PAY": "How much did you pay?",
 
-    "TOASTR_HOME_DOCTOR_NOTIFIED": "Your home doctor will be notified",
-    "TOASTR_SUCCESS_SEND_REVIEW": "Success send review!",
-
-
     "TEXT_MENU_ABOUT": "About",
     "TEXT_MENU_TERMS": "Term of use",
     "TEXT_MENU_PRIVACY": "Privacy policy",
     "TEXT_MENU_SUPPORT": "Support",
     "TEXT_MENU_LOGOUT": "Log out",
-
-    "MENU": [{
-      "TEXT_MENU_ABOUT": "About",
-      "TEXT_MENU_TERMS": "Term of use",
-      "TEXT_MENU_PRIVACY": "Privacy policy",
-      "TEXT_MENU_SUPPORT": "Support",
-      "TEXT_MENU_LOGOUT": "Log out"
-    }],
+    "TEXT_MENU_NEED_DENTIST": "Need a dentist",
+    "TEXT_MENU_TREATMENTS": "My treatments",
+    "TEXT_MENU_SHARE": "Share with friends",
+    "TEXT_MENU_PATIENT": "Patient",
+    "TEXT_MENU_PROFILE": "Profile",
+    "TEXT_MENU_HISTORY": "History",
+    "TEXT_MENU_HELP": "Help",
 
     "BTN_NEW_CLINIC": "New clinic",
     "BTN_SEND": "Send",
@@ -128,8 +121,33 @@
     "BTN_POPUP_CLOSE": "Close"
   },
   "ERROR": {
-
+    "CHECK_CODE_PHONE": "Check the entered phone and code",
+    "SOMETHING_WRONG": "Something went wrong",
+    "EMPTY_CODE": "Please select phone code",
+    "INVALID_PHONE": "The number should be 8 to 20 digits",
+    "INVALID_CODE": "The code should consist of 4 digits",
+    "INVALID_EMAIL": "Please enter the correct email",
+    "EMPTY_FIELD": "Please fill in all fields",
+    "EMPTY_SPECIALITY": "Please choose a specialty",
+    "CHOOSE_CLINIC_NAME": "Please choose a clinic",
+    "EMPTY_CLINIC_NAME": "Please write review text",
+    "CORRECT_PRICE": "Please input correct price",
+    "EMPTY_ADDRESS": "Address not found, enter manually",
+    "NOT_POSSIBLE_PHONE_BOOK": "It is not possible to access the phone book",
+    "CHECK_CLINIC_ON_MAP": "Check that you have indicated the location of the clinic on the map",
+    "FIREBASE_CHECK_INTERNET": "Error with Firebase. Please, check the Internet connection and restart the application",
+    "ADDING_AVATAR": "Please adding avatar for profile",
+    "NETWORK": "Please check your internet connection and try again or reopen application"
+  },
+  "QUEST": {
+      "CLINIC_PHONE": "The clinic with this phone number has already existed. Would you like to use this data?",
+      "BACK_REGISTRATION": "You have not completed registration, would you like to go back to adding a phone?",
+      "DOCTOR_NUMBER": "Which number of your doctor would you like to choose?",
+      "DELETE_PHOTO": "Are you sure you want to delete this photo?"
   },
   "SUCCESS": {
+    "HOME_DOCTOR_NOTIFIED": "Your home doctor will be notified",
+    "SEND_REVIEW": "Success send review!",
+    "SEND_PATIENT_EMERGENCY": "A notification was sent to the patient"
   }
 }

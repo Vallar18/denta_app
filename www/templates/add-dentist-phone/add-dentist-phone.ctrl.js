@@ -51,7 +51,7 @@
             $translate('CONTENT.BTN_POPUP_NO').then(function (text) {
                 $scope.btn_no = text;
             });
-            $translate('CONTENT.TEXT_SEND_DENTIST_INVITE_TITE').then(function (text) {
+            $translate('CONTENT.TEXT_SEND_DENTIST_INVITE_TITLE').then(function (text) {
                 $scope.text_title_invite  = text;
             });
             $translate('CONTENT.TEXT_SEND_INVITE').then(function (text) {
@@ -86,12 +86,12 @@
                             showSelectPhonePopup();
                         } else {
                             vm.phone = phoneSvc.clearPhone(contactPicked.phoneNumbers[0].value);
-                            toastr.warning(messagesSvc.warning.checkCodePhone);
+                            toastr.warning(messagesSvc.warning().checkCodePhone);
                         }
                     }
                     $scope.$evalAsync();
                 }, function (error) {
-                    toastr.error(messagesSvc.error.notGetContact);
+                    toastr.error(messagesSvc.error().notGetContact);
                 });
             });
         }
@@ -99,7 +99,7 @@
         function showSelectPhonePopup() {
             vm.show_select_phone_popup = $ionicPopup.show({
                 templateUrl: 'components/select-contact/select-contact.html',
-                title: messagesSvc.quest.number,
+                title: messagesSvc.quest().number,
                 scope: $scope,
             });
         }
@@ -107,7 +107,7 @@
         function selectOneContact(c_item) {
             vm.phone = phoneSvc.clearPhone(c_item.value);
             vm.show_select_phone_popup.close();
-            toastr.warning(messagesSvc.warning.checkCodePhone);
+            toastr.warning(messagesSvc.warning().checkCodePhone);
         }
 
         function send() {
@@ -247,7 +247,7 @@
                 if (len_phone > 8 && len_phone < 20) {
                     return true;
                 } else {
-                    toastr.error(messagesSvc.error.invalidPhone);
+                    toastr.error(messagesSvc.error().invalidPhone);
                     return false;
                 }
             }

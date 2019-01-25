@@ -130,7 +130,7 @@
             }
             $ionicPopup.confirm({
                 title: 'Delete photo',
-                template: messagesSvc.quest.deletePhoto
+                template: messagesSvc.quest().deletePhoto
             }).then(function (res) {
                 if (res) {
                     if (item && item.id) {

@@ -11,11 +11,11 @@
             'app.filters'
         ])
         .run(runBlock);
-    runBlock.$inject = ['$ionicPlatform', '$state', 'utilsSvc', 'authSvc', 'userSvc', 'fcmSvc', '$timeout', '$ionicTabsDelegate'];
+    runBlock.$inject = ['$ionicPlatform', '$state', 'utilsSvc', 'authSvc', 'userSvc', 'fcmSvc', '$timeout', '$ionicTabsDelegate', 'messagesSvc'];
 
-    function runBlock($ionicPlatform, $state, utilsSvc, authSvc, userSvc, fcmSvc, $timeout, $ionicTabsDelegate) {
+    function runBlock($ionicPlatform, $state, utilsSvc, authSvc, userSvc, fcmSvc, $timeout, $ionicTabsDelegate, messagesSvc) {
         utilsSvc.initializePolyfill();
-
+        messagesSvc.translateMessages();
         $timeout(function () {
             if (authSvc.isLogined()) {
                 authSvc.processAutoLogin();

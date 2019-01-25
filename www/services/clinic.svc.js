@@ -46,11 +46,11 @@
         //         if (res.address.length && angular.isFunction(callback)) {
         //             callback(res);
         //         } else {
-        //             toastr.error(messagesSvc.error.emptyAddress);
+        //             toastr.error(messagesSvc.error().emptyAddress);
         //         }
         //         $ionicLoading.hide();
         //     }, function () {
-        //         toastr.error(messagesSvc.error.emptyAddress);
+        //         toastr.error(messagesSvc.error().emptyAddress);
         //         $ionicLoading.hide();
         //     });
         // }

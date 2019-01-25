@@ -186,17 +186,17 @@
                 if (vm.dentist.specialty_id && vm.len_spec) {
                     $scope.modal.hide();
                 } else {
-                    toastr.error(messagesSvc.error.emptySpec);
+                    toastr.error(messagesSvc.error().emptySpec);
                 }
             }
 
             function validation(type) {
                 if (type && type === 'reg') {
                     if (!vm.dentist.price || vm.dentist.price <= 0 || vm.dentist.price === '' || vm.dentist.description === '') {
-                        toastr.error(messagesSvc.error.emptyField);
+                        toastr.error(messagesSvc.error().emptyField);
                         return false;
                     } else if (vm.len_spec <= 0) {
-                        toastr.error(messagesSvc.error.emptySpec);
+                        toastr.error(messagesSvc.error().emptySpec);
                         return false;
                     }
                 } else if (type === 'become') {
@@ -206,7 +206,7 @@
                         !vm.become_dentist.description || !vm.become_dentist.description.length ||
                         !vm.become_dentist.price || vm.dentist.price <= 0 ||
                         !vm.become_dentist.currency_id) {
-                        toastr.error(messagesSvc.error.emptyField);
+                        toastr.error(messagesSvc.error().emptyField);
                         return false;
                     }
                 }

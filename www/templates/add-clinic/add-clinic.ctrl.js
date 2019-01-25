@@ -74,7 +74,7 @@
 
         function showPopUp() {
             $ionicPopup.show({
-                title: messagesSvc.quest.clinicPhone,
+                title: messagesSvc.quest().clinicPhone,
                 scope: $scope,
                 buttons: [
                     {text: $scope.btn_no || 'No'},
@@ -239,7 +239,7 @@
                     vm.show_clinic = true;
                     return true;
                 } else {
-                    toastr.error(messagesSvc.error.invalidPhone);
+                    toastr.error(messagesSvc.error().invalidPhone);
                     vm.show_clinic = false;
                     return false;
                 }
@@ -248,7 +248,7 @@
                 if (vm.len_phone > 8 && vm.len_phone < 20) {
                     return true;
                 } else {
-                    toastr.error(messagesSvc.error.invalidPhone);
+                    toastr.error(messagesSvc.error().invalidPhone);
                     return false;
                 }
             }
@@ -257,10 +257,10 @@
         function validation() {
             if (validPhone()) {
                 if (vm.clinic.name === '' || vm.clinic.address === '') {
-                    toastr.error(messagesSvc.error.emptyField);
+                    toastr.error(messagesSvc.error().emptyField);
                     return false;
                 } else if (!vm.clinic.latitude || !vm.clinic.longitude) {
-                    toastr.error(messagesSvc.error.checkClinickOnMap);
+                    toastr.error(messagesSvc.error().checkClinickOnMap);
                 } else {
                     return true;
                 }

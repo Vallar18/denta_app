@@ -13,7 +13,7 @@
             $ionicHistory.goBack();
         };
         vm.historyItems = emergItems;
-        $translate('CONTENT.TOASTR_HOME_DOCTOR_NOTIFIED').then(function (text) {
+        $translate('SUCCESS.HOME_DOCTOR_NOTIFIED').then(function (text) {
             $scope.toastr_text = text;
         });
         vm.goReview = function (item) {

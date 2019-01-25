@@ -33,7 +33,7 @@
             $translate('CONTENT.TEXT_GIVE_REVIEW_ASK_RECOMMEND').then(function (text) {
                 $scope.ask_recommend = text;
             });
-            $translate('CONTENT.TOASTR_SUCCESS_SEND_REVIEW').then(function (text) {
+            $translate('SUCCESS.SEND_REVIEW').then(function (text) {
                 $scope.succes_send_review = text;
             });
         }
@@ -71,11 +71,11 @@
 
         function sendReview() {
             if (!vm.reviewModel.comment.length) {
-                toastr.error(messagesSvc.error.emptyReview);
+                toastr.error(messagesSvc.error().emptyReview);
                 return;
             }
             if (vm.reviewModel.price <= 0) {
-                toastr.error(messagesSvc.error.correctPrice);
+                toastr.error(messagesSvc.error().correctPrice);
                 return;
             }
             reviewSvc.create({

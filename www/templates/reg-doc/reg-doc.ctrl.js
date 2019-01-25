@@ -91,15 +91,15 @@
 
         function validation() {
             if (vm.user.email === undefined) {
-                toastr.error(messagesSvc.error.invalidEmail);
+                toastr.error(messagesSvc.error().invalidEmail);
                 return false;
             }
             if (vm.user.name === '' || vm.user.lastname === '') {
-                toastr.error(messagesSvc.error.emptyField);
+                toastr.error(messagesSvc.error().emptyField);
                 return false;
             }
             if (!vm.user.avatar.length) {
-                toastr.error(messagesSvc.error.avatar);
+                toastr.error(messagesSvc.error().avatar);
                 return false;
             }
             return true;

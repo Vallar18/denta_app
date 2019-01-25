@@ -32,7 +32,7 @@
                     processRegError(err);
                 });
             } else {
-                toastr.error(messagesSvc.error.invalidCode);
+                toastr.error(messagesSvc.error().invalidCode);
             }
         }
 

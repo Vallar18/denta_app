@@ -91,7 +91,7 @@
             authSvc.setCountryId(vm.selected_country.id);
             let phone = phoneSvc.preparePhone(vm.select_code, vm.phone);
             if (!phoneSvc.validatePhone(phone)) {
-                toastr.error(messagesSvc.error.invalidPhone);
+                toastr.error(messagesSvc.error().invalidPhone);
                 return;
             }
             regSvc.sendPhone({

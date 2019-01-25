@@ -199,7 +199,7 @@
                 btn_no = text;
             });
             var confirmPopup = $ionicPopup.confirm({
-                title: messagesSvc.quest.backAsk,
+                title: messagesSvc.quest().backAsk,
                 cancelText: btn_no || 'No',
                 okText: btn_yes || 'Yes',
                 cssClass: 'back-popup'

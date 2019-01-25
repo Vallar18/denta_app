@@ -73,7 +73,7 @@
         function errorPopup() {
             errPopupInstance = $ionicPopup.alert({
                 title: 'Network error!',
-                template: messagesSvc.error.network
+                template: messagesSvc.error().network
             }).then(function () {
                 errPopupInstance = null;
             });
