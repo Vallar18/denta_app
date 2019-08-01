@@ -4,6 +4,7 @@
   "description": "Get Dent App",
   "devDependencies": {
     "@ionic/v1-toolkit": "1.0.8",
+    "angular-translate": "^2.18.1",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^3.9.4",
     "gulp-rename": "^1.2.3",

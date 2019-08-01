@@ -14,7 +14,7 @@
             // preventDuplicates: true,
             preventOpenDuplicates: true,
         });
-        //example of user translation
+        // example of user translation
         $translateProvider.useStaticFilesLoader({
             prefix: 'lang/lang-',
             suffix: '.json'
