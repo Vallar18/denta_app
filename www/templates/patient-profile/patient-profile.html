@@ -2,7 +2,7 @@
     <ion-pane class="patient-profile">
         <div class="header-simple">
             <div class="header-simple__title">
-                My profile
+                {{::'CONTENT.TEXT_MY_PROFILE' | translate}}
             </div>
             <div class="header-simple__subtitle">
                 {{vm.user.name + ' '+ vm.user.lastname}}
@@ -18,27 +18,31 @@
                 <img src="content/img/border.svg">
             </div>
             <div class="patient-profile__home-dentist text-center">
-                home dentist
+                {{::'CONTENT.TEXT_HOME_DENTIST' | translate}}
             </div>
         </div>
         <ion-content class="patient-profile__main">
             <div class="patient-profile__address" ng-if="vm.have_den">
                 <p class="patient-profile__dentist-name">{{vm.home_dentist.name + ' ' + vm.home_dentist.lastname + ','}}</p>
                 <p>{{vm.clinicAddress}}</p>
-                <div class="text-center"><a ng-click="vm.editDentistPhone()">Change</a></div>
+                <div class="text-center"><a ng-click="vm.editDentistPhone()">{{::'CONTENT.TEXT_CHANGE' | translate}}</a></div>
             </div>
             <div class="patient-profile__content">
-                <button class="gray-btn invite-dentist-btn" ng-if="!vm.have_den" ng-click='vm.invite()'>Invite your dentist</button>
+                <button class="gray-btn invite-dentist-btn" ng-if="!vm.have_den" ng-click='vm.invite()'>
+                    {{::'CONTENT.TEXT_INVITE_YOUR_DENTIST' | translate}}
+                </button>
                 <div class="patient-profile__items">
                     <img src="content/img/doc-icon.png" alt="">
                     <ul>
-                        <li ui-sref="about">About</li>
-                        <li ui-sref="terms">Term of use</li>
-                        <li ui-sref="privacy">Privacy policy</li>
-                        <li ui-sref="support">Support</li>
+                        <li ui-sref="about">{{::'CONTENT.TEXT_MENU_ABOUT' | translate}}</li>
+                        <li ui-sref="terms">{{::'CONTENT.TEXT_MENU_TERMS' | translate}}</li>
+                        <li ui-sref="privacy">{{::'CONTENT.TEXT_MENU_PRIVACY' | translate}}</li>
+                        <li ui-sref="support">{{::'CONTENT.TEXT_MENU_SUPPORT' | translate}}</li>
                     </ul>
                 </div>
-                <button class="gray-btn become-dentist-btn" ng-click="vm.becomeDentist()">Become a dentist</button>
+                <button class="gray-btn become-dentist-btn" ng-click="vm.becomeDentist()">
+                    {{::'CONTENT.TEXT_BECOME_DENTIST' | translate}}
+                </button>
                 <div class="text-center">
                     <button class="button share-btn" ng-click="vm.share()">
                         <img src="content/img/share-icon.png" alt="">

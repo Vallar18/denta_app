@@ -18,6 +18,7 @@
         vm.reviewArr = reviewItems;
         vm.isViewMode = $stateParams.id ? true : false;
         vm.back = function () {
+
             $ionicHistory.goBack();
         };
         init();

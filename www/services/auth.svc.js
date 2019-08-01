@@ -3,9 +3,9 @@
 
     angular.module('service.authSvc', []).factory('authSvc', authSvc);
 
-    authSvc.$inject = ['userSvc', '$localStorage', '$state', '$ionicPlatform', '$ionicPopup', 'http', 'url', 'toastr','$rootScope','messagesSvc'];
+    authSvc.$inject = ['userSvc', '$localStorage', '$state', '$ionicPlatform', '$ionicPopup', 'http', 'url', 'toastr','$rootScope','messagesSvc','$translate'];
 
-    function authSvc(userSvc, $localStorage, $state, $ionicPlatform, $ionicPopup, http, url, toastr, $rootScope, messagesSvc) {
+    function authSvc(userSvc, $localStorage, $state, $ionicPlatform, $ionicPopup, http, url, toastr, $rootScope, messagesSvc,$translate) {
         const CODE_LENGTH = 4;
         let model = {
             setCode: setCode,
@@ -190,10 +190,18 @@
         }
 
         function showBackPopup() {
+            let btn_yes;
+            let btn_no;
+            $translate('CONTENT.BTN_POPUP_YES').then(function (text) {
+                btn_yes = text;
+            });
+            $translate('CONTENT.BTN_POPUP_NO').then(function (text) {
+                btn_no = text;
+            });
             var confirmPopup = $ionicPopup.confirm({
-                title: messagesSvc.quest.backAsk,
-                cancelText: 'No',
-                okText: 'Yes',
+                title: messagesSvc.quest().backAsk,
+                cancelText: btn_no || 'No',
+                okText: btn_yes || 'Yes',
                 cssClass: 'back-popup'
             });
             confirmPopup.then(function (res) {

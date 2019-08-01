@@ -4,10 +4,10 @@
     angular.module('service.geoSvc', []).factory('geoSvc', geoSvc);
 
     geoSvc.$inject = ['$cordovaGeolocation', '$ionicLoading',
-        '$rootScope', '$cordovaNetwork', 'networkMonitorSvc', '$q', '$ionicPopup'];
+        '$rootScope', '$cordovaNetwork', 'networkMonitorSvc', '$q', '$ionicPopup', '$translate'];
 
     function geoSvc($cordovaGeolocation, $ionicLoading,
-                    $rootScope, $cordovaNetwork, networkMonitorSvc, $q, $ionicPopup) {
+                    $rootScope, $cordovaNetwork, networkMonitorSvc, $q, $ionicPopup, $translate) {
         let watcherPosition;
         const TIMEOUT_LOADING_SHOW = 30000;
         let counter_get_position = 0;
@@ -27,6 +27,7 @@
             disableDefaultUI: true,
         };
         let markersItems = [];
+        let markers = [];
 
         function initGoogleAutocomplite() {
             let script = document.createElement("script");
@@ -269,12 +270,14 @@
             let addressObj = {
                 lat: latlng.lat || latlng.latitude,
                 lng: latlng.lng || latlng.longitude,
-                address: ''
+                address: '',
+                results: []
             };
             geocoder.geocode({'location': latlng}, function (results, status) {
                 if (status === 'OK') {
                     if (results[0]) {
                         addressObj.address = results[0].formatted_address;
+                        addressObj.results = results[0].address_components;
                         callback(addressObj);
                     } else {
                         callback(addressObj);
@@ -399,6 +402,7 @@
                             label: {text: '+', color: 'white', fontSize: '25px', fontWeight: '1000'},
                             zIndex: 10
                         });
+                        markers.push(tempMarker);
                         tempMarker.clinicObj = val;
                         let tempEvent = window.google.maps.event.addListener(tempMarker, 'click', function () {
                             callback(this);
@@ -409,6 +413,7 @@
                         });
                     }
                 });
+
             }
         }
 
@@ -442,7 +447,7 @@
                         mapTypeId: window.google.maps.MapTypeId.ROADMAP
                     });
                 map = mapByOptions(mapOptions);
-                createMarkerByArr(arrPosObject, map, callback);
+
                 if (isCenterClinic) {
                     directionsDisplay.setMap(map);
                     let start = createPos(center.lat, center.lng);
@@ -459,8 +464,43 @@
                 window.google.maps.event.addListenerOnce(map, 'idle', function () {
                     enableMap();
                 });
+                markers = [];
+                var markerCluster = null;
+                window.google.maps.event.addListener(map, 'bounds_changed', function () {
+                    var arr = [];
+                    arrPosObject.forEach(val => {
+                        var currentLocation = new google.maps.LatLng(val.latitude, val.longitude);
+                        if (map.getBounds().contains(currentLocation)) {
+                            arr.push(val);
+                        }
+                    });
+                    if (markers && markers.length && arr && arr.length) {
+                        if(arrPosObject.length == arr.length){
+                            return;
+                        }
+                        markers.forEach(item => {
+                            arr.forEach((val, i) => {
+                                if (val.id === item.clinicObj.id) {
+                                    arr.splice(i, 1);
+                                }
+                            })
+                        })
+                        if (!arr.length) {
+                            return;
+                        }
+                    }
+                    createMarkerByArr(arr, map, callback);
+                    if (!markerCluster) {
+                         markerCluster = new MarkerClusterer(map, markers,
+                            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+                    } else {
+                        markerCluster.addMarkers(markers, false)
+                    }
+                });
+
             };
             init();
+
         }
 
         return {
@@ -480,5 +520,6 @@
             searchAddress: searchAddress,
             initGoogleAutocomplite: initGoogleAutocomplite
         };
+
     }
 })();

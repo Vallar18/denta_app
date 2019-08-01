@@ -5,7 +5,7 @@
                 <img src="content/img/logos.png">
             </div>
             <div class="img-wrap">
-                <p>{{vm.content.val3}}</p>
+                <p>{{::'CONTENT.TEXT_GET_ME_IN' | translate}}</p>
                 <div class="img-outer">
                     <img src="content/img/border.svg">
                 </div>
@@ -14,8 +14,8 @@
         </div>
         <div class="item-block-content">
             <div class="block-content">
-                <button  ng-click="vm.select(0)" class="gray-btn dentist-btn">{{vm.content.role1}}</button>
-                <button  ng-click="vm.select(1)" class="gray-btn patient-btn">{{vm.content.role2}}</button>
+                <button  ng-click="vm.select(0)" class="gray-btn dentist-btn">{{::'CONTENT.TEXT_SELECT_ROLE_DENTIST' | translate}}</button>
+                <button  ng-click="vm.select(1)" class="gray-btn patient-btn">{{::'CONTENT.TEXT_SELECT_ROLE_PATIENT' | translate}}</button>
             </div>
         </div>
     </ion-content>

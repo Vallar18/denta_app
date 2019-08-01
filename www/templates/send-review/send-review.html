@@ -2,7 +2,7 @@
     <ion-pane class="send-review">
         <div class="header-simple">
             <div class="header-simple__title">
-                Give a review
+                {{::'CONTENT.TEXT_GIVE_REVIEW_TITLE' | translate}}
             </div>
             <button class="button back-btn" ng-click="vm.back()">
                 <img src="content/img/back.png" alt="">
@@ -31,7 +31,7 @@
                     <div class="select-price-block">
                         <input type="number" class="input-price"
                                min="0" inputmode="numeric" pattern="[0-9]*"
-                               placeholder="How much did you pay?"
+                               placeholder="H{{::'CONTENT.PLACEHOLDER_REVIEW_ASK_PAY' | translate}}"
                                ng-model="vm.reviewModel.price"
                                input-change-color="#000">
                         <button type="button" class="select-currency" ng-click="vm.getSelectCurrency()">
@@ -42,7 +42,7 @@
                 <div class="send-review__comment">
                     <div class="textarea-with-counter">
                         <textarea rows="5"
-                                  placeholder="Write about the clinic"
+                                  placeholder="{{::'CONTENT.PLACEHOLDER_WRITE_ABOUT_CLINIC' | translate}}"
                                   class="textarea-default"
                                   ng-model="vm.reviewModel.comment"
                                   maxlength="250"></textarea>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="send-review__action">
                     <button class="default-btn" ng-click="vm.sendReview()">
-                        Submit
+                        {{::'CONTENT.BTN_SUBMIT' | translate}}
                     </button>
                 </div>
             </div>

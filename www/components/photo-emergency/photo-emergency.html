@@ -1,6 +1,6 @@
 <div class="photo-emergency">
     <div ng-if="!vm.photoItems.length" class="photo-emergency__empty text-center">
-        List is empty
+        {{::'CONTENT.TEXT_LIST_IS_EMPTY' | translate}}
     </div>
     <div class="list" ng-if="vm.photoItems.length">
         <div class="item item-divider  item-icon-right photo-emergency__item"

@@ -136,7 +136,7 @@
             return http.post(url.purchase.send, purchaseObj).then(function (res) {
                 if(res.success){
                     $ionicPopup.alert({
-                        title: messagesSvc.success.buy,
+                        title: messagesSvc.success().buy,
                         // template: 'Check your console log for the transaction data'
                     });
                 } else {
@@ -168,8 +168,8 @@
 
         function errorPopup() {
             $ionicPopup.alert({
-                title: messagesSvc.error.somthWrong,
-                template: messagesSvc.error.buy
+                title: messagesSvc.error().somthWrong,
+                template: messagesSvc.error().buy
             }).then(function () {
                 popupInstance = null;
             });

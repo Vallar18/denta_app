@@ -25,7 +25,18 @@
                     if ($stateParams.clinic_id) {
                         getClinicById($stateParams.clinic_id, res.coords.latitude, res.coords.longitude);
                     } else {
-                        getDentistByCurrentPos(res.coords.latitude, res.coords.longitude);
+                        //florida
+                        // const position = {
+                        //     latitude: 28.469993,
+                        //     longitude: -81.708032
+                        // };
+                        //dortmund,
+                        const position = {
+                            latitude: 51.503582,
+                            longitude: 7.444508
+                        };
+                        getDentistByCurrentPos(position.latitude, position.longitude);
+                        // getDentistByCurrentPos(res.coords.latitude, res.coords.longitude);
                     }
                 },function(res){
                     geoSvc.errorInetOrGPS().then(function (res) {
@@ -61,9 +72,13 @@
                 }).then(function (res) {
                     $ionicLoading.hide();
                     if (res.length) {
-                        vm.clinicItems = res.filter(function (v) {
-                            return v.users.length;
-                        });
+                        // vm.clinicItems = res.filter(function (v) {
+                        //     return v.users.length;
+                        // });
+                        vm.clinicItems = res;
+                        // for(let i = 0; i< 1000; i++){
+                        //     vm.clinicItems.push(res[i]);
+                        // }
                     }
                     geoSvc.showOnMap(vm.clinicItems,
                         {

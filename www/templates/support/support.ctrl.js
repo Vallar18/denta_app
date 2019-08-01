@@ -35,11 +35,11 @@
 
         function validation() {
             if (vm.user.email === undefined) {
-                toastr.error(messagesSvc.error.invalidEmail);
+                toastr.error(messagesSvc.error().invalidEmail);
                 return false
             }
             if (vm.message === '') {
-                toastr.error(messagesSvc.error.emptyField);
+                toastr.error(messagesSvc.error().emptyField);
                 return false;
             }
             return true;

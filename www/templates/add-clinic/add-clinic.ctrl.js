@@ -5,9 +5,11 @@
         .module('app')
         .controller('AddClinicCtrl', AddClinicCtrl);
 
-    AddClinicCtrl.$inject = ['$scope', '$state', '$stateParams', 'regSvc', 'phoneSvc', 'authSvc', 'toastr', 'messagesSvc', 'dentistSvc', 'codes', '$ionicPopup', 'geoSvc', '$ionicLoading', 'userSvc','clinicSvc'];
+    AddClinicCtrl.$inject = ['$scope', '$state', '$stateParams', 'regSvc', 'phoneSvc', 'authSvc', '$translate',
+        'toastr', 'messagesSvc', 'dentistSvc', 'codes', '$ionicPopup', 'geoSvc', '$ionicLoading', 'userSvc'];
 
-    function AddClinicCtrl($scope, $state, $stateParams, regSvc, phoneSvc, authSvc, toastr, messagesSvc, dentistSvc, codes, $ionicPopup, geoSvc, $ionicLoading, userSvc, clinicSvc) {
+    function AddClinicCtrl($scope, $state, $stateParams, regSvc, phoneSvc, authSvc, $translate,
+                           toastr, messagesSvc, dentistSvc, codes, $ionicPopup, geoSvc, $ionicLoading, userSvc) {
         const vm = this;
         vm.checkClinicPhone = checkClinicPhone;
         vm.send = send;
@@ -29,7 +31,6 @@
 
         let clinic = userSvc.getUser().clinic;
         vm.phone = '';
-        vm.btn_text = 'Send';
         if (vm.become_den) {
             vm.edit = false;
             authSvc.addBackBehave(vm.edit);
@@ -39,12 +40,18 @@
             longitude: null, latitude: null
         };
         if (vm.edit) {
-            vm.btn_text = 'Update';
             vm.clinic = {
                 name: clinic.name, phone: clinic.phone, address: clinic.address,
                 longitude: clinic.longitude, latitude: clinic.latitude, clinic_id: clinic.id
             };
         }
+
+        $translate('CONTENT.BTN_POPUP_YES').then(function (text) {
+            $scope.btn_yes = text;
+        });
+        $translate('CONTENT.BTN_POPUP_NO').then(function (text) {
+            $scope.btn_no = text;
+        });
 
         function checkClinicPhone() {
             if (!validPhone()) {
@@ -67,12 +74,12 @@
 
         function showPopUp() {
             $ionicPopup.show({
-                title: messagesSvc.quest.clinicPhone,
+                title: messagesSvc.quest().clinicPhone,
                 scope: $scope,
                 buttons: [
-                    {text: 'No'},
+                    {text: $scope.btn_no || 'No'},
                     {
-                        text: '<b>Yes</b>',
+                        text: '<b>' + $scope.btn_yes + '</b>' || '<b>Yes</b>',
                         type: 'button-positive',
                         onTap: getListClinic
                     },
@@ -104,7 +111,6 @@
             if (vm.edit) {
                 vm.edit = false;
                 vm.edit_spec = true;
-                vm.btn_text = 'Send';
                 vm.clinic = {
                     user_id: vm.user.id, name: '', phone: '',
                     longitude: null, latitude: null
@@ -233,7 +239,7 @@
                     vm.show_clinic = true;
                     return true;
                 } else {
-                    toastr.error(messagesSvc.error.invalidPhone);
+                    toastr.error(messagesSvc.error().invalidPhone);
                     vm.show_clinic = false;
                     return false;
                 }
@@ -242,7 +248,7 @@
                 if (vm.len_phone > 8 && vm.len_phone < 20) {
                     return true;
                 } else {
-                    toastr.error(messagesSvc.error.invalidPhone);
+                    toastr.error(messagesSvc.error().invalidPhone);
                     return false;
                 }
             }
@@ -251,10 +257,10 @@
         function validation() {
             if (validPhone()) {
                 if (vm.clinic.name === '' || vm.clinic.address === '') {
-                    toastr.error(messagesSvc.error.emptyField);
+                    toastr.error(messagesSvc.error().emptyField);
                     return false;
                 } else if (!vm.clinic.latitude || !vm.clinic.longitude) {
-                    toastr.error(messagesSvc.error.checkClinickOnMap);
+                    toastr.error(messagesSvc.error().checkClinickOnMap);
                 } else {
                     return true;
                 }
@@ -276,11 +282,11 @@
         //     if (vm.showSelect) {
         //         return;
         //     }
-            // clinicSvc.getClinicAddress(function(res){
-            //     vm.clinic.address = res.address;
-            //     vm.clinic.longitude = res.lng;
-            //     vm.clinic.latitude = res.lat;
-            // });
+        // clinicSvc.getClinicAddress(function(res){
+        //     vm.clinic.address = res.address;
+        //     vm.clinic.longitude = res.lng;
+        //     vm.clinic.latitude = res.lat;
+        // });
         // }
 
         vm.getLocation = (location) => {

@@ -5,15 +5,17 @@
         .module('app')
         .controller('HistoryCtrl', HistoryCtrl);
 
-    HistoryCtrl.$inject = ['$ionicHistory', '$state', 'toastr', 'emergItems', 'emergenciesSvc'];
+    HistoryCtrl.$inject = ['$ionicHistory', '$state', 'toastr', 'emergItems', 'emergenciesSvc', '$translate', '$scope'];
 
-    function HistoryCtrl($ionicHistory, $state, toastr, emergItems, emergenciesSvc) {
+    function HistoryCtrl($ionicHistory, $state, toastr, emergItems, emergenciesSvc, $translate, $scope) {
         var vm = this;
         vm.back = function () {
             $ionicHistory.goBack();
         };
         vm.historyItems = emergItems;
-
+        $translate('SUCCESS.HOME_DOCTOR_NOTIFIED').then(function (text) {
+            $scope.toastr_text = text;
+        });
         vm.goReview = function (item) {
             $state.go('send-review', {emergencyId: item.id});
         };
@@ -24,7 +26,9 @@
                 emergency_id: +item.id
             }).then(function (res) {
                 if (res && res.success) {
-                    toastr.success('Your home doctor will be notified');
+                    if ($scope.toastr_text) {
+                        toastr.success($scope.toastr_text);
+                    }
                     item.status = 1;
                 } else if (res && !res.success && res.message) {
                     toastr.error(res.message);

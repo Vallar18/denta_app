@@ -33,7 +33,7 @@
         function send() {
             let phone = phoneSvc.preparePhone(vm.select_code, vm.phone);
             if (!phoneSvc.validatePhone(phone)) {
-                toastr.error(messagesSvc.error.invalidPhone);
+                toastr.error(messagesSvc.error().invalidPhone);
                 return;
             }
             emergenciesSvc.create({
@@ -41,7 +41,7 @@
                 patient_phone: phone
             }).then(function(res){
                 if(res.success)   {
-                    toastr.success(messagesSvc.success.sendPatientEmergency);
+                    toastr.success(messagesSvc.success().sendPatientEmergency);
                     vm.phone = '';
                 } else if(!res.success && res.message){
                     toastr.error(res.message);

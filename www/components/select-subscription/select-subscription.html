@@ -1,7 +1,7 @@
 <div class="select-subscript">
     <div class="header-simple">
-        <div class="title-popup">Select your <br>
-            <span class="span-font-weight">subscription</span></div>
+        <div class="title-popup">{{::'CONTENT.TEXT_SELECT_YOUR' | translate}}<br>
+            <span class="span-font-weight">{{::'CONTENT.TEXT_SUBSCRIPTION' | translate}}</span></div>
         <div class="price-block" ng-if="isShowFreeMonth">
             <img src="content/img/price-icon.png" alt="">
         </div>
@@ -11,9 +11,9 @@
     </div>
     <div class="subscript-btn-block">
         <div class="text-center" ng-if="!productItems || !productItems.length">
-            List is empty
+            {{::'CONTENT.TEXT_LIST_IS_EMPTY' | translate}}
             <div class="text-center">
-                <a class="select-subscript__logout" ng-click="close()">Logout</a>
+                <a class="select-subscript__logout" ng-click="close()">{{::'CONTENT.TEXT_MENU_LOGOUT' | translate}}</a>
             </div>
         </div>
         <button ng-click="selectPlan(item)" layout="row" layout-align="space-around center" class="gray-btn"

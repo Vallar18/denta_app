@@ -5,9 +5,9 @@
         .module('app')
         .controller('RegDocCtrl', RegDocCtrl);
 
-    RegDocCtrl.$inject = ['$scope', '$ionicPlatform', '$state', '$stateParams', 'regSvc', 'toastr', 'authSvc', 'messagesSvc', '$ionicPopup', 'IonicClosePopupService', '$cordovaCamera', 'userSvc'];
+    RegDocCtrl.$inject = ['$scope', '$ionicPlatform', '$state', '$stateParams', 'regSvc', 'toastr', 'authSvc', 'messagesSvc', '$ionicPopup', 'IonicClosePopupService', '$cordovaCamera', 'userSvc', '$translate'];
 
-    function RegDocCtrl($scope, $ionicPlatform, $state, $stateParams, regSvc, toastr, authSvc, messagesSvc, $ionicPopup, IonicClosePopupService, $cordovaCamera, userSvc) {
+    function RegDocCtrl($scope, $ionicPlatform, $state, $stateParams, regSvc, toastr, authSvc, messagesSvc, $ionicPopup, IonicClosePopupService, $cordovaCamera, userSvc, $translate) {
         const vm = this;
         vm.send = send;
         vm.phone = authSvc.getPhone();
@@ -17,6 +17,8 @@
         vm.croppedDataUrl = '';
         authSvc.addBackBehave(vm.edit);
         vm.back = back;
+        vm.changeLanguage = changeLanguage;
+
         if(vm.edit || vm.become_den){
             let user = userSvc.getUser();
             vm.user = {
@@ -34,6 +36,11 @@
                 name: '', lastname: '', email: '',
                 phone: vm.phone, key: vm.key, avatar: ''
             };
+        }
+
+        function changeLanguage(langKey) {
+            $translate.use(langKey);
+            $state.reload();
         }
 
         function back() {
@@ -91,15 +98,15 @@
 
         function validation() {
             if (vm.user.email === undefined) {
-                toastr.error(messagesSvc.error.invalidEmail);
+                toastr.error(messagesSvc.error().invalidEmail);
                 return false;
             }
             if (vm.user.name === '' || vm.user.lastname === '') {
-                toastr.error(messagesSvc.error.emptyField);
+                toastr.error(messagesSvc.error().emptyField);
                 return false;
             }
             if (!vm.user.avatar.length) {
-                toastr.error(messagesSvc.error.avatar);
+                toastr.error(messagesSvc.error().avatar);
                 return false;
             }
             return true;

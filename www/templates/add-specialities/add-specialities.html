@@ -7,7 +7,7 @@
                 <div class="steps-item active-step"><span>3</span></div>
             </div>
             <div class="img-wrap">
-                <p>Let us know you</p>
+                <p>{{::'CONTENT.TEXT_REGISTRATION_TITLE' | translate}}</p>
                 <div class="img-outer">
                     <img src="content/img/border.svg">
                     <div class="top-icon">
@@ -19,22 +19,29 @@
         <div class="item-block-content">
             <div class="block-content">
                 <div class="select-price-block">
-                    <input type="number" class="input-price" placeholder="Emergency price"
+                    <input type="number" class="input-price" placeholder="{{::'CONTENT.PLACEHOLDER_EMERGENCY_PRICE' | translate}}"
                            min="0" inputmode="numeric" pattern="[0-9]*"
                            ng-model="vm.dentist.price" input-change-color="#000">
                     <button type="button" class="select-currency" ng-click="vm.getSelectCurrency()">
                         <span>{{vm.select_currency.abr}}</span>
                     </button>
                 </div>
-                 <button class="gray-btn" ng-click="vm.getSpeciality()" ng-if="!vm.len_spec && !vm.edit">Add specialties</button>
-                 <button class="gray-btn" ng-click="vm.getSpeciality()" ng-if="vm.len_spec || vm.edit">Edit specialties</button>
-                <p ng-if="vm.len_spec" class="selected-counter">{{vm.len_spec}} selected</p>
+                 <button class="gray-btn" ng-click="vm.getSpeciality()" ng-if="!vm.len_spec && !vm.edit">
+                     {{::'CONTENT.TEXT_ADD_SPECIALITIES' | translate}}
+                 </button>
+                 <button class="gray-btn" ng-click="vm.getSpeciality()" ng-if="vm.len_spec || vm.edit">
+                     {{::'CONTENT.TEXT_EDIT_SPECIALITIES' | translate}}
+                 </button>
+                <p ng-if="vm.len_spec" class="selected-counter">{{vm.len_spec}} {{::'CONTENT.TEXT_ADD_SPECIALITIES_SELECTED' | translate}}</p>
                 <div class="description">
-                     <textarea rows="4" ng-model="vm.dentist.description" maxlength="250" placeholder="Write about the clinic.."></textarea>
+                     <textarea rows="4" ng-model="vm.dentist.description" maxlength="250"
+                               placeholder="{{::'CONTENT.PLACEHOLDER_WRITE_ABOUT_CLINIC' | translate}}"></textarea>
                      <span>{{(vm.dentist.description.length ? vm.dentist.description.length: 0)+'/'+250 }}</span>
                 </div>
-                <button class="send-button" ng-if="!vm.become_den" ng-click="vm.send()">{{vm.btn_text}}</button>
-                <button class="send-button" ng-if="vm.become_den" ng-click="vm.sendBecomeDentist()">{{vm.btn_text}}</button>
+                <button class="send-button" ng-if="vm.become_den" ng-click="vm.sendBecomeDentist()">{{::'CONTENT.BTN_SEND' | translate}}</button>
+
+                <button class="send-button" ng-if="!vm.edit && !vm.become_den" ng-click="vm.send()">{{::'CONTENT.BTN_SEND' | translate}}</button>
+                <button class="send-button" ng-if="vm.edit && !vm.become_den" ng-click="vm.send()">{{::'CONTENT.BTN_UPDATE' | translate}}</button>
             </div>
         </div>
     </ion-content>

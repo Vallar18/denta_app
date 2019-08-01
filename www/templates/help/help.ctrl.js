@@ -11,7 +11,7 @@
             let vm = this;
             $scope.slideOpen = false;
             vm.dentistItems = [];
-            vm.activeText = 'Loading...';
+            vm.isEmpty = false;
 
             init();
 
@@ -21,17 +21,26 @@
             }
 
             function getCurrentPosition() {
-                vm.activeText = 'Loading...';
                 geoSvc.initGoogleMaps(function () {
-                    console.log('map is ready!');
                     geoSvc.getPosition(false).then(function (res) {
-                        getDentistByCurrentPos(res.coords.latitude, res.coords.longitude);
+                        //florida
+                        // const position = {
+                        //     latitude: 28.469993,
+                        //     longitude: -81.708032
+                        // };
+                        //dortmund,
+                        const position = {
+                            latitude: 51.503582,
+                            longitude: 7.444508
+                        };
+                        getDentistByCurrentPos(position.latitude, position.longitude);
+                        // getDentistByCurrentPos(res.coords.latitude, res.coords.longitude);
                     }, function (res) {
                         geoSvc.errorInetOrGPS().then(function (res) {
                             if (res) {
                                 getCurrentPosition();
                             } else {
-                                vm.activeText = 'List is empty';
+                                vm.isEmpty = true;
                             }
                         });
                     });
@@ -44,12 +53,17 @@
                         longitude: lng,
                         latitude: lat
                     }).then(function (res) {
-                        if (res || res.length) {
-                            vm.dentistItems = helpSvc.prepareDrFromClinic(res);
+                        if (res && res.length) {
+                            // vm.dentistItems = res;
+                            vm.dentistItems = [];
+                            for(let i = 0; i< 10; i++){
+                                vm.dentistItems.push(res[i]);
+                            }
+                            // vm.dentistItems = helpSvc.prepareDrFromClinic(res);
                             calculateDistance(lat, lng);
                             sortItem();
-                        } else if (!res.length) {
-                            vm.activeText = 'List is empty';
+                        } else {
+                            vm.isEmpty = true;
                         }
                     });
                 }

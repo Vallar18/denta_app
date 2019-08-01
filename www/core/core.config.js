@@ -14,16 +14,22 @@
             // preventDuplicates: true,
             preventOpenDuplicates: true,
         });
-        //example of user translation
-        $translateProvider.translations('en', {
-            'TITLE': 'Hello',
-            'FOO': 'This is a paragraph'
-        });
-        $translateProvider.translations('de', {
-            'TITLE': 'Hallo',
-            'FOO': 'Dies ist ein Absatz'
+        // example of user translation
+        $translateProvider.useStaticFilesLoader({
+            prefix: 'lang/lang-',
+            suffix: '.json'
         });
         $translateProvider.preferredLanguage('en');
+
+
+        // -- change language -- //
+        // vm.changeLanguage = changeLanguage;
+        // function changeLanguage(langKey) {
+        //     $translate.use(langKey);
+        // }
+        // changeLanguage('en');
+
+
         //----------------------------------
         $urlRouterProvider.otherwise('/add-phone');
         $mdGestureProvider.skipClickHijack();
@@ -396,15 +402,6 @@
                 controller: 'MyTreatmentsCtrl',
                 controllerAs: 'vm'
             })
-            .state('need-dentist', {
-                reload: true,
-                cache: false,
-                url: '/need-dentist',
-                templateUrl: 'templates/need-dentist/need-dentist.html',
-                controller: 'NeedDentistCtrl',
-                controllerAs: 'vm'
-            })
-
             .state('send-review', {
                 reload: true,
                 cache: false,
