@@ -23,7 +23,18 @@
             function getCurrentPosition() {
                 geoSvc.initGoogleMaps(function () {
                     geoSvc.getPosition(false).then(function (res) {
-                        getDentistByCurrentPos(res.coords.latitude, res.coords.longitude);
+                        //florida
+                        // const position = {
+                        //     latitude: 28.469993,
+                        //     longitude: -81.708032
+                        // };
+                        //dortmund,
+                        const position = {
+                            latitude: 51.503582,
+                            longitude: 7.444508
+                        };
+                        getDentistByCurrentPos(position.latitude, position.longitude);
+                        // getDentistByCurrentPos(res.coords.latitude, res.coords.longitude);
                     }, function (res) {
                         geoSvc.errorInetOrGPS().then(function (res) {
                             if (res) {
@@ -43,7 +54,12 @@
                         latitude: lat
                     }).then(function (res) {
                         if (res && res.length) {
-                            vm.dentistItems = helpSvc.prepareDrFromClinic(res);
+                            // vm.dentistItems = res;
+                            vm.dentistItems = [];
+                            for(let i = 0; i< 10; i++){
+                                vm.dentistItems.push(res[i]);
+                            }
+                            // vm.dentistItems = helpSvc.prepareDrFromClinic(res);
                             calculateDistance(lat, lng);
                             sortItem();
                         } else {

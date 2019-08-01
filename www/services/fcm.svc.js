@@ -29,7 +29,7 @@
                 window.firebase.initializeApp(FCM_CONFIG);
             } else {
                 toastr.error(messagesSvc.error().fcm);
-            }
+}
         }
 
         function unsubscribe() {
@@ -44,8 +44,8 @@
         }
 
         function refreshToken(callback) {
-            if (typeof FCMPlugin !== 'undefined') {
-                FCMPlugin.onTokenRefresh(function (token) {
+            if (typeof  FCMPlugin !== 'undefined') {
+                 FCMPlugin.onTokenRefresh(function (token) {
                     if (angular.isFunction(callback) && token) {
                         callback(token);
                     }
@@ -56,8 +56,8 @@
 
         function getToken(callback) {
             $ionicPlatform.ready(function () {
-                if (typeof FCMPlugin !== 'undefined') {
-                    FCMPlugin.getToken(function (token) {
+                if (typeof  FCMPlugin !== 'undefined') {
+                     FCMPlugin.getToken(function (token) {
                         if (angular.isFunction(callback) && token) {
                             callback(token);
                         }
@@ -67,7 +67,7 @@
         }
 
         function subscribe() {
-            if (typeof FCMPlugin !== 'undefined') {
+            if (typeof  FCMPlugin !== 'undefined') {
                 refreshToken(); //add listener for refresh
                 FCMPlugin.onNotification(function (data) {
                         console.log(data);

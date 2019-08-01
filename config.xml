@@ -124,10 +124,8 @@
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
     <plugin name="cordova-plugin-inapppurchase" spec="^1.2.0" />
-    <plugin name="cordova-plugin-fcm" spec="^2.1.2" />
-    <plugin name="cordova-fabric-plugin" spec="^1.1.14-dev">
-        <variable name="FABRIC_API_KEY" value="b4d413449bba53af075c9ddd6844b52b18ad8bf9" />
-        <variable name="FABRIC_API_SECRET" value="209206d2eb11b7ec8b730806ab8c8d3ba6d7a525a12210aa1ef4b1ec45659965" />
+    <plugin name="cordova-android-support-gradle-release" spec="^3.0.1">
+        <variable name="ANDROID_SUPPORT_VERSION" value="27.+" />
     </plugin>
-    <engine name="android" spec="^6.4.0" />
+    <plugin name="cordova-plugin-fcm-with-dependecy-updated" spec="^2.4.0" />
 </widget>

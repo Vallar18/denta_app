@@ -27,7 +27,7 @@
         // function changeLanguage(langKey) {
         //     $translate.use(langKey);
         // }
-        // changeLanguage('uk');
+        // changeLanguage('en');
 
 
         //----------------------------------

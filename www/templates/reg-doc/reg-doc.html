@@ -35,6 +35,8 @@
                     <button class="send-button" ng-if="!vm.edit" ng-click="vm.send()">{{::'CONTENT.BTN_SEND' | translate}}</button>
                     <button class="send-button" ng-if="vm.edit" ng-click="vm.send()">{{::'CONTENT.BTN_UPDATE' | translate}}</button>
                 </div>
+                    <button class="send-button" ng-if="vm.edit" ng-click="vm.changeLanguage('de');">Deutch</button>
+                    <button class="send-button" ng-if="vm.edit" ng-click="vm.changeLanguage('en');">English</button>
             </form>
         </div>
     </ion-content>
