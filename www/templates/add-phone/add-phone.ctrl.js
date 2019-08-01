@@ -9,18 +9,18 @@
 
     function AddPhoneCtrl($scope, $state, userSvc, authSvc, regSvc, toastr, messagesSvc, codes, phoneSvc, $stateParams) {
         const vm = this;
+        if (authSvc.isLogined()) {
+            authSvc.processAutoLogin();
+        } else if (userSvc.isShowStart()) {
+            $state.go('view');
+        } else {
+            authSvc.clearAuthData();
+            userSvc.resetData();
+        }
         vm.send = send;
         vm.getSelectCode = getSelectCode;
         vm.selectCode = selectCode;
         vm.checkKey = checkKey;
-        if (authSvc.isLogined()) {
-            authSvc.processAutoLogin();
-        }else if (userSvc.isShowStart()) {
-            $state.go('view');
-        }else{
-            authSvc.clearAuthData();
-            userSvc.resetData();
-        }
         getLoc();
         vm.select_code = '+1';
         vm.codes = codes;
@@ -37,9 +37,9 @@
         // }
         function getLoc() {
             $.getJSON("http://ip-api.com/json/?callback=?", function (data) {
-                if(data){
+                if (data) {
                     phoneSvc.setDefaultCountry(data.country);
-                }else{
+                } else {
                     phoneSvc.setDefaultCountry('Canada');
                 }
                 vm.selected_country = vm.codes[phoneSvc.getDefaultIndex()];
@@ -71,8 +71,41 @@
             });
         }
 
+        window.addEventListener('native.keyboardshow', keyboardShowHandler);
+
+        function keyboardShowHandler(e) {
+            setTimeout(function () {
+                let addItem = document.querySelector('.add-phone');
+                console.log(addItem);
+                let itemBlockTop = document.querySelector('.registration-item');
+                let img = document.querySelector('.item-block-top .img-wrap .img-outer img');
+                let p = document.querySelector('.item-block-top .img-wrap p');
+                if (itemBlockTop && itemBlockTop.style) {
+                    itemBlockTop.style.paddingTop = '5vh';
+                    img.style.height = '7vh';
+                    p.style.marginBottom = '2vh';
+                }
+            }, 0);
+        }
+
+        window.addEventListener('native.keyboardhide', keyboardHideHandler);
+
+        function keyboardHideHandler(e) {
+            setTimeout(function () {
+                let itemBlockTop = document.querySelector('.registration-item');
+                let img = document.querySelector('.item-block-top .img-wrap .img-outer img');
+                let p = document.querySelector('.item-block-top .img-wrap p');
+                if (itemBlockTop && itemBlockTop.style) {
+                    itemBlockTop.style.paddingTop = '19vw';
+                    img.style.height = 'auto';
+                    p.style.marginBottom = '7%';
+                }
+            }, 0);
+        }
+
+
         function checkKey(event) {
-            if(event.which === 13) {
+            if (event.which === 13) {
                 send();
             }
         }
@@ -86,6 +119,7 @@
             vm.selected_country = code;
             vm.codePopup.close();
         }
+
     }
 
 })();

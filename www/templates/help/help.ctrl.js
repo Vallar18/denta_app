@@ -16,7 +16,7 @@
             init();
 
             function init() {
-                vm.sort = 'rating';
+                vm.sort = 'distance';
                 getCurrentPosition();
             }
 
