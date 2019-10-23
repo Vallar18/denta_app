@@ -24,9 +24,9 @@
                 $state.go('view');
             }
             fcmSvc.initialize();
-            if (window.StatusBar) {
-                window.styleDefault();
-            }
+            // if (window.StatusBar) {
+            //     window.styleDefault();
+            // }
             addBehaverForKeyboard();
         });
 

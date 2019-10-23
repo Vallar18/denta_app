@@ -9,18 +9,12 @@
 
     function AddPhoneCtrl($scope, $state, userSvc, authSvc, regSvc, toastr, messagesSvc, codes, phoneSvc, $stateParams, $ionicLoading, geoSvc) {
         const vm = this;
-        if (authSvc.isLogined()) {
-            authSvc.processAutoLogin();
-        } else if (userSvc.isShowStart()) {
-            $state.go('view');
-        } else {
-            authSvc.clearAuthData();
-            userSvc.resetData();
-        }
         vm.send = send;
         vm.getSelectCode = getSelectCode;
         vm.selectCode = selectCode;
         vm.checkKey = checkKey;
+        authSvc.clearAuthData();
+        userSvc.resetData();
         vm.select_code = '+1';
         vm.codes = codes;
         vm.phone = $stateParams.phone || '';

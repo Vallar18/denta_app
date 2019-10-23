@@ -5,9 +5,9 @@
         .module('app')
         .controller('LocationCtrl', LocationCtrl);
 
-    LocationCtrl.$inject = ['$scope', '$ionicHistory', 'geoSvc','$ionicTabsDelegate', '$state'];
+    LocationCtrl.$inject = ['$scope', '$ionicHistory', 'geoSvc'];
 
-    function LocationCtrl($scope, $ionicHistory, geoSvc,$ionicTabsDelegate, $state) {
+    function LocationCtrl($scope, $ionicHistory, geoSvc) {
         let vm = this;
         vm.searchText = $scope.locModel;
         vm.search = geoSvc.searchAddress;
